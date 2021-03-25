@@ -1,0 +1,30 @@
+.icon-style {
+    &-default {
+        color: rgb(74, 147, 179);
+    }
+
+    &-danger {
+        color: red;
+    }
+
+    &-success {
+        color: #00cc33;
+    }
+
+    &-hoonian {
+        color: rgb(74, 147, 179);
+    }
+
+    &-searchIconLeft {
+        color: rgb(74, 147, 179) !important;
+        position: absolute !important;
+        // left: 17px !important;
+        top: 0 !important;
+        display: inline-block;
+        cursor: pointer !important;
+        // margin-right: 0px !important;
+        // height: 13px !important;
+        margin-top: 13px !important;
+        // margin-right: 743px !important
+    }
+}

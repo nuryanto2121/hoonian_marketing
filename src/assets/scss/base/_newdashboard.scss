@@ -1,0 +1,571 @@
+@mixin CreateColors($color) {
+    color: $color
+}
+
+.ChartLegend {
+    &__Wrap {
+        background-color: #E3E7EE;
+        border-radius: 10px;
+        padding-top: 10px !important;
+        padding-bottom: 10px !important;
+        padding-left: 10px !important;
+        padding-right: 10px !important;
+    }
+
+    &__Content {
+        margin-bottom: 5px;
+        padding-top: 5px;
+    }
+}
+
+.Plan {
+    &-Header-Bagde {
+        background-color: rgb(102, 204, 255);
+        border: solid 1px rgb(74, 147, 179);
+        // border-width: 1px;
+        // border-color: blue;
+        // border-style: solid;
+        width: auto;
+        height: 36px;
+        border-radius: 10px;
+        text-align: center;
+        font-size: 12px;
+        color: rgb(74, 147, 179);
+        margin: 0;
+        padding-top: 9px;
+        font-weight: bold;
+    }
+
+    &-Dot-Primary {
+        // background-color: rgb(74, 147, 179);
+        // height: 60px;
+        // width: 60px;
+        // border-radius: 50px;
+        // text-align: center;
+        // padding: 10px;
+        // font-size: 23px;
+        // font-weight: bold;
+        // color: white;
+        // margin: auto;
+        background-color: rgb(74, 147, 179);
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Magenta {
+        background-color: #9a0368;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Lime {
+        background-color: #686803;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Green {
+        background-color: #039a03;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Purple {
+        background-color: #9a03ff;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Blue {
+        background-color: #0335ff;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Blue {
+        background-color: #0335ff;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Orange {
+        background-color: #ff9a03;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Red {
+        background-color: #cd0303;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Gold {
+        background-color: #9a9a03;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-LightGreen {
+        background-color: #35cd03;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-LightGreen2 {
+        // background-color: #35cd03;
+        background-color: rgb(51, 153, 153);
+        height: 32px;
+        width: 32px;
+        border-radius: 10px;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-LightGreen3 {
+        background-color: rgb(51, 153, 153);
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 5px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Pink {
+        background-color: #ff03ff;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Yellow {
+        background-color: #ffcd03;
+        height: 32px;
+        width: 32px;
+        border-radius: 25px;
+        text-align: center;
+        padding: 6px;
+        font-size: 12px;
+        color: white;
+        margin: auto;
+    }
+
+    &-Dot-Text {
+        text-align: center;
+        font-size: 11px;
+        padding-top: 5px;
+    }
+
+    &-DotTable-Magenta {
+        background-color: #9a0368;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Lime {
+        background-color: #686803;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Green {
+        background-color: #039a03;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Purple {
+        background-color: #9a03ff;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Blue {
+        background-color: #0335ff;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    // &-DotTable-Blue {
+    //     background-color: #0335ff;
+    //     width: 10px;
+    //     height: 10px;
+    //     padding: 10px;
+    //     border-radius: 10px;
+    //     margin: auto;
+    // }
+
+    &-DotTable-Orange {
+        background-color: #ff9a03;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Red {
+        background-color: #cd0303;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Gold {
+        background-color: #9a9a03;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-LightGreen {
+        background-color: #35cd03;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Pink {
+        background-color: #ff03ff;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+
+    &-DotTable-Yellow {
+        background-color: #ffcd03;
+        width: 10px;
+        height: 10px;
+        padding: 10px;
+        border-radius: 10px;
+        margin: auto;
+    }
+}
+
+.MyBadge {
+    &__Header {
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+        padding-top: 8px;
+        padding-left: 7px;
+        padding-right: 7px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        padding-top: 8px;
+        color: #fff !important;
+        background-color: #007bff !important;
+    }
+
+    &__Content {
+        width: 100%;
+        height: 40px;
+        font-size: 15px;
+        padding-top: 8px;
+        padding-left: 7px;
+        padding-right: 7px;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        color: #7f8186 !important;
+        background-color: #E3E7EE !important;
+    }
+}
+
+.Appointment {
+    &__Data {
+        border-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #8f81a1;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+    }
+
+    &__Icon {
+        font-size: 15px;
+        text-align: right;
+        padding-top: 5%;
+    }
+
+    &__Descs {
+        font-size: 14px;
+        color: #7f8186;
+    }
+
+    &__Title {
+        font-size: 20px;
+        color: #4e5052;
+    }
+}
+
+.CardTag {
+    &-Title {
+        border-style: solid;
+        border-color: rgb(74, 147, 179);
+        // border-width: 2px;
+        text-align: center;
+        color: #fff;
+        font-size: 14px;
+        background-color: rgb(74, 147, 179);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        // max-height: 10%;
+        // min-height: 26px;
+        font-weight: bold;
+        padding: 5px;
+        min-width: 80px;
+    }
+
+    &-Descs {
+        border-style: solid;
+        border-color: rgb(74, 147, 179);
+        border-width: 2px;
+        text-align: center;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-size: 12px;
+        min-width: 80px;
+    }
+}
+
+.Listing {
+    &RowHeader {
+        font-size: 15px;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid #ced0d6;
+        color: rgb(74, 147, 179);
+    }
+
+    &RowBody {
+        font-size: 12px;
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        border-bottom: 2px solid #ced0d6;
+    }
+}
+
+.CalendarTag {
+    &__Month {
+        border-style: solid;
+        border-color: rgb(74, 147, 179);
+        border-width: 2px;
+        text-align: center;
+        color: #fff;
+        font-size: 15px;
+        background-color: rgb(74, 147, 179);
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        max-height: 10%;
+        min-height: 26px;
+    }
+
+    &__Date {
+        border-style: solid;
+        border-color: rgb(74, 147, 179);
+        border-width: 2px;
+        text-align: center;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        font-size: 18px;
+        font-weight: bold;
+        color: rgb(74, 147, 179);
+        height: 30px;
+    }
+}
+
+.HeaderTable {
+    background-color: rgb(74, 147, 179);
+    color: #fff;
+    border-bottom-style: unset !important;
+    text-align: center;
+}
+
+.ContentTable {
+    text-align: left;
+
+    &__Center {
+        text-align: center;
+    }
+
+    &__Right {
+        text-align: right;
+    }
+}
+
+.Commision {
+    &__Text {
+        margin-left: 20%;
+    }
+
+    &__Wrapper {
+        // padding-left: 30%;
+        // margin-top: 5%;
+    }
+
+    &__Title {
+        &Blue {
+            font-weight: bold;
+            color: rgb(74, 147, 179);
+            font-size: 14px;
+        }
+
+        &Green {
+            font-weight: bold;
+            color: #00cc33;
+            font-size: 14px;
+        }
+
+        &Red {
+            font-weight: bold;
+            color: #cc0000;
+            font-size: 14px;
+        }
+
+        font-size: 14px;
+    }
+
+    &__Descs {
+        font-size: 28px;
+        color: #7f8084;
+    }
+
+    &__Icon {
+        // position: absolute;
+    }
+}
+
+.ButtonPOD {
+    background-color: #35cd03 !important;
+    border-color: #35cd03 !important;
+
+    &:hover {
+        background-color: #35cd03 !important;
+        border-color: #35cd03 !important;
+    }
+}
+
+.toMidle {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.lbl-header-list {
+    margin-right: 10px;
+    font-size: 14px;
+    color: gray;
+    text-shadow: 0.5px 0px;
+}
+
+.badge-header-list {
+    background: var(--bgcolor);
+    border-radius: 4px;
+    color: white;
+    text-align: center;
+}
+
+.lbl-bold {
+    font-size: 12px;
+    text-shadow: 0.5px 0px;
+    font-family: Poppins !important;
+    margin-bottom: 5px !important;
+}
