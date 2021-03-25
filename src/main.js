@@ -93,12 +93,7 @@ import ABSMasterPageVuex2 from './components/Forms/ABSMasterPageVuex2.vue'
 // import HeaderFormList from './components/HeaderForm/HeaderFormList.vue'
 import HeaderFormListVuex from './components/HeaderForm/HeaderFormListVuex.vue'
 import HeaderFormListVuex2 from './components/HeaderForm/HeaderFormListVuex2.vue'
-import ABSTAnalysis from './components/TAnalysis/ABSTAnalysis.vue'
-import ABSTAnalysisFromTo from './components/TAnalysis/ABSTAnalysisFromTo.vue'
-import ABSTAnalysisRadioButton from './components/TAnalysis/ABSTAnalysisRadioButton.vue'
-import ABSTAnalysisRadioButtonTransactionType from './components/TAnalysis/ABSTAnalysisRadioButtonTransactionType.vue'
-import ABSTAnalysisLookUp from './components/TAnalysis/ABSTAnalysisLookUp.vue'
-import ABSTAnalysisReportGeneratorExecutor from './components/TAnalysis/ABSTAnalysisReportGeneratorExecutor.vue'
+
 import ABSCompute from './components/Forms/ABSCompute.vue'
 import ABSLabelOnly from './components/Forms/ABSLabelOnly.vue'
 import ABSInputSelectList from './components/Forms/ABSInputSelectList.vue'
@@ -363,12 +358,7 @@ Vue.component('ABSProcessTextAreaVuex', ABSProcessTextAreaVuex)
 Vue.component('v-select', vSelect)
 Vue.component('draggable', draggable)
 Vue.component('downloadExcel', JsonExcel)
-Vue.component('ABSTAnalysis', ABSTAnalysis)
-Vue.component('ABSTAnalysisFromTo', ABSTAnalysisFromTo)
-Vue.component('ABSTAnalysisRadioButton', ABSTAnalysisRadioButton)
-Vue.component('ABSTAnalysisRadioButtonTransactionType', ABSTAnalysisRadioButtonTransactionType)
-Vue.component('ABSTAnalysisLookUp', ABSTAnalysisLookUp)
-Vue.component('ABSTAnalysisReportGeneratorExecutor', ABSTAnalysisReportGeneratorExecutor)
+
 Vue.component('vTreeTable', ZkTable)
 Vue.component('masked-input', MaskedInput)
 Vue.component('ABSInputSelectList', ABSInputSelectList)

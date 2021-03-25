@@ -10,10 +10,6 @@ import {
 } from './SS/SS'
 
 import {
-  PJRender
-} from './PJ/PJ'
-
-import {
   DDRender
 } from './DD/DD'
 
@@ -88,7 +84,6 @@ export default new Router({
       SSRender,
       MKRender,
       OPRender,
-      PJRender,
       DDRender,
     {
       path: '/DynamicMenu',

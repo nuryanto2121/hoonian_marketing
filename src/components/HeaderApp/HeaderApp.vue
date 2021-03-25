@@ -51,15 +51,6 @@
       </span>
 
       <div class="pull--right">
-        <div v-show="PI_project.isShow" class="header--top__info-project notranslate">
-          <HOODropDown
-            @change="OnProjectChange"
-            :prop="PI_project"
-            v-model="projectId"
-            :label="projectName"
-            ref="ref_project"
-          />
-        </div>
         <div class="header--top__info-subportfolio notranslate">{{label}}</div>
         <div class="container-notif">
           <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" @click="chat">
@@ -312,28 +303,6 @@ export default {
       Username: "",
       totalChat: 0,
       totalNotification: 0,
-      projectId: "",
-      projectName: "",
-      PI_project: {
-        dataLookUp: {
-          url: "/api/hoonian-website/dashboard/projects-assign",
-          param: {
-          }
-        },
-        cValidate: "",
-        cName: "project",
-        ckey: false,
-        cOrder: 1,
-        cProtect: false,
-        cParentForm: "FormEntry",
-        cStatic: false,
-        cOption: [],
-        cDisplayColumn: "",
-        cInputStatus: this.inputStatus,
-        callback: this.callbackDropdown,
-        cClearable: false,
-        isShow: true,
-      },
     };
   },
   created: async function() {
@@ -394,26 +363,6 @@ export default {
     }
   },
   methods: {
-    callbackDropdown(data) {
-      if (data.length > 0) {
-        this.projectId = this.getDashboardProjectID();
-      }
-    },
-    OnProjectChange(data) {
-      this.$nextTick(() => {
-        this.projectId = data.id;
-        this.projectName = data.label;
-                
-        let lsDataUser = localStorage.lsDataUser;
-
-        lsDataUser = JSON.parse(lsDataUser);
-        lsDataUser.dashboard_project_id = data.id;
-
-        lsDataUser = JSON.stringify(lsDataUser);
-        localStorage.lsDataUser = lsDataUser;
-        this.$store.commit("setProjectId", data.id);
-      })
-    },
     init() {
 
     },
