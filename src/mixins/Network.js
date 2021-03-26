@@ -60,7 +60,8 @@ export default {
 
       segmentGetImportCSV: 'File/ImportCSV',
 
-      segmentLogin: 'Auth/Login',
+      // segmentLogin: 'Auth/Login',
+      segmentLogin: 'api/Marketing/Login',
       segmentForgetPassword: 'Auth/ForgotPassword',
       segmentValidateOTP: 'Auth/Validate',
       segmentLogout: 'Auth/Logout',
