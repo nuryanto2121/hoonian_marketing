@@ -366,6 +366,7 @@ export default {
     init() {
 
     },
+    onNewMenu() {},
     getSumChatNotif() {
       var param = {
         option_function_cd: "GetSumChatNotif",

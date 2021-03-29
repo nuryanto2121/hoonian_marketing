@@ -1,14 +1,12 @@
 <template>
   <div class="abs-login">
-    <div class="abs-login__box-position-left">
-      <div class="box-layer-form" style="width:100%;">
-        <div class="row">
-          <div class="column-left">
-            <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 450px;" />
-            <!-- <br /> -->
-            <!-- <span style="font-size:18px;color:hsl(0, 0%, 58%);">Transportation Management System</span> -->
+    <div class="abs-login__box-position-left" style="background: linear-gradient(90deg, #FFFF 50%, #4a93b3 50%)">
+      <div class="box-layer-form" style="width:60%; height: 60%;">
+        <div class="row" style="height: 100%;">
+          <div class="col">
+            <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 100%;" />
           </div>
-          <div class="column-right">
+          <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 50%;">
             <div class="box-layer-form">
               <div class="box-login-form">
                 <b-form @submit.prevent="onSubmit">
@@ -54,11 +52,6 @@
                       required
                     />
                   </div>
-                  <!-- <div class="checkbox mb-3">
-                    <label>
-                      <input type="checkbox" v-model="rememberMe" /> Remember me
-                    </label>
-                  </div>-->
                   <button
                     class="btn btn-big btn-block"
                     style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:14px !important;margin-bottom:5px;"
@@ -75,6 +68,71 @@
               </div>
             </div>
           </div>
+          <!-- <div class="column-left">
+            <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 450px;" />
+          </div> -->
+          <!-- <div class="column-right">
+            <div class="box-layer-form">
+              <div class="box-login-form">
+                <b-form @submit.prevent="onSubmit">
+                  <div class="form-label-group text-field-position">
+                    <input
+                      v-model="userName"
+                      type="text"
+                      id="inputUsername"
+                      class="form-control clear-input"
+                      placeholder="Username"
+                      autofocus
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                    <span @click="removeUserName">&times;</span>
+                  </div>
+                  <div class="form-label-group text-field-position">
+                    <input
+                      v-model="passWord"
+                      type="password"
+                      id="inputPassword"
+                      class="form-control clear-input"
+                      placeholder="Password"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                    <span @click="removePassword">&times;</span>
+                  </div>
+                  <div v-if="captchaTxt">
+                    <label
+                      style="text-align: center; width: 100%; background-color: cadetblue; border-radius: 5px;"
+                      for="captcha"
+                    >{{captcha}}</label>
+                    <input
+                      v-model="captCha"
+                      type="text"
+                      id="inputCaptcha"
+                      class="form-control"
+                      placeholder="input captcha"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                  </div>
+                  <button
+                    class="btn btn-big btn-block"
+                    style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:14px !important;margin-bottom:5px;"
+                    type="submit"
+                  >Sign In</button>
+                  <div class="forgot-password" style="text-align:center;">
+                    <label
+                      @click="showForForgetPassword"
+                      for
+                      style="font-size:14px !important;color: rgb(74, 147, 179); cursor: pointer !important;"
+                    >Forget Password ?</label>
+                  </div>
+                </b-form>
+              </div>
+            </div>
+          </div> -->
           <ABSLoader />
         </div>
       </div>
@@ -148,6 +206,7 @@ export default {
           }
         })
         .then(response => {
+          // console.log(response)
           this.$store.commit("setStatusLoader", false);
           this.doClearLocalStorage();
 

@@ -14,12 +14,12 @@ export default {
   computed: {},
   methods: {},
   mounted() {
-    let lsDataUser = localStorage.lsDataUser;
-    lsDataUser = JSON.parse(lsDataUser);
-    // this.component = () => import(`./${lsDataUser.dashboard_url}.vue`);
-    this.$router.replace({
-      path: lsDataUser.dashboard_url
-    })
+    // let lsDataUser = localStorage.lsDataUser;
+    // lsDataUser = JSON.parse(lsDataUser);
+    // // this.component = () => import(`./${lsDataUser.dashboard_url}.vue`);
+    // this.$router.replace({
+    //   path: lsDataUser.dashboard_url
+    // })
   }
 };
 </script>
