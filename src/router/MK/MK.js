@@ -1,4 +1,5 @@
-// import MK_MasterPrincipleForm from '@/views/MK/MK_MasterPrinciple/MK_MasterPrincipleForm'
+import MK_SalesLead from '@/views/MK/MK_SalesLead/MK_SalesLead'
+import MK_SalesLeadLogbook from '@/views/MK/MK_SalesLead/MK_SalesLeadLogbook'
 
 export const MKRender = {
     path: '/MK',
@@ -8,13 +9,21 @@ export const MKRender = {
         }
     },
     children: [
-        // {
-        //     path: '/MK/MK_MasterPrincipleForm',
-        //     name: 'MK_MasterPrincipleForm',
-        //     component: MK_MasterPrincipleForm,
-        //     meta: {
-        //         requiresAuth: true
-        //     }
-        // },
+        {
+            path: '/MK/MK_SalesLead',
+            name: 'MK_SalesLead',
+            component: MK_SalesLead,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_SalesLead/LogBook',
+            name: 'MK_SalesLeadLogbook',
+            component: MK_SalesLeadLogbook,
+            meta: {
+                requiresAuth: true
+            }
+        },
     ]
 }

@@ -98,7 +98,8 @@ import {
     faMapMarkedAlt,
     faArrowLeft,
     faArrowRight,
-    faAngleDoubleLeft
+    faAngleDoubleLeft,
+    faWallet
 } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -201,5 +202,6 @@ library.add(faArrowLeft)
 library.add(faArrowRight)
 library.add(faAngleDoubleRight)
 library.add(faAngleDoubleLeft)
+library.add(faWallet)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)

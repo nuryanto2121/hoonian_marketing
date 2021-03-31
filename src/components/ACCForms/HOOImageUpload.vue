@@ -6,7 +6,7 @@
     <template v-else>
       <label
         :tabindex="prop.cOrder"
-        :class="{'error-text-field': errors.has(prop.cParentForm+'.'+prop.cName)}"
+        :class="{'error-text-field': errors.has(prop.cParentForm+'.'+prop.cName), 'poppins': true}"
         v-if="prop.cIcon == undefined || prop.cIcon == null || prop.cIcon == ''"
         :for="'acc_image_upload_' + prop.cName"
         :style="'color: gray; width: 100%; text-align: center;border-radius: 5px; margin-top: 10px;border: 1px solid gray; display: inline-block; padding: 6px 12px; cursor: pointer;' + prop.cStyle"
