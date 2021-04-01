@@ -1,4 +1,5 @@
 // import MK_MasterPrincipleForm from '@/views/MK/MK_MasterPrinciple/MK_MasterPrincipleForm'
+import MK_Dashboard from '@/views/Dashboard/MK_Dashboard'
 
 export const MKRender = {
     path: '/MK',
@@ -8,13 +9,13 @@ export const MKRender = {
         }
     },
     children: [
-        // {
-        //     path: '/MK/MK_MasterPrincipleForm',
-        //     name: 'MK_MasterPrincipleForm',
-        //     component: MK_MasterPrincipleForm,
-        //     meta: {
-        //         requiresAuth: true
-        //     }
-        // },
+        {
+            path: '/MK_Dashboard',
+            name: 'MK_Dashboard',
+            component: MK_Dashboard,
+            meta: {
+                requiresAuth: true
+            }
+        },
     ]
 }

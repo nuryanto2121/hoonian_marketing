@@ -1,6 +1,6 @@
 <template>
   <keep-alive>
-    <!-- <component ref="_reference_" :is="component" /> -->
+    <component ref="_reference_" :is="component" />
   </keep-alive>
 </template>
 
@@ -14,12 +14,10 @@ export default {
   computed: {},
   methods: {},
   mounted() {
-    // let lsDataUser = localStorage.lsDataUser;
-    // lsDataUser = JSON.parse(lsDataUser);
-    // // this.component = () => import(`./${lsDataUser.dashboard_url}.vue`);
-    // this.$router.replace({
-    //   path: lsDataUser.dashboard_url
-    // })
+    this.component = () => import(`./MK_Dashboard.vue`);
+    this.$router.replace({
+      path: '/MK_Dashboard'
+    })
   }
 };
 </script>
