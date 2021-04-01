@@ -6,7 +6,6 @@ export default {
       version: 'v: 0.0.1',
       url: 'http://acc.api.absoluteconnection.co.id:1006/',
       urlHoonian: 'http://103.30.246.246:8095/backend-hoonian/public/',
-      // company_group_id: "0120a4f9196a5f9eb9f523f31f914da7",
       company_group_id: "g1",
 
       urlReport: 'http://103.30.246.246:8080/jasperserver/flow.html?_flowId=viewReportFlow&standAlone=true&decorate=no&j_acegi_security_check&j_username=joeuser&j_password=joeuser&ParentFolderUri={report_uri}&reportUnit=',

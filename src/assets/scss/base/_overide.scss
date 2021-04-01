@@ -22,6 +22,12 @@ $brand-colors: ("new", #0680FF),
   margin-right: 5px !important;
   // width: 200px;
 
+  &.button--hoonian {
+    background-color: rgb(74, 147, 179);
+    color: #FFFFFF;
+    font-family: 'Poppins';
+  }
+
   @each $color in $brand-colors {
     &.button--#{nth($color,1)} {
       background-color: transparent;
