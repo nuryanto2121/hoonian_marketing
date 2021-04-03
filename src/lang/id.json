@@ -5,5 +5,8 @@
     "ReferenceNo": "Referensi No",
 
     "TrxType": "Tipe Transaksi",
-    "TimeEdit": "Tanggal Update"
+    "TimeEdit": "Tanggal Update",
+    
+    "start_from": "Mulai Dari",
+    "units": "Unit"
 }

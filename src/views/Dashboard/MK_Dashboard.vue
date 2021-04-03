@@ -36,6 +36,14 @@ export default {
           col: 1,
           size: 12
         },
+        {
+          id: 2,
+          component: "/MK/dashboard_project_big",
+          name: "ProjectBig",
+          row: 2,
+          col: 1,
+          size: 12
+        },
         // {
         //   id: 2,
         //   component: "Dashboard_Booking",
