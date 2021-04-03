@@ -52,6 +52,14 @@ export default {
           col: 1,
           size: 12
         },
+        {
+          id: 4,
+          component: "/MK/dashboard_promotion",
+          name: "Promotion",
+          row: 4,
+          col: 1,
+          size: 12
+        },
         // {
         //   id: 2,
         //   component: "Dashboard_Booking",
