@@ -39,7 +39,7 @@
                                     />
                                 </b-col>
                                 <b-col style="max-width: max-content; padding-top: 8px;">
-                                    <span style="font-weight: bold; font-size: 15px;">Refer To Other Project</span>
+                                    <span style="font-weight: bold; font-size: 15px;">{{ $t('refer_to_other_project') }}</span>
                                 </b-col>
                                 <b-col>
                                     <HOODropDown
@@ -51,7 +51,7 @@
                                     />
                                 </b-col>
                                 <b-col style="max-width: max-content; padding-top: 8px;">
-                                    <span style="font-weight: bold; font-size: 15px;">Stop Follow Up</span>
+                                    <span style="font-weight: bold; font-size: 15px;">{{ $t('stop') }} {{ $t('follow_up') }}</span>
                                 </b-col>
                                 <b-col>
                                     <HOODropDown
@@ -101,96 +101,6 @@
           </b-row>
         </b-col>
       </b-row>
-
-      <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
-        <template slot="headerTitle">
-          <span class="title-primary"> Add Sales Lead </span>
-        </template>
-        <template slot="content">
-          <b-row>
-            <b-col md="12">
-              <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
-                <b-row>
-                  <b-col md="12">
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">Handphone No</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_handphone_no"
-                          v-model="Model.handphone_no"
-                          ref="ref_handphone_no"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">Prospect Name</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_prospect_name"
-                          v-model="Model.prospect_name"
-                          ref="ref_prospect_name"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">Email</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_email"
-                          v-model="Model.email"
-                          ref="ref_email"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">Description</label>
-                        </span>
-                        <ACCTextArea
-                          :prop="PI_description"
-                          v-model="Model.description"
-                          ref="ref_description"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="6">
-                        <span>
-                          <label class="lbl-poppins">Name Card</label>
-                        </span>
-                        <b-img id="name_card_show" :src="urlHoonian + Model.name_card" alt="" height="150" @error="onImageLoadFailure($event)" />
-                        <HOOImageUpload
-                          :prop="PI_name_card"
-                          @change="Onname_cardChange"
-                          v-model="Model.name_card"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row style="margin-top: 10px;">
-                      <b-col md="6" offset-md="3">
-                        <ABSButton
-                          :text="'Save'"
-                          classButton="btn btn--default"
-                          classIcon="icon-style-1"
-                          @click="doSave"
-                          styleButton="height: 40px;width: 100%;"
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
-                </b-row>
-              </b-form>
-            </b-col>
-          </b-row>
-        </template>
-      </ABSModal>
     </div>
   </div>
 </template>
@@ -214,7 +124,7 @@ export default {
         SortBy: "desc",
         ParamWhere: "",
         param: {
-            sales_lead_id: ""
+          sales_lead_id: ""
         }
       },
       Model: {
