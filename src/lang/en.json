@@ -5,5 +5,10 @@
     "ReferenceNo": "Reference No",
 
     "TrxType": "Transaction Type",
-    "TimeEdit": "Last Update"
+    "TimeEdit": "Last Update",
+
+    "start_from": "Start from",
+    "units": "Units",
+    "promotions": "Promotions",
+    "view_all": "View All"
 }

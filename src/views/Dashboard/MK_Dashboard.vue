@@ -30,76 +30,100 @@ export default {
       var Dash = [
         {
           id: 1,
-          component: "Dashboard_ProjectInfo",
-          name: "ProjectInfo",
+          component: "/MK/dashboard_announcement",
+          name: "Announcement",
           row: 1,
           col: 1,
           size: 12
         },
         {
           id: 2,
-          component: "Dashboard_Booking",
-          name: "Booking",
+          component: "/MK/dashboard_project_big",
+          name: "ProjectBig",
           row: 2,
           col: 1,
           size: 12
         },
         {
           id: 3,
-          component: "Dashboard_Reservation",
-          name: "Reservation",
+          component: "/MK/dashboard_project_small",
+          name: "ProjectSmall",
           row: 3,
           col: 1,
-          size: 6
+          size: 12
         },
         {
           id: 4,
-          component: "Dashboard_SalesLead",
-          name: "SalesLead",
-          row: 3,
-          col: 2,
-          size: 6
-        },
-        {
-          id: 4,
-          component: "Dashboard_Ticket",
-          name: "Ticket",
+          component: "/MK/dashboard_promotion",
+          name: "Promotion",
           row: 4,
           col: 1,
-          size: 6
-        },
-        {
-          id: 5,
-          component: "Dashboard_Referral",
-          name: "Referral",
-          row: 4,
-          col: 2,
-          size: 6
-        },
-        {
-          id: 6,
-          component: "Dashboard_Principle",
-          name: "Principle",
-          row: 5,
-          col: 1,
           size: 12
         },
-        {
-          id: 7,
-          component: "Dashboard_Progress",
-          name: "Progress",
-          row: 6,
-          col: 1,
-          size: 12
-        },
-        {
-          id: 8,
-          component: "Dashboard_NewsFeed",
-          name: "NewsFeed",
-          row: 7,
-          col: 1,
-          size: 12
-        }
+        // {
+        //   id: 2,
+        //   component: "Dashboard_Booking",
+        //   name: "Booking",
+        //   row: 2,
+        //   col: 1,
+        //   size: 12
+        // },
+        // {
+        //   id: 3,
+        //   component: "Dashboard_Reservation",
+        //   name: "Reservation",
+        //   row: 3,
+        //   col: 1,
+        //   size: 6
+        // },
+        // {
+        //   id: 4,
+        //   component: "Dashboard_SalesLead",
+        //   name: "SalesLead",
+        //   row: 3,
+        //   col: 2,
+        //   size: 6
+        // },
+        // {
+        //   id: 4,
+        //   component: "Dashboard_Ticket",
+        //   name: "Ticket",
+        //   row: 4,
+        //   col: 1,
+        //   size: 6
+        // },
+        // {
+        //   id: 5,
+        //   component: "Dashboard_Referral",
+        //   name: "Referral",
+        //   row: 4,
+        //   col: 2,
+        //   size: 6
+        // },
+        // {
+        //   id: 6,
+        //   component: "Dashboard_Principle",
+        //   name: "Principle",
+        //   row: 5,
+        //   col: 1,
+        //   size: 12
+        // },
+        // {
+        //   id: 7,
+        //   component: "Dashboard_Progress",
+        //   name: "Progress",
+        //   row: 6,
+        //   col: 1,
+        //   size: 12
+        // },
+        // {
+        //   id: 8,
+        //   component: "Dashboard_NewsFeed",
+        //   name: "NewsFeed",
+        //   row: 7,
+        //   col: 1,
+        //   size: 12
+        // }
       ];
       this.M_Row = [...new Set(Dash.map(x => x.row))]
       for (let i = 0; i < Dash.length; i++) {
@@ -117,25 +141,6 @@ export default {
       this.$forceUpdate();
     },
     renderDash() {
-    //   this.postJSON(this.urlHoonian + '/api/hoonian-website/dashboard/operator-component').then((response) => {
-    //     if (response == null) return;
-    //     var Dash = response.Data;
-    //     this.M_Row = [...new Set(Dash.map(x => x.row))]
-    //     for (let i = 0; i < Dash.length; i++) {
-    //       var cmp = () => import("."+Dash[i].component+".vue")
-    //       this.M_Dash.push({
-    //         id: Dash[i].id,
-    //         component: cmp,
-    //         name: Dash[i].name,
-    //         row: Dash[i].row,
-    //         col: Dash[i].col,
-    //         size: Dash[i].size
-    //       })
-    //     }
-
-    //     this.$forceUpdate();
-    //   });
-
       let param = {
         option_function_cd: "GetUserMenuDashboard",
         module_cd: "MK",
@@ -166,7 +171,7 @@ export default {
     }
   },
   mounted() {
-    this.renderDash();
+    this.renderDash2();
   },
   created() {
     this.$store.commit("setParamPage", {});
