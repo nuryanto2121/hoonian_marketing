@@ -244,8 +244,11 @@ export default {
       },
       PI_refer_to: {
         dataLookUp: {
-          url: "/api/hoonian-website/project-lookup",
-          param: {}
+          url: "/api/hoonian-website/marketing-lead-refer-project-lookup",
+          param: {
+            company_group_id: '',
+            sales_lead_id: ''
+          }
         },
         cValidate: "required",
         cName: "Refer To",
@@ -364,6 +367,11 @@ export default {
     this.propList.initialWhere = this.paramFromList.project_id;
     this.propList.param.sales_lead_id = this.paramFromList.sales_lead_id;
     this.$refs.ref_logbook.doGetList("");
+
+    this.PI_refer_to.dataLookUp.param = {
+      company_group_id: this.company_group_id,
+      sales_lead_id: this.paramFromList.sales_lead_id
+    };
   },
 };
 </script>
