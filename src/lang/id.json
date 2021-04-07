@@ -34,5 +34,7 @@
     "prev": "Sebelumnya",
     "nup_no": "No. NUP",
     "current_nup_no": "No. NUP Saat Ini",
-    "next_nup_no": "No. NUP Selanjutnya"
+    "next_nup_no": "No. NUP Selanjutnya",
+    "nup_buyer_list": "Daftar Pembeli NUP",
+    "available_units": "Unit Tersedia"
 }

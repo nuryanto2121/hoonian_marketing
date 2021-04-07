@@ -34,5 +34,7 @@
     "prev": "Prev",
     "nup_no": "NUP No",
     "current_nup_no": "Current NUP No",
-    "next_nup_no": "Next NUP No"
+    "next_nup_no": "Next NUP No",
+    "nup_buyer_list": "NUP Buyer List",
+    "available_units": "Available Units"
 }

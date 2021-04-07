@@ -73,10 +73,10 @@
                         <b-row>
                             <b-col style="border: solid 1px black;">
                                 <b-row style="padding: 10px 5px 10px 5px;">
-                                    <b-col style="text-align: center">
+                                    <b-col style="text-align: center; margin-right: 25px;">
                                         <span style="font-size: 20px; font-weight: bold;">{{$t('current_nup_no')}}</span> <br>
                                         <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(242 153 74); font-size: 35px; font-weight: bold; line-height: 100px;">
-                                            <span v-if="paramFromList.status == 'w'">
+                                            <span v-if="paramFromList.status == 'i'">
                                                 {{Model.current_nup_no}}
                                             </span>
                                             <span v-else> - </span>
@@ -84,26 +84,26 @@
                                     </b-col>
                                     <b-col style="text-align: center">
                                         <span style="font-size: 20px; font-weight: bold;">{{$t('time')}} {{$t('remain')}}</span> <br>
-                                        <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(235 87 87); font-size: 35px; font-weight: bold; line-height: 100px;">
-                                            <template v-if="paramFromList.status == 'w'">
-                                                <div v-if="!Model.inDays">
-                                                    <span style="font-size: 20px;"> {{Model.h_left}} </span>
-                                                    <span style="font-size: 15px;">{{ $t('hours') }}</span> &nbsp;
-                                                    <span style="font-size: 20px;"> {{Model.m_left}} </span>
-                                                    <span style="font-size: 15px;">{{ $t('minutes') }}</span>
-                                                </div>
-                                                <div v-else>
-                                                    <span style="font-size: 20px;"> {{Model.d_left}} </span>
-                                                    <span style="font-size: 15px;">{{ $t('days') }}</span>
-                                                </div>
+                                        <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(235 87 87); line-height: 100px;">
+                                            <template v-if="paramFromList.status == 'i'">
+                                                <template v-if="!Model.inDays">
+                                                    <span style="font-weight: bold; font-size: 35px;"> {{Model.h_left}} </span>
+                                                    <span style="font-weight: bold; font-size: 20px;">{{ $t('hours') }}</span> &nbsp;
+                                                    <span style="font-weight: bold; font-size: 35px;"> {{Model.m_left}} </span>
+                                                    <span style="font-weight: bold; font-size: 20px;">{{ $t('minutes') }}</span>
+                                                </template>
+                                                <template v-else>
+                                                    <span style="font-weight: bold; font-size: 35px;"> {{Model.d_left}} </span>
+                                                    <span style="font-weight: bold; font-size: 20px;">{{ $t('days') }}</span>
+                                                </template>
                                             </template>
                                             <template v-else> - </template>
                                         </div>
                                     </b-col>
-                                    <b-col style="text-align: center">
+                                    <b-col style="text-align: center; margin-left: 25px;">
                                         <span style="font-size: 20px; font-weight: bold;">{{$t('next_nup_no')}}</span> <br>
                                         <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(47 128 237); font-size: 35px; font-weight: bold; line-height: 100px;">
-                                            <span v-if="paramFromList.status == 'w'">
+                                            <span v-if="paramFromList.status == 'i'">
                                                 {{Model.next_nup_no}}
                                             </span>
                                             <span v-else> - </span>
@@ -112,37 +112,74 @@
                                 </b-row>
                             </b-col>
                         </b-row>
-                        <!-- <b-row>
-                            <b-col lg="12" xl="12" class="noPadding">
+                        <b-row>
+                            <b-col lg="6" xl="6" class="noPadding">
                                 <HOOList
-                                    :prop="propList"
+                                    :prop="propList_buyer"
                                     :title="''"
-                                    @rowClicked="rowClicked"
-                                    @buttonDeleteClicked="doDeleteClick"
-                                    @rowDblClicked="doDoubleClick"
-                                    @rowLinkClick="rowLink"
-                                    @pageSize="M_PageSize"
-                                    @pagination="M_Pagination"
-                                    @filter="M_Advance_Filter"
-                                    @headTable="M_Head_Table"
-                                    @refreshColumn="refreshColumn"
-                                    :ref="'ref_logbook'"
-                                    @buttonViewClicked="doViewClick"
+                                    :ref="'ref_buyer'"
                                     ButtonBackDisabled
                                     SearchDisabled
                                     isPoppins
                                     isHeaderFixed
                                     noCard
-                                    removeCardTitle
                                     removePaddingTopBody
-                                    noPaging
-                                    >
-                                    <template slot="date" slot-scope="data">
-                                        {{momentUnix(data.item.date, "DD MMM YYYY")}}
+                                >
+                                    <template slot="TitleTable">
+                                        <b-col lg="6" xl="6">
+                                            <span class="title-primary" style="font-size: 18px;"> {{ $t('nup_buyer_list') }} </span>
+                                        </b-col>
                                     </template>
                                 </HOOList>
                             </b-col>
-                        </b-row> -->
+                            <b-col lg="6" xl="6" class="noPadding">
+                                <HOOList
+                                    :prop="propList_unit"
+                                    :title="''"
+                                    :ref="'ref_unit'"
+                                    ButtonBackDisabled
+                                    SearchDisabled
+                                    isPoppins
+                                    isHeaderFixed
+                                    noCard
+                                    removePaddingTopBody
+                                    @onRenderData="UnitDataRender"
+                                >
+                                    <template slot="TitleTable">
+                                        <b-col lg="6" xl="6">
+                                            <span class="title-primary" style="font-size: 18px;"> {{ $t('available_units') }} </span>
+                                        </b-col>
+                                    </template>
+                                    <template slot="ToolbarTable">
+                                        <b-col align-self="center" class="col-right">
+                                            <ABSButton
+                                                text="Confirmation"
+                                                classButton="button button--hoonian"
+                                                @click="doSave"
+                                                :disabled="paramFromList.status !== 'i'"
+                                            />
+                                        </b-col>
+                                    </template>
+                                    <template slot="price" slot-scope="data">
+                                        {{isCurrency(data.item.price, decimal)}}
+                                    </template>
+                                    <template slot="status" slot-scope="data">
+                                        <div style="margin-left: 20px">
+                                            <b-form-checkbox
+                                                v-model="data.item.status"
+                                                :name="'status_' + data.index"
+                                                size="md"
+                                                :disabled="paramFromList.status !== 'i'"
+                                                @input="OnStatusClick(data.item)"
+                                            />
+                                        </div>
+                                    </template>
+                                    <template slot="head_status" slot-scope="data">
+                                        Select
+                                    </template>
+                                </HOOList>
+                            </b-col>
+                        </b-row>
                     </div>
                 </div>
               </b-col>
@@ -165,14 +202,26 @@ export default {
   },
   data() {
     return {
-      propList: {
-        url: "/api/marketing-website/lead/logbook/list",
+      propList_buyer: {
+        url: "/api/marketing-website/v-launching/buyer",
         initialWhere: "",
         SortField: "",
         SortBy: "desc",
         ParamWhere: "",
         param: {
-          sales_lead_id: ""
+          release_period_id: "",
+          marketing_agent_id: ""
+        }
+      },
+      propList_unit: {
+        url: "/api/marketing-website/v-launching/unit",
+        initialWhere: "",
+        SortField: "",
+        SortBy: "desc",
+        ParamWhere: "",
+        param: {
+          release_period_id: "",
+          marketing_agent_id: ""
         }
       },
       Model: {
@@ -187,39 +236,16 @@ export default {
         current_nup_no: "",
         time_remain: "",
         next_nup_no: "",
-      }
+        nup_id: "",
+        nup_no: "",
+        price: 0,
+      },
+      AvailableUnits: []
     };
   },
   methods: {
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
-    },
-    rowClicked(ev, id) {
-      console.log(ev, id)
-    },
-    doDeleteClick(ev, id) {
-      console.log(ev, id)
-    },
-    doDoubleClick(ev, id) {
-      console.log(ev, id)
-    },
-    rowLink(ev, id) {
-      console.log(ev, id)
-    },
-    M_PageSize(ev, id) {
-      console.log(ev, id)
-    },
-    M_Pagination(ev, id) {
-      console.log(ev, id)
-    },
-    M_Advance_Filter(ev, id) {
-      console.log(ev, id)
-    },
-    M_Head_Table(ev, id) {
-      console.log(ev, id)
-    },
-    refreshColumn(ev, id) {
-      console.log(ev, id)
     },
     doBack() {
       this.$router.go(-1);
@@ -237,7 +263,18 @@ export default {
         current_nup_no: "",
         time_remain: "",
         next_nup_no: "",
+        nup_id: "",
+        nup_no: "",
+        price: 0,
       };
+    },
+    UnitDataRender(data) {
+        this.AvailableUnits = data;
+    },
+    OnStatusClick(data) {
+        this.Model.nup_id = data.nup_id;
+        this.Model.nup_no = data.nup_no;
+        this.Model.price = parseFloat(data.price);
     },
     doSave() {
       this.$validator._base.validateAll("FormEntry").then((result) => {
@@ -253,16 +290,29 @@ export default {
       });
     },
     M_Save() {
+    //   let paramD = [], price = 0;
+    //   this.AvailableUnits.forEach((data, index) => {
+    //     if (data.status) {
+    //         price += parseFloat(data.price);
+    //         paramD.push({
+    //           unit_id: data.unit_id,
+    //           unit_no: data.unit_no,
+    //         });
+    //     }
+    //   });
+
       let param = {
-        project_id: this.paramFromList.project_id,
-        sales_lead_id: this.paramFromList.sales_lead_id,
         marketing_agent_id: this.getDataUser().marketing_id,
-        marketing_agent_name: this.getDataUser().user_name,
-        description: this.Model.description,
-        refer_to: this.Model.refer_to,
-        stop_followup: this.Model.stop_followup == "Y"
-      }
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/logbook/add', param).then((response) => {
+        nup_no: this.Model.next_nup_no,
+        price: this.Model.price,
+        unit_id: this.Model.unit_id,
+        unit_no: this.Model.unit_no,
+      };
+
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/v-launching/confirmation",
+        param
+      ).then((response) => {
         if (response == null) return;
         this.doBack();
       });
@@ -275,14 +325,22 @@ export default {
             if (response == null) return;
             this.Model = response.data;
             let h_left = 0, m_left = 0, d_left = 0, inDays = false;
-            if (this.paramFromList.status == 'w') {
-                if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime), 'days') <= 1) {
-                    h_left = parseInt(this.momentDiffFormat(new Date(), data.end_datetime, 'hh:mm').split(':')[0]);
-                    m_left = parseInt(this.momentDiffFormat(new Date(), data.end_datetime, 'hh:mm').split(':')[1]);
+            // console.log(this.momentUnix(this.Model.end_datetime), new Date())
+            // console.log(this.momentDiff(this.momentUnix(this.Model.end_datetime), new Date(), 'days'))
+            if (this.paramFromList.status == 'i') {
+                if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') > 0 && this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') <= 1) {
+                    // h_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).hour);
+                    // m_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).minute);
+                    h_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'hours');
+                    m_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'minutes');
+                }
+                else if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') < 0) {
+                    //
                 }
                 else {
                     inDays = true;
-                    d_left = parseInt(this.momentDiffFormat(new Date(), data.end_datetime, 'DD'));
+                    // d_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).day);
+                    d_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days');
                 }
             }
 
@@ -290,11 +348,19 @@ export default {
             this.Model.h_left = h_left;
             this.Model.m_left = m_left;
             this.Model.d_left = d_left;
+
+            this.$refs.ref_buyer.doGetList("");
+            this.$refs.ref_unit.perPage = 20;
+            this.$refs.ref_unit.doGetList("");
         });
     }
   },
   mounted() {
-      this.getDataBy();
+    this.getDataBy();
+    this.propList_buyer.param.release_period_id = this.paramFromList.id;
+    this.propList_buyer.param.marketing_agent_id = this.getDataUser().marketing_id;
+    this.propList_unit.param.release_period_id = this.paramFromList.id;
+    this.propList_unit.param.marketing_agent_id = this.getDataUser().marketing_id;
   },
 };
 </script>

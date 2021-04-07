@@ -15,7 +15,7 @@
                                                 <b-col style="padding: unset !important;">
                                                     <b-img :src="urlHoonian + data.main_pic" alt=""
                                                     :style="`height: 310px; cursor: pointer;`"
-                                                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                                                    fluid-grow @error="onImageLoadFailure($event)" />
                                                 </b-col>
                                             </b-row>
                                             <b-row style="padding: 10px 10px 10px 10px !important;">
