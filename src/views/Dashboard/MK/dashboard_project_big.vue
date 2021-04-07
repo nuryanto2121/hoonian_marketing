@@ -4,13 +4,13 @@
       <b-col
         v-for="(data, index) in Model" :key="data.id"
         :style="`padding: unset !important; ${index == 0 && Model.length > 1? 'padding-right: 10px !important;': ''} ${index == 1 ? 'padding-left: 10px !important;': ''}`">
-        <div class="card">
+        <div class="card" @click="doViewDetail(data)">
           <div class="card__body" style="padding: unset !important;">
             <b-row>
               <b-col style="padding: unset !important;">
                 <b-img :src="urlHoonian + data.main_pic" alt=""
                 :style="`height: 310px; cursor: pointer;`"
-                fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                fluid-grow @error="onImageLoadFailure($event)" />
               </b-col>
             </b-row>
             <b-row style="padding: 10px !important;">
@@ -39,7 +39,7 @@
               <b-col>
                 | &nbsp;
                 <b-img :src="require('@/assets/icon-svg/building.svg')" alt="" style="" />
-                High Rise
+                {{data.project_type == 'H' ? 'High Rise': 'landed'}}
               </b-col>
               <b-col>
                 | &nbsp;
@@ -76,7 +76,8 @@ export default {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
     doViewDetail(data) {
-      console.log(data);
+      this.$store.commit("setParamPage", data);
+      this.$router.push({ name: "MK_ProjectDetail" });
     },
     getData() {
       let param = {
