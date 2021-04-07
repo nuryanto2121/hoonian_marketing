@@ -73,7 +73,7 @@
 
       <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
         <template slot="headerTitle">
-          <span class="title-primary"> Add Sales Lead </span>
+          <span class="title-primary"> {{ $t('Add') }} Sales Lead </span>
         </template>
         <template slot="content">
           <b-row>
@@ -84,7 +84,7 @@
                     <b-row>
                       <b-col md="12">
                         <span>
-                          <label class="lbl-poppins">Handphone No</label>
+                          <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
                         </span>
                         <ACCTextBox
                           :prop="PI_handphone_no"
@@ -96,7 +96,7 @@
                     <b-row>
                       <b-col md="12">
                         <span>
-                          <label class="lbl-poppins">Prospect Name</label>
+                          <label class="lbl-poppins">{{ $t('prospect_name') }}</label>
                         </span>
                         <ACCTextBox
                           :prop="PI_prospect_name"
@@ -108,7 +108,7 @@
                     <b-row>
                       <b-col md="12">
                         <span>
-                          <label class="lbl-poppins">Email</label>
+                          <label class="lbl-poppins">{{ $t('email') }}</label>
                         </span>
                         <ACCTextBox
                           :prop="PI_email"
@@ -120,7 +120,7 @@
                     <b-row>
                       <b-col md="12">
                         <span>
-                          <label class="lbl-poppins">Description</label>
+                          <label class="lbl-poppins">{{ $t('Description') }}</label>
                         </span>
                         <ACCTextArea
                           :prop="PI_description"
@@ -132,7 +132,7 @@
                     <b-row>
                       <b-col md="6">
                         <span>
-                          <label class="lbl-poppins">Name Card</label>
+                          <label class="lbl-poppins">{{ $t('name_card') }}</label>
                         </span>
                         <b-img id="name_card_show" :src="urlHoonian + Model.name_card" alt="" height="150" @error="onImageLoadFailure($event)" />
                         <HOOImageUpload
@@ -358,7 +358,6 @@ export default {
               SortBy: "desc",
               ParamWhere: "",
               param: {
-                search: this.search,
                 principle_id: this.getDataUser().principle_id,
                 marketing_agent_id: this.getDataUser().marketing_id
               }
@@ -373,8 +372,6 @@ export default {
       });
     },
     renderList() {
-      this.ModelProject[this.selectedProject].propList.ParamWhere = this.search;
-      this.ModelProject[this.selectedProject].propList.param.search = this.search;
       this.$refs.ref_sales_lead.doGetList("");
     },
     M_ClearForm() {
@@ -408,7 +405,8 @@ export default {
         email: this.Model.email,
         remarks: this.Model.description,
         marketing_agent_id: this.getDataUser().marketing_id,
-        marketing_agent_name: this.getDataUser().user_name
+        marketing_agent_name: this.getDataUser().user_name,
+        thumbnail_image: this.Model.name_card
       }
       this.postJSON(this.urlHoonian + '/api/marketing-website/lead/add', param).then((response) => {
         if (response == null) return;

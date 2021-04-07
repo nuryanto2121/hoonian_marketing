@@ -1,4 +1,6 @@
 {
+    "Add": "Tambah",
+    "current": "Saat Ini",
     "dashboard": "Beranda",
     "Remarks": "Komentar",
     "Description": "Deskripsi",
@@ -15,5 +17,27 @@
     "vr": "VR",
     "video": "Video",
     "e_brochure": "E-BROCHURE",
-    "map": "MAP"
+    "map": "MAP",
+
+    "handphone_no": "No Handphone",
+    "prospect_name": "Nama Prospek",
+    "email": "Email",
+    "name_card": "Kartu Nama",
+    "refer_to_other_project": "Referensi Projek Lain",
+    "stop": "Berhenti",
+    "start": "Mulai",
+    "follow_up": "Mengikuti",
+    "time": "Waktu",
+    "remain": "Sisa",
+    "time_to_launching": "Waktu Peluncuran",
+    "day_to_launching": "Hari Peluncuran",
+    "in_progress": "Sedang Berlangsung",
+    "v_launching": "Perluncuran-V",
+    "selection": "Dipilih",
+    "days": "Hari", "hours": "Jam", "minutes": "Menit",
+    "next": "Selanjutnya",
+    "prev": "Sebelumnya",
+    "nup_no": "No. NUP",
+    "current_nup_no": "No. NUP Saat Ini",
+    "next_nup_no": "No. NUP Selanjutnya"
 }

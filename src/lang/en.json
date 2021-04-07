@@ -1,4 +1,6 @@
 {
+    "Add": "Add",
+    "current": "Current",
     "dashboard": "Dashboard",
     "Remarks": "Remarks",
     "Description": "Description",
@@ -15,5 +17,27 @@
     "vr": "VR",
     "video": "Video",
     "e_brochure": "E-BROCHURE",
-    "map": "MAP"
+    "map": "MAP",
+
+    "handphone_no": "Handphone No",
+    "prospect_name": "Prospect Name",
+    "email": "Surel",
+    "name_card": "Name Card",
+    "refer_to_other_project": "Refer To Other Project",
+    "stop": "Stop",
+    "start": "Start",
+    "follow_up": "Follow Up",
+    "time": "Time",
+    "remain": "Remain",
+    "time_to_launching": "Time To Launching",
+    "day_to_launching": "Day To Launching",
+    "in_progress": "In Progress",
+    "v_launching": "V-Lauching",
+    "selection": "Selection",
+    "days": "Days", "hours": "Hours", "minutes": "Minutes",
+    "next": "Next",
+    "prev": "Prev",
+    "nup_no": "NUP No",
+    "current_nup_no": "Current NUP No",
+    "next_nup_no": "Next NUP No"
 }
