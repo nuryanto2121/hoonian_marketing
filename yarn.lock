@@ -13695,6 +13695,11 @@ vue-simple-calendar@^4.3.2:
     core-js "^3.6.5"
     vue "^2.6.11"
 
+vue-social-sharing@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/vue-social-sharing/-/vue-social-sharing-3.0.7.tgz#8dee6a955ce72d0391481204dcb306804373c9f9"
+  integrity sha512-6FS+9t9qJQXY/Km0oyfpJv7rtjhqvrQodpVc/cbBc6TvQdhXc64pHi4yoqa3Jv797veNAlFuLztYyir9jONhBg==
+
 vue-split-layout@0.0.12:
   version "0.0.12"
   resolved "https://registry.yarnpkg.com/vue-split-layout/-/vue-split-layout-0.0.12.tgz#332b2f2189cc1a36001e6989453e0f6e5f61afcd"

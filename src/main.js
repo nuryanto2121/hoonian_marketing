@@ -191,6 +191,7 @@ import FusionCharts from 'fusioncharts';
 import Column2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import VueHorizontalList from 'vue-horizontal-list';
+import VueSocialSharing from 'vue-social-sharing'
 
 // import ECharts from 'vue-echarts' // refers to components/ECharts.vue in webpack
 
@@ -244,6 +245,7 @@ Vue.use(BootstrapVue)
 Vue.use(Datepicker)
 Vue.use(require('vue-shortkey'))
 Vue.use(VueLayers)
+Vue.use(VueSocialSharing);
 // Vue.use(VueCkeditor)
 // Vue.use(CKEditor)
 // map open layer

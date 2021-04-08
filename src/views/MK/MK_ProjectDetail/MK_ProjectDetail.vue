@@ -46,7 +46,7 @@
                <b-col>
                  <div style="border: 1px solid #FFFFFF;
                             box-sizing: border-box;">
-                  <b-row>
+                  <b-row style="cursor: pointer;" @click="openBuildingPlan">
                     <b-col sm="2" align-self="center">
                       <b-img :src="require('@/assets/icon-svg/building_plan.svg')" alt="" style=""/>
                     </b-col>
@@ -61,12 +61,12 @@
                <b-col>
                  <div style="border: 1px solid #FFFFFF;
                             box-sizing: border-box;">
-                  <b-row>
+                  <b-row style="cursor: pointer;" @click="open360VR">
                     <b-col sm="2" align-self="center">
                       <b-img :src="require('@/assets/icon-svg/vr.svg')" alt="" style=""/>
                     </b-col>
                     <b-col align-self="center" style="padding: 5px !important;">
-                      {{ $t('vr') }}
+                      360<sup>o</sup> {{ $t('vr') }}
                     </b-col>
                   </b-row>
                  </div>
@@ -76,7 +76,7 @@
                <b-col>
                  <div style="border: 1px solid #FFFFFF;
                             box-sizing: border-box;">
-                  <b-row>
+                  <b-row style="cursor: pointer;" @click="openVideo">
                     <b-col sm="2" align-self="center">
                       <b-img :src="require('@/assets/icon-svg/video.svg')" alt="" style=""/>
                     </b-col>
@@ -91,7 +91,7 @@
                <b-col>
                  <div style="border: 1px solid #FFFFFF;
                             box-sizing: border-box;">
-                  <b-row>
+                  <b-row style="cursor: pointer;" @click="openBrochure">
                     <b-col sm="2" align-self="center">
                       <b-img :src="require('@/assets/icon-svg/e_brochure.svg')" alt="" style=""/>
                     </b-col>
@@ -106,7 +106,7 @@
                <b-col>
                  <div style="border: 1px solid #FFFFFF;
                             box-sizing: border-box;">
-                  <b-row>
+                  <b-row style="cursor: pointer;" @click="openMap">
                     <b-col sm="2" align-self="center">
                       <b-img :src="require('@/assets/icon-svg/map-pin-white.svg')" alt="" style=""/>
                     </b-col>
@@ -119,16 +119,34 @@
              </b-row>
              <b-row style="margin-top: 40px;">
                <b-col>
-                 <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
+                <ShareNetwork
+                  network="facebook"
+                  :url="getBrochureLink()"
+                  :title="Model.data.project_name"
+                  description="Hoonian"
+                  :quote="Model.data.project_name"
+                  hashtags="hoonian"
+                >
+                  <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
+                </ShareNetwork>
                </b-col>
                <b-col>
-                 <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
+                 <ShareNetwork
+                  network="twitter"
+                  :url="getBrochureLink()"
+                  :title="Model.data.project_name"
+                  description="Hoonian"
+                  :quote="Model.data.project_name"
+                  hashtags="hoonian"
+                >
+                  <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
+                </ShareNetwork>
                </b-col>
                <b-col>
-                 <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style=""/>
+                 <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
                </b-col>
                <b-col>
-                 <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style=""/>
+                 <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
                </b-col>
              </b-row>
            </b-col>
@@ -175,10 +193,31 @@
              </template>
            </b-col>
            <b-col sm="6">
-             <!-- array disini -->
-             <b-img :src="urlHoonian + Model.data.main_pic" alt=""
-                :style="`height: 310px; cursor: pointer;`"
-                fluid-grow @error="onImageLoadFailure($event)" />
+             <vue-horizontal-list
+              v-if="Model.facility_images.length > 0"
+              :items="Model.facility_images"
+              :options="optionsFacilities"
+            >
+              <template v-slot:nav-prev>
+              </template>
+
+              <template v-slot:nav-next>
+              </template>
+
+              <template v-slot:start>
+              </template>
+
+              <template v-slot:end>
+              </template>
+
+              <template v-slot:default="{item}">
+                <b-row>
+                  <b-col>
+                    <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 310px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                  </b-col>
+                </b-row>
+              </template>
+            </vue-horizontal-list>
            </b-col>
          </b-row>
 
@@ -217,6 +256,107 @@
              </template>
            </b-col>
          </b-row>
+
+         <b-row style="margin-top: 10px;">
+           <b-col>
+             Available Unit Types
+           </b-col>
+         </b-row>
+
+         <b-row style="margin-top: 10px; font-size: 13px;">
+           <b-col offset-md="2" md="4">
+             <div style="background: #FFFFFF;
+                          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
+              <b-row>
+                <b-col sm="1">
+                  <div style="height: 75%; width: 6px; background: #4A93B3; margin-top: 10px;">
+                    &nbsp;
+                  </div>
+                </b-col>
+                <b-col align-self="center" style="padding: 15px 0px;">
+                  <div>
+                    {{ $t('purchase_your_nup_now') }}
+                  </div>
+                  <div style="color: #828282">
+                    {{momentUnix(Model.nup.start_datetime, "DD MMM YYYY")}} - {{momentUnix(Model.nup.end_datetime, "DD MMM YYYY")}}
+                  </div>
+                </b-col>
+                <b-col sm="4" align-self="center" class="col-right">
+                  <ABSButton
+                    :text="$t('buy_nup')"
+                    classButton="button button--hoonian"
+                    @click="buyNUP"
+                  />
+                </b-col>
+              </b-row>
+             </div>
+           </b-col>
+           <b-col md="4">
+             <div style="background: #FFFFFF;
+                          box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
+              <b-row>
+                <b-col sm="1">
+                  <div style="height: 75%; width: 6px; background: #4A93B3; margin-top: 10px;">
+                    &nbsp;
+                  </div>
+                </b-col>
+                <b-col align-self="center" style="padding: 15px 0px;">
+                  <div style="text-shadow: 0.5px 0px;">
+                    {{ $t('virtual_launching') }}
+                  </div>
+                  <div style="color: #828282">
+                    {{momentUnix(Model.vlaunching.start_datetime, "DD MMM YYYY")}} - {{momentUnix(Model.vlaunching.end_datetime, "DD MMM YYYY")}}
+                  </div>
+                </b-col>
+              </b-row>
+             </div>
+           </b-col>
+         </b-row>
+
+         <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
+           <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
+             Progress
+           </b-col>
+         </b-row>
+         <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
+           <b-col>
+             <vue-horizontal-list
+              :items="Progress"
+              :options="optionsProgress"
+            >
+              <template v-slot:nav-prev>
+              </template>
+
+              <template v-slot:nav-next>
+              </template>
+
+              <template v-slot:start>
+              </template>
+
+              <template v-slot:end>
+              </template>
+
+              <template v-slot:default="{item}">
+                <b-row>
+                  <b-col>
+                    <b-img :src="urlHoonian + item.main_image" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                  </b-col>
+                </b-row>
+                <b-row style="margin-top: 10px;">
+                  <b-col style="color: #52A0FC">
+                    {{ isCurrency(item.percentage_completed, 0) }}% {{ $t('completed') }}
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col style="color: #828282; font-size: 12px;">
+                    {{momentUnix(item.created_at, "DD MMM YYYY")}}
+                  </b-col>
+                </b-row>
+              </template>
+            </vue-horizontal-list>
+           </b-col>
+         </b-row>
+
         </b-col>
       </b-row>
     </div>
@@ -251,10 +391,101 @@ export default {
         nearby: [],
         nup: {},
         vlaunching: {},
-      }
+      },
+      Progress: [],
+
+      optionsFacilities: {
+        // item: {
+        //   // css class to inject into each individual item
+        //   class: "",
+        //   // padding between each item
+        //   padding: 12,
+        // },
+        // list: {
+        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+        //   // windowed: 1200,
+
+        //   // Because: #app {padding: 80px 24px;}
+        //   padding: 24,
+        // },
+        responsive: [
+          { size: 2 },
+        ],
+        position: {
+          start: -1,
+        },
+        navigation: {
+          // when to show navigation
+          start: 5000,
+        },
+        // autoplay: { play: true, repeat: true, speed: 3000 },
+      },
+      optionsProgress: {
+        // item: {
+        //   // css class to inject into each individual item
+        //   class: "",
+        //   // padding between each item
+        //   padding: 12,
+        // },
+        // list: {
+        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+        //   // windowed: 1200,
+
+        //   // Because: #app {padding: 80px 24px;}
+        //   padding: 24,
+        // },
+        responsive: [
+          { size: 4 },
+        ],
+        position: {
+          start: -1,
+        },
+        navigation: {
+          // when to show navigation
+          start: 5000,
+        },
+        // autoplay: { play: true, repeat: true, speed: 3000 },
+      },
     }
   },
   methods: {
+    openBuildingPlan() {
+      window.open(this.urlHoonian + this.Model.data.building_plan);
+    },
+    open360VR() {
+      window.open(this.Model.data.dimension_360_link);
+    },
+    openVideo() {
+      window.open(this.Model.data.promotional_videos);
+    },
+    openBrochure() {
+      window.open(this.getBrochureLink());
+    },
+    openMap() {
+      let url = `https://www.google.com/maps/search/?api=1&query=${this.Model.data.latitude},${this.Model.data.longitude}`;
+      window.open(url);
+    },
+    doWhatsapp() {
+      let phoneNo = "+6287880406400";
+      let msg = this.replaceAllString(this.getBodyMessage(), "\n", "%0D%0A", "string");
+      msg = this.replaceAllString(msg, "&nbsp;", "%20", "string");
+      let url = "https://api.whatsapp.com/send?phone=" + phoneNo + "&text=" + msg;
+      window.open(url);
+    },
+    doEmail() {
+      let attachmentUrl = encodeURIComponent(this.getBrochureLink().replace('\\', '/')) + "%0D%0A%0D%0A";
+      let email = "customer@gmail.com";
+      window.open(`mailto:${email}?subject=${this.Model.data.project_name}&body=${this.Model.data.project_name} ${attachmentUrl}`);
+    },
+    getBodyMessage() {
+      return this.Model.data.project_name + "\n" + this.getBrochureLink();
+    },
+    getBrochureLink() {
+      return this.urlHoonian + this.Model.data.upload_brochure;
+    },
+    buyNUP() {
+
+    },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
@@ -269,9 +500,20 @@ export default {
         this.Model = response.data;
       });
     },
+    getProgress() {
+      let param = {
+        project_id: this.paramFromList.id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/progress', param).then((response) => {
+        if (response == null) return;
+        this.Progress = response.data.list;
+      });
+    },
   },
   mounted() {
     this.getProject();
+    this.getProgress();
   },
 };
 </script>
