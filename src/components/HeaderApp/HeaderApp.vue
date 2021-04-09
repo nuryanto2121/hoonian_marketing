@@ -242,17 +242,18 @@
 <script>
 export default {
   mounted() {
-    // this.$store.dispatch("handlePaddingHeader", "0px");
-    // this.$store.dispatch("handlePaddingLeftContent", "0px");
-    // this.$store.dispatch("handleWidthSidebar", "0px");
-    // this.$store.dispatch("handleWidthRightbar", "0px");
-    // this.$store.dispatch("handleTextMenu", false);
-
-    this.$store.dispatch("handlePaddingHeader", "185px");
-    this.$store.dispatch("handlePaddingLeftContent", "180px");
-    this.$store.dispatch("handleWidthSidebar", "180px");
+    // comm: disini kamu ubah hideshow menunya, ternyata dikontrol dari menunya
+    this.$store.dispatch("handlePaddingHeader", "0px");
+    this.$store.dispatch("handlePaddingLeftContent", "0px");
+    this.$store.dispatch("handleWidthSidebar", "0px");
     this.$store.dispatch("handleWidthRightbar", "0px");
-    this.$store.dispatch("handleTextMenu", true);
+    this.$store.dispatch("handleTextMenu", false);
+
+    // this.$store.dispatch("handlePaddingHeader", "185px");
+    // this.$store.dispatch("handlePaddingLeftContent", "180px");
+    // this.$store.dispatch("handleWidthSidebar", "180px");
+    // this.$store.dispatch("handleWidthRightbar", "0px");
+    // this.$store.dispatch("handleTextMenu", true);
 
     // cek if user login or not
     if (this.getDataUser() === undefined) {

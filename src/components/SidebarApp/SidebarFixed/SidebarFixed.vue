@@ -19,6 +19,7 @@
       </div>
     </div>    
   </div>-->
+
   <div class="sidebar-app__box-menu" style="width: 180px !important;">
     <div>
       <div class="row">
@@ -45,6 +46,7 @@
       </div>
     </div>
   </div>
+
 </template>
 
 <script>
