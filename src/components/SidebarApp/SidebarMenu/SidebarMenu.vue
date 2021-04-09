@@ -67,7 +67,7 @@ export default {
       this.$router.push(menu.menu_url);
       this.closeBigMenu();
       // this.$store.commit('setByPassCancel', false)
-      this.$store.commit("setIsPost", false);
+      this.$store.commit("setIsPost", true);
       this.$store.commit("setSearch1", "");
       this.$store.commit("setSearch2", "");
       this.$store.commit("setSearch3", "");
