@@ -357,6 +357,165 @@
            </b-col>
          </b-row>
 
+         <b-row v-if="Promotion.length > 0" style="margin-top: 10px;">
+           <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
+             Promotions
+           </b-col>
+         </b-row>
+         <b-row v-if="Promotion.length > 0" style="margin-top: 10px; background: #F8F8F8;">
+           <b-col>
+             <vue-horizontal-list
+              :items="Promotion"
+              :options="optionsPromotion"
+            >
+              <template v-slot:nav-prev>
+              </template>
+
+              <template v-slot:nav-next>
+              </template>
+
+              <template v-slot:start>
+              </template>
+
+              <template v-slot:end>
+              </template>
+
+              <template v-slot:default="{item}">
+                <b-row style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
+                  <b-col>
+                    <b-row>
+                      <b-col>
+                        <b-img :src="urlHoonian + item.picture" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                      </b-col>
+                    </b-row>
+                    <b-row style="margin-top: 10px; background: #FFFFFF;">
+                      <b-col>
+                        {{item.promotion_name}}
+                      </b-col>
+                    </b-row>
+                    <b-row style="background: #FFFFFF; padding: 10px 0px;">
+                      <b-col style="color: #828282; font-size: 12px;">
+                        {{momentUnix(item.start_datetime, "DD MMM YYYY")}} - {{momentUnix(item.end_datetime, "DD MMM YYYY")}}
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+              </template>
+            </vue-horizontal-list>
+           </b-col>
+         </b-row>
+
+         <b-row v-if="FinancialPartner.length > 0" style="margin-top: 10px;">
+           <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
+             Financial Partners
+           </b-col>
+         </b-row>
+         <b-row v-if="FinancialPartner.length > 0" style="margin-top: 10px;">
+           <b-col>
+             <vue-horizontal-list
+              :items="FinancialPartner"
+              :options="optionsFinancialPartner"
+            >
+              <template v-slot:nav-prev>
+              </template>
+
+              <template v-slot:nav-next>
+              </template>
+
+              <template v-slot:start>
+              </template>
+
+              <template v-slot:end>
+              </template>
+
+              <template v-slot:default="{item}">
+                <b-row style="background: #FFFFFF;
+                              box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
+                  <b-col sm="6" style="padding: 10px !important;">
+                    <b-img :src="urlHoonian + item.bank_logo" alt="" style="height: 100px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                  </b-col>
+                  <b-col sm="6" style="padding: 10px !important;">
+                    <b-row>
+                      <b-col>
+                        {{item.bank_name}}
+                      </b-col>
+                    </b-row>
+                    <b-row style="margin-top: 10px;">
+                      <b-col style="font-size: 12px; color: #828282">
+                        {{item.description}}
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+              </template>
+            </vue-horizontal-list>
+           </b-col>
+         </b-row>
+
+         <b-row style="margin-top: 10px; background: #F8F8F8;">
+           <b-col>
+             <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
+               News
+             </div>
+             <template v-for="(news, index) in News">
+               <b-row :key="index" style="margin-top: 10px;">
+
+                 <!-- left -->
+                 <template v-if="index % 2 == 0">
+                  <b-col  sm="2" style="">
+                    <b-img :src="urlHoonian + News[index].main_image" alt=""
+                    :style="`height: 100px; cursor: pointer;`"
+                    fluid-grow @error="onImageLoadFailure($event)" />
+                  </b-col>
+                  <b-col  sm="4" style="" align-self="center">
+                    <b-row>
+                      <b-col style="color: #4A93B3">
+                        {{News[index].title}}
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col style="color: #BDBDBD;">
+                        {{momentUnix(News[index].created_at, "DD MMM YYYY")}}
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col style="color: #BDBDBD;">
+                        {{getDomainName(News[index].url)}}
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                 </template>
+                
+                <!-- right -->
+                <template v-if="index % 2 == 0 && News.length > index + 1">
+                  <b-col  sm="2" style="">
+                    <b-img :src="urlHoonian + News[index + 1].main_image" alt=""
+                    :style="`height: 100px; cursor: pointer;`"
+                    fluid-grow @error="onImageLoadFailure($event)" />
+                  </b-col>
+                  <b-col  sm="4" style="" align-self="center">
+                    <b-row>
+                      <b-col style="color: #4A93B3">
+                        {{News[index + 1].title}}
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col style="color: #BDBDBD;">
+                        {{momentUnix(News[index + 1].created_at, "DD MMM YYYY")}}
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col style="color: #BDBDBD;">
+                        {{getDomainName(News[index + 1].url)}}
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                 </template>
+               </b-row>
+             </template>
+           </b-col>
+         </b-row>
+
         </b-col>
       </b-row>
     </div>
@@ -393,6 +552,9 @@ export default {
         vlaunching: {},
       },
       Progress: [],
+      Promotion: [],
+      FinancialPartner: [],
+      News: [],
 
       optionsFacilities: {
         // item: {
@@ -409,7 +571,7 @@ export default {
         //   padding: 24,
         // },
         responsive: [
-          { size: 2 },
+          { size: 1 },
         ],
         position: {
           start: -1,
@@ -446,9 +608,66 @@ export default {
         },
         // autoplay: { play: true, repeat: true, speed: 3000 },
       },
+      optionsPromotion: {
+        // item: {
+        //   // css class to inject into each individual item
+        //   class: "",
+        //   // padding between each item
+        //   padding: 12,
+        // },
+        // list: {
+        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+        //   // windowed: 1200,
+
+        //   // Because: #app {padding: 80px 24px;}
+        //   padding: 24,
+        // },
+        responsive: [
+          { size: 3 },
+        ],
+        position: {
+          start: -1,
+        },
+        navigation: {
+          // when to show navigation
+          start: 5000,
+        },
+        // autoplay: { play: true, repeat: true, speed: 3000 },
+      },
+      optionsFinancialPartner: {
+        // item: {
+        //   // css class to inject into each individual item
+        //   class: "",
+        //   // padding between each item
+        //   padding: 12,
+        // },
+        // list: {
+        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+        //   // windowed: 1200,
+
+        //   // Because: #app {padding: 80px 24px;}
+        //   padding: 24,
+        // },
+        responsive: [
+          { size: 3 },
+        ],
+        position: {
+          start: -1,
+        },
+        navigation: {
+          // when to show navigation
+          start: 5000,
+        },
+        // autoplay: { play: true, repeat: true, speed: 3000 },
+      },
     }
   },
   methods: {
+    getDomainName(url) {
+      if (url)
+        return url.replace('http://','').replace('https://','').split(/[/?#]/)[0];
+      else ""
+    },
     openBuildingPlan() {
       window.open(this.urlHoonian + this.Model.data.building_plan);
     },
@@ -510,10 +729,43 @@ export default {
         this.Progress = response.data.list;
       });
     },
+    getPromotion() {
+      let param = {
+        project_id: this.paramFromList.id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/promotion', param).then((response) => {
+        if (response == null) return;
+        this.Promotion = response.data.list;
+      });
+    },
+    getFinancialPartner() {
+      let param = {
+        project_id: this.paramFromList.id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/financial-partners', param).then((response) => {
+        if (response == null) return;
+        this.FinancialPartner = response.data;
+      });
+    },
+    getNews() {
+      let param = {
+        project_id: this.paramFromList.id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/news', param).then((response) => {
+        if (response == null) return;
+        this.News = response.data.list;
+      });
+    },
   },
   mounted() {
     this.getProject();
     this.getProgress();
+    this.getPromotion();
+    this.getFinancialPartner();
+    this.getNews();
   },
 };
 </script>
