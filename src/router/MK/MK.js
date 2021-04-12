@@ -65,6 +65,7 @@ export const MKRender = {
             }
         },
         
+<<<<<<< HEAD
         {
             path: '/MK/MK_Referral',
             name: 'MK_Referral',
@@ -82,5 +83,15 @@ export const MKRender = {
                 requiresAuth: true
             }
         },
+=======
+        // {
+        //     path: '/MK/MK_Referral',
+        //     name: 'MK_Referral',
+        //     component: MK_Referral,
+        //     meta: {
+        //         requiresAuth: true
+        //     }
+        // },
+>>>>>>> 26f981a4832ade1168883fe89b6d2a234700c341
     ]
 }

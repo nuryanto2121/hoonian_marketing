@@ -41,8 +41,8 @@
                     {{item.header}}
                   </b-col>
                 </b-row>
-                <b-row style="margin-top: 160px;">
-                  <b-col style="font-size: 18px; text-shadow: 0.5px 0px; text-align: right;" class="text">
+                <b-row style="height: 260px; !important;">
+                  <b-col align-self="end" style="font-size: 18px; text-shadow: 0.5px 0px; text-align: right;" class="text">
                     {{item.content}}
                   </b-col>
                 </b-row>

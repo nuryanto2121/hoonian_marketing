@@ -6,7 +6,7 @@
         @click="offText"
         v-if="textMenu"
       >
-        <i class="icon-arrow-left"></i>
+        <i class="icon-arrow-left"></i>sh
       </div>
       <div
         class="sidebar-app__hide-text-labels"
@@ -167,7 +167,7 @@
 import SidebarFixed from "@/components/SidebarApp/SidebarFixed/SidebarFixed";
 import SidebarTitle from "@/components/SidebarApp/SidebarTitle/SidebarTitle";
 import SidebarMenu from "@/components/SidebarApp/SidebarMenu/SidebarMenu";
-import SidebarModule from "@/components/SidebarApp/SidebarModule/SidebarModule";
+import SidebarModule from "@/components/SidebarApp/SidebarModule/SidebarModule"; 
 
 export default {
   data() {
@@ -207,7 +207,7 @@ export default {
     // this.$store.dispatch("handlePaddingLeftContent", "180px");
     // this.$store.dispatch("handleWidthSidebar", "180px");
     // this.$store.dispatch("handleWidthRightbar", "0px");
-    // this.$store.commit("setHideSideMenu", false);
+    // this.$store.commit("setHideSideMenu", true);
     this.Username = this.getDataUser().user_name;
   },
   methods: {
