@@ -12,15 +12,15 @@
                         <b-col class="noPadding" lg="4" xl="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
                           <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                         </b-col>
-                        <b-col class="noPadding" lg="6" xl="6">
+                        <b-col class="noPadding" lg="8" xl="8">
                           <div class="center" style="text-align: center; width: 100%;">
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total Lead </span> <br>
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_sales_lead}}</span>
+                            <span class="title-primary" style="font-weight: bold; font-size: 25px; color: #4f4f4f !important;"> Referral </span> <br>
+                            <span class="title-primary" style="font-weight: bold; font-size: 25px;">{{data.total_referral}}</span>
                           </div>
                         </b-col>
-                        <b-col class="noPadding" lg="2" xl="2">
+                        <!-- <b-col class="noPadding" lg="2" xl="2">
                           <font-awesome-icon @click="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
-                        </b-col>
+                        </b-col> -->
                       </b-row>
                     </b-col>
                   </template>
@@ -30,28 +30,65 @@
           <b-row>
             <b-col lg="12" xl="12">
                 <HOOList
-                  :prop="ModelProject[selectedProject].propList"
-                  :title="'Sales Lead Detail'"
-                  @rowClicked="rowClicked"
-                  @buttonDeleteClicked="doDeleteClick"
-                  @rowDblClicked="doDoubleClick"
-                  @rowLinkClick="rowLink"
-                  @pageSize="M_PageSize"
-                  @pagination="M_Pagination"
-                  @filter="M_Advance_Filter"
-                  @headTable="M_Head_Table"
-                  @refreshColumn="refreshColumn"
-                  :ref="'ref_sales_lead'"
+                  :prop="ModelProject[selectedProject].propListReferral"
+                  :title="''"
+                  :ref="'ref_referral'"
+                  ButtonBackDisabled
+                  SearchDisabled
+                  isPoppins
+                  isHeaderFixed
+                  :cHeader="ReferralHeaders"
+                  @onRenderData="ReferralRender"
+                >
+                  <template slot="TitleTable">
+                    <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
+                      Referral List
+                    </b-col>
+                  </template>
+                  <template slot="date" slot-scope="data">
+                    {{momentUnix(data.item.date, "DD MMM YYYY")}}
+                  </template>
+                  <template slot="pick" slot-scope="data">
+                    <div style="margin-left: 20px">
+                        <b-form-checkbox
+                            v-model="data.item.pick"
+                            :name="'pick_' + data.index"
+                            size="md"
+                        />
+                    </div>
+                  </template>
+                </HOOList>
+                <br>
+            </b-col>
+        </b-row>
+        <b-row>
+          <b-col style="text-align: center;">
+            <ABSButton
+                  :text="'Save'"
+                  classButton="btn btn--default"
+                  classIcon="icon-style-1"
+                  @click="doSave"
+                  styleButton="height: 40px;width: 20%;"
+              />
+          </b-col>
+        </b-row>
+          <b-row>
+            <b-col lg="12" xl="12">
+                <HOOList
+                  :prop="ModelProject[selectedProject].propListSelected"
+                  :title="''"
+                  :ref="'ref_selected'"
                   @buttonViewClicked="doViewClick"
                   ButtonBackDisabled
                   SearchDisabled
                   isPoppins
                   isHeaderFixed
-                  :cHeader="Headers"
+                  :cHeader="SelectedHeaders"
+                  @onRenderData="SelectedRender"
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Sales Lead Details
+                      Selected Referral
                     </b-col>
                   </template>
                   <template slot="date" slot-scope="data">
@@ -71,91 +108,11 @@
         </b-col>
       </b-row>
 
-      <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
-        <template slot="headerTitle">
-          <span class="title-primary"> {{ $t('Add') }} Sales Lead </span>
-        </template>
+      <ABSModal id="Modal_Detail" ref="Modal_Detail" size="sm">
         <template slot="content">
           <b-row>
             <b-col md="12">
-              <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
-                <b-row>
-                  <b-col md="12">
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_handphone_no"
-                          v-model="Model.handphone_no"
-                          ref="ref_handphone_no"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('prospect_name') }}</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_prospect_name"
-                          v-model="Model.prospect_name"
-                          ref="ref_prospect_name"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('email') }}</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_email"
-                          v-model="Model.email"
-                          ref="ref_email"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('Description') }}</label>
-                        </span>
-                        <ACCTextArea
-                          :prop="PI_description"
-                          v-model="Model.description"
-                          ref="ref_description"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="6">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('name_card') }}</label>
-                        </span>
-                        <b-img id="name_card_show" :src="urlHoonian + Model.name_card" alt="" height="150" @error="onImageLoadFailure($event)" />
-                        <HOOImageUpload
-                          :prop="PI_name_card"
-                          @change="Onname_cardChange"
-                          v-model="Model.name_card"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row style="margin-top: 10px;">
-                      <b-col md="6" offset-md="3">
-                        <ABSButton
-                          :text="'Save'"
-                          classButton="btn btn--default"
-                          classIcon="icon-style-1"
-                          @click="doSave"
-                          styleButton="height: 40px;width: 100%;"
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
-                </b-row>
-              </b-form>
+              
             </b-col>
           </b-row>
         </template>
@@ -180,7 +137,47 @@ export default {
         name_card: "",
       },
 
-      Headers: [
+      ReferralHeaders: [
+        {
+            key: "no",
+            label: "No",
+            thClass: "HeaderACCList2Poppins th-cus-center",
+            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+        {
+            key: "prospect_name",
+            label: "Prospect Name",
+            thClass: "HeaderACCList2Poppins th-cus-center",
+            tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+        {
+            key: "referred_by",
+            label: "Referred By",
+            thClass: "HeaderACCList2Poppins th-cus-center",
+            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+        {
+            key: "project_name",
+            label: "Project Name",
+            thClass: "HeaderACCList2Poppins th-cus-center",
+            tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+        {
+            key: "date",
+            label: "Date",
+            thClass: "HeaderACCList2Poppins th-cus-center",
+            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+        {
+            key: "pick",
+            label: "Pick",
+            thClass: "HeaderACCList2Poppins th-cus-center",
+            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+      ],
+      ReferralItems: [],
+
+      SelectedHeaders: [
         {
           key: "no",
           label: "No",
@@ -194,8 +191,8 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-          key: "handphone_no",
-          label: "Handphone No",
+          key: "referred_by",
+          label: "Referred By",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
@@ -212,24 +209,13 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-          key: "date",
-          label: "Date",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
-        },
-        {
-          key: "notes",
-          label: "Notes",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
-        },
-        {
           key: "logbook",
           label: "",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
       ],
+      SelectedItems: [],
       
       ModelProject: [],
       selectedProject: 0,
@@ -300,37 +286,20 @@ export default {
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
-    rowClicked(ev, id) {
-      console.log(ev, id)
+    ReferralRender(data) {
+      data.forEach(el => {
+        el.pick = false;
+      });
+      
+      this.ReferralItems = data;
     },
-    doDeleteClick(ev, id) {
-      console.log(ev, id)
-    },
-    doDoubleClick(ev, id) {
-      console.log(ev, id)
-    },
-    rowLink(ev, id) {
-      console.log(ev, id)
-    },
-    M_PageSize(ev, id) {
-      console.log(ev, id)
-    },
-    M_Pagination(ev, id) {
-      console.log(ev, id)
-    },
-    M_Advance_Filter(ev, id) {
-      console.log(ev, id)
-    },
-    M_Head_Table(ev, id) {
-      console.log(ev, id)
-    },
-    refreshColumn(ev, id) {
-      console.log(ev, id)
+    SelectedRender(data) {
+      this.SelectedItems = data;
     },
     doAdd(param) {
       this.M_ClearForm();
       this.paramAdd = param;
-      this.$refs.Modal_Add._show();
+      this.$refs.Modal_Detail._show();
     },
     doBack() {
       this.$router.go(-1);
@@ -348,7 +317,7 @@ export default {
         principle_id: this.getDataUser().principle_id
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/header', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/referral/header', param).then((response) => {
         if (response == null) return;
         let data = response.data;
         this.selectedProject = 0;
@@ -356,8 +325,19 @@ export default {
         for (let i = 0; i < data.length; i++) {
           this.ModelProject.push({
             ...data[i],
-            propList: {
-              url: "/api/marketing-website/lead/grid",
+            propListReferral: {
+              url: "/api/marketing-website/referral/unpick-grid",
+              initialWhere: data[i].id,
+              SortField: "",
+              SortBy: "desc",
+              ParamWhere: "",
+              param: {
+                principle_id: this.getDataUser().principle_id,
+                marketing_agent_id: this.getDataUser().marketing_id
+              }
+            },
+            propListSelected: {
+              url: "/api/marketing-website/referral/picked-grid",
               initialWhere: data[i].id,
               SortField: "",
               SortBy: "desc",
@@ -377,7 +357,8 @@ export default {
       });
     },
     renderList() {
-      this.$refs.ref_sales_lead.doGetList("");
+      this.$refs.ref_referral.doGetList("");
+      this.$refs.ref_selected.doGetList("");
     },
     M_ClearForm() {
       this.Model = {
@@ -402,20 +383,27 @@ export default {
       });
     },
     M_Save() {
+      let paramD = [];
+      this.ReferralItems.forEach((data, index) => {
+        if (data.pick) {
+            paramD.push({
+              referral_id:data.referral_id
+            });
+        }
+      });
+
       let param = {
-        project_id: this.paramAdd.id,
-        project_name: this.paramAdd.project_name,
-        handphone: this.Model.handphone_no,
-        name: this.Model.prospect_name,
-        email: this.Model.email,
-        remarks: this.Model.description,
+        principle_id: this.getDataUser().principle_id,
         marketing_agent_id: this.getDataUser().marketing_id,
-        marketing_agent_name: this.getDataUser().user_name,
-        thumbnail_image: this.Model.name_card
-      }
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/add', param).then((response) => {
+        referrals: paramD
+      };
+
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/referral/pick",
+        param
+      ).then((response) => {
         if (response == null) return;
-        this.$refs.Modal_Add._hide();
+        this.doBack();
       });
     },
   },

@@ -31,18 +31,8 @@
             <b-col lg="12" xl="12">
                 <HOOList
                   :prop="ModelProject[selectedProject].propList"
-                  :title="'Sales Lead Detail'"
-                  @rowClicked="rowClicked"
-                  @buttonDeleteClicked="doDeleteClick"
-                  @rowDblClicked="doDoubleClick"
-                  @rowLinkClick="rowLink"
-                  @pageSize="M_PageSize"
-                  @pagination="M_Pagination"
-                  @filter="M_Advance_Filter"
-                  @headTable="M_Head_Table"
-                  @refreshColumn="refreshColumn"
-                  :ref="'ref_sales_lead'"
-                  @buttonViewClicked="doViewClick"
+                  :title="'Token Detail'"
+                  :ref="'ref_token_list'"
                   ButtonBackDisabled
                   SearchDisabled
                   isPoppins
@@ -51,20 +41,20 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Sales Lead Details
+                      Token Details
                     </b-col>
                   </template>
                   <template slot="date" slot-scope="data">
                     {{momentUnix(data.item.date, "DD MMM YYYY")}}
                   </template>
-                  <template slot="logbook" slot-scope="data">
+                  <!-- <template slot="logbook" slot-scope="data">
                     <ABSButton
                       text="Logbook"
                       classButton="button button--hoonian"
                       icon="wallet"
                       @click="doLogbook(data.item)"
                     />
-                  </template>
+                  </template> -->
                 </HOOList>
             </b-col>
         </b-row>
@@ -188,16 +178,16 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-          key: "prospect_name",
-          label: "Prospect Name",
+          key: "marketing_name",
+          label: "Marketing Name",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-          key: "handphone_no",
-          label: "Handphone No",
+          key: "principle_name",
+          label: "Principle Name",
           thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
@@ -206,26 +196,20 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-          key: "marketing_name",
-          label: "Marketing Name",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
-        },
-        {
-          key: "date",
-          label: "Date",
+          key: "total_token",
+          label: "Total Token",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-          key: "notes",
-          label: "Notes",
+          key: "used",
+          label: "Used",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-          key: "logbook",
-          label: "",
+          key: "forfeited",
+          label: "Forfeited",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
@@ -300,47 +284,15 @@ export default {
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
-    rowClicked(ev, id) {
-      console.log(ev, id)
-    },
-    doDeleteClick(ev, id) {
-      console.log(ev, id)
-    },
-    doDoubleClick(ev, id) {
-      console.log(ev, id)
-    },
-    rowLink(ev, id) {
-      console.log(ev, id)
-    },
-    M_PageSize(ev, id) {
-      console.log(ev, id)
-    },
-    M_Pagination(ev, id) {
-      console.log(ev, id)
-    },
-    M_Advance_Filter(ev, id) {
-      console.log(ev, id)
-    },
-    M_Head_Table(ev, id) {
-      console.log(ev, id)
-    },
-    refreshColumn(ev, id) {
-      console.log(ev, id)
-    },
     doAdd(param) {
-      this.M_ClearForm();
-      this.paramAdd = param;
-      this.$refs.Modal_Add._show();
-    },
-    doBack() {
-      this.$router.go(-1);
-    },
-    doLogbook(data) {
       var param = data;
       param.project_id = this.ModelProject[this.selectedProject].id;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
       this.$router.push({ name: "MK_SalesLeadLogbook" });
+    },
+    doBack() {
+      this.$router.go(-1);
     },
     getProject() {
       let param = {
@@ -348,7 +300,7 @@ export default {
         principle_id: this.getDataUser().principle_id
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/header', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/token/header', param).then((response) => {
         if (response == null) return;
         let data = response.data;
         this.selectedProject = 0;
@@ -357,7 +309,7 @@ export default {
           this.ModelProject.push({
             ...data[i],
             propList: {
-              url: "/api/marketing-website/lead/grid",
+              url: "/api/marketing-website/token/grid",
               initialWhere: data[i].id,
               SortField: "",
               SortBy: "desc",
@@ -377,46 +329,7 @@ export default {
       });
     },
     renderList() {
-      this.$refs.ref_sales_lead.doGetList("");
-    },
-    M_ClearForm() {
-      this.Model = {
-        handphone_no: "",
-        prospect_name: "",
-        email: "",
-        description: "",
-        name_card: "",
-      };
-    },
-    doSave() {
-      this.$validator._base.validateAll("FormEntry").then((result) => {
-        if (!result) return;
-        this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
-          (ress) => {
-            if (ress.value) {
-              this.$validator.errors.clear("FormEntry");
-              this.M_Save();
-            }
-          }
-        );
-      });
-    },
-    M_Save() {
-      let param = {
-        project_id: this.paramAdd.id,
-        project_name: this.paramAdd.project_name,
-        handphone: this.Model.handphone_no,
-        name: this.Model.prospect_name,
-        email: this.Model.email,
-        remarks: this.Model.description,
-        marketing_agent_id: this.getDataUser().marketing_id,
-        marketing_agent_name: this.getDataUser().user_name,
-        thumbnail_image: this.Model.name_card
-      }
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/add', param).then((response) => {
-        if (response == null) return;
-        this.$refs.Modal_Add._hide();
-      });
+      this.$refs.ref_token_list.doGetList("");
     },
   },
   mounted() {
