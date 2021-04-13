@@ -45,5 +45,12 @@
     "purchase_your_nup_now": "Purchase Your NUP Now",
     "buy_nup": "Buy NUP",
     "virtual_launching": "Virtual Launching",
-    "completed": "Completed"
+    "completed": "Completed",
+    "total_units": "TOTAL UNITS",
+    "bedrooms": "BEDROOMS",
+    "bathrooms": "BATHROOMS",
+    "net_area": "NET AREA",
+    "gross_area": "GROSS AREA",
+    "floor_plan": "FLOOR PLAN",
+    "layout": "LAYOUT"
 }

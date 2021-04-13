@@ -45,5 +45,12 @@
     "purchase_your_nup_now": "Beli NUP Sekarang",
     "buy_nup": "Beli NUP",
     "virtual_launching": "Peluncuran Virtual",
-    "completed": "Selesai"
+    "completed": "Selesai",
+    "total_units": "TOTAL UNIT",
+    "bedrooms": "KAMAR",
+    "bathrooms": "TEMPAT TIDUR",
+    "net_area": "AREA BERSIH",
+    "gross_area": "AREA KOTOR",
+    "floor_plan": "PERENCANAAN LANTAI",
+    "layout": "LETAK"
 }

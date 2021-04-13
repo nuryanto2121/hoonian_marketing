@@ -257,10 +257,51 @@
            </b-col>
          </b-row>
 
-         <b-row style="margin-top: 10px;">
-           <b-col>
-             Available Unit Types
-           </b-col>
+         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 10px;">
+           <template v-for="(data, index) in AvailableUnitTypes">
+            <b-col sm="12" :key="data.id">
+              <span @click="rowClicked(data)" style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
+              <HOOList
+                :prop="data.propList"
+                :title="''"
+                @rowClicked="rowClicked"
+                @buttonDeleteClicked="doDeleteClick"
+                @rowDblClicked="doDoubleClick"
+                @rowLinkClick="rowLink"
+                @pageSize="M_PageSize"
+                @pagination="M_Pagination"
+                @filter="M_Advance_Filter"
+                @headTable="M_Head_Table"
+                @refreshColumn="refreshColumn"
+                :ref="`ref_available_unit_types_${index}`"
+                @buttonViewClicked="doViewClick"
+                ButtonBackDisabled
+                SearchDisabled
+                isHeaderFixed
+                noCard
+                removeCardTitle
+                removePaddingTopBody
+                noPaging
+              >
+                <template slot="TitleTable">
+                  <b-col lg="3" xl="3" style="padding-left: unset !important; color: #828282; font-size: 14px;">
+                    {{data.tower_cluster_name}}
+                  </b-col>
+                </template>
+                <!-- <template slot="date" slot-scope="data">
+                  {{momentUnix(data.item.date, "DD MMM YYYY")}}
+                </template> -->
+                <!-- <template slot="logbook" slot-scope="data">
+                  <ABSButton
+                    text="Logbook"
+                    classButton="button button--hoonian"
+                    icon="wallet"
+                    @click="doLogbook(data.item)"
+                  />
+                </template> -->
+              </HOOList>
+            </b-col>
+           </template>
          </b-row>
 
          <b-row style="margin-top: 10px; font-size: 13px;">
@@ -551,6 +592,7 @@ export default {
         nup: {},
         vlaunching: {},
       },
+      AvailableUnitTypes: [],
       Progress: [],
       Promotion: [],
       FinancialPartner: [],
@@ -719,6 +761,51 @@ export default {
         this.Model = response.data;
       });
     },
+    getAvailableUnitTypes() {
+      let param = {
+        project_id: this.paramFromList.id,
+        lang_id: this.getDataUser().lang_id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/available-unit-types-header', param).then((response) => {
+        if (response == null) return;
+        let data = response.data;
+
+        for (let i = 0; i < data.length; i++) {
+          this.AvailableUnitTypes.push({
+            ...data[i],
+            propList: {
+              url: "/api/marketing-website/project/available-unit-types-grid",
+              initialWhere: "",
+              SortField: "",
+              SortBy: "desc",
+              ParamWhere: "",
+              param: {
+                tower_cluster_id: data[i].id,
+                lang_id: this.getDataUser().lang_id,
+              }
+            }
+          });
+        }
+        
+        this.$nextTick(() => {
+          this.renderList();
+        })
+      });
+    },
+    renderList() {
+      for (let i = 0; i < this.AvailableUnitTypes.length; i++) {
+        this.$refs['ref_available_unit_types_'+i][0].doGetList("");
+      }
+    },
+    rowClicked(data) {
+      let param = this.paramFromList;
+      param._project_detail = this.Model; // hardcode
+      param.unit_type_id = "unit_type_id1"; // hardcode
+      param.isEdit = false;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_UnitType" });
+    },
     getProgress() {
       let param = {
         project_id: this.paramFromList.id,
@@ -762,6 +849,7 @@ export default {
   },
   mounted() {
     this.getProject();
+    this.getAvailableUnitTypes();
     this.getProgress();
     this.getPromotion();
     this.getFinancialPartner();
