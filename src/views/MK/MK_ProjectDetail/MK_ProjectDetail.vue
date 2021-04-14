@@ -745,7 +745,10 @@ export default {
       return this.urlHoonian + this.Model.data.upload_brochure;
     },
     buyNUP() {
-
+      let param = this.paramFromList;
+      param.projectDetail = this.Model;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_ProjectDetailNUP" });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");

@@ -21,7 +21,7 @@
 
     "handphone_no": "No Handphone",
     "prospect_name": "Nama Prospek",
-    "email": "Email",
+    "email": "Surel",
     "name_card": "Kartu Nama",
     "refer_to_other_project": "Referensi Projek Lain",
     "stop": "Berhenti",
@@ -52,5 +52,12 @@
     "net_area": "AREA BERSIH",
     "gross_area": "AREA KOTOR",
     "floor_plan": "PERENCANAAN LANTAI",
-    "layout": "LETAK"
+    "layout": "LETAK",
+    "buyer_name": "Nama Pembeli",
+    "total_purchase": "Jumlah Pembelian",
+    "purchase": "Beli",
+    "id_no": "ID no",
+    "id_picture": "ID Gambar",
+    "payment_through_va": "Payment Through VA",
+    "close": "Tutup"
 }
