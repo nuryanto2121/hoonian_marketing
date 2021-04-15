@@ -5,17 +5,30 @@
         <b-col lg="12" xl="12" style="background: white;">
          <b-row>
            <b-col>
-             {{paramFromList._project_detail.data.project_name}}
+             {{paramFromList.projectDetail.data.project_name}}
            </b-col>
          </b-row>
          <b-row>
-           <b-col>
-             {{paramFromList._project_detail.data.address}}
+           <b-col style="color: #828282; font-size: 12px;">
+             {{paramFromList.projectDetail.data.address}}
+           </b-col>
+         </b-row>
+         <b-row style="margin-top: 10px; padding-top: 10px; background: #F8F8F8;">
+           <b-col style="color: #828282;">
+             {{Model.data.project_status}}
+             &nbsp;&nbsp; > &nbsp;&nbsp;
+             {{Model.data.location_name}}
+             &nbsp;&nbsp; > &nbsp;&nbsp;
+             {{Model.data.project_name}}
+             &nbsp;&nbsp; > &nbsp;&nbsp;
+             {{Model.data.tower_cluster_name}}
+             &nbsp;&nbsp; > &nbsp;&nbsp;
+             {{Model.data.unit_type_name}}
            </b-col>
          </b-row>
          <b-row style="background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
-             Unit Details
+             {{ $t('unit_details') }}
            </b-col>
            <b-col sm="3">
              <b-row>
@@ -23,9 +36,9 @@
                 <ShareNetwork
                   network="facebook"
                   :url="getBrochureLink()"
-                  :title="Model.tower_cluster_name"
+                  :title="Model.data.tower_cluster_name"
                   description="Hoonian"
-                  :quote="Model.tower_cluster_name"
+                  :quote="Model.data.tower_cluster_name"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
@@ -35,9 +48,9 @@
                   <ShareNetwork
                   network="twitter"
                   :url="getBrochureLink()"
-                  :title="Model.tower_cluster_name"
+                  :title="Model.data.tower_cluster_name"
                   description="Hoonian"
-                  :quote="Model.tower_cluster_name"
+                  :quote="Model.data.tower_cluster_name"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
@@ -57,42 +70,42 @@
            <b-col sm="4" style="padding: unset !important; padding-right: 5px !important;">
              <b-row class="row-view-black">
                <b-col>
-                 TOTAL UNITS
+                 {{ $t('total_units') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.count}}
+                 {{Model.data.count}}
                </b-col>
              </b-row>
              <b-row class="row-view-black">
                <b-col>
-                 BEDROOMS
+                 {{ $t('bedrooms') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.total_bedroom}} <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" />
+                 {{Model.data.total_bedroom}} <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" />
                </b-col>
              </b-row>
              <b-row class="row-view-black">
                <b-col>
-                 BATHROOMS
+                 {{ $t('bathrooms') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.total_bathroom}} <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" />
+                 {{Model.data.total_bathroom}} <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" />
                </b-col>
              </b-row>
              <b-row class="row-view-black">
                <b-col>
-                 NET AREA
+                 {{ $t('net_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.net_area}} m <sup>2</sup>
+                 {{Model.data.net_area}} m <sup>2</sup>
                </b-col>
              </b-row>
              <b-row class="row-view-black">
                <b-col>
-                 GROSS AREA
+                 {{ $t('gross_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.gross_area}} m <sup>2</sup>
+                 {{Model.data.gross_area}} m <sup>2</sup>
                </b-col>
              </b-row>
              <b-row style="margin-top: 40px; color: white;">
@@ -149,13 +162,12 @@
              </b-row>
            </b-col>
            <b-col sm="5" style="">
-             <b-img :src="urlHoonian + Model.layout_image" alt=""
-                :style="`height: 310px; cursor: pointer;`"
+             <b-img :src="urlHoonian + Model.data.layout_image" alt=""
+                :style="`height: 310px;`"
                 fluid-grow @error="onImageLoadFailure($event)" />
            </b-col>
            <b-col sm="3" style="padding: unset !important;">
-             &nbsp;
-            <!-- <div v-for="(image, index) in Model.image" :key="index">
+            <div v-for="(image, index) in Model.image" :key="index">
               <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
                 <b-col>
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
@@ -168,7 +180,7 @@
                     fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
               </b-row>
-            </div> -->
+            </div>
            </b-col>
          </b-row>
         </b-col>
@@ -202,13 +214,13 @@ export default {
   },
   methods: {
     openFloorPlan() {
-      alert("show floor plan");
+      
     },
     openLayout() {
-      window.open(this.urlHoonian + this.Model.layout_image);
+      window.open(this.urlHoonian + this.Model.data.layout_image);
     },
     open360VR() {
-      window.open(this.Model.dimension_360_link);
+      window.open(this.Model.data.dimension_360_link);
     },
     openBrochure() {
       window.open(this.getBrochureLink());
@@ -223,13 +235,13 @@ export default {
     doEmail() {
       let attachmentUrl = encodeURIComponent(this.getBrochureLink().replace('\\', '/')) + "%0D%0A%0D%0A";
       let email = "customer@gmail.com";
-      window.open(`mailto:${email}?subject=${this.Model.tower_cluster_name}&body=${this.Model.tower_cluster_name} ${attachmentUrl}`);
+      window.open(`mailto:${email}?subject=${this.Model.data.tower_cluster_name}&body=${this.Model.data.tower_cluster_name} ${attachmentUrl}`);
     },
     getBodyMessage() {
-      return this.Model.tower_cluster_name + "\n" + this.getBrochureLink();
+      return this.Model.data.tower_cluster_name + "\n" + this.getBrochureLink();
     },
     getBrochureLink() {
-      return this.urlHoonian + this.Model.upload_brochure;
+      return this.urlHoonian + this.Model.data.upload_brochure;
     },
     buyNUP() {
 
@@ -239,7 +251,7 @@ export default {
     },
     getUnitTypeDetail() {
       let param = {
-        unit_type_id: this.paramFromList.unit_type_id,
+        unit_type_id: this.paramFromList.availableUnitTypes.id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/detail', param).then((response) => {

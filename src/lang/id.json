@@ -59,5 +59,7 @@
     "id_no": "ID no",
     "id_picture": "ID Gambar",
     "payment_through_va": "Payment Through VA",
-    "close": "Tutup"
+    "close": "Tutup",
+    "news": "Berita",
+    "unit_details": "Detail Unit"
 }
