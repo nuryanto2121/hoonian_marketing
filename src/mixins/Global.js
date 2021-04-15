@@ -354,7 +354,12 @@ export default {
       minutes: minutesDifference,
       seconds: secondsDifference,
     }
-  }
+  },
+  getDomainName(url) {
+    if (url)
+      return url.replace('http://','').replace('https://','').split(/[/?#]/)[0];
+    else ""
+  },
   },
 
 }

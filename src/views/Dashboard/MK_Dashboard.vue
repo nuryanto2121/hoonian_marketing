@@ -60,6 +60,14 @@ export default {
           col: 1,
           size: 12
         },
+        {
+          id: 5,
+          component: "/MK/dashboard_news",
+          name: "News",
+          row: 5,
+          col: 1,
+          size: 12
+        },
         // {
         //   id: 2,
         //   component: "Dashboard_Booking",
