@@ -61,5 +61,7 @@
     "payment_through_va": "Payment Through VA",
     "close": "Tutup",
     "news": "Berita",
-    "unit_details": "Detail Unit"
+    "unit_details": "Detail Unit",
+    "select_floor": "Pilih Lantai",
+    "notes": "Catatan"
 }

@@ -61,5 +61,7 @@
     "payment_through_va": "Payment Through VA",
     "close": "Close",
     "news": "News",
-    "unit_details": "Unit Details"
+    "unit_details": "Unit Details",
+    "select_floor": "Select Floor",
+    "notes": "Notes"
 }

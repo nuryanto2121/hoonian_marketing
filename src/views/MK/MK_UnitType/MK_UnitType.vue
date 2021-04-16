@@ -5,12 +5,12 @@
         <b-col lg="12" xl="12" style="background: white;">
          <b-row>
            <b-col>
-             {{paramFromList.projectDetail.data.project_name}}
+             {{paramFromList.projectName}}
            </b-col>
          </b-row>
          <b-row>
            <b-col style="color: #828282; font-size: 12px;">
-             {{paramFromList.projectDetail.data.address}}
+             {{paramFromList.address}}
            </b-col>
          </b-row>
          <b-row style="margin-top: 10px; padding-top: 10px; background: #F8F8F8;">
@@ -31,7 +31,7 @@
              {{ $t('unit_details') }}
            </b-col>
            <b-col sm="3">
-             <b-row>
+             <b-row style="text-align: right;">
                <b-col>
                 <ShareNetwork
                   network="facebook"
@@ -214,7 +214,10 @@ export default {
   },
   methods: {
     openFloorPlan() {
-      
+      let param = this.paramFromList;
+      param.tower_cluster_id = this.Model.data.tower_cluster_id;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_FloorPlan" });
     },
     openLayout() {
       window.open(this.urlHoonian + this.Model.data.layout_image);
@@ -229,12 +232,12 @@ export default {
       let phoneNo = "+6287880406400";
       let msg = this.replaceAllString(this.getBodyMessage(), "\n", "%0D%0A", "string");
       msg = this.replaceAllString(msg, "&nbsp;", "%20", "string");
-      let url = "https://api.whatsapp.com/send?phone=" + phoneNo + "&text=" + msg;
+      let url = "https://api.whatsapp.com/send?text=" + msg;
       window.open(url);
     },
     doEmail() {
       let attachmentUrl = encodeURIComponent(this.getBrochureLink().replace('\\', '/')) + "%0D%0A%0D%0A";
-      let email = "customer@gmail.com";
+      let email = "";
       window.open(`mailto:${email}?subject=${this.Model.data.tower_cluster_name}&body=${this.Model.data.tower_cluster_name} ${attachmentUrl}`);
     },
     getBodyMessage() {

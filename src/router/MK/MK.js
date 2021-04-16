@@ -5,6 +5,7 @@ import MK_SalesLeadLogbook from '@/views/MK/MK_SalesLead/MK_SalesLeadLogbook'
 import MK_ProjectDetail from '@/views/MK/MK_ProjectDetail/MK_ProjectDetail'
 import MK_ProjectDetailNUP from '@/views/MK/MK_ProjectDetail/MK_ProjectDetailNUP'
 import MK_UnitType from '@/views/MK/MK_UnitType/MK_UnitType'
+import MK_FloorPlan from '@/views/MK/MK_UnitType/MK_FloorPlan'
 import MK_VirtualLaunching from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunching'
 import MK_VirtualLaunchingDetail from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunchingDetail'
 import MK_Referral from '@/views/MK/MK_Referral/MK_Referral'
@@ -62,6 +63,14 @@ export const MKRender = {
             path: '/MK/MK_UnitType',
             name: 'MK_UnitType',
             component: MK_UnitType,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_FloorPlan',
+            name: 'MK_FloorPlan',
+            component: MK_FloorPlan,
             meta: {
                 requiresAuth: true
             }
