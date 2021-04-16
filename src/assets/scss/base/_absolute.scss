@@ -614,7 +614,7 @@ textarea.form-control {
   }
 }
 
-.table-style-3 {
+.table-style-3-old {
   font-size: 12px !important;
   font-family: 'Poppins' !important;
   font-weight: normal;
@@ -629,6 +629,29 @@ textarea.form-control {
 
   tbody {
     color: #666666;
+  }
+}
+
+.table-style-3 {
+  font-size: 12px !important;
+  font-family: 'Poppins' !important;
+  font-weight: normal;
+  font-style: normal;
+  cursor: pointer;
+  min-height: 15px !important;
+
+  thead {
+    background-color: #FFFFFF;
+    color: #000;
+  }
+
+  tbody {
+    color: #000;
+  }
+
+  th td {
+    border-bottom: unset !important;
+    border-top: unset !important;
   }
 }
 
@@ -1715,14 +1738,17 @@ Dynamic Text Area End
 
 .th-cus {
   &-left {
+    border: unset !important;
     text-align: left;
   }
 
   &-center {
+    border: unset !important;
     text-align: center;
   }
 
   &-right {
+    border: unset !important;
     text-align: right;
   }
 }
