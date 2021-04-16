@@ -7,20 +7,20 @@
               <b-col lg="12" xl="12">
                 <b-row style="overflow-x: auto; white-space: nowrap; display: block !important;">
                   <template v-for="(data, index) in ModelProject">
-                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click.once="onProjectChange(index)">
+                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" @click.once="onProjectClick(data)">
                       <b-row class="noPadding">
                         <b-col class="noPadding" lg="4" xl="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
                           <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                         </b-col>
-                        <b-col class="noPadding" lg="6" xl="6">
+                        <b-col class="noPadding" lg="8" xl="8">
                           <div class="center" style="text-align: center; width: 100%;">
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total Lead </span> <br>
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_sales_lead}}</span>
+                            <span class="title-primary" style="font-weight: bold; font-size: 20px; color: #4f4f4f !important;"> Total MKT </span> <br>
+                            <span class="title-primary" style="font-weight: bold; font-size: 20px;">{{data.total_token}}</span>
                           </div>
                         </b-col>
-                        <b-col class="noPadding" lg="2" xl="2">
+                        <!-- <b-col class="noPadding" lg="2" xl="2">
                           <font-awesome-icon @click="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
-                        </b-col>
+                        </b-col> -->
                       </b-row>
                     </b-col>
                   </template>
@@ -30,19 +30,9 @@
           <b-row>
             <b-col lg="12" xl="12">
                 <HOOList
-                  :prop="ModelProject[selectedProject].propList"
-                  :title="'Sales Lead Detail'"
-                  @rowClicked="rowClicked"
-                  @buttonDeleteClicked="doDeleteClick"
-                  @rowDblClicked="doDoubleClick"
-                  @rowLinkClick="rowLink"
-                  @pageSize="M_PageSize"
-                  @pagination="M_Pagination"
-                  @filter="M_Advance_Filter"
-                  @headTable="M_Head_Table"
-                  @refreshColumn="refreshColumn"
-                  :ref="'ref_sales_lead'"
-                  @buttonViewClicked="doViewClick"
+                  :prop="propList"
+                  :title="'Marketing List'"
+                  :ref="'ref_marketing_list'"
                   ButtonBackDisabled
                   SearchDisabled
                   isPoppins
@@ -51,25 +41,62 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Sales Lead Details
+                      Marketing List
                     </b-col>
                   </template>
-                  <template slot="date" slot-scope="data">
+                  <!-- <template slot="date" slot-scope="data">
                     {{momentUnix(data.item.date, "DD MMM YYYY")}}
+                  </template> -->
+                  
+                  <template slot="total_project" slot-scope="data">
+                    <b-row>
+                        <b-col lg="2" xl="2">
+                            <div class="center">
+                                {{data.item.total_project}}
+                            </div>
+                        </b-col>
+                        <b-col>
+                            <ABSButton
+                                :text="'View'"
+                                classButton="btn btn--default"
+                                classIcon="icon-style-1"
+                                @click="doViewProject(data.item)"
+                                styleButton="width: 100%;"
+                            />
+                        </b-col>
+                    </b-row>
                   </template>
-                  <template slot="logbook" slot-scope="data">
+                  <template slot="total_sales_unit" slot-scope="data">
+                    {{isCurrency(data.item.total_sales_unit, decimal)}}
+                  </template>
+                  <template slot="total_sales_price" slot-scope="data">
+                    {{isCurrency(data.item.total_sales_price, decimal)}}
+                  </template>
+                  <!-- <template slot="logbook" slot-scope="data">
                     <ABSButton
                       text="Logbook"
                       classButton="button button--hoonian"
                       icon="wallet"
                       @click="doLogbook(data.item)"
                     />
-                  </template>
+                  </template> -->
                 </HOOList>
             </b-col>
         </b-row>
         </b-col>
       </b-row>
+      <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
+        <template slot="headerTitle">
+          <span class="title-primary"> {{ $t('assigned_project') }} </span>
+        </template>
+        <template slot="content">
+          <b-row>
+            <b-col>
+              <b-table striped :items="user_project"></b-table>
+            </b-col>
+          </b-row>
+        </template>
+      </ABSModal>
 
       <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
         <template slot="headerTitle">
@@ -172,6 +199,17 @@ export default {
   },
   data() {
     return {
+      propList: {
+        url: "/api/marketing-website/user/grid",
+        initialWhere: "",
+        SortField: "",
+        SortBy: "desc",
+        ParamWhere: "",
+        param: {
+            principle_id: this.getDataUser().principle_id
+        }
+      },
+      user_project: [],
       Model: {
         handphone_no: "",
         prospect_name: "",
@@ -188,47 +226,41 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-          key: "prospect_name",
-          label: "Prospect Name",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
-        },
-        {
-          key: "handphone_no",
-          label: "Handphone No",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
-        },
-        {
-          key: "project_name",
-          label: "Project Name",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
-        },
-        {
-          key: "marketing_name",
+          key: "name",
           label: "Marketing Name",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-          key: "date",
-          label: "Date",
+          key: "handphone",
+          label: "Hanphone No.",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-          key: "notes",
-          label: "Notes",
+          key: "total_project",
+          label: "Total Project",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-          key: "logbook",
-          label: "",
+          key: "total_sales_unit",
+          label: "Total Sales (Unit)",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
+        {
+          key: "total_sales_price",
+          label: "Total Sales (Value)",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+        // {
+        //   key: "forfeited",
+        //   label: "Forfeited",
+        //   thClass: "HeaderACCList2Poppins th-cus-center",
+        //   tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        // },
       ],
       
       ModelProject: [],
@@ -293,54 +325,25 @@ export default {
     };
   },
   methods: {
-    onProjectChange(index) {
-      this.selectedProject = index;
-      this.getProject();
+    onProjectClick(data) {
+        var param = data;
+        param.isEdit = false;
+        this.$store.commit("setParamPage", param);
+        this.$router.push({ name: "MK_TokenPurchase" });
     },
+    doViewProject(data) {},
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
-    rowClicked(ev, id) {
-      console.log(ev, id)
-    },
-    doDeleteClick(ev, id) {
-      console.log(ev, id)
-    },
-    doDoubleClick(ev, id) {
-      console.log(ev, id)
-    },
-    rowLink(ev, id) {
-      console.log(ev, id)
-    },
-    M_PageSize(ev, id) {
-      console.log(ev, id)
-    },
-    M_Pagination(ev, id) {
-      console.log(ev, id)
-    },
-    M_Advance_Filter(ev, id) {
-      console.log(ev, id)
-    },
-    M_Head_Table(ev, id) {
-      console.log(ev, id)
-    },
-    refreshColumn(ev, id) {
-      console.log(ev, id)
-    },
-    doAdd(param) {
-      this.M_ClearForm();
-      this.paramAdd = param;
-      this.$refs.Modal_Add._show();
-    },
-    doBack() {
-      this.$router.go(-1);
-    },
-    doLogbook(data) {
+    doAdd(data) {
       var param = data;
       param.project_id = this.ModelProject[this.selectedProject].id;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_SalesLeadLogbook" });
+      this.$router.push({ name: "MK_TokenPurchase" });
+    },
+    doBack() {
+      this.$router.go(-1);
     },
     getProject() {
       let param = {
@@ -348,27 +351,10 @@ export default {
         principle_id: this.getDataUser().principle_id
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/header', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/token/header', param).then((response) => {
         if (response == null) return;
         let data = response.data;
-        this.selectedProject = 0;
-        this.ModelProject = [];
-        for (let i = 0; i < data.length; i++) {
-          this.ModelProject.push({
-            ...data[i],
-            propList: {
-              url: "/api/marketing-website/lead/grid",
-              initialWhere: data[i].id,
-              SortField: "",
-              SortBy: "desc",
-              ParamWhere: "",
-              param: {
-                principle_id: this.getDataUser().principle_id,
-                marketing_agent_id: this.getDataUser().marketing_id
-              }
-            }
-          });
-        }
+        this.ModelProject = data;
         
         this.$nextTick(() => {
           this.renderList();
@@ -377,46 +363,8 @@ export default {
       });
     },
     renderList() {
-      this.$refs.ref_sales_lead.doGetList("");
-    },
-    M_ClearForm() {
-      this.Model = {
-        handphone_no: "",
-        prospect_name: "",
-        email: "",
-        description: "",
-        name_card: "",
-      };
-    },
-    doSave() {
-      this.$validator._base.validateAll("FormEntry").then((result) => {
-        if (!result) return;
-        this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
-          (ress) => {
-            if (ress.value) {
-              this.$validator.errors.clear("FormEntry");
-              this.M_Save();
-            }
-          }
-        );
-      });
-    },
-    M_Save() {
-      let param = {
-        project_id: this.paramAdd.id,
-        project_name: this.paramAdd.project_name,
-        handphone: this.Model.handphone_no,
-        name: this.Model.prospect_name,
-        email: this.Model.email,
-        remarks: this.Model.description,
-        marketing_agent_id: this.getDataUser().marketing_id,
-        marketing_agent_name: this.getDataUser().user_name,
-        thumbnail_image: this.Model.name_card
-      }
-      this.postJSON(this.urlHoonian + '/api/marketing-website/lead/add', param).then((response) => {
-        if (response == null) return;
-        this.$refs.Modal_Add._hide();
-      });
+        this.propList.param.principle_id = this.getDataUser().principle_id
+        this.$refs.ref_marketing_list.doGetList("");
     },
   },
   mounted() {

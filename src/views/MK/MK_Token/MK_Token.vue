@@ -7,15 +7,15 @@
               <b-col lg="12" xl="12">
                 <b-row style="overflow-x: auto; white-space: nowrap; display: block !important;">
                   <template v-for="(data, index) in ModelProject">
-                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click="onProjectChange(index)">
+                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click.once="onProjectChange(index)">
                       <b-row class="noPadding">
                         <b-col class="noPadding" lg="4" xl="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
                           <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                         </b-col>
                         <b-col class="noPadding" lg="6" xl="6">
                           <div class="center" style="text-align: center; width: 100%;">
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total Lead </span> <br>
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_sales_lead}}</span>
+                            <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total Token </span> <br>
+                            <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_token}}</span>
                           </div>
                         </b-col>
                         <b-col class="noPadding" lg="2" xl="2">
@@ -284,12 +284,12 @@ export default {
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
-    doAdd(param) {
+    doAdd(data) {
       var param = data;
       param.project_id = this.ModelProject[this.selectedProject].id;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_SalesLeadLogbook" });
+      this.$router.push({ name: "MK_TokenPurchase" });
     },
     doBack() {
       this.$router.go(-1);

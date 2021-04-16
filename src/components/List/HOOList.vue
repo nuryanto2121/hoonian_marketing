@@ -93,7 +93,7 @@
         <b-table
           :responsive="true"
           :striped="true"
-          :bordered="true"
+          :bordered="false"
           :outlined="false"
           :small="false"
           :hover="true"
