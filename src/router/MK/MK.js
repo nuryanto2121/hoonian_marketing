@@ -6,7 +6,10 @@ import MK_ProjectDetail from '@/views/MK/MK_ProjectDetail/MK_ProjectDetail'
 import MK_VirtualLaunching from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunching'
 import MK_VirtualLaunchingDetail from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunchingDetail'
 import MK_Referral from '@/views/MK/MK_Referral/MK_Referral'
+import MK_ReferralLogbook from '@/views/MK/MK_Referral/MK_ReferralLogbook'
 import MK_Token from '@/views/MK/MK_Token/MK_Token'
+import MK_TokenPurchase from '@/views/MK/MK_Token/MK_TokenPurchase'
+import MK_User from '@/views/MK/MK_User/MK_User'
 
 export const MKRender = {
     path: '/MK',
@@ -73,11 +76,36 @@ export const MKRender = {
                 requiresAuth: true
             }
         },
+        {
+            path: '/MK/MK_Referral/Logbook',
+            name: 'MK_ReferralLogbook',
+            component: MK_ReferralLogbook,
+            meta: {
+                requiresAuth: true
+            }
+        },
         
         {
             path: '/MK/MK_Token',
             name: 'MK_Token',
             component: MK_Token,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_TokenPurchase',
+            name: 'MK_TokenPurchase',
+            component: MK_TokenPurchase,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        
+        {
+            path: '/MK/MK_User',
+            name: 'MK_User',
+            component: MK_User,
             meta: {
                 requiresAuth: true
             }
