@@ -45,5 +45,10 @@
     "purchase_your_nup_now": "Purchase Your NUP Now",
     "buy_nup": "Buy NUP",
     "virtual_launching": "Virtual Launching",
-    "completed": "Completed"
+    "completed": "Completed",
+    "purchase": "Purchase",
+    "token_value": "Token Value",
+    "purchase_value": "Purchase Value",
+    "total_owned_token": "Total Owned Token",
+    "assigned_project": "Assigned Project"
 }

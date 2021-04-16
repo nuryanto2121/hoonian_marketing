@@ -45,5 +45,10 @@
     "purchase_your_nup_now": "Beli NUP Sekarang",
     "buy_nup": "Beli NUP",
     "virtual_launching": "Peluncuran Virtual",
-    "completed": "Selesai"
+    "completed": "Selesai",
+    "purchase": "Pembelian",
+    "token_value": "Nilai Token",
+    "purchase_value": "Nilai Pembelian",
+    "total_owned_token": "Total Token Dimiliki",
+    "assigned_project": "Projek Ditugaskan"
 }
