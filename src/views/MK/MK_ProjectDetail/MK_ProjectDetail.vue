@@ -12,17 +12,17 @@
            </b-col>
          </b-row>
          <b-row>
-           <b-col>
+           <b-col style="color: #828282; font-size: 12px;">
              {{Model.data.address}}
            </b-col>
-           <b-col sm="3">
+           <b-col style="color: #828282; font-size: 12px;" sm="3">
              {{ isCurrency(Model.data.price_per_meter_square,0) }} / m<sup>2</sup>
            </b-col>
          </b-row>
-         <b-row>
+         <b-row style="margin-top: 10px;">
            <b-col sm="6" style="padding: unset !important;">
              <b-img :src="urlHoonian + Model.data.main_pic" alt=""
-                :style="`height: 310px; cursor: pointer;`"
+                :style="`height: 310px;`"
                 fluid-grow @error="onImageLoadFailure($event)" />
            </b-col>
            <b-col sm="3" style="padding: unset !important; background: black; color: white;">
@@ -153,6 +153,16 @@
          </b-row>
 
          <b-row style="margin-top: 10px;">
+           <b-col style="color: #828282;">
+             {{Model.data.project_status}}
+             &nbsp;&nbsp; > &nbsp;&nbsp;
+             {{Model.data.location_name}}
+             &nbsp;&nbsp; > &nbsp;&nbsp;
+             {{Model.data.project_name}}
+           </b-col>
+         </b-row>
+
+         <b-row style="margin-top: 10px;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px;">
                Project Information
@@ -257,10 +267,55 @@
            </b-col>
          </b-row>
 
-         <b-row style="margin-top: 10px;">
-           <b-col>
-             Available Unit Types
-           </b-col>
+         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 10px;">
+           <template v-for="(data, index) in AvailableUnitTypes">
+            <b-col sm="12" :key="data.id">
+              <span style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
+              <HOOList
+                :prop="data.propList"
+                :title="''"
+                @rowClicked="rowClicked"
+                @buttonDeleteClicked="doDeleteClick"
+                @rowDblClicked="doDoubleClick"
+                @rowLinkClick="rowLink"
+                @pageSize="M_PageSize"
+                @pagination="M_Pagination"
+                @filter="M_Advance_Filter"
+                @headTable="M_Head_Table"
+                @refreshColumn="refreshColumn"
+                :cHeader="availableUnitTypesHeader"
+                :ref="`ref_available_unit_types_${index}`"
+                @buttonViewClicked="doViewClick"
+                ButtonBackDisabled
+                SearchDisabled
+                isHeaderFixed
+                noCard
+                removeCardTitle
+                removePaddingTopBody
+                noPaging
+              >
+                <template slot="TitleTable">
+                  <b-col lg="3" xl="3" style="padding-left: unset !important; color: #828282; font-size: 14px;">
+                    {{data.tower_cluster_name}}
+                  </b-col>
+                </template>
+                <template slot="start_from" slot-scope="data">
+                  {{ isCurrency(data.item.start_from, 0) }}
+                </template>
+                <template slot="unit_type" slot-scope="data">
+                  <span style="color: #4A93B3">
+                    {{data.item.unit_type}}
+                  </span>
+                </template>
+                <template slot="head_total_bedroom" slot-scope="data">
+                  <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
+                </template>
+                <template slot="head_total_bathroom" slot-scope="data">
+                  <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" style=""/>
+                </template>
+              </HOOList>
+            </b-col>
+           </template>
          </b-row>
 
          <b-row style="margin-top: 10px; font-size: 13px;">
@@ -551,6 +606,59 @@ export default {
         nup: {},
         vlaunching: {},
       },
+      AvailableUnitTypes: [],
+      availableUnitTypesHeader: [
+        {
+          key: "unit_type",
+          label: "UNIT TYPE",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "gross_area",
+          label: "GROSS AREA",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "net_area",
+          label: "NET AREA",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "total_bedroom",
+          label: "",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+          isCustom: true,
+        },
+        {
+          key: "total_bathroom",
+          label: "",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+          isCustom: true,
+        },
+        {
+          key: "total",
+          label: "TOTAL",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "direction",
+          label: "DIRECTION",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "start_from",
+          label: "START FROM",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+      ],
       Progress: [],
       Promotion: [],
       FinancialPartner: [],
@@ -663,11 +771,6 @@ export default {
     }
   },
   methods: {
-    getDomainName(url) {
-      if (url)
-        return url.replace('http://','').replace('https://','').split(/[/?#]/)[0];
-      else ""
-    },
     openBuildingPlan() {
       window.open(this.urlHoonian + this.Model.data.building_plan);
     },
@@ -703,7 +806,10 @@ export default {
       return this.urlHoonian + this.Model.data.upload_brochure;
     },
     buyNUP() {
-
+      let param = this.paramFromList;
+      param.projectDetail = this.Model;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_ProjectDetailNUP" });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
@@ -718,6 +824,51 @@ export default {
         if (response == null) return;
         this.Model = response.data;
       });
+    },
+    getAvailableUnitTypes() {
+      let param = {
+        project_id: this.paramFromList.id,
+        lang_id: this.getDataUser().lang_id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/available-unit-types-header', param).then((response) => {
+        if (response == null) return;
+        let data = response.data;
+
+        for (let i = 0; i < data.length; i++) {
+          this.AvailableUnitTypes.push({
+            ...data[i],
+            propList: {
+              url: "/api/marketing-website/project/available-unit-types-grid",
+              initialWhere: "",
+              SortField: "",
+              SortBy: "desc",
+              ParamWhere: "",
+              param: {
+                tower_cluster_id: data[i].id,
+                lang_id: this.getDataUser().lang_id,
+              }
+            }
+          });
+        }
+        
+        this.$nextTick(() => {
+          this.renderList();
+        })
+      });
+    },
+    renderList() {
+      for (let i = 0; i < this.AvailableUnitTypes.length; i++) {
+        this.$refs['ref_available_unit_types_'+i][0].doGetList("");
+      }
+    },
+    rowClicked(data) {
+      let param = this.paramFromList;
+      param.projectDetail = this.Model;
+      param.availableUnitTypes = data;
+      param.isEdit = false;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_UnitType" });
     },
     getProgress() {
       let param = {
@@ -762,6 +913,7 @@ export default {
   },
   mounted() {
     this.getProject();
+    this.getAvailableUnitTypes();
     this.getProgress();
     this.getPromotion();
     this.getFinancialPartner();

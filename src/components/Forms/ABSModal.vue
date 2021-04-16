@@ -167,6 +167,7 @@ export default {
     },
     _hide() {
       this.isShow = false;
+      this.$emit("modalCancelClicked");
     },
     onOkClicked() {
       // this._hide()
