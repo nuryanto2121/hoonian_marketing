@@ -26,7 +26,7 @@
              {{Model.data.unit_type_name}}
            </b-col>
          </b-row>
-         <b-row style="background: #F8F8F8;">
+         <b-row style="padding-top: 10px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              {{ $t('unit_details') }}
            </b-col>
@@ -35,10 +35,10 @@
                <b-col>
                 <ShareNetwork
                   network="facebook"
-                  :url="getBrochureLink()"
-                  :title="Model.data.tower_cluster_name"
+                  :url="urlHoonian + Model.data.main_pic"
+                  :title="Model.share.title"
                   description="Hoonian"
-                  :quote="Model.data.tower_cluster_name"
+                  :quote="Model.share.title"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
@@ -47,10 +47,10 @@
                 <b-col>
                   <ShareNetwork
                   network="twitter"
-                  :url="getBrochureLink()"
-                  :title="Model.data.tower_cluster_name"
+                  :url="urlHoonian + Model.data.main_pic"
+                  :title="Model.share.title"
                   description="Hoonian"
-                  :quote="Model.data.tower_cluster_name"
+                  :quote="Model.share.title"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
@@ -183,6 +183,87 @@
             </div>
            </b-col>
          </b-row>
+
+         <b-row style="background: #F8F8F8; padding-top: 10px;">
+           <b-col>
+             <HOOList
+                :prop="propList"
+                :title="''"
+                @rowClicked="rowClicked"
+                @buttonDeleteClicked="doDeleteClick"
+                @rowDblClicked="doDoubleClick"
+                @rowLinkClick="rowLink"
+                @pageSize="M_PageSize"
+                @pagination="M_Pagination"
+                @filter="M_Advance_Filter"
+                @headTable="M_Head_Table"
+                @refreshColumn="refreshColumn"
+                :cHeader="unitListHeader"
+                ref="ref_list"
+                @buttonViewClicked="doViewClick"
+                ButtonBackDisabled
+                SearchDisabled
+                isHeaderFixed
+                noCard
+                removeCardTitle
+                removePaddingTopBody
+              >
+                <template slot="unit_no" slot-scope="data">
+                  <span style="color: #4A93B3">
+                    {{data.item.unit_no}}
+                  </span>
+                </template>
+                <template slot="head_total_bedroom" slot-scope="data">
+                  <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
+                </template>
+                <template slot="head_total_bathroom" slot-scope="data">
+                  <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" style=""/>
+                </template>
+                <template slot="price" slot-scope="data">
+                  {{ isCurrency(data.item.price, 0) }}
+                </template>
+                <template slot="unit_status" slot-scope="data">
+                  <b-row>
+                    <b-col align-self="center" sm="4" style="padding-left: unset !important;">
+                      Reservation
+                    </b-col>
+                    <b-col>
+                      <ABSButton
+                        :text="'Reservation'"
+                        classButton="btn btn--default"
+                        classIcon="icon-style-1"
+                        @click="doReservation"
+                        styleButton="height: 40px;"
+                      />
+                    </b-col>
+                  </b-row>
+                  <!-- <span v-if="data.item.unit_status == 1" style="color: #219653">
+                    AVAILABLE
+                    <ABSButton
+                      :text="'Reservation'"
+                      classButton="btn btn--default"
+                      classIcon="icon-style-1"
+                      @click="doReservation"
+                      styleButton="height: 40px;"
+                    />
+                  </span>
+                  <span v-else-if="data.item.unit_status == 2" style="color: #F2C94C">
+                    BOOKED &nbsp;
+                    <ABSButton
+                      :text="'Waiting List'"
+                      classButton="btn btn--default"
+                      classIcon="icon-style-1"
+                      @click="doWaitingList"
+                      styleButton="height: 40px;"
+                    />
+                  </span>
+                  <span v-else style="color: #EB5757">
+                    SOLD
+                  </span> -->
+                </template>
+              </HOOList>
+           </b-col>
+         </b-row>
         </b-col>
       </b-row>
     </div>
@@ -210,9 +291,108 @@ export default {
     return {
       Model: {
       },
+      propList: {
+        url: "/api/marketing-website/project/unit-type/unit-list",
+        initialWhere: "",
+        SortField: "",
+        SortBy: "desc",
+        ParamWhere: "",
+        param: {
+          unit_type_id: "",
+          marketing_agent_id: "",
+          tower_cluster_id: "",
+          type: "",
+          lang_id: this.getDataUser().lang_id,
+        }
+      },
+      unitListHeader: [
+        {
+          key: "unit_no",
+          label: "UNIT",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "block_floor_name",
+          label: "FLOOR",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "net_area",
+          label: "NET AREA",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "gross_area",
+          label: "SEMI-GROSS",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "total_bedroom",
+          label: "",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+          isCustom: true,
+        },
+        {
+          key: "total_bathroom",
+          label: "",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+          isCustom: true,
+        },
+        {
+          key: "direction",
+          label: "DIRECTION",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "price",
+          label: "PRICE",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "unit_status",
+          label: "STATUS",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+      ],
+      type: "all",
     }
   },
   methods: {
+    doReservation() {
+
+    },
+    doWaitingList() {
+
+    },
+    rowClicked(data) {
+      // let param = this.paramFromList;
+      // param.projectName = this.Model.data.project_name;
+      // param.address = this.Model.data.address;
+      // param.availableUnitTypes = data;
+      // param.isEdit = false;
+      // this.$store.commit("setParamPage", param);
+      // this.$router.push({ name: "MK_UnitType" });
+    },
+    setPropList() {
+      this.propList.initialWhere = this.paramFromList.id;
+      this.propList.param.unit_type_id = this.paramFromList.availableUnitTypes.id;
+      this.propList.param.marketing_agent_id = this.getDataUser().marketing_id;
+      this.propList.param.tower_cluster_id = this.Model.data.tower_cluster_id;
+      this.propList.param.type = this.type;
+
+      this.$nextTick(() => {
+        this.$refs.ref_list.doGetList("");
+      })
+    },
     openFloorPlan() {
       let param = this.paramFromList;
       param.tower_cluster_id = this.Model.data.tower_cluster_id;
@@ -229,7 +409,6 @@ export default {
       window.open(this.getBrochureLink());
     },
     doWhatsapp() {
-      let phoneNo = "+6287880406400";
       let msg = this.replaceAllString(this.getBodyMessage(), "\n", "%0D%0A", "string");
       msg = this.replaceAllString(msg, "&nbsp;", "%20", "string");
       let url = "https://api.whatsapp.com/send?text=" + msg;
@@ -238,10 +417,10 @@ export default {
     doEmail() {
       let attachmentUrl = encodeURIComponent(this.getBrochureLink().replace('\\', '/')) + "%0D%0A%0D%0A";
       let email = "";
-      window.open(`mailto:${email}?subject=${this.Model.data.tower_cluster_name}&body=${this.Model.data.tower_cluster_name} ${attachmentUrl}`);
+      window.open(`mailto:${email}?subject=${this.Model.share.title}&body=${this.getBodyMessage()}`);
     },
     getBodyMessage() {
-      return this.Model.data.tower_cluster_name + "\n" + this.getBrochureLink();
+      return this.Model.share.body;
     },
     getBrochureLink() {
       return this.urlHoonian + this.Model.data.upload_brochure;
@@ -260,6 +439,8 @@ export default {
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/detail', param).then((response) => {
         if (response == null) return;
         this.Model = response.data;
+
+        this.setPropList();
       });
     },
   },

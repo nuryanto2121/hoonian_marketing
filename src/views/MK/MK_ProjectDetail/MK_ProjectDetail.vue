@@ -121,10 +121,10 @@
                <b-col>
                 <ShareNetwork
                   network="facebook"
-                  :url="getBrochureLink()"
-                  :title="Model.data.project_name"
+                  :url="urlHoonian + Model.data.main_pic"
+                  :title="Model.share.title"
                   description="Hoonian"
-                  :quote="Model.data.project_name"
+                  :quote="Model.share.title"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
@@ -133,10 +133,10 @@
                <b-col>
                  <ShareNetwork
                   network="twitter"
-                  :url="getBrochureLink()"
-                  :title="Model.data.project_name"
+                  :url="urlHoonian + Model.data.main_pic"
+                  :title="Model.share.title"
                   description="Hoonian"
-                  :quote="Model.data.project_name"
+                  :quote="Model.share.title"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
@@ -697,20 +697,20 @@ export default {
         {
           key: "unit_type",
           label: "UNIT TYPE",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
         {
           key: "gross_area",
           label: "GROSS AREA",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "net_area",
           label: "NET AREA",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "total_bedroom",
@@ -735,14 +735,14 @@ export default {
         {
           key: "direction",
           label: "DIRECTION",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "start_from",
           label: "START FROM",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
       ],
       Progress: [],
@@ -906,10 +906,10 @@ export default {
     doEmail() {
       let attachmentUrl = encodeURIComponent(this.getBrochureLink().replace('\\', '/')) + "%0D%0A%0D%0A";
       let email = "";
-      window.open(`mailto:${email}?subject=${this.Model.data.project_name}&body=${this.Model.data.project_name} ${attachmentUrl}`);
+      window.open(`mailto:${email}?subject=${this.Model.share.title}&body=${this.getBodyMessage()}`);
     },
     getBodyMessage() {
-      return this.Model.data.project_name + "\n" + this.getBrochureLink();
+      return this.Model.share.body;
     },
     getBrochureLink() {
       return this.urlHoonian + this.Model.data.upload_brochure;
