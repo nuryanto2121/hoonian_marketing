@@ -184,84 +184,344 @@
            </b-col>
          </b-row>
 
-         <b-row style="background: #F8F8F8; padding-top: 10px;">
-           <b-col>
-             <HOOList
-                :prop="propList"
-                :title="''"
-                @rowClicked="rowClicked"
-                @buttonDeleteClicked="doDeleteClick"
-                @rowDblClicked="doDoubleClick"
-                @rowLinkClick="rowLink"
-                @pageSize="M_PageSize"
-                @pagination="M_Pagination"
-                @filter="M_Advance_Filter"
-                @headTable="M_Head_Table"
-                @refreshColumn="refreshColumn"
-                :cHeader="unitListHeader"
-                ref="ref_list"
-                @buttonViewClicked="doViewClick"
-                ButtonBackDisabled
-                SearchDisabled
-                isHeaderFixed
-                noCard
-                removeCardTitle
-                removePaddingTopBody
-              >
-                <template slot="unit_no" slot-scope="data">
-                  <span style="color: #4A93B3">
-                    {{data.item.unit_no}}
+         <b-row style="background: white; padding-top: 20px; margin-top: 10px;">
+           <b-col style="padding: unset !important;">
+             <b-row>
+               <b-col sm="4">
+                 <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'all' ? 'color: #4A93B3; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('all')">
+                   ALL
+                 </span>
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'available' ? 'color: #219653; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('available')">
+                   AVAILABLE
+                 </span>
+               </b-col>
+               <b-col style="text-align: right;">
+                 <span style="margin-right: 20px; cursor: pointer;" @click="changeType('buyer')">
+                   <span style="width: 17px; height: 17px; background: #56CCF2;">
+                   &nbsp;&nbsp;&nbsp;&nbsp;
                   </span>
-                </template>
-                <template slot="head_total_bedroom" slot-scope="data">
-                  <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
-                </template>
-                <template slot="head_total_bathroom" slot-scope="data">
-                  <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" style=""/>
-                </template>
-                <template slot="price" slot-scope="data">
-                  {{ isCurrency(data.item.price, 0) }}
-                </template>
-                <template slot="unit_status" slot-scope="data">
-                  <b-row>
-                    <b-col align-self="center" sm="4" style="padding-left: unset !important;">
-                      Reservation
-                    </b-col>
-                    <b-col>
-                      <ABSButton
-                        :text="'Reservation'"
-                        classButton="btn btn--default"
-                        classIcon="icon-style-1"
-                        @click="doReservation"
-                        styleButton="height: 40px;"
-                      />
-                    </b-col>
-                  </b-row>
-                  <!-- <span v-if="data.item.unit_status == 1" style="color: #219653">
-                    AVAILABLE
-                    <ABSButton
-                      :text="'Reservation'"
-                      classButton="btn btn--default"
-                      classIcon="icon-style-1"
-                      @click="doReservation"
-                      styleButton="height: 40px;"
-                    />
-                  </span>
-                  <span v-else-if="data.item.unit_status == 2" style="color: #F2C94C">
-                    BOOKED &nbsp;
-                    <ABSButton
-                      :text="'Waiting List'"
-                      classButton="btn btn--default"
-                      classIcon="icon-style-1"
-                      @click="doWaitingList"
-                      styleButton="height: 40px;"
-                    />
-                  </span>
-                  <span v-else style="color: #EB5757">
-                    SOLD
-                  </span> -->
-                </template>
-              </HOOList>
+                  &nbsp;&nbsp;
+                  YOUR BUYER
+                 </span>
+                 <span style="text-shadow: 0.5px 0px; margin-right: 20px;">
+                   Booking Fee
+                 </span>
+                 <span style="color: #2F80ED">
+                   {{ isCurrency(Model.data.booking_fee, 0) }}
+                 </span>
+               </b-col>
+             </b-row>
+             <b-row>
+               <b-col style="padding: unset !important;">
+                 <HOOList
+                    :prop="propList"
+                    :title="''"
+                    @rowClicked="rowClicked"
+                    @buttonDeleteClicked="doDeleteClick"
+                    @rowDblClicked="doDoubleClick"
+                    @rowLinkClick="rowLink"
+                    @pageSize="M_PageSize"
+                    @pagination="M_Pagination"
+                    @filter="M_Advance_Filter"
+                    @headTable="M_Head_Table"
+                    @refreshColumn="refreshColumn"
+                    :cHeader="unitListHeader"
+                    ref="ref_list"
+                    @buttonViewClicked="doViewClick"
+                    ButtonBackDisabled
+                    SearchDisabled
+                    isHeaderFixed
+                    noCard
+                    removeCardTitle
+                    removePaddingTopBody
+                  >
+                    <template slot="unit_no" slot-scope="data">
+                      <span style="color: #4A93B3">
+                        {{data.item.unit_no}}
+                      </span>
+                    </template>
+                    <template slot="head_total_bedroom" slot-scope="data">
+                      <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
+                    </template>
+                    <template slot="head_total_bathroom" slot-scope="data">
+                      <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" style=""/>
+                    </template>
+                    <template slot="price" slot-scope="data">
+                      <b-row>
+                        <b-col align-self="center">
+                          {{ isCurrency(data.item.price, 0) }}
+                        </b-col>
+                        <b-col sm="2" @click="showCalculator(data.item)">
+                          <b-img :src="require('@/assets/icon-svg/calculator.svg')" alt="" style="" @click="showCalculator(data.item)" />
+                        </b-col>
+                        <b-col sm="1">
+                          &nbsp;
+                        </b-col>
+                      </b-row>
+                    </template>
+                    <template slot="status" slot-scope="data">
+                      <b-row>
+                        <b-col align-self="center" :sm="data.item.status == 'available' || data.item.status == 'booked' ? 4: 12"
+                          style="padding-left: unset !important;">
+                          <span :style="data.item.status == 'available'? 'color: #219653;':
+                                      (data.item.status == 'sold'? 'color: #EB5757;': 'color: #F2C94C;')">
+                            {{data.item.status.toUpperCase()}}
+                          </span>
+                        </b-col>
+                        <b-col v-if="data.item.status == 'available' || data.item.status == 'booked'">
+                          <ABSButton
+                            :text="data.item.status == 'available'? 'Reservation' :
+                                  (data.item.status == 'booked'? 'Waiting List': '')"
+
+                            :classButton="data.item.status == 'available'? 'btn btn--default' :
+                                        (data.item.status == 'booked'? 'btn btn--yellow': '')"
+                            classIcon="icon-style-1"
+                            @click="doReservationOrBooked(data.item)"
+                            styleButton="height: 30px; width: 100%;"
+                          />
+                        </b-col>
+                      </b-row>
+                    </template>
+                  </HOOList>
+                  <ABSModal id="Modal_Calculator" ref="Modal_Calculator" size="lg">
+                    <template slot="headerTitle">
+                      <span class="title-primary"> {{ $t('loan_calculator') }} </span>
+                    </template>
+                    <template slot="content">
+                      <b-row v-if="dataRowClick">
+                        <b-col md="12" style="padding-left: unset !important; padding-right: unset !important;">
+                          <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
+                            <b-row style="text-shadow: 0.5px 0px; font-size: 18px;">
+                              <b-col md="6">
+                                {{ $t('unit_no') }}
+                                <br />
+                                <span style="color: #4A93B3">
+                                  {{dataRowClick.unit_no}}
+                                </span>
+                              </b-col>
+                              <b-col md="6">
+                                {{ $t('unit_price') }}
+                                <br />
+                                <span style="color: #4A93B3">
+                                  {{ isCurrency(dataRowClick.price, 0) }}
+                                </span>
+                              </b-col>
+                            </b-row>
+                            <b-row style="margin-top: 20px;">
+                              <b-col md="6">
+                                <span>
+                                  <label class="lbl-poppins">{{ $t('loan_percentage') }} (%)</label>
+                                </span>
+                                <ACCTextBox
+                                  :prop="PI_loan_percentage"
+                                  v-model="Calculate.loan_percentage"
+                                  ref="ref_loan_percentage"
+                                />
+                              </b-col>
+                              <b-col md="6">
+                                <span>
+                                  <label class="lbl-poppins">{{ $t('interest') }} (%)</label>
+                                </span>
+                                <ACCTextBox
+                                  :prop="PI_interest"
+                                  v-model="Calculate.interest"
+                                  ref="ref_interest"
+                                />
+                              </b-col>
+                            </b-row>
+                            <b-row>
+                              <b-col md="6">
+                                <span>
+                                  <label class="lbl-poppins">{{ $t('loan_amount') }}</label>
+                                </span>
+                                <ACCTextBox
+                                  :prop="PI_loan_amount"
+                                  v-model="Calculate.loan_amount"
+                                  ref="ref_loan_amount"
+                                />
+                              </b-col>
+                              <b-col md="6">
+                                <span>
+                                  <label class="lbl-poppins">{{ $t('tenor') }}</label>
+                                </span>
+                                <ACCTextBox
+                                  :prop="PI_tenor"
+                                  v-model="Calculate.tenor"
+                                  ref="ref_tenor"
+                                />
+                              </b-col>
+                            </b-row>
+                            <b-row style="margin-top: 20px;">
+                              <b-col offset-sm="4" sm="4">
+                                <ABSButton
+                                  :text="$t('calculate')"
+                                  classButton="btn btn--default"
+                                  classIcon="icon-style-1"
+                                  @click="doCalculate"
+                                  styleButton="height: 40px; width: 100%;"
+                                />
+                              </b-col>
+                            </b-row>
+                            <b-row style="margin-top: 20px;">
+                              <b-col offset-sm="2" sm="8" v-if="showMonthlyInstallment"
+                                style="background: #F2F2F2; text-align: center; text-shadow: 0.5px 0px; font-size: 18px; padding-top: 20px !important; padding-bottom: 20px !important;">
+                                <span>
+                                  <label>{{ $t('monthly_installment') }}</label>
+                                </span>
+                                <br />
+                                <span style="color: #4A93B3">
+                                  {{monthlyInstallment}}
+                                </span>
+                              </b-col>
+                            </b-row>
+                          </b-form>
+                        </b-col>
+                      </b-row>
+                    </template>
+                  </ABSModal>
+                  <ABSModal id="Modal_BuyerDetails" ref="Modal_BuyerDetails" size="md">
+                    <template slot="headerTitle">
+                      <span v-if="dataRowClick" class="title-primary"> {{ $t('buyer_details') }} - {{ dataRowClick.status == 'available'? 'Reservation': 'Waiting List' }} </span>
+                    </template>
+                    <template slot="content">
+                      <b-row v-if="dataRowClick">
+                        <b-col md="12" style="padding-left: unset !important; padding-right: unset !important;">
+                          <b-form :data-vv-scope="'FormEntryBuyer'" :data-vv-value-path="'FormEntryBuyer'">
+                            <b-row class="row-view">
+                              <b-col class="lbl-poppins" style="padding-left: 10px !important;">
+                                {{ $t('unit_no') }}
+                                <span style="color: #4A93B3">
+                                  {{dataRowClick.block_floor_name}} -
+                                  {{dataRowClick.unit_no}}
+                                </span>
+                              </b-col>
+                            </b-row>
+                            <b-row>
+                              <b-col md="8">
+                                <b-row>
+                                  <b-col>
+                                    <span>
+                                      <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
+                                    </span>
+                                    <ACCTextBox
+                                      :prop="PI_handphone_no"
+                                      v-model="BuyerDetails.handphone_no"
+                                      ref="ref_handphone_no"
+                                    />
+                                  </b-col>
+                                </b-row>
+                                <b-row>
+                                  <b-col>
+                                    <span>
+                                      <label class="lbl-poppins">{{ $t('buyer_name') }}</label>
+                                    </span>
+                                    <ACCTextBox
+                                      :prop="PI_buyer_name"
+                                      v-model="BuyerDetails.buyer_name"
+                                      ref="ref_buyer_name"
+                                    />
+                                  </b-col>
+                                </b-row>
+                                <b-row>
+                                  <b-col>
+                                    <span>
+                                      <label class="lbl-poppins">{{ $t('id_no') }}</label>
+                                    </span>
+                                    <ACCTextBox
+                                      :prop="PI_id_no"
+                                      v-model="BuyerDetails.id_no"
+                                      ref="ref_buyer_id_no"
+                                    />
+                                  </b-col>
+                                </b-row>
+                                <b-row>
+                                  <b-col>
+                                    <span>
+                                      <label class="lbl-poppins">{{ $t('email') }}</label>
+                                    </span>
+                                    <ACCTextBox
+                                      :prop="PI_email"
+                                      v-model="BuyerDetails.email"
+                                      ref="ref_buyer_email"
+                                    />
+                                  </b-col>
+                                </b-row>
+                                
+                              </b-col>
+                              <b-col offset-md="1" md="3">
+                                 <span>
+                                  <label class="lbl-poppins">{{ $t('id_picture') }}</label>
+                                </span>
+                                <br />
+                                <b-img id="name_card_show" fluid :src="urlHoonian + BuyerDetails.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
+                                <HOOImageUpload
+                                  :prop="PI_id_picture"
+                                  @change="OnIdPictureChange"
+                                  v-model="BuyerDetails.id_picture"
+                                />
+                              </b-col>
+                            </b-row>
+                            <b-row style="margin-top: 20px;">
+                              <b-col offset-sm="4" sm="4">
+                                <ABSButton
+                                  :text="$t('confirmation')"
+                                  classButton="btn btn--default"
+                                  classIcon="icon-style-1"
+                                  @click="doConfirmation"
+                                  styleButton="height: 40px; width: 100%;"
+                                />
+                              </b-col>
+                            </b-row>
+                          </b-form>
+                        </b-col>
+                      </b-row>
+                    </template>
+                  </ABSModal>
+                  <ABSModal id="Modal_Payment" ref="Modal_Payment" size="sm" @modalCancelClicked="closePayment()">
+                    <template slot="headerTitle">
+                      <span class="title-primary"> {{ $t('virtual_account') }} </span>
+                    </template>
+                    <template slot="content">
+                      <b-row v-for="(data, index) in virtualAccount.virtual_accounts" :key="index">
+                        <b-col md="12">
+                          <div style="background: #FFFFFF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
+                            <b-row style="margin-top: 10px;">
+                              <b-col md="6" style="padding: 10px;">
+                                <b-img :src="urlHoonian + data.bank_icon" alt="" width="100%" @error="onImageLoadFailure($event)" />
+                              </b-col>
+                              <b-col align-self="center" md="6">
+                                <div>{{data.bank_name}}</div>
+                                <div style="color: #4A93B3;">{{data.virtual_account_no}}</div>
+                              </b-col>
+                            </b-row>
+                          </div>
+                        </b-col>
+                      </b-row>
+                      <b-row style="margin-top: 20px;">
+                        <b-col style="text-align: center;">
+                          <span>
+                            <label class="lbl-poppins">{{ $t('please_pay_in') }}</label>
+                          </span>
+                          <br />
+                          <div style="color: #4A93B3;">{{pleasePayIn}}</div>
+                        </b-col>
+                      </b-row>
+                      <b-row style="margin-top: 20px;">
+                        <b-col>
+                          <ABSButton
+                            :text="$t('close')"
+                            classButton="btn btn--default"
+                            classIcon="icon-style-1"
+                            @click="doBack"
+                            styleButton="height: 40px; width: 100%;"
+                          />
+                        </b-col>
+                      </b-row>
+                    </template>
+                  </ABSModal>
+               </b-col>
+             </b-row>
            </b-col>
          </b-row>
         </b-col>
@@ -290,7 +550,24 @@ export default {
   data() {
     return {
       Model: {
+        data: {project_status: "", location_name: "", project_name: "", tower_cluster_name: "", unit_type_name: "",},
+        image: [],
+        share: {title: "", body: "",},
       },
+      Calculate: {
+        loan_percentage: 0,
+        interest: 0,
+        loan_amount: 0,
+        tenor: 0,
+      },
+      BuyerDetails: {
+        handphone_no: '',
+        buyer_name: '',
+        id_no: '',
+        email: '',
+        id_picture: '',
+      },
+      virtualAccount: {},
       propList: {
         url: "/api/marketing-website/project/unit-type/unit-list",
         initialWhere: "",
@@ -357,18 +634,218 @@ export default {
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
-          key: "unit_status",
+          key: "status",
           label: "STATUS",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
       ],
       type: "all",
+      dataRowClick: undefined,
+      PI_loan_percentage: {
+        cValidate: "required|greater:0",
+        cName: "Loan Percentage",
+        cOrder: 1,
+        cKey: false,
+        cType: "numeric",
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_interest: {
+        cValidate: "required|greater:0",
+        cName: "Interest",
+        cOrder: 2,
+        cKey: false,
+        cType: "numeric",
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_loan_amount: {
+        cValidate: "required|greater:0",
+        cName: "Loan Amount",
+        cOrder: 3,
+        cKey: false,
+        cType: "decimal",
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_tenor: {
+        cValidate: "required|greater:0",
+        cName: "tenor",
+        cOrder: 4,
+        cKey: false,
+        cType: "decimal",
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      // FormEntryBuyer
+      PI_handphone_no: {
+        cValidate: "required",
+        cName: "Handphone No",
+        cOrder: 1,
+        cKey: false,
+        cType: "tel",
+        cProtect: false,
+        cParentForm: "FormEntryBuyer",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_buyer_name: {
+        cValidate: "required",
+        cName: "Buyer Name",
+        cOrder: 2,
+        cKey: false,
+        cType: "text",
+        cProtect: false,
+        cParentForm: "FormEntryBuyer",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_id_no: {
+        cValidate: "required",
+        cName: "ID No",
+        cOrder: 3,
+        cKey: false,
+        cType: "tel",
+        cProtect: false,
+        cParentForm: "FormEntryBuyer",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_email: {
+        cValidate: "email|required",
+        cName: "Email",
+        cOrder: 4,
+        cKey: false,
+        cType: "email",
+        cProtect: false,
+        cParentForm: "FormEntryBuyer",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_id_picture: {
+        cValidate: "required",
+        cName: "ID Picture",
+        cOrder: 5,
+        cTitle: "Upload Photo",
+        cType: "nup",
+        cParentForm: "FormEntry"
+      },
+      showMonthlyInstallment: false,
+      monthlyInstallment: 0,
+      pleasePayIn: "",
+      intervalPleasePayIn: undefined,
     }
   },
   methods: {
-    doReservation() {
-
+    timerPleasePayIn() {
+      this.intervalPleasePayIn = setInterval(() => {
+        let now = new Date();
+        let hour = this.isCurrency(this.unixTimeDifference(this.momentDateToUnix(this.momentDateFormatting(now, 'YYYY-MM-DD HH:mm:ss'), 'YYYY-MM-DD HH:mm:ss'), this.virtualAccount.expired_at).hours, 0);
+        let minute = this.isCurrency(this.unixTimeDifference(this.momentDateToUnix(this.momentDateFormatting(now, 'YYYY-MM-DD HH:mm:ss'), 'YYYY-MM-DD HH:mm:ss'), this.virtualAccount.expired_at).minutes, 0);
+        this.pleasePayIn = `${hour} Hours: ${minute} Minutes`;
+      }, 1000);
+    },
+    doCalculate() {
+      this.$validator._base.validateAll("FormEntry").then((result) => {
+        if (!result) return;
+        this.alertConfirmation("Are You Sure Want To Calculate This Data ?").then(
+          (ress) => {
+            if (ress.value) {
+              this.$validator.errors.clear("FormEntry");
+              this.calculate();
+            }
+          }
+        );
+      });
+    },
+    calculate() {
+      let installment = this.replaceAllString(this.Calculate.interest, ',', '', 'number') * 12 / 100;
+      this.showMonthlyInstallment = true;
+    },
+    OnIdPictureChange(data) {
+      this.BuyerDetails.id_picture = data.url;
+    },
+    doConfirmation() {
+      this.$validator._base.validateAll("FormEntryBuyer").then((result) => {
+        if (!result) return;
+        this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
+          (ress) => {
+            if (ress.value) {
+              this.$validator.errors.clear("FormEntryBuyer");
+              this.confirmation();
+            }
+          }
+        );
+      });
+    },
+    confirmation() {
+      let param = {
+          handphone: this.BuyerDetails.handphone_no,
+          customer_name: this.BuyerDetails.buyer_name,
+          email: this.BuyerDetails.email,
+          id_no: this.BuyerDetails.id_no,
+          thumbnail_image: this.BuyerDetails.id_picture,
+          unit_id: this.dataRowClick.id,
+          marketing_id: this.getDataUser().marketing_id,
+          principle_id: this.getDataUser().principle_id,
+          project_id: this.paramFromList.id
+      };
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
+        if (response == null) return;
+        // this.showVA(response.data.xxxx);
+        this.showVA(response.data);  // hardcode belum tau idnya dari mana
+      });
+    },
+    showVA(id) {
+      let param = {
+        // customer_transaction_id: id,
+        customer_transaction_id: "79e9221f-c18c-4afe-b3c2-768237f3c48b", // hardcode
+      };
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/project/unit-type/virtual-account-list",
+        param
+      ).then((response) => {
+        if (response == null) return;
+        this.virtualAccount = response.data;
+        this.$refs.Modal_Payment._show();
+        if (this.intervalPleasePayIn) {
+          clearInterval(this.intervalPleasePayIn);
+        }
+        this.timerPleasePayIn();
+      });
+    },
+    closePayment() {
+      this.$refs.Modal_BuyerDetails._hide();
+    },
+    showCalculator(data) {
+      this.dataRowClick = data;
+      this.Calculate = {
+        loan_percentage: 0,
+        interest: 0,
+        loan_amount: 0,
+        tenor: 0,
+      },
+      this.$refs.Modal_Calculator._show();
+    },
+    doReservationOrBooked(data) {
+      this.dataRowClick = data;
+      this.BuyerDetails = {
+        handphone_no: '',
+        buyer_name: '',
+        id_no: '',
+        email: '',
+        id_picture: '',
+      },
+      this.$refs.Modal_BuyerDetails._show();
     },
     doWaitingList() {
 
@@ -443,10 +920,20 @@ export default {
         this.setPropList();
       });
     },
+    changeType(type) {
+      this.type = type;
+      this.propList.param.type = this.type;
+      this.$nextTick(() => {
+        this.$refs.ref_list.doGetList("");
+      })
+    }
   },
   mounted() {
     this.getUnitTypeDetail();
   },
+  beforeDestroy: function() {
+    clearInterval(this.intervalPleasePayIn);
+  }
 };
 </script>
 

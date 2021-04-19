@@ -326,7 +326,7 @@
            </template>
          </b-row>
 
-         <b-row style="margin-top: 10px; font-size: 13px;">
+         <b-row v-if="Model.nup" style="margin-top: 10px; font-size: 13px;">
            <b-col offset-md="2" md="4">
              <div style="background: #FFFFFF;
                           box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
@@ -593,7 +593,7 @@
            </b-col>
          </b-row>
 
-         <b-row style="margin-top: 10px; background: #F8F8F8;">
+         <b-row v-if="News.length > 0" style="margin-top: 10px; background: #F8F8F8;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                News
@@ -690,6 +690,7 @@ export default {
         infos: [],
         nearby: [],
         nup: {},
+        share: {title: "", body: ""},
         vlaunching: {},
       },
       AvailableUnitTypes: [],

@@ -67,5 +67,18 @@
     "news": "News",
     "unit_details": "Unit Details",
     "select_floor": "Select Floor",
-    "notes": "Notes"
+    "notes": "Notes",
+    "unit_no": "Unit No",
+    "unit_price": "Unit Price",
+    "loan_calculator": "Loan Calculator",
+    "loan_percentage": "Loan Percentage",
+    "interest": "Interest",
+    "loan_amount": "Loan Amount",
+    "tenor": "Tenor",
+    "calculate": "Calculate",
+    "monthly_installment": "Monthly Installment",
+    "buyer_details": "Buyer Details",
+    "confirmation": "Confirmation",
+    "virtual_account": "Virtual Account",
+    "please_pay_in": "Please Pay In"
 }
