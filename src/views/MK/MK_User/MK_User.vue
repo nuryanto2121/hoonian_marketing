@@ -18,9 +18,6 @@
                             <span class="title-primary" style="font-weight: bold; font-size: 20px;">{{data.total_token}}</span>
                           </div>
                         </b-col>
-                        <!-- <b-col class="noPadding" lg="2" xl="2">
-                          <font-awesome-icon @click="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
-                        </b-col> -->
                       </b-row>
                     </b-col>
                   </template>
@@ -42,6 +39,11 @@
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
                       Marketing List
+                    </b-col>
+                  </template>
+                  <template slot="ToolbarTable">
+                    <b-col class="col-right">
+                      <font-awesome-icon @click="doAdd" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important;" />
                     </b-col>
                   </template>
                   <!-- <template slot="date" slot-scope="data">
@@ -72,6 +74,9 @@
                   <template slot="total_sales_price" slot-scope="data">
                     {{isCurrency(data.item.total_sales_price, decimal)}}
                   </template>
+                  <template slot="name" slot-scope="data">
+                    <button style="background: none !important; border: none; padding: 0!important; color: #069; text-decoration: underline; cursor: pointer;" @click.stop="OnMarketingClick(data.item)">{{data.item.name}}</button>
+                  </template>
                   <!-- <template slot="logbook" slot-scope="data">
                     <ABSButton
                       text="Logbook"
@@ -85,14 +90,28 @@
         </b-row>
         </b-col>
       </b-row>
-      <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
+      <ABSModal id="Modal_AssignProject" ref="Modal_AssignProject" size="md">
         <template slot="headerTitle">
-          <span class="title-primary"> {{ $t('assigned_project') }} </span>
+          <span class="title-primary"> {{ $t('assigned_project') }} ({{Model.assign_project_cnt}}) </span>
         </template>
         <template slot="content">
           <b-row>
             <b-col>
-              <b-table striped :items="user_project"></b-table>
+              <HOOList
+                :prop="propList_assignedProject"
+                :title="''"
+                :ref="'ref_assignedProject'"
+                ButtonBackDisabled
+                SearchDisabled
+                isPoppins
+                isHeaderFixed
+                :cHeader="assignedProject_Headers"
+                noCard
+                noTitle
+                removeCardTitle
+                removePaddingTopBody
+              >
+              </HOOList>
             </b-col>
           </b-row>
         </template>
@@ -100,7 +119,7 @@
 
       <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
         <template slot="headerTitle">
-          <span class="title-primary"> {{ $t('Add') }} Sales Lead </span>
+          <span class="title-primary"> {{ $t('Add') }} Marketing </span>
         </template>
         <template slot="content">
           <b-row>
@@ -115,7 +134,7 @@
                         </span>
                         <ACCTextBox
                           :prop="PI_handphone_no"
-                          v-model="Model.handphone_no"
+                          v-model="Model.handphone"
                           ref="ref_handphone_no"
                         />
                       </b-col>
@@ -123,12 +142,12 @@
                     <b-row>
                       <b-col md="12">
                         <span>
-                          <label class="lbl-poppins">{{ $t('prospect_name') }}</label>
+                          <label class="lbl-poppins">{{ $t('marketing_name') }}</label>
                         </span>
                         <ACCTextBox
-                          :prop="PI_prospect_name"
-                          v-model="Model.prospect_name"
-                          ref="ref_prospect_name"
+                          :prop="PI_marketing_name"
+                          v-model="Model.name"
+                          ref="ref_marketing_name"
                         />
                       </b-col>
                     </b-row>
@@ -147,30 +166,30 @@
                     <b-row>
                       <b-col md="12">
                         <span>
-                          <label class="lbl-poppins">{{ $t('Description') }}</label>
+                          <label class="lbl-poppins">{{ $t('id_no') }}</label>
                         </span>
-                        <ACCTextArea
-                          :prop="PI_description"
-                          v-model="Model.description"
-                          ref="ref_description"
+                        <ACCTextBox
+                          :prop="PI_id_no"
+                          v-model="Model.id_no"
+                          ref="ref_id_no"
                         />
                       </b-col>
                     </b-row>
                     <b-row>
                       <b-col md="6">
                         <span>
-                          <label class="lbl-poppins">{{ $t('name_card') }}</label>
+                          <label class="lbl-poppins">{{ $t('id_picture') }}</label>
                         </span>
-                        <b-img id="name_card_show" :src="urlHoonian + Model.name_card" alt="" height="150" @error="onImageLoadFailure($event)" />
+                        <b-img id="id_pict_show" :src="urlHoonian + Model.thumbnail_image" alt="" height="150" @error="onImageLoadFailure($event)" />
                         <HOOImageUpload
-                          :prop="PI_name_card"
-                          @change="Onname_cardChange"
-                          v-model="Model.name_card"
+                          :prop="PI_id_pict"
+                          @change="Onid_pictChange"
+                          v-model="Model.thumbnail_image"
                         />
                       </b-col>
                     </b-row>
                     <b-row style="margin-top: 10px;">
-                      <b-col md="6" offset-md="3">
+                      <b-col md="8" offset-md="2">
                         <ABSButton
                           :text="'Save'"
                           classButton="btn btn--default"
@@ -206,16 +225,28 @@ export default {
         SortBy: "desc",
         ParamWhere: "",
         param: {
-            principle_id: this.getDataUser().principle_id
+          principle_id: this.getDataUser().principle_id
         }
       },
-      user_project: [],
+      propList_assignedProject: {
+        url: "/api/marketing-website/user/user-assign-project",
+        initialWhere: "",
+        SortField: "",
+        SortBy: "desc",
+        ParamWhere: "",
+        param: {
+          marketing_id: "",
+          company_group_id: ""
+        }
+      },
+      
       Model: {
-        handphone_no: "",
-        prospect_name: "",
+        handphone: "",
+        name: "",
         email: "",
-        description: "",
-        name_card: "",
+        id_no: "",
+        thumbnail_image: "",
+        mobile_app_user_id: "",
       },
 
       Headers: [
@@ -262,6 +293,21 @@ export default {
         //   tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         // },
       ],
+
+      assignedProject_Headers: [
+        {
+          key: "no",
+          label: "No",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+        {
+          key: "project_name",
+          label: "Project Name",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+      ],
       
       ModelProject: [],
       selectedProject: 0,
@@ -278,9 +324,9 @@ export default {
         cDecimal: 2,
         cInputStatus: "new"
       },
-      PI_prospect_name: {
+      PI_marketing_name: {
         cValidate: "",
-        cName: "Prospect Name",
+        cName: "Marketing Name",
         cOrder: 2,
         cKey: false,
         cType: "text",
@@ -300,26 +346,23 @@ export default {
         cDecimal: 2,
         cInputStatus: "new"
       },
-      PI_description: {
-        cValidate: "max:5000",
-        cName: "Description",
-        cOrder: 4,
-        cKey: false,
-        cProtect: false,
-        cResize: false,
-        cReadonly: false,
-        cRows: 3,
-        cMaxRows: 3,
-        cSize: "md",
-        cParentForm: "FormEntry",
-        cInputStatus: this.inputStatus
-      },
-      PI_name_card: {
+      PI_id_no: {
         cValidate: "",
-        cName: "name_card",
+        cName: "ID No",
+        cOrder: 3,
+        cKey: false,
+        cType: "tel",
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_id_pict: {
+        cValidate: "",
+        cName: "id_pict",
         cOrder: 5,
         cTitle: "Upload Photo",
-        cType: "name_card",
+        cType: "id_pict",
         cParentForm: "FormEntry"
       },
     };
@@ -329,18 +372,41 @@ export default {
         var param = data;
         param.isEdit = false;
         this.$store.commit("setParamPage", param);
-        this.$router.push({ name: "MK_TokenPurchase" });
+        this.$router.push({ name: "MK_UserProjectDetail" });
     },
-    doViewProject(data) {},
+    doViewProject(data) {
+      this.$refs.ref_assignedProject.items = [];
+      this.Model.assign_project_cnt = data.total_project;
+      this.propList_assignedProject.param.marketing_id = data.marketing_id;
+      this.propList_assignedProject.param.company_group_id = this.company_group_id;
+      this.$refs.ref_assignedProject.doGetList("");
+      this.$refs.Modal_AssignProject._show();
+    },
+    OnMarketingClick(data) {
+        var param = data;
+        param.isEdit = false;
+        this.$store.commit("setParamPage", param);
+        this.$router.push({ name: "MK_UserProjectAssign" });
+    },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
-    doAdd(data) {
-      var param = data;
-      param.project_id = this.ModelProject[this.selectedProject].id;
-      param.isEdit = false;
-      this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_TokenPurchase" });
+    Onid_pictChange(data) {
+      this.Model.thumbnail_image = data.url;
+    },
+    M_ClearForm() {
+      this.Model = {
+        handphone: "",
+        name: "",
+        email: "",
+        id_no: "",
+        thumbnail_image: "",
+        mobile_app_user_id: "",
+      }
+    },
+    doAdd() {
+      this.M_ClearForm();
+      this.$refs.Modal_Add._show();
     },
     doBack() {
       this.$router.go(-1);
@@ -365,6 +431,25 @@ export default {
     renderList() {
         this.propList.param.principle_id = this.getDataUser().principle_id
         this.$refs.ref_marketing_list.doGetList("");
+    },
+    doSave() {
+      this.$validator._base.validateAll("FormEntry").then((result) => {
+        if (!result) return;
+        this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
+          (ress) => {
+            if (ress.value) {
+              this.$validator.errors.clear("FormEntry");
+              this.M_Save();
+            }
+          }
+        );
+      });
+    },
+    M_Save() {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/user/add-edit', this.Model).then((response) => {
+        if (response == null) return;
+        this.$refs.Modal_Add._hide();
+      });
     },
   },
   mounted() {
