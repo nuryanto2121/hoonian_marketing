@@ -1,6 +1,6 @@
 <template>
   <div :class="'card' + (noCard ? ' noCard' : '')">
-    <div :class="removeCardTitle? '': 'card__title' + (noCard ? ' noBorder-1' : '')" :style="noCard ? 'padding-left: unset !important; padding-right: unset !important;': ''">
+    <div v-show="!noTitle" :class="'card__title noBorder-1'" :style="noCard ? 'padding-left: unset !important; padding-right: unset !important;': ''">
       <b-row>
         <slot name="TitleTable"></slot>
         <b-col v-show="!hasSlot(`TitleTable`)" lg="3" style="max-width: fit-content !important" :style="noCard ? 'padding-left: unset !important;': ''">
@@ -178,7 +178,7 @@
         </b-table>
       </div>
     </div>
-    <div v-show="!noPaging" :class="'card__footer'  + (noCard ? ' noBorder-2' : '')" :style="noCard ? 'padding-left: unset !important; padding-right: unset !important;': ''">
+    <div v-show="!noPaging" :class="'card__footer noBorder-2'" :style="noCard ? 'padding-left: unset !important; padding-right: unset !important;': ''">
       <b-form inline style="float: left; color: #333" :class="isPoppins ? 'font-poppins': ''">
         <label
           class="font-lbl"
@@ -601,6 +601,7 @@ export default {
     cData: Array,
     noPaging: Boolean,
     noCard: Boolean,
+    noTitle: Boolean,
     isPoppins: Boolean,
     isHeaderFixed: Boolean,
     removeCardTitle: Boolean,
@@ -1744,7 +1745,7 @@ span.likeLink:hover {
 }
 .noBorder-1 {
   border-bottom: unset !important;
-  padding-left: 5px !important;
+  /* padding-left: 5px !important; */
 }
 .noBorder-2 {
   border-top: unset !important;

@@ -419,11 +419,13 @@ textarea.form-control {
 .HeaderACCList2Poppins {
   text-align: center;
   font-family: 'Poppins' !important;
+  border: unset !important;
 }
 
 .ContentACCList2Poppins {
   text-align: center;
   font-family: 'Poppins' !important;
+  border: unset !important;
 }
 
 .S {
@@ -1738,17 +1740,14 @@ Dynamic Text Area End
 
 .th-cus {
   &-left {
-    border: unset !important;
     text-align: left;
   }
 
   &-center {
-    border: unset !important;
     text-align: center;
   }
 
   &-right {
-    border: unset !important;
     text-align: right;
   }
 }
