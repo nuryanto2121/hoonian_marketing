@@ -5,6 +5,7 @@ import MK_SalesLeadLogbook from '@/views/MK/MK_SalesLead/MK_SalesLeadLogbook'
 import MK_ProjectDetail from '@/views/MK/MK_ProjectDetail/MK_ProjectDetail'
 import MK_ProjectDetailNUP from '@/views/MK/MK_ProjectDetail/MK_ProjectDetailNUP'
 import MK_UnitType from '@/views/MK/MK_UnitType/MK_UnitType'
+import MK_FloorPlan from '@/views/MK/MK_UnitType/MK_FloorPlan'
 import MK_VirtualLaunching from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunching'
 import MK_VirtualLaunchingDetail from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunchingDetail'
 import MK_Referral from '@/views/MK/MK_Referral/MK_Referral'
@@ -14,6 +15,8 @@ import MK_TokenPurchase from '@/views/MK/MK_Token/MK_TokenPurchase'
 import MK_User from '@/views/MK/MK_User/MK_User'
 import MK_UserProjectDetail from '@/views/MK/MK_User/MK_UserProjectDetail'
 import MK_UserProjectAssign from '@/views/MK/MK_User/MK_UserProjectAssign'
+import MK_AllPromotion from '@/views/MK/MK_Promotion/MK_AllPromotion'
+import MK_Sales from '@/views/MK/MK_Sales/MK_Sales'
 
 export const MKRender = {
     path: '/MK',
@@ -67,6 +70,14 @@ export const MKRender = {
             path: '/MK/MK_UnitType',
             name: 'MK_UnitType',
             component: MK_UnitType,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_FloorPlan',
+            name: 'MK_FloorPlan',
+            component: MK_FloorPlan,
             meta: {
                 requiresAuth: true
             }
@@ -142,6 +153,23 @@ export const MKRender = {
             path: '/MK/MK_UserProjectAssign',
             name: 'MK_UserProjectAssign',
             component: MK_UserProjectAssign,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        
+        {
+            path: '/MK/MK_AllPromotion',
+            name: 'MK_AllPromotion',
+            component: MK_AllPromotion,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_Sales',
+            name: 'MK_Sales',
+            component: MK_Sales,
             meta: {
                 requiresAuth: true
             }

@@ -1,11 +1,13 @@
 <template>
   <div v-if="Model.length > 0" style="height: 95%; background: #F8F8F8; margin-top: 20px;">
     <b-row>
-      <b-col style="padding-left: 12px !important;">
+      <b-col style="padding-left: 12px !important; text-shadow: 0.5px 0px; font-size: 22px;">
         {{ $t('promotions') }}
       </b-col>
-      <b-col style="text-align: right; padding-right: 12px !important; color: #4A93B3;">
-        {{ $t('view_all') }}
+      <b-col style="text-align: right; padding-right: 12px !important; color: #4A93B3; cursor: pointer;">
+        <span @click="viewAll">
+          {{ $t('view_all') }}
+        </span>
       </b-col>
     </b-row>
     <b-row>
@@ -107,6 +109,9 @@ export default {
     };
   },
   methods: {
+    viewAll() {
+      this.$router.push({ name: "MK_AllPromotion" });
+    },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },

@@ -31,12 +31,12 @@
                 <b-col>
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
                 <b-col v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
                 </b-col>
               </b-row>
             </div>
@@ -121,10 +121,10 @@
                <b-col>
                 <ShareNetwork
                   network="facebook"
-                  :url="getBrochureLink()"
-                  :title="Model.data.project_name"
+                  :url="urlHoonian + Model.data.main_pic"
+                  :title="Model.share.title"
                   description="Hoonian"
-                  :quote="Model.data.project_name"
+                  :quote="Model.share.title"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
@@ -133,10 +133,10 @@
                <b-col>
                  <ShareNetwork
                   network="twitter"
-                  :url="getBrochureLink()"
-                  :title="Model.data.project_name"
+                  :url="urlHoonian + Model.data.main_pic"
+                  :title="Model.share.title"
                   description="Hoonian"
-                  :quote="Model.data.project_name"
+                  :quote="Model.share.title"
                   hashtags="hoonian"
                 >
                   <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
@@ -169,17 +169,25 @@
              </div>
              <template v-for="(info, index) in Model.infos">
                <b-row v-if="index % 4 == 0" :key="index">
-                <b-col sm="3" class="row-view-black" style="padding-left: unset !important;">
-                  {{Model.infos[index].body}}
+                <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
+                  <div class="row-view-black">
+                    {{Model.infos[index].body}}
+                  </div>
                 </b-col>
-                <b-col sm="3" class="row-view-black" v-if="Model.infos.length > (index + 1)" style="margin-right: 10px !important; padding-left: unset !important;">
-                  {{Model.infos[index + 1].body}}
+                <b-col sm="3" v-if="Model.infos.length > (index + 1)" class="row-view-black">
+                  <div style="margin-right: 10px !important; padding-left: unset !important;">
+                    {{Model.infos[index + 1].body}}
+                  </div>
                 </b-col>
-                <b-col sm="3" class="row-view-black" v-if="Model.infos.length > (index + 2)" style="margin-left: 10px !important; padding-left: unset !important;">
-                  {{Model.infos[index + 2].body}}
+                <b-col sm="3" v-if="Model.infos.length > (index + 2)" style="padding-left: unset !important; padding-right: unset !important;">
+                  <div class="row-view-black" style="margin-left: 10px !important;">
+                    {{Model.infos[index + 2].body}}
+                  </div>
                 </b-col>
-                <b-col sm="3" class="row-view-black" v-if="Model.infos.length > (index + 3)" style="margin-left: 10px !important; padding-left: unset !important;">
-                  {{Model.infos[index + 3].body}}
+                <b-col sm="3" class="row-view-black" v-if="Model.infos.length > (index + 3)">
+                  <div style="margin-left: 10px !important; padding-left: unset !important;">
+                    {{Model.infos[index + 3].body}}
+                  </div>
                 </b-col>
                </b-row>
              </template>
@@ -318,7 +326,7 @@
            </template>
          </b-row>
 
-         <b-row style="margin-top: 10px; font-size: 13px;">
+         <b-row v-if="Model.nup" style="margin-top: 10px; font-size: 13px;">
            <b-col offset-md="2" md="4">
              <div style="background: #FFFFFF;
                           box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
@@ -392,7 +400,7 @@
               </template>
 
               <template v-slot:default="{item}">
-                <b-row>
+                <b-row @click="showDetailProgress(item)">
                   <b-col>
                     <b-img :src="urlHoonian + item.main_image" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                   </b-col>
@@ -411,6 +419,84 @@
             </vue-horizontal-list>
            </b-col>
          </b-row>
+         <ABSModal id="Modal_Progress" ref="Modal_Progress" size="lg">
+          <template slot="headerTitle">
+            <span class="title-primary"> {{ProgressDetail.info.project_name}} - {{ProgressDetail.info.location_name}} </span>
+          </template>
+          <template slot="content">
+            <b-row>
+              <b-col md="12" style="padding-left: unset !important; padding-right: unset !important;">
+                <b-row>
+                  <b-col md="3" style="padding-left: unset !important;">
+                    <span class="title-primary"> {{momentUnix(ProgressDetail.info.progress_date, "DD MMM YYYY")}} </span>
+                    <div style="height: 90%; margin-top: 10px; padding-left: unset !important; margin-right: 20px; border: solid 1px #dfe3f3; border-radius: 6px; padding: 15px;">
+                      <div style="
+                          width: 175px;
+                          height: 175px;
+                          background-color: #FFFFFF;
+                          border-radius: 50%;
+                          border: 20px solid #ffc700;
+                          text-align: center;
+                          margin: 0 auto !important;
+                      ">
+                          <div style="margin-top: 28%;">
+                              <span style="color: #333399; font-size: 36px; font-weight: bold;">{{ProgressDetail.info.progress_percentage}}%</span>
+                          </div>
+                      </div>
+                      <div class="progress-x" style="text-align: center;">
+                          <span style="font-weight: bold; font-size: 20px">Progress</span>
+                      </div>
+                    </div>
+                  </b-col>
+                  <b-col>
+                    <span class="title-primary" style="font-size: 14px;">{{ $t('notes') }}</span>
+                     <b-row style="margin-top: 10px;">
+                      <b-col style="border: solid 1px #dfe3f3; border-radius: 6px;">
+                        <div style="width: 100%; padding: 10px;">
+                          <span style="font-size: 13px;">{{ProgressDetail.info.notes}}</span>
+                        </div>
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col>
+                        <vue-horizontal-list
+                          :items="ProgressDetail.medias"
+                          :options="optionsProgress"
+                        >
+                          <template v-slot:nav-prev>
+                          </template>
+
+                          <template v-slot:nav-next>
+                          </template>
+
+                          <template v-slot:start>
+                          </template>
+
+                          <template v-slot:end>
+                          </template>
+
+                          <template v-slot:default="{item}">
+                            <b-row>
+                              <b-col style="padding-left: unset !important;">
+                                <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="showImage(item.thumbnail_image)" />
+                              </b-col>
+                            </b-row>
+                            <b-row style="margin-top: 10px; background: #FFFFFF;">
+                              <b-col style="padding-left: unset !important;">
+                                {{item.remarks}}
+                              </b-col>
+                            </b-row>
+                          </template>
+                        </vue-horizontal-list>
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+              </b-col>
+            </b-row>
+          </template>
+        </ABSModal>
+        <ABSModalImage id="Modal_Image" ref="Modal_Image" size="md" />
 
          <b-row v-if="Promotion.length > 0" style="margin-top: 10px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
@@ -507,7 +593,7 @@
            </b-col>
          </b-row>
 
-         <b-row style="margin-top: 10px; background: #F8F8F8;">
+         <b-row v-if="News.length > 0" style="margin-top: 10px; background: #F8F8F8;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                News
@@ -604,6 +690,7 @@ export default {
         infos: [],
         nearby: [],
         nup: {},
+        share: {title: "", body: ""},
         vlaunching: {},
       },
       AvailableUnitTypes: [],
@@ -611,20 +698,20 @@ export default {
         {
           key: "unit_type",
           label: "UNIT TYPE",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
         {
           key: "gross_area",
           label: "GROSS AREA",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "net_area",
           label: "NET AREA",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "total_bedroom",
@@ -649,17 +736,21 @@ export default {
         {
           key: "direction",
           label: "DIRECTION",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "start_from",
           label: "START FROM",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
       ],
       Progress: [],
+      ProgressDetail: {
+        info: {},
+        medias: [],
+      },
       Promotion: [],
       FinancialPartner: [],
       News: [],
@@ -771,6 +862,29 @@ export default {
     }
   },
   methods: {
+    changeImage(path) {
+      this.Model.data.main_pic = path;
+    },
+    showDetailProgress(data) {
+      this.getProgressDetail(data.id);
+    },
+    showImage(pathUrl) {
+      this.$refs.Modal_Image._show(this.urlHoonian + pathUrl);
+    },
+    getProgressDetail(id) {
+      let param = {
+          project_progress_id: id,
+      };
+      this.postJSON(
+          this.urlHoonian + "/api/hoonian-website/dashboard/project-info/progress/detail",
+          param
+      ).then((response) => {
+        if (response == null) return;
+        let data = response.data;
+        this.ProgressDetail = data;
+        this.$refs.Modal_Progress._show();
+      });
+    },
     openBuildingPlan() {
       window.open(this.urlHoonian + this.Model.data.building_plan);
     },
@@ -788,19 +902,18 @@ export default {
       window.open(url);
     },
     doWhatsapp() {
-      let phoneNo = "+6287880406400";
       let msg = this.replaceAllString(this.getBodyMessage(), "\n", "%0D%0A", "string");
       msg = this.replaceAllString(msg, "&nbsp;", "%20", "string");
-      let url = "https://api.whatsapp.com/send?phone=" + phoneNo + "&text=" + msg;
+      let url = "https://api.whatsapp.com/send?text=" + msg;
       window.open(url);
     },
     doEmail() {
       let attachmentUrl = encodeURIComponent(this.getBrochureLink().replace('\\', '/')) + "%0D%0A%0D%0A";
-      let email = "customer@gmail.com";
-      window.open(`mailto:${email}?subject=${this.Model.data.project_name}&body=${this.Model.data.project_name} ${attachmentUrl}`);
+      let email = "";
+      window.open(`mailto:${email}?subject=${this.Model.share.title}&body=${this.getBodyMessage()}`);
     },
     getBodyMessage() {
-      return this.Model.data.project_name + "\n" + this.getBrochureLink();
+      return this.Model.share.body;
     },
     getBrochureLink() {
       return this.urlHoonian + this.Model.data.upload_brochure;
@@ -864,7 +977,8 @@ export default {
     },
     rowClicked(data) {
       let param = this.paramFromList;
-      param.projectDetail = this.Model;
+      param.projectName = this.Model.data.project_name;
+      param.address = this.Model.data.address;
       param.availableUnitTypes = data;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
