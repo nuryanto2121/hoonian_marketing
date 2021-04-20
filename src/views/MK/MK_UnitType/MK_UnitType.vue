@@ -172,12 +172,12 @@
                 <b-col>
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
                 <b-col v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
                 </b-col>
               </b-row>
             </div>
@@ -252,8 +252,8 @@
                         <b-col align-self="center">
                           {{ isCurrency(data.item.price, 0) }}
                         </b-col>
-                        <b-col sm="2" @click="showCalculator(data.item)">
-                          <b-img :src="require('@/assets/icon-svg/calculator.svg')" alt="" style="" @click="showCalculator(data.item)" />
+                        <b-col sm="2">
+                          <b-img :src="require('@/assets/icon-svg/calculator.svg')" alt="" style="" @click.stop="showCalculator(data.item)" />
                         </b-col>
                         <b-col sm="1">
                           &nbsp;
@@ -371,7 +371,7 @@
                                 </span>
                                 <br />
                                 <span style="color: #4A93B3">
-                                  {{monthlyInstallment}}
+                                  {{ isCurrency(monthlyInstallment, 2) }}
                                 </span>
                               </b-col>
                             </b-row>
@@ -380,7 +380,7 @@
                       </b-row>
                     </template>
                   </ABSModal>
-                  <ABSModal id="Modal_BuyerDetails" ref="Modal_BuyerDetails" size="md">
+                  <ABSModal id="Modal_Reservation" ref="Modal_Reservation" size="md">
                     <template slot="headerTitle">
                       <span v-if="dataRowClick" class="title-primary"> {{ $t('buyer_details') }} - {{ dataRowClick.status == 'available'? 'Reservation': 'Waiting List' }} </span>
                     </template>
@@ -520,6 +520,158 @@
                       </b-row>
                     </template>
                   </ABSModal>
+                  <ABSModal id="Modal_BuyerDetails" ref="Modal_BuyerDetails" size="lg">
+                    <template slot="headerTitle">
+                      <span class="title-primary"> {{ $t('buyer_details') }} </span>
+                    </template>
+                    <template slot="content" v-if="dataBuyerDetail">
+                      <b-row style="font-size: 15px !important;">
+                        <b-col sm="4" style="padding-left: unset !important;">
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('id_no') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{dataBuyerDetail.info.id_no}}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('buyer_name') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{dataBuyerDetail.info.name}}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{dataBuyerDetail.info.handphone}}
+                            </b-col>
+                          </b-row>
+                        </b-col>
+                        <b-col>
+                          <label class="lbl-poppins">{{ $t('id_picture') }}</label>
+                          <br />
+                          <b-img :src="urlHoonian + dataBuyerDetail.info.ktp_image" alt="" width="100%" @error="onImageLoadFailure($event)" />
+                        </b-col>
+                      </b-row>
+                      <b-row class="row-view" style="margin-top: 20px;">
+                        <b-col>
+                          <span class="title-primary"> {{ $t('unit_details') }} </span>
+                        </b-col>
+                      </b-row>
+                      <b-row style="font-size: 15px !important;">
+                        <b-col sm="4" style="padding-left: unset !important;">
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('project_name') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{dataBuyerDetail.info.project_name}}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('unit_no') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{dataBuyerDetail.info.unit_no}}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('unit_type') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{dataBuyerDetail.info.unit_type_name}}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('date') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{momentUnix(dataBuyerDetail.info.purchase_date, "DD MMM YYYY")}}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('price') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{ isCurrency(dataBuyerDetail.info.price, 0) }}
+                            </b-col>
+                          </b-row>
+                        </b-col>
+                        <b-col>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('booking_fee') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('tower') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{ dataBuyerDetail.info.tower_cluster_name }}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('floor') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{ dataBuyerDetail.info.block_floor_name }}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('status') }}</label>
+                            </b-col>
+                            <b-col :style="dataBuyerDetail.info.status == 'available'? 'color: #219653;':
+                                    (dataBuyerDetail.info.status == 'sold'? 'color: #EB5757;': 'color: #F2C94C;')">
+                              {{ dataBuyerDetail.info.status? dataBuyerDetail.info.status.toUpperCase(): "" }}
+                            </b-col>
+                          </b-row>
+                          <b-row>
+                            <b-col>
+                              <label class="lbl-poppins">{{ $t('commission') }}</label>
+                            </b-col>
+                            <b-col style="color: #4A93B3;">
+                              {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
+                            </b-col>
+                          </b-row>
+                        </b-col>
+                      </b-row>
+                      <b-row class="row-view" style="margin-top: 20px;">
+                        <b-col>
+                          <span class="title-primary"> {{ $t('virtual_account') }} </span>
+                        </b-col>
+                      </b-row>
+                      <b-row>
+                        <b-col md="4" v-for="(data, index) in dataBuyerDetail.virtual_accounts" :key="index">
+                          <div style="background: #FFFFFF; box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
+                            <b-row style="margin-top: 10px;">
+                              <b-col md="6" style="padding: 10px;">
+                                <b-img :src="urlHoonian + data.bank_icon" alt="" width="100%" @error="onImageLoadFailure($event)" />
+                              </b-col>
+                              <b-col align-self="center" md="6">
+                                <div>{{data.bank_name}}</div>
+                                <div style="color: #4A93B3;">{{data.virtual_account_no}}</div>
+                              </b-col>
+                            </b-row>
+                          </div>
+                        </b-col>
+                      </b-row>
+                    </template>
+                  </ABSModal>
                </b-col>
              </b-row>
            </b-col>
@@ -642,30 +794,31 @@ export default {
       ],
       type: "all",
       dataRowClick: undefined,
+      dataBuyerDetail: { info: {}, virtual_accounts: [],},
       PI_loan_percentage: {
-        cValidate: "required|greater:0",
+        cValidate: "required",
         cName: "Loan Percentage",
         cOrder: 1,
         cKey: false,
-        cType: "numeric",
+        cType: "decimal",
         cProtect: false,
         cParentForm: "FormEntry",
         cDecimal: 2,
         cInputStatus: "new"
       },
       PI_interest: {
-        cValidate: "required|greater:0",
+        cValidate: "required",
         cName: "Interest",
         cOrder: 2,
         cKey: false,
-        cType: "numeric",
+        cType: "decimal",
         cProtect: false,
         cParentForm: "FormEntry",
         cDecimal: 2,
         cInputStatus: "new"
       },
       PI_loan_amount: {
-        cValidate: "required|greater:0",
+        cValidate: "required",
         cName: "Loan Amount",
         cOrder: 3,
         cKey: false,
@@ -676,11 +829,11 @@ export default {
         cInputStatus: "new"
       },
       PI_tenor: {
-        cValidate: "required|greater:0",
+        cValidate: "required",
         cName: "tenor",
         cOrder: 4,
         cKey: false,
-        cType: "decimal",
+        cType: "numeric",
         cProtect: false,
         cParentForm: "FormEntry",
         cDecimal: 2,
@@ -736,8 +889,8 @@ export default {
         cName: "ID Picture",
         cOrder: 5,
         cTitle: "Upload Photo",
-        cType: "nup",
-        cParentForm: "FormEntry"
+        cType: "unit",
+        cParentForm: "FormEntryBuyer"
       },
       showMonthlyInstallment: false,
       monthlyInstallment: 0,
@@ -746,6 +899,9 @@ export default {
     }
   },
   methods: {
+    changeImage(path) {
+      this.Model.data.layout_image = path;
+    },
     timerPleasePayIn() {
       this.intervalPleasePayIn = setInterval(() => {
         let now = new Date();
@@ -768,7 +924,15 @@ export default {
       });
     },
     calculate() {
-      let installment = this.replaceAllString(this.Calculate.interest, ',', '', 'number') * 12 / 100;
+      // let loanAmount = this.dataRowClick.price * +this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let loanAmount = this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number');
+      let pmt = this.pmt(
+        this.replaceAllString(this.Calculate.interest, ',', '', 'number') / 12,
+        this.replaceAllString(this.Calculate.tenor, ',', '', 'number'),
+        loanAmount,
+        0
+      )
+      this.monthlyInstallment = pmt;
       this.showMonthlyInstallment = true;
     },
     OnIdPictureChange(data) {
@@ -801,14 +965,12 @@ export default {
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
-        // this.showVA(response.data.xxxx);
-        this.showVA(response.data);  // hardcode belum tau idnya dari mana
+        this.showVA(response.data.transaction_id);
       });
     },
     showVA(id) {
       let param = {
-        // customer_transaction_id: id,
-        customer_transaction_id: "79e9221f-c18c-4afe-b3c2-768237f3c48b", // hardcode
+        customer_transaction_id: id,
       };
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/project/unit-type/virtual-account-list",
@@ -824,7 +986,7 @@ export default {
       });
     },
     closePayment() {
-      this.$refs.Modal_BuyerDetails._hide();
+      this.$refs.Modal_Reservation._hide();
     },
     showCalculator(data) {
       this.dataRowClick = data;
@@ -845,19 +1007,14 @@ export default {
         email: '',
         id_picture: '',
       },
-      this.$refs.Modal_BuyerDetails._show();
+      this.$refs.Modal_Reservation._show();
     },
     doWaitingList() {
 
     },
     rowClicked(data) {
-      // let param = this.paramFromList;
-      // param.projectName = this.Model.data.project_name;
-      // param.address = this.Model.data.address;
-      // param.availableUnitTypes = data;
-      // param.isEdit = false;
-      // this.$store.commit("setParamPage", param);
-      // this.$router.push({ name: "MK_UnitType" });
+      this.dataRowClick = data;
+      this.showBuyerDetails();
     },
     setPropList() {
       this.propList.initialWhere = this.paramFromList.id;
@@ -926,7 +1083,54 @@ export default {
       this.$nextTick(() => {
         this.$refs.ref_list.doGetList("");
       })
-    }
+    },
+    /**
+     * Copy of Excel's PMT function.
+     * Credit: http://stackoverflow.com/questions/2094967/excel-pmt-function-in-js
+     *
+     * @param rate_per_period       The interest rate for the loan.
+     * @param number_of_payments    The total number of payments for the loan in months.
+     * @param present_value         The present value, or the total amount that a series of future payments is worth now;
+     *                              Also known as the principal.
+     * @param future_value          The future value, or a cash balance you want to attain after the last payment is made.
+     *                              If fv is omitted, it is assumed to be 0 (zero), that is, the future value of a loan is 0.
+     * @param type                  Optional, defaults to 0. The number 0 (zero) or 1 and indicates when payments are due.
+     *                              0 = At the end of period
+     *                              1 = At the beginning of the period
+     * @returns {number}
+     */
+    pmt (rate_per_period, number_of_payments, present_value, future_value, type) {
+        future_value = typeof future_value !== 'undefined' ? future_value : 0;
+        type = typeof type !== 'undefined' ? type : 0;
+
+      if (rate_per_period != 0.0) {
+        // Interest rate exists
+        var q = Math.pow(1 + rate_per_period, number_of_payments);
+        return - (rate_per_period * (future_value + (q * present_value))) / ((-1 + q) * (1 + rate_per_period * (type)));
+
+      } else if (number_of_payments != 0.0) {
+        // No interest rate, but number of payments exists
+        return - (future_value + present_value) / number_of_payments;
+      }
+
+      return 0;
+    },
+    showBuyerDetails() {
+      let param = {
+        marketing_agent_id: this.getDataUser().marketing_id,
+        unit_id: this.dataRowClick.id,
+        lang_id: this.getDataUser().lang_id,
+      };
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/unit-detail', param).then((response) => {
+        if (response == null) return;
+        console.log(response);
+        this.dataBuyerDetail = response.data;
+
+        this.$nextTick(() => {
+          this.$refs.Modal_BuyerDetails._show();
+        });
+      });
+    },
   },
   mounted() {
     this.getUnitTypeDetail();

@@ -31,12 +31,12 @@
                 <b-col>
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
                 <b-col v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
                 </b-col>
               </b-row>
             </div>
@@ -862,6 +862,9 @@ export default {
     }
   },
   methods: {
+    changeImage(path) {
+      this.Model.data.main_pic = path;
+    },
     showDetailProgress(data) {
       this.getProgressDetail(data.id);
     },

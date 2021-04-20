@@ -80,5 +80,18 @@
     "buyer_details": "Buyer Details",
     "confirmation": "Confirmation",
     "virtual_account": "Virtual Account",
-    "please_pay_in": "Please Pay In"
+    "please_pay_in": "Please Pay In",
+    "project_name": "Project Name",
+    "unit_type": "Unit Type",
+    "date": "Date",
+    "price": "Price",
+    "booking_fee": "Booking Fee",
+    "tower": "Tower",
+    "floor": "Floor",
+    "status": "Status",
+    "commission": "Commission",
+    "unit_sold": "Unit Sold",
+    "total_sales": "Total Sales",
+    "total_commission": "Total Commission",
+    "remaining_commission": "Remaining Commission"
 }

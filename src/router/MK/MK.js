@@ -13,6 +13,8 @@ import MK_ReferralLogbook from '@/views/MK/MK_Referral/MK_ReferralLogbook'
 import MK_Token from '@/views/MK/MK_Token/MK_Token'
 import MK_TokenPurchase from '@/views/MK/MK_Token/MK_TokenPurchase'
 import MK_User from '@/views/MK/MK_User/MK_User'
+import MK_AllPromotion from '@/views/MK/MK_Promotion/MK_AllPromotion'
+import MK_Sales from '@/views/MK/MK_Sales/MK_Sales'
 
 export const MKRender = {
     path: '/MK',
@@ -133,6 +135,22 @@ export const MKRender = {
             path: '/MK/MK_User',
             name: 'MK_User',
             component: MK_User,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_AllPromotion',
+            name: 'MK_AllPromotion',
+            component: MK_AllPromotion,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_Sales',
+            name: 'MK_Sales',
+            component: MK_Sales,
             meta: {
                 requiresAuth: true
             }
