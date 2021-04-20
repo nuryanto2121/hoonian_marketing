@@ -12,6 +12,8 @@ import MK_ReferralLogbook from '@/views/MK/MK_Referral/MK_ReferralLogbook'
 import MK_Token from '@/views/MK/MK_Token/MK_Token'
 import MK_TokenPurchase from '@/views/MK/MK_Token/MK_TokenPurchase'
 import MK_User from '@/views/MK/MK_User/MK_User'
+import MK_UserProjectDetail from '@/views/MK/MK_User/MK_UserProjectDetail'
+import MK_UserProjectAssign from '@/views/MK/MK_User/MK_UserProjectAssign'
 
 export const MKRender = {
     path: '/MK',
@@ -124,6 +126,22 @@ export const MKRender = {
             path: '/MK/MK_User',
             name: 'MK_User',
             component: MK_User,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_UserProjectDetail',
+            name: 'MK_UserProjectDetail',
+            component: MK_UserProjectDetail,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_UserProjectAssign',
+            name: 'MK_UserProjectAssign',
+            component: MK_UserProjectAssign,
             meta: {
                 requiresAuth: true
             }
