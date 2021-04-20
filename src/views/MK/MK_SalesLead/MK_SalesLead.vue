@@ -19,7 +19,7 @@
                           </div>
                         </b-col>
                         <b-col class="noPadding" lg="2" xl="2">
-                          <font-awesome-icon @click="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
+                          <font-awesome-icon @click.stop="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
                         </b-col>
                       </b-row>
                     </b-col>
@@ -334,6 +334,9 @@ export default {
     },
     doBack() {
       this.$router.go(-1);
+    },
+    Onname_cardChange(data) {
+      this.Model.name_card = data.url;
     },
     doLogbook(data) {
       var param = data;

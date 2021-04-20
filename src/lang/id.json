@@ -1,5 +1,6 @@
 {
     "Add": "Tambah",
+    "Edit": "Sunting",
     "current": "Saat Ini",
     "dashboard": "Beranda",
     "Remarks": "Komentar",
@@ -21,6 +22,7 @@
 
     "handphone_no": "No Handphone",
     "prospect_name": "Nama Prospek",
+    "marketing_name": "Nama Marketing",
     "email": "Surel",
     "name_card": "Kartu Nama",
     "refer_to_other_project": "Referensi Projek Lain",
@@ -37,6 +39,9 @@
     "days": "Hari", "hours": "Jam", "minutes": "Menit",
     "next": "Selanjutnya",
     "prev": "Sebelumnya",
+    "sold": "Terjual",
+    "sales_value": "Nilai Penjualan",
+    "commission": "Komisi",
     "nup_no": "No. NUP",
     "current_nup_no": "No. NUP Saat Ini",
     "next_nup_no": "No. NUP Selanjutnya",

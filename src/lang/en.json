@@ -1,5 +1,6 @@
 {
     "Add": "Add",
+    "Edit": "Edit",
     "current": "Current",
     "dashboard": "Dashboard",
     "Remarks": "Remarks",
@@ -21,6 +22,7 @@
 
     "handphone_no": "Handphone No",
     "prospect_name": "Prospect Name",
+    "marketing_name": "Marketing Name",
     "email": "Email",
     "name_card": "Name Card",
     "refer_to_other_project": "Refer To Other Project",
@@ -37,6 +39,9 @@
     "days": "Days", "hours": "Hours", "minutes": "Minutes",
     "next": "Next",
     "prev": "Prev",
+    "sold": "Sold",
+    "sales_value": "Sales Value",
+    "commission": "Commission",
     "nup_no": "NUP No",
     "current_nup_no": "Current NUP No",
     "next_nup_no": "Next NUP No",
