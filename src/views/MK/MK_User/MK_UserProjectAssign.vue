@@ -485,7 +485,6 @@ export default {
     },
   },
   mounted() {
-      console.log(this.paramFromList)
       this.getDataBy();
   },
 };
