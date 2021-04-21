@@ -19,6 +19,10 @@
     "video": "Video",
     "e_brochure": "E-BROCHURE",
     "map": "MAP",
+    "name": "Name",
+    "language": "Language",
+    "confirm": "Confirm",
+    "new_password": "New Password",
 
     "handphone_no": "Handphone No",
     "prospect_name": "Prospect Name",
@@ -94,7 +98,6 @@
     "tower": "Tower",
     "floor": "Floor",
     "status": "Status",
-    "commission": "Commission",
     "unit_sold": "Unit Sold",
     "total_sales": "Total Sales",
     "total_commission": "Total Commission",

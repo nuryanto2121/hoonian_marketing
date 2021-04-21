@@ -19,6 +19,10 @@
     "video": "Video",
     "e_brochure": "E-BROCHURE",
     "map": "MAP",
+    "name": "Nama",
+    "language": "Bahasa",
+    "confirm": "Konfirm",
+    "new_password": "Sandi Baru",
 
     "handphone_no": "No Handphone",
     "prospect_name": "Nama Prospek",
@@ -94,7 +98,6 @@
     "tower": "Tower",
     "floor": "Floor",
     "status": "Status",
-    "commission": "Commission",
     "unit_sold": "Unit Sold",
     "total_sales": "Total Sales",
     "total_commission": "Total Commission",
