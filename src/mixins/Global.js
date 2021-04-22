@@ -24,18 +24,15 @@ export default {
     },
     isCurrency(num = 0, decimal, from = '') {
       // if (from === 'a') console.log('before1', num)
-      let ret = 0;
+      if (num === null || num === undefined || !num || num === '') {
+        num = 0
+        return parseFloat(num.toFixed(decimal))
+      }
       if (decimal === null || decimal === undefined || decimal === '') {
         decimal = this.decimal
       }
-
-      if (num === null || num === undefined || !num || num === '') {
-        num = 0
-        ret = parseFloat(num.toFixed(decimal))
-      }
-
       if (decimal == 0) {
-        ret = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       }
 
       var num1 = this.replaceAllString(num.toString(), ',', '', 'number')
@@ -46,18 +43,16 @@ export default {
         var numReal = (numSplit[0] && numSplit[0] !== '') ? numSplit[0] : 0
         var numDecimal = '.' + numSplit[1]
 
-        ret = numReal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + numDecimal
+        return numReal.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + numDecimal
       } else {
         // numSplit = [num, '00']
         if (decimal == 0) {
-          ret = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
         }
         else {
-          ret = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.00'
+          return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + '.00'
         }
       }
-
-      return ret;
     },
     M_FormatingDate(date) {
       // var arrDate = [

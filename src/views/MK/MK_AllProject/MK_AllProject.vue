@@ -39,10 +39,10 @@
         <b-col>
           <b-pagination
             align="center"
-            v-model="currentPage"
+            v-model="current_page"
             @input="changePagination"
             :total-rows="Model.Total"
-            :per-page="perPage"
+            :per-page="per_page"
             :limit="limit"
             style="margin-bottom: 0px"
             :class="isPoppins ? 'font-poppins': ''"
@@ -58,9 +58,9 @@
 export default {
   data() {
     return {
-      currentPage: 1,
+      current_page: 1,
       totalRows: 0,
-      perPage: 8,
+      per_page: 12,
       limit: 2,
 
       Model: {
@@ -91,6 +91,9 @@ export default {
     },
     getData() {
       let param = {
+        current_page: this.current_page,
+        per_page: this.per_page,
+        sort_by: "desc",
         company_group_id: this.company_group_id,
         principle_id: this.getDataUser().principle_id,
         project_id: this.projectId,

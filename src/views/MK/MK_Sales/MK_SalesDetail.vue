@@ -126,6 +126,17 @@
                   {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
                 </b-col>
               </b-row>
+              <b-row>
+                <b-col>
+                  <ABSButton
+                    :text="'Booking Cancellation'"
+                    classButton="btn btn--default"
+                    classIcon="icon-style-1"
+                    @click="doCancel"
+                    styleButton="height: 40px; width: 40%;"
+                  />
+                </b-col>
+              </b-row>
             </b-col>
           </b-row>
           <b-row class="row-view" style="margin-top: 20px;">
@@ -149,19 +160,86 @@
             </b-col>
           </b-row>
 
-          <b-row style="margin-top: 20px;">
+          <b-row class="row-view" style="margin-top: 20px;">
             <b-col>
               <span class="title-primary"> {{ $t('log_book') }} </span>
             </b-col>
           </b-row>
-          
+          <b-row>
+            <b-col md="12">
+              <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
+                <span>
+                  <label class="lbl-poppins">{{ $t('Description') }}</label>
+                </span>
+                <ACCTextArea
+                  :prop="PI_description"
+                  v-model="Model.description"
+                  ref="ref_description"
+                />
+              </b-form>
+            </b-col>
+          </b-row>
+          <b-row style="margin-top: 10px;">
+            <b-col>
+              <span style="font-weight: bold; font-size: 15px;">{{momentDateFormatting(new Date(), "dddd, DD MMM YYYY")}}</span>
+              &nbsp; &nbsp; &nbsp;
+              <ABSButton
+                :text="'Save'"
+                classButton="btn btn--default"
+                classIcon="icon-style-1"
+                @click="doSave"
+                styleButton="height: 40px;width: 20%;"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <HOOList
+                :prop="propList"
+                :title="''"
+                @rowClicked="rowClicked"
+                @buttonDeleteClicked="doDeleteClick"
+                @rowDblClicked="doDoubleClick"
+                @rowLinkClick="rowLink"
+                @pageSize="M_PageSize"
+                @pagination="M_Pagination"
+                @filter="M_Advance_Filter"
+                @headTable="M_Head_Table"
+                @refreshColumn="refreshColumn"
+                :cHeader="logBookHeader"
+                ref="ref_list"
+                @buttonViewClicked="doViewClick"
+                ButtonBackDisabled
+                SearchDisabled
+                isHeaderFixed
+                noCard
+                removeCardTitle
+                removePaddingTopBody
+                noPaging
+              >
+                <template slot="date" slot-scope="data">
+                  {{momentUnix(data.item.date, "DD MMM YYYY")}}
+                </template>
+              </HOOList>
+            </b-col>
+          </b-row>
         </b-col>
       </b-row>
     </div>
+    <MKSalesCancel
+      ref="MK_SalesCancel"
+      :urlAPI="'/api/marketing-website/sales/sales-cancellation'"
+      :id="customer_transaction_id"
+      @onCancelSuccess="onCancelSuccess"
+    />
   </div>
 </template>
 <script>
+import MKSalesCancel from './MK_SalesCancel';
 export default {
+  components: {
+    MKSalesCancel
+  },
   computed: {
     paramFromList() {
       let param = this.$store.getters.getParamPage;
@@ -180,15 +258,97 @@ export default {
   },
   data() {
     return {
+      customer_transaction_id: "",
+      Model: {
+        description: "",
+      },
       dataBuyerDetail: { info: {}, virtual_accounts: [],},
+      PI_description: {
+        cValidate: "required|max:5000",
+        cName: "Description",
+        cOrder: 1,
+        cKey: false,
+        cProtect: false,
+        cResize: false,
+        cReadonly: false,
+        cRows: 3,
+        cMaxRows: 3,
+        cSize: "md",
+        cParentForm: "FormEntry",
+        cInputStatus: this.inputStatus
+      },
+      propList: {
+        url: "/api/marketing-website/sales/sales-logbook-list",
+        initialWhere: "",
+        SortField: "",
+        SortBy: "desc",
+        ParamWhere: "",
+        param: {
+          customer_transaction_id: "",
+        }
+      },
+      logBookHeader: [
+        {
+          key: "no",
+          label: "NO",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "date",
+          label: "DATE",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "responder",
+          label: "RESPONDER",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+        {
+          key: "notes",
+          label: "NOTES",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
+        },
+      ],
     }
   },
   methods: {
-    rowClicked(data) {
-      let param = data;
-      param.isEdit = false;
-      this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_SalesDetail" });
+    doCancel() {
+      this.$refs.MK_SalesCancel._show();
+    },
+    onCancelSuccess() {
+      this.doBack();
+    },
+    doSave() {
+      this.$validator._base.validateAll("FormEntry").then((result) => {
+        if (!result) return;
+        this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
+          (ress) => {
+            if (ress.value) {
+              this.$validator.errors.clear("FormEntry");
+              this.M_Save();
+            }
+          }
+        );
+      });
+    },
+    M_Save() {
+      let param = {
+        project_id: this.dataBuyerDetail.info.project_id,
+        customer_transaction_id: this.paramFromList.id,
+        marketing_agent_id: this.getDataUser().marketing_id,
+        marketing_agent_name: this.getDataUser().user_name,
+        description: this.Model.description
+      }
+      this.postJSON(this.urlHoonian + '/api/marketing-website/sales/sales-logbook-add', param).then((response) => {
+        if (response == null) return;
+        
+        this.Model.description = "";
+        this.$refs.ref_list.doGetList("");
+      });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
@@ -208,6 +368,9 @@ export default {
   },
   mounted() {
     this.getSales();
+    this.propList.param.customer_transaction_id = this.paramFromList.id;
+    this.customer_transaction_id = this.paramFromList.id;
+    this.$refs.ref_list.doGetList("");
   },
 };
 </script>
