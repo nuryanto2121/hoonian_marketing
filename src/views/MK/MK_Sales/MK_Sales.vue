@@ -461,8 +461,9 @@ export default {
                 },
                 ticks: {
                   display: true,
+                  fontSize: 15,
                   fontStyle: 'bold',
-                  color: "black"
+                  fontColor: "black"
                 }
               },
             ],
@@ -478,6 +479,7 @@ export default {
                 },
                 ticks: {
                   display: true,
+                  fontColor: "black",
                   min: 0,
                   stepSize: Math.round(max / 4),
                   // max: max + (max/4),
@@ -525,7 +527,7 @@ export default {
                 meta.data.forEach(function (bar, index) {
                   var data = dataset.data[index];
                   // console.log(bar)
-                  ctx.fillText(data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','), bar._model.x, bar._model.y);
+                  ctx.fillText(data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','), bar._model.x, (bar._model.y - 5));
                 });
               });
             },
