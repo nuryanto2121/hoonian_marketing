@@ -94,9 +94,9 @@
     "tower": "Tower",
     "floor": "Floor",
     "status": "Status",
-    "commission": "Commission",
     "unit_sold": "Unit Sold",
     "total_sales": "Total Sales",
     "total_commission": "Total Commission",
-    "remaining_commission": "Remaining Commission"
+    "remaining_commission": "Remaining Commission",
+    "show_more": "SHOW MORE"
 }

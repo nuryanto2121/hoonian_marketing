@@ -17,6 +17,8 @@ import MK_UserProjectDetail from '@/views/MK/MK_User/MK_UserProjectDetail'
 import MK_UserProjectAssign from '@/views/MK/MK_User/MK_UserProjectAssign'
 import MK_AllPromotion from '@/views/MK/MK_Promotion/MK_AllPromotion'
 import MK_Sales from '@/views/MK/MK_Sales/MK_Sales'
+import MK_AllProject from '@/views/MK/MK_AllProject/MK_AllProject'
+import MK_SalesDetail from '@/views/MK/MK_Sales/MK_SalesDetail'
 
 export const MKRender = {
     path: '/MK',
@@ -170,6 +172,22 @@ export const MKRender = {
             path: '/MK/MK_Sales',
             name: 'MK_Sales',
             component: MK_Sales,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_AllProject',
+            name: 'MK_AllProject',
+            component: MK_AllProject,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_SalesDetail',
+            name: 'MK_SalesDetail',
+            component: MK_SalesDetail,
             meta: {
                 requiresAuth: true
             }

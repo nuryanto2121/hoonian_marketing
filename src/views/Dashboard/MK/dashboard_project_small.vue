@@ -51,8 +51,7 @@
                 </b-row>
                 <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
                   <b-col style="">
-                    Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit ut
+                    {{ item.unit_type_desc }}
                   </b-col>
                 </b-row>
               </div>
@@ -61,6 +60,9 @@
         </vue-horizontal-list>
       </b-col>
     </b-row>
+    <div v-if="Model.length > 0" style="text-align: center; color: #4A93B3; cursor: pointer; margin-top: 10px;" @click="showMore">
+      {{ $t('show_more') }}
+    </div>
   </div>
 </template>
 
@@ -89,9 +91,9 @@ export default {
           // { size: 4 },
           { end: 576, size: 2 },
           { start: 576, end: 768, size: 3 },
-          { start: 768, end: 992, size: 4 },
-          { start: 992, end: 1200, size: 4 },
-          { start: 1200, size: 5 },
+          { start: 768, end: 992, size: 3 },
+          { start: 992, end: 1200, size: 3 },
+          { start: 1200, size: 4 },
         ],
         position: {
           start: -1,
@@ -106,6 +108,9 @@ export default {
     };
   },
   methods: {
+    showMore() {
+      this.$router.push({ name: "MK_AllProject" });
+    },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
