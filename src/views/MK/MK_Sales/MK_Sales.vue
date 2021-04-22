@@ -3,6 +3,35 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
+          <b-row>
+            <b-col>
+              <span style="color: black;" class="title-primary">Last 12 Months</span>
+            </b-col>
+            <b-col>
+              <b-row>
+                <b-col lg="2" xl="5" style="text-align: right; bottom: 5px; max-width: max-content;">
+                    <span style="font-weight: bold; font-size: 13px;">
+                        Show By &nbsp;&nbsp;
+                    </span>
+                </b-col>
+                <b-col style="text-align: right; margin-right: 15px !important;">
+                    <ACCRadioButton
+                        @input="Onshow_byChange"
+                        :prop="PI_show_by"
+                        v-model="show_by"
+                        :ref="'ref_show_by'"
+                    />
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
+          <b-row style="margin-top: 10px; margin-bottom: 20px;">
+            <b-col>
+              <div class="chart-target" style="position: relative; min-height: 95% !important; width:100%">
+                <canvas responsive :id="'line-chart'" height="100%"></canvas>
+              </div>
+            </b-col>
+          </b-row>
           <b-row style="margin-top: 10px; margin-bottom: 20px;">
             <b-col sm="2" align-self="center">
               MARKETING
@@ -153,6 +182,27 @@ export default {
       marketingId: "all",
       marketingLabel: "All",
       Model: [],
+
+      myLineChart: null,
+      ChartData: {},
+      show_by: "unit",
+      PI_show_by: {
+        cValidate: "",
+        cName: "show_by",
+        cId: "rdshow_by",
+        cRadioOptions: [
+          { text: "By Unit", value: 'unit' },
+          { text: "By Value", value: 'value' }
+        ],
+        cRadioDefaultOption: 'unit',
+        cOrder: 1,
+        cProtect: false,
+        cVisible:  true,
+        cParentForm: 'FormEntry',
+        cInputStatus: "new",
+        cGroup: true
+      },
+
       salesHeader: [
         {
           key: "no",
@@ -225,6 +275,10 @@ export default {
     }
   },
   methods: {
+    Onshow_byChange(data) {
+      this.myLineChart.destroy();
+      this.renderChart();
+    },
     OnMarketingChange(data) {
       this.$nextTick(() => {
         this.marketingId = data.id;
@@ -279,6 +333,7 @@ export default {
         
         this.$nextTick(() => {
           this.renderList();
+          this.getChart();
         })
       });
     },
@@ -286,6 +341,216 @@ export default {
       for (let i = 0; i < this.Model.length; i++) {
         this.$refs['ref_sales_'+i][0].doGetList("");
       }
+    },
+    getChart() {
+      let param = {
+        company_group_id: this.company_group_id,
+        principle_id: this.getDataUser().principle_id,
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/sales/graph', param).then((response) => {
+        if (response == null) return;
+        this.ChartData = response.data[0];
+
+        this.$forceUpdate();
+        this.$nextTick(() => {
+          this.renderChart();
+        })
+      });
+    },
+    renderChart() {
+      let datax = this.ChartData,
+      ac = [];
+
+      for (let x = 0; x < datax.graph.length; x++) {
+          let xx = datax.graph[x];
+          // valuelabel.push(xx.project_name);
+          if (this.show_by == 'unit') {
+            ac.push(Math.round(xx.unit_achievement));
+          }
+          else {
+            ac.push(xx.value_achievement);
+          }
+
+      }
+
+      let max = Math.max.apply(null, ac);
+
+      var valuedata2 = [
+        {
+          label: "Target",
+          // backgroundColor: "rgba(14, 156, 255, 0.3)",
+          data: ac,
+        },
+        // {
+        //   label: "Achievement",
+        //   backgroundColor: "#00cc33",
+        //   data: ac,
+        // }
+      ];
+
+      var valuelabel = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+      ];
+
+      var ctx = document.getElementById("line-chart").getContext("2d"), vm = this;
+
+      Chart.helpers.merge(Chart.defaults.global.plugins.datalabels, {
+        color: "black",
+      });
+
+      this.myLineChart = new Chart(ctx, {
+        type: "line",
+        data: {
+          labels: valuelabel,
+          datasets: valuedata2,
+        },
+        options: {
+          elements: {
+            line: {
+              backgroundColor: function() {
+                if (vm.show_by == 'unit') {
+                  return "rgba(14, 156, 255, 0.3)";
+                }
+                else {
+                  return "rgba(246, 186, 133, 0.3)";
+                }
+              },
+              fill: true,
+            },
+            point: {
+              backgroundColor: function() {
+                if (vm.show_by == 'unit') {
+                  return "#0e9cff";
+                }
+                else {
+                  return "#f6ba85";
+                }
+              }
+            }
+          },
+          // events: ["click", "hover"],
+          onClick: this.ChartClick,
+          hover: {
+            onHover: this.onHover
+          },
+          tooltips: { enabled: false },
+          maintainAspectRatio: false,
+          legend: { display: false },
+          title: {
+            display: false,
+            text: "",
+          },
+          scales: {
+            xAxes: [
+              {
+                gridLines: {
+                  // display:false
+                  // offsetGridLines : true
+                },
+                ticks: {
+                  display: true,
+                  fontStyle: 'bold',
+                  color: "black"
+                }
+              },
+            ],
+            yAxes: [
+              {
+                scaleLabel: {
+                  // display: true,
+                  // labelString: 'cek'
+                },
+                gridLines: {
+                  // display:false,
+                  // drawBorder: false
+                },
+                ticks: {
+                  display: true,
+                  min: 0,
+                  stepSize: Math.round(max / 4),
+                  // max: max + (max/4),
+                  callback: function (value, index, values) {
+                    console.log('value', value)
+                    // console.log('index', index)
+                    // console.log('values', values)
+                    if (vm.show_by == 'value') {
+                      return vm.checkNum(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','), value) + ' ' + vm.checkPref(value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+                    }
+                    else {
+                      return value;
+                    }
+                  },
+                },
+              },
+            ],
+          },
+          animation: {
+            duration: 1,
+            onProgress: function (x) {
+              console.log(x)
+              var chartInstance = x.chartInstance;
+              var ctx = chartInstance.ctx;
+              var dete = chartInstance.data;
+              var height = chartInstance.controller.boxes[0].bottom;
+
+              ctx.font = Chart.helpers.fontString(
+                Chart.defaults.global.defaultFontSize,
+                Chart.defaults.global.defaultFontStyle,
+                Chart.defaults.global.defaultFontFamily
+              );
+              ctx.textAlign = "center";
+              ctx.textBaseline = "bottom";
+
+              if (vm.show_by == 'unit') {
+                ctx.fillStyle = "#0e9cff";
+              }
+              else {
+                ctx.fillStyle = "#f6ba85";
+              }
+
+              dete.datasets.forEach(function (dataset, i) {
+                var meta = chartInstance.controller.getDatasetMeta(i);
+                meta.data.forEach(function (bar, index) {
+                  var data = dataset.data[index];
+                  // console.log(bar)
+                  ctx.fillText(data.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','), bar._model.x, bar._model.y);
+                });
+              });
+            },
+          },
+          plugins: {
+            datalabels: {
+              color: "black",
+              // display: function(context) {
+              //   console.log("Algo: "+context);
+              //   return context.dataset.data[context.dataIndex] > 15;
+              // },
+              // font: {
+              //   weight: 'bold'
+              // },
+              // formatter: function(value, context) {
+              //   return context.dataIndex + ': ' + Math.round(value*100) + '%';
+              // }
+            },
+          },
+        },
+      });
+
+      this.myLineChart.update();
+      this.$forceUpdate();
+      // }
     },
   },
   mounted() {
