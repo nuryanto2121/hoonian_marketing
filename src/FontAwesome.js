@@ -99,7 +99,8 @@ import {
     faArrowLeft,
     faArrowRight,
     faAngleDoubleLeft,
-    faWallet
+    faWallet,
+    faGlobe
 } from '@fortawesome/free-solid-svg-icons'
 
 
@@ -203,5 +204,6 @@ library.add(faArrowRight)
 library.add(faAngleDoubleRight)
 library.add(faAngleDoubleLeft)
 library.add(faWallet)
+library.add(faGlobe)
 
 Vue.component('font-awesome-icon', FontAwesomeIcon)
