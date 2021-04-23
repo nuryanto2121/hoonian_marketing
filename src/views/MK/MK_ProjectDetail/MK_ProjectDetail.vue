@@ -303,7 +303,7 @@
                 noPaging
               >
                 <template slot="TitleTable">
-                  <b-col lg="3" xl="3" style="padding-left: unset !important; color: #828282; font-size: 14px;">
+                  <b-col lg="3" xl="3" style="padding-left: unset !important; color: #828282; font-size: 14px;" class="poppins">
                     {{data.tower_cluster_name}}
                   </b-col>
                 </template>
