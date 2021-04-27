@@ -2,6 +2,44 @@
   <div class="dashboard-page-chart">
     <div class="dashboard-page-chart__body">
       <b-row>
+        <b-col style="padding-left: 10px !important;">
+          Search Project By Location
+        </b-col>
+      </b-row>
+      <br />
+      <b-row>
+        <b-col>
+          <vue-horizontal-list
+            v-if="Location.length > 0"
+            :items="Location"
+            :options="optionsLocation"
+          >
+            <template v-slot:nav-prev>
+            </template>
+
+            <template v-slot:nav-next>
+            </template>
+
+            <template v-slot:start>
+            </template>
+
+            <template v-slot:end>
+            </template>
+
+            <template v-slot:default="{item}">
+              <b-row>
+                <b-col>
+                  <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 105px;': 'height: 100px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
+                  <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
+                    {{item.location}}
+                  </div>
+                </b-col>
+              </b-row>
+            </template>
+          </vue-horizontal-list>
+        </b-col>
+      </b-row>
+      <b-row>
         <b-col sm="4" v-for="item in Model.data" :key="item.id" style="">
           <div class="card">
             <div class="card__body" style="padding: unset !important;">
@@ -77,6 +115,37 @@ export default {
       projectId: "all",
       locationId: "all",
       projectStatus: "all",
+
+      Location: [],
+      optionsLocation: {
+        // item: {
+        //   // css class to inject into each individual item
+        //   class: "",
+        //   // padding between each item
+        //   padding: 12,
+        // },
+        // list: {
+        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+        //   // windowed: 1200,
+
+        //   // Because: #app {padding: 80px 24px;}
+        //   padding: 24,
+        // },
+        responsive: [
+          { end: 576, size: 3 },
+          { start: 576, end: 768, size: 4 },
+          { start: 768, end: 992, size: 6 },
+          { size: 8 },
+        ],
+        position: {
+          start: -1,
+        },
+        navigation: {
+          // when to show navigation
+          start: 5000,
+        },
+        // autoplay: { play: true, repeat: true, speed: 3000 },
+      },
     };
   },
   methods: {
@@ -108,8 +177,28 @@ export default {
         this.Model = response;
       });
     },
+    getLocation() {
+      let param = {
+        company_group_id: this.company_group_id,
+        principle_id: this.getDataUser().principle_id,
+      };
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/dashboard/location",
+        param
+      ).then((response) => {
+        if (response == null) return;
+        this.Location = response.data;
+      });
+    },
+    doProjectByLocation(data) {
+      // this.projectId = data.id;
+      this.locationId = data.id;
+      // this.projectStatus = data.id;
+      this.getData();
+    },
   },
   mounted() {
+    this.getLocation();
     this.getData();
   },
 };
