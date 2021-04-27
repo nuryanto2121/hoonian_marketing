@@ -20,6 +20,8 @@ import MK_Sales from '@/views/MK/MK_Sales/MK_Sales'
 import MK_AllProject from '@/views/MK/MK_AllProject/MK_AllProject'
 import MK_SalesDetail from '@/views/MK/MK_Sales/MK_SalesDetail'
 import MK_Profile from '@/views/MK/MK_Profile/MK_Profile'
+import MK_NUP from '@/views/MK/MK_NUP/MK_NUP'
+import MK_NUPForm from '@/views/MK/MK_NUP/MK_NUPForm'
 
 export const MKRender = {
     path: '/MK',
@@ -197,6 +199,22 @@ export const MKRender = {
             path: '/MK/MK_Profile',
             name: 'MK_Profile',
             component: MK_Profile,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_NUP',
+            name: 'MK_NUP',
+            component: MK_NUP,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_NUPForm',
+            name: 'MK_NUPForm',
+            component: MK_NUPForm,
             meta: {
                 requiresAuth: true
             }
