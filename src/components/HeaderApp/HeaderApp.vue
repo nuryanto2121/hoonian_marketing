@@ -1,4 +1,5 @@
 <template>
+
   <div>
     <div
       class="header--top"
@@ -6,7 +7,7 @@
       :class="{ 'header--dark': classHeader }"
       :style="{ paddingLeft: paddingHeader }"
     >
-      <span>
+      <!-- <span>
         <div class="pull--left" v-if="textMenu">
           <div class="header--top__tagline" @click="offText">
             <div
@@ -45,10 +46,185 @@
             </div>
           </div>
         </div>
-      </span>
-      <span>
-        <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 80px; height: 35px; margin-top: 8px;" />
-      </span>
+      </span> -->
+      
+      <!-- 
+        CATATAN:
+        1. NO Static Mode dari <b-toast id="example-toast" static no-auto-hide> (DONE)
+        2. no-auto-hide required (APPLIED)
+        3. no-close-button required (APPLIED)
+        4. adjust position ke top-left (IN PROGRESS)
+        5. buat masukin gambar dan seluruh isinya (DONE)
+        6. Adjust bentuk toast skala besarnya (IN PROGRESS)
+
+      -->
+      <div class="pull--left" >
+        <div class="header--top__dashboard">
+          <b-icon-image class="mb-2" @click="$bvToast.show('dashboard-toast')">
+            <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 80px; height: 35px; margin-top: 8px;" />
+          </b-icon-image>
+          <!-- <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-top align-items-left" style="min-width : 400px;"> -->
+            <b-toast
+              id="dashboard-toast" 
+              static no-auto-hide no-close-button no-fade solid >
+              <div class="dashboard__menu">
+                <b-container class="dasboard__container">
+                  <b-row align="center">
+
+                    <b-row id="icon-menu-dashboard">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Dashboard
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <b-row id="icon-menu-sales">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/sales.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Sales
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <b-row id="icon-menu-nup">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/nup.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          NUP
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <b-row id="icon-menu-lead">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/lead.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Lead
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
+                    <b-row id="icon-menu-vlaunching">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/virtual-machine.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          V Learning
+                        </div>
+                      </span>
+                    </b-row>
+                    
+                    <b-row id="icon-menu-referral">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/referral.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Referral
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <b-row id="icon-menu-token">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/token.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Token
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <b-row id="icon-menu-user">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/user.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          User
+                        </div>
+                      </span>
+                    </b-row>
+
+    <!-- KASIH SATU LINE BAR
+                  <span class="border border-gray"></span> -->
+
+                  <b-row id="icon-menu-profile">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/profile.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Profile
+                        </div>
+                      </span>
+                    </b-row>
+
+                    <b-row id="icon-menu-logout">
+                      <span 
+                        class="border border-gray"
+                        style="margin: 10px; padding: 10px"
+                      >
+                        <b-col>
+                          <img :src="require('@/assets/icon-svg/menu/logout.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
+                        </b-col>
+                        <div class="dashboard-text">
+                          Log Out
+                        </div>
+                      </span>
+                    </b-row>
+
+                  </b-row>
+                </b-container>
+              </div>
+            </b-toast>
+        <!-- </div> -->
+        </div>
+      </div>
+    
+        
+
 
       <div class="pull--right">
         <div class="header--top__info-subportfolio notranslate">{{label}}</div>
@@ -240,6 +416,7 @@
 </template>
 
 <script>
+
 export default {
   mounted() {
     // comm: disini kamu ubah hideshow menunya, ternyata dikontrol dari menunya
@@ -590,6 +767,10 @@ export default {
 /* .goog-te-banner-frame .skiptranslate {
     display: none !important;
   } */
+.dashboard-text{
+  text-align: center;
+}
+
 .goog-te-banner-frame {
   display: none !important;
 }
