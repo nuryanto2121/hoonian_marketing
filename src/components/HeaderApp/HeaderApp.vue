@@ -7,7 +7,10 @@
       :style="{ paddingLeft: paddingHeader }"
     >
       <span>
-        <div class="pull--left" v-if="textMenu">
+        <div class="header--top">
+          <img :src="require('@src\assets\icon-svg\menu\dashboard.svg')" alt style="width: 80px; height: 35px; margin-top: 8px;" />
+        </div>
+        <!-- <div class="pull--left" v-if="textMenu">
           <div class="header--top__tagline" @click="offText">
             <div
               style="border-radius: 5px;
@@ -44,11 +47,14 @@
               />
             </div>
           </div>
-        </div>
+        </div> -->
+
+
       </span>
-      <span>
+      <!-- LOGO HOONIAN TIDAK DIBUTUHKAN -->
+      <!-- <span>
         <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 80px; height: 35px; margin-top: 8px;" />
-      </span>
+      </span> -->
 
       <div class="pull--right">
         <div class="header--top__info-subportfolio notranslate">{{label}}</div>

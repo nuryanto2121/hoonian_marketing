@@ -90,5 +90,20 @@
     "vue-svg-loader": "^0.11.0",
     "vue-template-compiler": "^2.6.11",
     "vue2-simplert": "^0.8.0"
-  }
+  },
+  "description": "```\r npm install\r ```",
+  "main": "babel.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nuryanto2121/hoonian_marketing.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nuryanto2121/hoonian_marketing/issues"
+  },
+  "homepage": "https://github.com/nuryanto2121/hoonian_marketing#readme"
 }
