@@ -7,7 +7,7 @@
               <b-col lg="12" xl="12">
                 <b-row style="overflow-x: auto; white-space: nowrap; display: block !important;">
                   <template v-for="(data, index) in ModelProject">
-                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click.once="onProjectChange(index)">
+                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click.prevent="onProjectChange(index)">
                       <b-row class="noPadding">
                         <b-col class="noPadding" lg="4" xl="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
                           <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
@@ -354,7 +354,6 @@ export default {
       this.postJSON(this.urlHoonian + '/api/marketing-website/lead/header', param).then((response) => {
         if (response == null) return;
         let data = response.data;
-        this.selectedProject = 0;
         this.ModelProject = [];
         for (let i = 0; i < data.length; i++) {
           this.ModelProject.push({

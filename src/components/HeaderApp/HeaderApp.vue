@@ -470,6 +470,8 @@ export default {
     };
   },
   created: async function() {
+    if (!this.getDataUser()) return;
+
     await this.GetButtonStatus(
       this.getDataUser().portfolio_id,
       this.getDataUser().group_id,
@@ -540,22 +542,22 @@ export default {
       this.$router.push({ name: "MK_NUP" });
     },
     showLead() {
-      this.$router.push({ name: "MK_" });
+      this.$router.push({ name: "MK_SalesLead" });
     },
     showVLaunching() {
-      this.$router.push({ name: "MK_" });
+      this.$router.push({ name: "MK_VirtualLaunching" });
     },
     showReferral() {
-      this.$router.push({ name: "MK_" });
+      this.$router.push({ name: "MK_Referral" });
     },
     showToken() {
-      this.$router.push({ name: "MK_" });
+      this.$router.push({ name: "MK_Token" });
     },
     showUser() {
-      this.$router.push({ name: "MK_" });
+      this.$router.push({ name: "MK_User" });
     },
     showProfile() {
-      this.$router.push({ name: "MK_" });
+      this.$router.push({ name: "MK_Profile" });
     },
     logout() {
       this.signOut();
