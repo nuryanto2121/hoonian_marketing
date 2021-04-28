@@ -60,175 +60,160 @@
       -->
       <div class="pull--left" >
         <div class="header--top__dashboard">
-          <b-icon-image class="mb-2" @click="$bvToast.show('dashboard-toast')">
-            <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 80px; height: 35px; margin-top: 8px;" />
+          <b-icon-image class="mb-2" @click="showMenu">
+            <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 80px; height: 35px; margin-top: 8px; cursor: pointer;" />
           </b-icon-image>
-          <!-- <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-top align-items-left" style="min-width : 400px;"> -->
-            <b-toast
-              id="dashboard-toast" 
-              static no-auto-hide no-close-button no-fade solid >
-              <div class="dashboard__menu">
-                <b-container class="dasboard__container">
-                  <b-row align="center">
+          <b-toast
+            style="position: relative !important; z-index: 1000;"
+            id="dashboard-toast" 
+            static no-auto-hide no-close-button no-fade solid append-toast>
 
-                    <b-row id="icon-menu-dashboard">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Dashboard
-                        </div>
-                      </span>
-                    </b-row>
+            <div @mouseleave="closeMenu">
+              <b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showDashboard"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Dashboard
+                  </div>
+                </b-col>
 
-                    <b-row id="icon-menu-sales">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/sales.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Sales
-                        </div>
-                      </span>
-                    </b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showSales"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/sales.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Sales
+                  </div>
+                </b-col>
 
-                    <b-row id="icon-menu-nup">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/nup.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          NUP
-                        </div>
-                      </span>
-                    </b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showNUP"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/nup.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    NUP
+                  </div>
+                </b-col>
 
-                    <b-row id="icon-menu-lead">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/lead.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Lead
-                        </div>
-                      </span>
-                    </b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showLead"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/lead.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Lead
+                  </div>
+                </b-col>
+              </b-row>
 
-                    <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
-                    <b-row id="icon-menu-vlaunching">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/virtual-machine.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          V Learning
-                        </div>
-                      </span>
-                    </b-row>
-                    
-                    <b-row id="icon-menu-referral">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/referral.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Referral
-                        </div>
-                      </span>
-                    </b-row>
+              <b-row>
+                <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showVLaunching"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/virtual-machine.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    V - Launching
+                  </div>
+                </b-col>
+                
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showReferral"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/referral.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Referral
+                  </div>
+                </b-col>
 
-                    <b-row id="icon-menu-token">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/token.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Token
-                        </div>
-                      </span>
-                    </b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showToken"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/token.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Token
+                  </div>
+                </b-col>
 
-                    <b-row id="icon-menu-user">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/user.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          User
-                        </div>
-                      </span>
-                    </b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showUser"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/user.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    User
+                  </div>
+                </b-col>
+              </b-row>
 
-    <!-- KASIH SATU LINE BAR
-                  <span class="border border-gray"></span> -->
+              <hr />
 
-                  <b-row id="icon-menu-profile">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/profile.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Profile
-                        </div>
-                      </span>
-                    </b-row>
+              <b-row>
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showProfile"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/profile.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Profile
+                  </div>
+                </b-col>
 
-                    <b-row id="icon-menu-logout">
-                      <span 
-                        class="border border-gray"
-                        style="margin: 10px; padding: 10px"
-                      >
-                        <b-col>
-                          <img :src="require('@/assets/icon-svg/menu/logout.svg')" alt style="width: 60px; height: 60px; margin: 10px" />
-                        </b-col>
-                        <div class="dashboard-text">
-                          Log Out
-                        </div>
-                      </span>
-                    </b-row>
-
-                  </b-row>
-                </b-container>
-              </div>
-            </b-toast>
-          <!-- </div> -->
+                <b-col sm="3" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="logout"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/logout.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Log Out
+                  </div>
+                </b-col>
+              </b-row>
+            </div>
+          </b-toast>
         </div>
       </div>
-    
-        
-
 
       <div class="pull--right">
-        <div class="header--top__info-subportfolio notranslate">{{label}}</div>
-        <div class="container-notif">
+        <!-- <div class="container-notif">
           <a class="dropdown-toggle count-info" data-toggle="dropdown" href="#" @click="chat">
             <font-awesome-icon
               class="icon-style-default"
@@ -246,9 +231,9 @@
               style="background-color: rgb(74, 147, 179) !important; border-radius: 10px !important;"
             >{{totalChat}}</span>
           </a>
-        </div>
+        </div> -->
 
-        <div class="container-notif" style="padding-right: 8px !important;">
+        <div class="container-notif" style="padding-right: 0px !important;">
           <a
             class="dropdown-toggle count-info"
             data-toggle="dropdown"
@@ -264,7 +249,8 @@
             >{{totalNotification}}</span>
           </a>
         </div>
-        <div class="header--top__profile-menu" @click="signOut" v-click-outside="closeHeader" style="margin-top: 10px;">
+        <div class="header--top__info-subportfolio notranslate" style="margin-right: 10px;">{{label}}</div>
+        <!-- <div class="header--top__profile-menu" @click="signOut" v-click-outside="closeHeader" style="margin-top: 10px;">
           <div class="avatar">
             <div class="image">
               <font-awesome-icon icon="sign-out-alt" style="color: #999999;" />
@@ -273,7 +259,7 @@
           <div class="information">
             <div class="username notranslate" title="EPRO">Logout</div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <div class="dropdown-profile" v-if="dropdownMenuHeaderTop">
@@ -520,29 +506,60 @@ export default {
       }
     },
     $route: async function(to, from) {
-      if (this.$route.path === "/") {
-        this.classHeader = true;
-      } else {
-        this.classHeader = false;
-      }
-      this.getSumChatNotif();
-      await this.GetButtonStatus(
-        this.getDataUser().portfolio_id,
-        this.getDataUser().group_id,
-        this.getDataUser().user_id,
-        this.getOptionUrl()
-      );
+      // if (this.$route.path === "/") {
+      //   this.classHeader = true;
+      // } else {
+      //   this.classHeader = false;
+      // }
+
+      // this.getSumChatNotif();
+      // await this.GetButtonStatus(
+      //   this.getDataUser().portfolio_id,
+      //   this.getDataUser().group_id,
+      //   this.getDataUser().user_id,
+      //   this.getOptionUrl()
+      // );
       
-      if (this.$route.path == "/OP_Dashboard" || this.$route.path == "/DD_Dashboard")
-        this.PI_project.isShow = true;
-      else
-        this.PI_project.isShow = false;
-      
+      this.closeMenu();
     }
   },
   methods: {
-    init() {
-
+    showMenu() {
+      this.$bvToast.show('dashboard-toast');
+    },
+    closeMenu() { 
+      console.log("cuy");
+      this.$bvToast.hide('dashboard-toast');
+    },
+    showDashboard() {
+      this.$router.push("/");
+    },
+    showSales() {
+      this.$router.push({ name: "MK_Sales" });
+    },
+    showNUP() {
+      this.$router.push({ name: "MK_NUP" });
+    },
+    showLead() {
+      this.$router.push({ name: "MK_" });
+    },
+    showVLaunching() {
+      this.$router.push({ name: "MK_" });
+    },
+    showReferral() {
+      this.$router.push({ name: "MK_" });
+    },
+    showToken() {
+      this.$router.push({ name: "MK_" });
+    },
+    showUser() {
+      this.$router.push({ name: "MK_" });
+    },
+    showProfile() {
+      this.$router.push({ name: "MK_" });
+    },
+    logout() {
+      this.signOut();
     },
     onNewMenu() {},
     getSumChatNotif() {
@@ -678,7 +695,7 @@ export default {
       this.$swal(title, message, "error");
     },
     signOut() {
-      this.alertConfirmation("If you close the system, all processes will be stopped", "Confirm", "Cancel", "Close System")
+      this.alertConfirmation("Are You Sure Want To Logout", "Confirm", "Cancel", "Logout")
       .then(ress => {
         if (ress.value) {
           var param = {
@@ -769,6 +786,8 @@ export default {
   } */
 .dashboard-text{
   text-align: center;
+  font-size: 10px;
+  color: #828282;
 }
 
 .goog-te-banner-frame {
