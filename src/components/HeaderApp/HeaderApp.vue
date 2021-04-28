@@ -528,7 +528,6 @@ export default {
       this.$bvToast.show('dashboard-toast');
     },
     closeMenu() { 
-      console.log("cuy");
       this.$bvToast.hide('dashboard-toast');
     },
     showDashboard() {
@@ -756,7 +755,7 @@ export default {
             warn += `Found in component '${compName}'`;
           }
 
-          console.warn(warn);
+          // console.warn(warn);
         }
         // Define Handler and cache it on the element
         const bubble = binding.modifiers.bubble;
