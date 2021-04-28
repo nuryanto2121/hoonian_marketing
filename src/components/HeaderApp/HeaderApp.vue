@@ -66,7 +66,7 @@
           <!-- <div aria-live="polite" aria-atomic="true" class="d-flex justify-content-top align-items-left" style="min-width : 400px;"> -->
             <b-toast
               id="dashboard-toast" 
-              no-auto-hide no-close-button no-fade solid >
+              static no-auto-hide no-close-button no-fade solid >
               <div class="dashboard__menu">
                 <b-container class="dasboard__container">
                   <b-row align="center">
