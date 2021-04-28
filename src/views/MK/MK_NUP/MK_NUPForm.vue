@@ -65,7 +65,7 @@
                 NUP Value @
                 <br />
                 <span style="color: #4A93B3; text-shadow: 0.5px 0px;">
-                  {{isCurrency(paramFromList.value, 2)}}
+                  IDR {{isCurrency(paramFromList.value, 2)}}
                 </span>
               </b-col>
             </b-row>
@@ -96,7 +96,7 @@
                 Purchase Value
                 <br />
                 <span style="color: #4A93B3; text-shadow: 0.5px 0px;">
-                  {{isCurrency(paramFromList.total_nup * (Model.total_purchase? Model.total_purchase: 0), 2)}}
+                  IDR {{isCurrency(paramFromList.total_nup * (Model.total_purchase? Model.total_purchase: 0), 2)}}
                 </span>
               </b-col>
             </b-row>

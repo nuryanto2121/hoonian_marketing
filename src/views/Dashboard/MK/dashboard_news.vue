@@ -10,7 +10,7 @@
 
             <!-- left -->
             <template v-if="index % 2 == 0">
-              <b-col sm="2" style="" @click="showImage(Model[index].main_image)">
+              <b-col sm="2" style="" @click="showWebsite(Model[index])">
                 <b-img :src="urlHoonian + Model[index].main_image" alt=""
                 :style="`height: 100px; cursor: pointer;`"
                 fluid-grow @error="onImageLoadFailure($event)" />
@@ -36,7 +36,7 @@
           
           <!-- right -->
           <template v-if="index % 2 == 0 && Model.length > index + 1">
-            <b-col  sm="2" style="" @click="showImage(Model[index + 1].main_image)">
+            <b-col  sm="2" style="" @click="showWebsite(Model[index + 1])">
               <b-img :src="urlHoonian + Model[index + 1].main_image" alt=""
               :style="`height: 100px; cursor: pointer;`"
               fluid-grow @error="onImageLoadFailure($event)" />
@@ -75,8 +75,8 @@ export default {
     };
   },
   methods: {
-    showImage(pathUrl) {
-      this.$refs.Modal_Image._show(this.urlHoonian + pathUrl);
+    showWebsite(data) {
+      window.open(data.url);
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");

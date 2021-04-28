@@ -23,12 +23,12 @@
             </b-row>
             <b-row style="padding: 10px !important;">
               <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                {{ $t('start_from') }} {{ isCurrency(data.start_from_price, 0) }}
+                {{ $t('start_from') }} IDR {{ isCurrency(data.start_from_price, 0) }}
               </b-col>
             </b-row>
             <b-row style="padding: 0px 10px !important; padding-bottom: 10px;">
               <b-col style="font-size: 12px;">
-                {{ isCurrency(data.price_per_meter_square,0) }} / m<sup>2</sup>
+                IDR {{ isCurrency(data.price_per_meter_square,0) }} / m<sup>2</sup>
               </b-col>
             </b-row>
             <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">

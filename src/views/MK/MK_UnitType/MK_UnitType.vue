@@ -304,7 +304,7 @@
                                 {{ $t('unit_price') }}
                                 <br />
                                 <span style="color: #4A93B3">
-                                  {{ isCurrency(dataRowClick.price, 0) }}
+                                  IDR {{ isCurrency(dataRowClick.price, 0) }}
                                 </span>
                               </b-col>
                             </b-row>

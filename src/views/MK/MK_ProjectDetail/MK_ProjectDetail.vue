@@ -8,7 +8,7 @@
              {{Model.data.project_name}}
            </b-col>
            <b-col sm="3">
-             {{ $t('start_from') }} {{ isCurrency(Model.data.start_from_price, 0) }}
+             {{ $t('start_from') }} IDR {{ isCurrency(Model.data.start_from_price, 0) }}
            </b-col>
          </b-row>
          <b-row>
@@ -16,7 +16,7 @@
              {{Model.data.address}}
            </b-col>
            <b-col style="color: #828282; font-size: 12px;" sm="3">
-             {{ isCurrency(Model.data.price_per_meter_square,0) }} / m<sup>2</sup>
+            IDR {{ isCurrency(Model.data.price_per_meter_square,0) }} / m<sup>2</sup>
            </b-col>
          </b-row>
          <b-row style="margin-top: 10px;">
@@ -308,7 +308,7 @@
                   </b-col>
                 </template>
                 <template slot="start_from" slot-scope="data">
-                  {{ isCurrency(data.item.start_from, 0) }}
+                  IDR {{ isCurrency(data.item.start_from, 0) }}
                 </template>
                 <template slot="unit_type" slot-scope="data">
                   <span style="color: #4A93B3">
@@ -603,7 +603,7 @@
 
                  <!-- left -->
                  <template v-if="index % 2 == 0">
-                  <b-col  sm="2" style="">
+                  <b-col  sm="2" style="" @click="showWebsite(News[index])">
                     <b-img :src="urlHoonian + News[index].main_image" alt=""
                     :style="`height: 100px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" />
@@ -629,7 +629,7 @@
                 
                 <!-- right -->
                 <template v-if="index % 2 == 0 && News.length > index + 1">
-                  <b-col  sm="2" style="">
+                  <b-col  sm="2" style="" @click="showWebsite(News[index + 1])">
                     <b-img :src="urlHoonian + News[index + 1].main_image" alt=""
                     :style="`height: 100px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" />
@@ -659,6 +659,7 @@
 
         </b-col>
       </b-row>
+      <ABSModalImage id="Modal_Image" ref="Modal_Image" size="md" />
     </div>
   </div>
 </template>
@@ -862,6 +863,9 @@ export default {
     }
   },
   methods: {
+    showWebsite(data) {
+      window.open(data.url);
+    },
     changeImage(path) {
       this.Model.data.main_pic = path;
     },
