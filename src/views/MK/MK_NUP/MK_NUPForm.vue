@@ -36,7 +36,7 @@
                 Total NUP Value
                 <br />
                 <span style="color: #4A93B3; text-shadow: 0.5px 0px;">
-                  {{isCurrency(paramFromList.value * paramFromList.total_nup, 2)}}
+                  IDR {{isCurrency(paramFromList.value * paramFromList.total_nup, 2)}}
                 </span>
               </b-col>
             </b-row>
