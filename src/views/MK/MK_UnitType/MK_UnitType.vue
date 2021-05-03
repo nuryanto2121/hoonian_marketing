@@ -284,9 +284,9 @@
                       </b-row>
                     </template>
                   </HOOList>
-                  <ABSModal id="Modal_Calculator" ref="Modal_Calculator" size="lg">
+                  <ABSModal id="Modal_Calculator" ref="Modal_Calculator" >
                     <template slot="headerTitle">
-                      <span class="title-primary"> {{ $t('loan_calculator') }} </span>
+                      <span class="title-primary" style="margin: 12px 12px; font-size: 20px"> {{ $t('loan_calculator')}} </span>
                     </template>
                     <template slot="content">
                       <b-row v-if="dataRowClick">
@@ -296,14 +296,14 @@
                               <b-col md="6">
                                 {{ $t('unit_no') }}
                                 <br />
-                                <span style="color: #4A93B3">
+                                <span style="color: #4A93B3; font-size: 26px">
                                   <b>{{dataRowClick.unit_no}}</b>
                                 </span>
                               </b-col>
                               <b-col md="6">
                                 {{ $t('unit_price') }}
                                 <br />
-                                <span style="color: #4A93B3">
+                                <span style="color: #4A93B3; font-size: 26px">
                                   <b>IDR {{ isCurrency(dataRowClick.price, 0) }}</b>
                                 </span>
                               </b-col>
