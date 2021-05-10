@@ -9,7 +9,7 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "prebuild": "rimraf ../publish_hoonian_marketing/dist",
-    "postbuild": "mv dist ../publish_hoonian_marketing"
+    "postbuild": "move dist ../publish_hoonian_marketing"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.27",

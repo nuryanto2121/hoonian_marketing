@@ -759,8 +759,13 @@ export default {
         }
         if (message.response.data.Message)
           this.alertError(message.response.data.Message)
-        else
+        else {
+          if (message.response.data.message) {
+            this.alertError(message.response.data.message, 'swall-custom-error')
+            return
+          }
           this.alertError(message.response.data.title)
+        }
         return
       }
 
