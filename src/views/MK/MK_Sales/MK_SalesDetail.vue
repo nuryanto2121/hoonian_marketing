@@ -371,6 +371,7 @@ export default {
     this.propList.param.customer_transaction_id = this.paramFromList.id;
     this.customer_transaction_id = this.paramFromList.id;
     this.$refs.ref_list.doGetList("");
+    this.$store.commit("setTitleMenu", "Buyer Details");
   },
 };
 </script>

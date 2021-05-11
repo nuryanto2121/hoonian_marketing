@@ -328,6 +328,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Buy NUP");
   },
 };
 </script>
