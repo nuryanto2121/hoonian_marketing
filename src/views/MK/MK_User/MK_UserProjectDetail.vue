@@ -112,8 +112,8 @@ export default {
         SortBy: "desc",
         ParamWhere: "",
         param: {
-            principle_id: "",
-            project_id: "",
+          principle_id: "",
+          project_id: "",
         }
       },
       Headers: [
@@ -190,30 +190,31 @@ export default {
       };
     },
     getDataBy() {
-        this.postJSON(
-            this.urlHoonian + "/api/marketing-website/user/project-detail-header",
-            {
-                principle_id: this.getDataUser().principle_id,
-                project_id: this.paramFromList.id
-            }
-        ).then((response) => {
-            if (response == null) return;
-            this.Model = response.data;
-            this.Model.sales_value_s = this.isCurrency(this.Model.sales_value, 0);
-            this.Model.total_commission_s = this.isCurrency(this.Model.total_commission, 0);
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/user/project-detail-header",
+        {
+          principle_id: this.getDataUser().principle_id,
+          project_id: this.paramFromList.id
+        }
+      ).then((response) => {
+        if (response == null) return;
+        this.Model = response.data;
+        this.Model.sales_value_s = this.isCurrency(this.Model.sales_value, 0);
+        this.Model.total_commission_s = this.isCurrency(this.Model.total_commission, 0);
 
-            this.propList.initialWhere = this.paramFromList.id;
-            this.propList.param = {
-                principle_id: this.getDataUser().principle_id,
-                project_id: this.paramFromList.id
-            }
+        this.propList.initialWhere = this.paramFromList.id;
+        this.propList.param = {
+          principle_id: this.getDataUser().principle_id,
+          project_id: this.paramFromList.id
+        }
 
-            this.$refs.ref_project_marketing.doGetList("");
-        });
+        this.$refs.ref_project_marketing.doGetList("");
+      });
     },
   },
   mounted() {
-      this.getDataBy();
+    this.$store.commit("setTitleMenu", "Project Marketing");
+    this.getDataBy();
   },
 };
 </script>

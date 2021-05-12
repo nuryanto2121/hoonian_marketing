@@ -160,7 +160,7 @@ export default {
         icon_project: data.icon_project,
         project_name: data.project_name,
         total_owned_token: data.total_token ? data.total_token : 0,
-        token_value_project: this.isCurrency( ((data.total_token ? data.total_token : 0) * (data.token_value ? data.token_value : 0)) , 0),
+        token_value_project: this.isCurrency(((data.total_token ? data.total_token : 0) * (data.token_value ? data.token_value : 0)), 0),
         token_value: data.token_value ? data.token_value : 0,
         token_value_s: this.isCurrency(data.token_value, 0),
         purchase_value: 0,
@@ -197,6 +197,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Buy Token");
     this.getDataBy();
   },
 };

@@ -126,9 +126,9 @@ export default {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
     OnLaunchingClick(data) {
-        var param = data;
-        this.$store.commit("setParamPage", param);
-        this.$router.push({ name: "MK_VirtualLaunchingDetail" });
+      var param = data;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_VirtualLaunchingDetail" });
     },
     doViewDetail(data) {
       console.log(data);
@@ -145,36 +145,37 @@ export default {
         if (response == null) return;
         this.Model = [];
         for (let i = 0; i < response.data.length; i++) {
-            const data = response.data[i];
-            let h_left = 0, m_left = 0, d_left = 0, status = 'w', inDays = false;
-            if (this.momentDateToUnix(new Date()) < data.start_datetime) {
-                status = 'w';
-                if (this.momentDiff(new Date(), this.momentUnix(data.start_datetime), 'days') <= 1) {
-                    h_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[0]);
-                    m_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[1]);
-                }
-                else {
-                    inDays = true;
-                    d_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'DD'));
-                }
+          const data = response.data[i];
+          let h_left = 0, m_left = 0, d_left = 0, status = 'w', inDays = false;
+          if (this.momentDateToUnix(new Date()) < data.start_datetime) {
+            status = 'w';
+            if (this.momentDiff(new Date(), this.momentUnix(data.start_datetime), 'days') <= 1) {
+              h_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[0]);
+              m_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[1]);
             }
             else {
-                status = 'i';
+              inDays = true;
+              d_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'DD'));
             }
-            this.Model.push({
-                ...data,
-                status: status,
-                inDays: inDays,
-                h_left: h_left,
-                m_left: m_left,
-                d_left: d_left
-            })
+          }
+          else {
+            status = 'i';
+          }
+          this.Model.push({
+            ...data,
+            status: status,
+            inDays: inDays,
+            h_left: h_left,
+            m_left: m_left,
+            d_left: d_left
+          })
         }
       });
     },
   },
   mounted() {
     this.getData();
+    this.$store.commit("setTitleMenu", "Virtual Launching");
   },
 };
 </script>

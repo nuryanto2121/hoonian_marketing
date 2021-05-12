@@ -139,40 +139,40 @@ export default {
 
       ReferralHeaders: [
         {
-            key: "no",
-            label: "No",
-            thClass: "HeaderACCList2Poppins th-cus-center",
-            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          key: "no",
+          label: "No",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-            key: "prospect_name",
-            label: "Prospect Name",
-            thClass: "HeaderACCList2Poppins th-cus-center",
-            tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+          key: "prospect_name",
+          label: "Prospect Name",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-            key: "referred_by",
-            label: "Referred By",
-            thClass: "HeaderACCList2Poppins th-cus-center",
-            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          key: "referred_by",
+          label: "Referred By",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-            key: "project_name",
-            label: "Project Name",
-            thClass: "HeaderACCList2Poppins th-cus-center",
-            tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+          key: "project_name",
+          label: "Project Name",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
-            key: "date",
-            label: "Date",
-            thClass: "HeaderACCList2Poppins th-cus-center",
-            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          key: "date",
+          label: "Date",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
-            key: "pick",
-            label: "Pick",
-            thClass: "HeaderACCList2Poppins th-cus-center",
-            tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          key: "pick",
+          label: "Pick",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
       ],
       ReferralItems: [],
@@ -216,7 +216,7 @@ export default {
         },
       ],
       SelectedItems: [],
-      
+
       ModelProject: [],
       selectedProject: 0,
       paramAdd: 0,
@@ -290,7 +290,7 @@ export default {
       data.forEach(el => {
         el.pick = false;
       });
-      
+
       this.ReferralItems = data;
     },
     SelectedRender(data) {
@@ -348,7 +348,7 @@ export default {
             }
           });
         }
-        
+
         this.$nextTick(() => {
           this.renderList();
         })
@@ -385,9 +385,9 @@ export default {
       let paramD = [];
       this.ReferralItems.forEach((data, index) => {
         if (data.pick) {
-            paramD.push({
-              referral_id:data.referral_id
-            });
+          paramD.push({
+            referral_id: data.referral_id
+          });
         }
       });
 
@@ -407,6 +407,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Referral");
     this.getProject();
   },
 };
