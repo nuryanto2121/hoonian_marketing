@@ -4,6 +4,21 @@
             <b-row class="dashboardBody poppins">
                 <b-col lg="12" xl="12">
                     <div class="card">
+                        <div class="card__title">
+                        <b-row>
+                            <b-col style="max-width: max-content !important">
+                            <span>Project List</span>
+                            </b-col>
+                            <!-- <b-col style="text-align: right">
+                            <ABSButton
+                                :text="'Back'"
+                                classButton="button button--back"
+                                classIcon="icon-style-1"
+                                @click="doBack"
+                            />
+                            </b-col> -->
+                        </b-row>
+                        </div>
                         <div class="card__body">
                             <b-row>
                                 <b-col xl="4" lg="4"
