@@ -28,7 +28,7 @@
           <template v-slot:default="{item}">
             <b-row>
               <b-col md="8">
-                <b-img :src="urlHoonian + item.image" alt="" style="height: 310px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                <b-img :src="urlHoonian + item.image" alt="" style="height: 310px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
               </b-col>
               <b-col md="4" style="background-color: #F8F8F8; min-height: 310px;">
                 <b-row>
@@ -93,7 +93,8 @@ export default {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
     doViewDetail(data) {
-      console.log(data);
+      // this.$store.commit("setParamPage", data);
+      // this.$router.push({ name: "MK_ProjectDetail" });
     },
     getData() {
       let param = {

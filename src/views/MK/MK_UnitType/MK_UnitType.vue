@@ -1232,7 +1232,7 @@ export default {
       //   return - (future_value + present_value) / number_of_payments;
       // }
 
-      if(number_of_payments <= 0){
+      if(number_of_payments >= 0){
         if (rate_per_period != 0){
           return ((future_value + present_value) * rate_per_period) / (1- Math.pow((1 + rate_per_period), (-1*number_of_payments)))
         }else{
