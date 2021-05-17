@@ -247,7 +247,8 @@ export default {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
     doViewDetail(data) {
-      console.log(data);
+      this.$store.commit("setParamPage", data);
+      this.$router.push({ name: "MK_ProjectDetail" });
     },
     getData() {
       let param = {
