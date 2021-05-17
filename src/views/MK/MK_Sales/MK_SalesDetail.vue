@@ -80,7 +80,7 @@
                   <label class="lbl-poppins">{{ $t('price') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
-                  {{ isCurrency(dataBuyerDetail.info.price, 0) }}
+                  IDR {{ isCurrency(dataBuyerDetail.info.price, 0) }}
                 </b-col>
               </b-row>
               <b-row>
@@ -99,7 +99,7 @@
                   <label class="lbl-poppins">{{ $t('booking_fee') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
-                  {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
+                  IDR {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
                 </b-col>
               </b-row>
               <b-row>
@@ -123,7 +123,7 @@
                   <label class="lbl-poppins">{{ $t('commission') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
-                  {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
+                  IDR {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
                 </b-col>
               </b-row>
               <b-row>
@@ -371,6 +371,7 @@ export default {
     this.propList.param.customer_transaction_id = this.paramFromList.id;
     this.customer_transaction_id = this.paramFromList.id;
     this.$refs.ref_list.doGetList("");
+    this.$store.commit("setTitleMenu", "Buyer Details");
   },
 };
 </script>

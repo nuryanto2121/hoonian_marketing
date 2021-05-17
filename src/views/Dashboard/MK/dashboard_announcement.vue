@@ -33,17 +33,17 @@
               <b-col md="4" style="background-color: #F8F8F8; min-height: 310px;">
                 <b-row>
                   <b-col style="font-size: 18px; text-shadow: 0.5px 0px;">
-                    {{item.title}}
+                    {{item.header}}
                   </b-col>
                 </b-row>
                 <b-row>
                   <b-col style="font-size: 14px;">
-                    {{item.header}}
+                    {{item.content}}
                   </b-col>
                 </b-row>
-                <b-row style="height: 260px; !important;">
+                <b-row align-v="end" style="position: absolute; bottom: 0; width: 100%; padding-right: 8px;">
                   <b-col align-self="end" style="font-size: 18px; text-shadow: 0.5px 0px; text-align: right;" class="text">
-                    {{item.content}}
+                    {{item.title}}
                   </b-col>
                 </b-row>
               </b-col>

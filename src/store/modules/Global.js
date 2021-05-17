@@ -35,6 +35,7 @@ const state = {
   favoriteMenu: [],
   dynamicMenu: [],
   projectId: null,
+  titleMenu: "",
 }
 
 const getters = {
@@ -71,6 +72,7 @@ const getters = {
   getFavoriteMenu: state => { return state.favoriteMenu },
   getDynamicMenu: state => { return state.dynamicMenu },
   getProjectId: state => { return state.projectId },
+  getTitleMenu: state => { return state.titleMenu },
 }
 
 const mutations = {
@@ -164,6 +166,9 @@ const mutations = {
   },
   setProjectId (state, data){
     state.projectId = data
+  },
+  setTitleMenu (state, data){
+    state.titleMenu = data
   },
 }
 

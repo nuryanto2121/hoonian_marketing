@@ -239,7 +239,7 @@ export default {
           company_group_id: ""
         }
       },
-      
+
       Model: {
         handphone: "",
         name: "",
@@ -308,7 +308,7 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
       ],
-      
+
       ModelProject: [],
       selectedProject: 0,
       paramAdd: 0,
@@ -369,10 +369,10 @@ export default {
   },
   methods: {
     onProjectClick(data) {
-        var param = data;
-        param.isEdit = false;
-        this.$store.commit("setParamPage", param);
-        this.$router.push({ name: "MK_UserProjectDetail" });
+      var param = data;
+      param.isEdit = false;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_UserProjectDetail" });
     },
     doViewProject(data) {
       this.$refs.ref_assignedProject.items = [];
@@ -383,10 +383,10 @@ export default {
       this.$refs.Modal_AssignProject._show();
     },
     OnMarketingClick(data) {
-        var param = data;
-        param.isEdit = false;
-        this.$store.commit("setParamPage", param);
-        this.$router.push({ name: "MK_UserProjectAssign" });
+      var param = data;
+      param.isEdit = false;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_UserProjectAssign" });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
@@ -421,7 +421,7 @@ export default {
         if (response == null) return;
         let data = response.data;
         this.ModelProject = data;
-        
+
         this.$nextTick(() => {
           this.renderList();
         })
@@ -429,8 +429,8 @@ export default {
       });
     },
     renderList() {
-        this.propList.param.principle_id = this.getDataUser().principle_id
-        this.$refs.ref_marketing_list.doGetList("");
+      this.propList.param.principle_id = this.getDataUser().principle_id
+      this.$refs.ref_marketing_list.doGetList("");
     },
     doSave() {
       this.$validator._base.validateAll("FormEntry").then((result) => {
@@ -453,6 +453,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "User");
     this.getProject();
   },
 };

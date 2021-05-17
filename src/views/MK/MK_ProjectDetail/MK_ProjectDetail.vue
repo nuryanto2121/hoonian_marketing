@@ -168,25 +168,25 @@
                Project Information
              </div>
              <template v-for="(info, index) in Model.infos">
-               <b-row v-if="index % 4 == 0" :key="index">
+               <b-row v-if="index % 2 == 0" :key="index">
                 <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
                   <div class="row-view-black">
-                    {{Model.infos[index].body}}
+                    {{Model.infos[index].header}}
                   </div>
                 </b-col>
                 <b-col sm="3" v-if="Model.infos.length > (index + 1)" class="row-view-black">
                   <div style="margin-right: 10px !important; padding-left: unset !important;">
-                    {{Model.infos[index + 1].body}}
+                    {{Model.infos[index].body}}
                   </div>
                 </b-col>
                 <b-col sm="3" v-if="Model.infos.length > (index + 2)" style="padding-left: unset !important; padding-right: unset !important;">
                   <div class="row-view-black" style="margin-left: 10px !important;">
-                    {{Model.infos[index + 2].body}}
+                    {{Model.infos[index + 1].header}}
                   </div>
                 </b-col>
                 <b-col sm="3" class="row-view-black" v-if="Model.infos.length > (index + 3)">
                   <div style="margin-left: 10px !important; padding-left: unset !important;">
-                    {{Model.infos[index + 3].body}}
+                    {{Model.infos[index + 1].body}}
                   </div>
                 </b-col>
                </b-row>

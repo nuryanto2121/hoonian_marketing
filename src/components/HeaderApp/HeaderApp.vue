@@ -59,9 +59,9 @@
 
       -->
       <div class="pull--left" >
-        <div class="header--top__dashboard">
+        <!-- <div class="header--top__dashboard"> -->
           <b-icon-image class="mb-2" @click="showMenu">
-            <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 80px; height: 35px; margin-top: 8px; cursor: pointer;" />
+            <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 80px; height: 35px; margin-top: 12px; cursor: pointer;" />
           </b-icon-image>
           <b-toast
             style="position: relative !important; z-index: 1000;"
@@ -209,7 +209,10 @@
               </b-row>
             </div>
           </b-toast>
-        </div>
+          <span style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 16px;">
+            {{titleMenu}}
+          </span>
+        <!-- </div> -->
       </div>
 
       <div class="pull--right">
@@ -487,7 +490,10 @@ export default {
     },
     textMenu() {
       return this.$store.getters.textMenu;
-    }
+    },
+    titleMenu() {
+      return this.$store.getters.getTitleMenu;
+    },
   },
   watch: {
     value: function(newData, oldData) {
@@ -523,6 +529,7 @@ export default {
       // );
       
       this.closeMenu();
+      this.$store.commit("setTitleMenu", "");
     }
   },
   methods: {

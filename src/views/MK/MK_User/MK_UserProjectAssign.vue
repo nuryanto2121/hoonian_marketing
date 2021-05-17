@@ -221,8 +221,8 @@ export default {
         SortBy: "desc",
         ParamWhere: "",
         param: {
-            company_group_id: "",
-            marketing_agent_id: ""
+          company_group_id: "",
+          marketing_agent_id: ""
         }
       },
       Headers: [
@@ -392,44 +392,44 @@ export default {
       };
     },
     getDataBy() {
-        this.postJSON(
-            this.urlHoonian + "/api/marketing-website/user/detail",
-            {
-                marketing_agent_id: this.paramFromList.marketing_id
-            }
-        ).then((response) => {
-            if (response == null) return;
-            this.Model = response.data;
-            this.getAllProject();
-            this.getMarketingTrans();
-        });
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/user/detail",
+        {
+          marketing_agent_id: this.paramFromList.marketing_id
+        }
+      ).then((response) => {
+        if (response == null) return;
+        this.Model = response.data;
+        this.getAllProject();
+        this.getMarketingTrans();
+      });
     },
     getAllProject() {
-        this.postJSON(
-            this.urlHoonian + "/api/marketing-website/user/user-all-project",
-            {
-                company_group_id: this.company_group_id,
-                marketing_agent_id: this.paramFromList.marketing_id
-            }
-        ).then((response) => {
-            if (response == null) return;
-            this.AllProject = response.data;
-            // for (let i = 0; i < response.data.length; i++) {
-            //     const pr = response.data[i];
-            //     this.AllProject.push({
-            //         ...pr,
-            //         check: false
-            //     })
-            // }
-        });
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/user/user-all-project",
+        {
+          company_group_id: this.company_group_id,
+          marketing_agent_id: this.paramFromList.marketing_id
+        }
+      ).then((response) => {
+        if (response == null) return;
+        this.AllProject = response.data;
+        // for (let i = 0; i < response.data.length; i++) {
+        //     const pr = response.data[i];
+        //     this.AllProject.push({
+        //         ...pr,
+        //         check: false
+        //     })
+        // }
+      });
     },
     getMarketingTrans() {
-        this.propList.param = {
-            company_group_id: this.company_group_id,
-            marketing_agent_id: this.paramFromList.marketing_id
-        }
+      this.propList.param = {
+        company_group_id: this.company_group_id,
+        marketing_agent_id: this.paramFromList.marketing_id
+      }
 
-        this.$refs.ref_marketing_trans.doGetList("");
+      this.$refs.ref_marketing_trans.doGetList("");
     },
     doSaveEdit() {
       this.$validator._base.validateAll("FormEntry").then((result) => {
@@ -445,47 +445,48 @@ export default {
       });
     },
     M_SaveEdit() {
-        this.postJSON(this.urlHoonian + '/api/marketing-website/user/add-edit', this.ModelEdit).then((response) => {
-            if (response == null) return;
-            this.Model.name = this.ModelEdit.name;
-            this.Model.handphone = this.ModelEdit.handphone;
-            this.Model.email = this.ModelEdit.email;
-            this.Model.id_no = this.ModelEdit.id_no;
-            this.Model.thumbnail_image = this.ModelEdit.thumbnail_image;
-            this.$refs.Modal_Edit._hide();
-        });
+      this.postJSON(this.urlHoonian + '/api/marketing-website/user/add-edit', this.ModelEdit).then((response) => {
+        if (response == null) return;
+        this.Model.name = this.ModelEdit.name;
+        this.Model.handphone = this.ModelEdit.handphone;
+        this.Model.email = this.ModelEdit.email;
+        this.Model.id_no = this.ModelEdit.id_no;
+        this.Model.thumbnail_image = this.ModelEdit.thumbnail_image;
+        this.$refs.Modal_Edit._hide();
+      });
     },
     doSave() {
-        this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
-          (ress) => {
-            if (ress.value) {
-              this.M_Save();
-            }
+      this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
+        (ress) => {
+          if (ress.value) {
+            this.M_Save();
           }
-        );
+        }
+      );
     },
     M_Save() {
-        let paramD = [];
-        for (let i = 0; i < this.AllProject.length; i++) {
-            const pr = this.AllProject[i];
-            paramD.push({
-                project_id: pr.id,
-                portfolio_id: pr.portfolio_id
-            });
-        }
-        let param = {
-            user_id: this.Model.user_id,
-            projects: paramD
-        };
-
-        this.postJSON(this.urlHoonian + '/api/marketing-website/user/assign-project', param).then((response) => {
-            if (response == null) return;
-            this.doBack();
+      let paramD = [];
+      for (let i = 0; i < this.AllProject.length; i++) {
+        const pr = this.AllProject[i];
+        paramD.push({
+          project_id: pr.id,
+          portfolio_id: pr.portfolio_id
         });
+      }
+      let param = {
+        user_id: this.Model.user_id,
+        projects: paramD
+      };
+
+      this.postJSON(this.urlHoonian + '/api/marketing-website/user/assign-project', param).then((response) => {
+        if (response == null) return;
+        this.doBack();
+      });
     },
   },
   mounted() {
-      this.getDataBy();
+    this.$store.commit("setTitleMenu", "Marketing Project Assignment");
+    this.getDataBy();
   },
 };
 </script>

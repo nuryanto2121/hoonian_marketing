@@ -214,7 +214,7 @@ export default {
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
       ],
-      
+
       ModelProject: [],
       selectedProject: 0,
       paramAdd: 0,
@@ -323,7 +323,7 @@ export default {
             }
           });
         }
-        
+
         this.$nextTick(() => {
           this.renderList();
         })
@@ -335,6 +335,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Token");
     this.getProject();
   },
 };

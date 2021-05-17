@@ -255,7 +255,7 @@ export default {
       ],
       PI_marketing: {
         dataLookUp: {
-          url: "/api/hoonian-website/principle-marketing-lookup",
+          url: "/api/hoonian-website/marketing-website-sales-lookup",
           param: {
             principle_id: '',
           }
@@ -306,6 +306,7 @@ export default {
       let param = {
         company_group_id: this.company_group_id,
         principle_id: this.getDataUser().principle_id,
+        marketing_id: this.marketingId,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/sales/sales-header', param).then((response) => {
@@ -346,6 +347,7 @@ export default {
       let param = {
         company_group_id: this.company_group_id,
         principle_id: this.getDataUser().principle_id,
+        marketing_id: this.marketingId
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/sales/graph', param).then((response) => {
@@ -484,7 +486,7 @@ export default {
                   stepSize: Math.round(max / 4),
                   // max: max + (max/4),
                   callback: function (value, index, values) {
-                    console.log('value', value)
+                    // console.log('value', value)
                     // console.log('index', index)
                     // console.log('values', values)
                     if (vm.show_by == 'value') {
@@ -501,7 +503,7 @@ export default {
           animation: {
             duration: 1,
             onProgress: function (x) {
-              console.log(x)
+              // console.log(x)
               var chartInstance = x.chartInstance;
               var ctx = chartInstance.ctx;
               var dete = chartInstance.data;
@@ -558,6 +560,7 @@ export default {
   mounted() {
     this.getSales();
     this.PI_marketing.dataLookUp.param.principle_id = this.getDataUser().principle_id;
+    this.$store.commit("setTitleMenu", "Sales");
   },
 };
 </script>

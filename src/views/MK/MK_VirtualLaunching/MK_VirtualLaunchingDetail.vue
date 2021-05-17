@@ -269,14 +269,12 @@ export default {
       };
     },
     UnitDataRender(data) {
-        this.AvailableUnits = data;
+      this.AvailableUnits = data;
     },
     OnStatusClick(data) {
-      if (data.status) {
-        this.Model.unit_id = data.unit_id;
-        this.Model.unit_no = data.unit_no;
-        this.Model.price = parseFloat(data.price);
-      }
+      this.Model.nup_id = data.nup_id;
+      this.Model.nup_no = data.nup_no;
+      this.Model.price = parseFloat(data.price);
     },
     doSave() {
       this.$validator._base.validateAll("FormEntry").then((result) => {
@@ -292,16 +290,16 @@ export default {
       });
     },
     M_Save() {
-    //   let paramD = [], price = 0;
-    //   this.AvailableUnits.forEach((data, index) => {
-    //     if (data.status) {
-    //         price += parseFloat(data.price);
-    //         paramD.push({
-    //           unit_id: data.unit_id,
-    //           unit_no: data.unit_no,
-    //         });
-    //     }
-    //   });
+      //   let paramD = [], price = 0;
+      //   this.AvailableUnits.forEach((data, index) => {
+      //     if (data.status) {
+      //         price += parseFloat(data.price);
+      //         paramD.push({
+      //           unit_id: data.unit_id,
+      //           unit_no: data.unit_no,
+      //         });
+      //     }
+      //   });
 
       let param = {
         marketing_agent_id: this.getDataUser().marketing_id,
@@ -320,49 +318,51 @@ export default {
       });
     },
     getDataBy() {
-        this.postJSON(
-            this.urlHoonian + "/api/marketing-website/v-launching/detail",
-            {release_period_id: this.paramFromList.id}
-        ).then((response) => {
-            if (response == null) return;
-            this.Model = response.data;
-            let h_left = 0, m_left = 0, d_left = 0, inDays = false;
-            // console.log(this.momentUnix(this.Model.end_datetime), new Date())
-            // console.log(this.momentDiff(this.momentUnix(this.Model.end_datetime), new Date(), 'days'))
-            if (this.paramFromList.status == 'i') {
-                if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') > 0 && this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') <= 1) {
-                    // h_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).hour);
-                    // m_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).minute);
-                    h_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'hours');
-                    m_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'minutes');
-                }
-                else if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') < 0) {
-                    //
-                }
-                else {
-                    inDays = true;
-                    // d_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).day);
-                    d_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days');
-                }
-            }
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/v-launching/detail",
+        { release_period_id: this.paramFromList.id }
+      ).then((response) => {
+        if (response == null) return;
+        this.Model = response.data;
+        let h_left = 0, m_left = 0, d_left = 0, inDays = false;
+        // console.log(this.momentUnix(this.Model.end_datetime), new Date())
+        // console.log(this.momentDiff(this.momentUnix(this.Model.end_datetime), new Date(), 'days'))
+        if (this.paramFromList.status == 'i') {
+          if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') > 0 && this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') <= 1) {
+            // h_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).hour);
+            // m_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).minute);
+            h_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'hours');
+            m_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'minutes');
+          }
+          else if (this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days') < 0) {
+            //
+          }
+          else {
+            inDays = true;
+            // d_left = parseInt(this.momentDiffFormat(this.Model.end_datetime, new Date()).day);
+            d_left = this.momentDiff(new Date(), this.momentUnix(this.Model.end_datetime, "DD/MM/YYYY HH:mm:ss"), 'days');
+          }
+        }
 
-            this.Model.inDays = inDays;
-            this.Model.h_left = h_left;
-            this.Model.m_left = m_left;
-            this.Model.d_left = d_left;
+        this.Model.inDays = inDays;
+        this.Model.h_left = h_left;
+        this.Model.m_left = m_left;
+        this.Model.d_left = d_left;
 
-            this.$refs.ref_buyer.doGetList("");
-            this.$refs.ref_unit.perPage = 20;
-            this.$refs.ref_unit.doGetList("");
-        });
+        this.$refs.ref_buyer.doGetList("");
+        this.$refs.ref_unit.perPage = 20;
+        this.$refs.ref_unit.doGetList("");
+      });
     }
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Virtual Launching");
     this.getDataBy();
     this.propList_buyer.param.release_period_id = this.paramFromList.id;
     this.propList_buyer.param.marketing_agent_id = this.getDataUser().marketing_id;
     this.propList_unit.param.release_period_id = this.paramFromList.id;
     this.propList_unit.param.marketing_agent_id = this.getDataUser().marketing_id;
+
   },
 };
 </script>

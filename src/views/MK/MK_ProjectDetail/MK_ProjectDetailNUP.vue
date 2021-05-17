@@ -291,6 +291,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", `Buy NUP ( ${this.paramFromList.project_name} )`);
   },
 };
 </script>

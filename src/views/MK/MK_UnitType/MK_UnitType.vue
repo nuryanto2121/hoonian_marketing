@@ -284,9 +284,9 @@
                       </b-row>
                     </template>
                   </HOOList>
-                  <ABSModal id="Modal_Calculator" ref="Modal_Calculator" size="lg">
+                  <ABSModal id="Modal_Calculator" ref="Modal_Calculator" >
                     <template slot="headerTitle">
-                      <span class="title-primary"> {{ $t('loan_calculator') }} </span>
+                      <span class="title-primary" style="margin: 12px 12px; font-size: 20px"> {{ $t('loan_calculator')}} </span>
                     </template>
                     <template slot="content">
                       <b-row v-if="dataRowClick">
@@ -296,15 +296,15 @@
                               <b-col md="6">
                                 {{ $t('unit_no') }}
                                 <br />
-                                <span style="color: #4A93B3">
-                                  {{dataRowClick.unit_no}}
+                                <span style="color: #4A93B3; font-size: 26px">
+                                  <b>{{dataRowClick.unit_no}}</b>
                                 </span>
                               </b-col>
                               <b-col md="6">
                                 {{ $t('unit_price') }}
                                 <br />
-                                <span style="color: #4A93B3">
-                                  IDR {{ isCurrency(dataRowClick.price, 0) }}
+                                <span style="color: #4A93B3; font-size: 26px">
+                                  <b>IDR {{ isCurrency(dataRowClick.price, 0) }}</b>
                                 </span>
                               </b-col>
                             </b-row>
@@ -371,7 +371,7 @@
                                 </span>
                                 <br />
                                 <span style="color: #4A93B3">
-                                  {{ isCurrency(monthlyInstallment, 2) }}
+                                  {{'IDR ' + isCurrency(monthlyInstallment, 2) }}
                                 </span>
                               </b-col>
                             </b-row>
@@ -917,7 +917,7 @@ export default {
         cType: "numeric",
         cProtect: false,
         cParentForm: "FormEntry",
-        cDecimal: 2,
+        cDecimal: 0,
         cInputStatus: "new"
       },
       // FormEntryBuyer
@@ -1043,7 +1043,8 @@ export default {
       // let loanAmount = this.dataRowClick.price * +this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
       let loanAmount = this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number');
       let pmt = this.pmt(
-        this.replaceAllString(this.Calculate.interest, ',', '', 'number') / 12,
+        // interest akan dihitung dalam %, jadi dibagi 100 dan dibagi 12 dari tahun ke bulan
+        this.replaceAllString(this.Calculate.interest, ',', '', 'number') / (12*100),
         this.replaceAllString(this.Calculate.tenor, ',', '', 'number'),
         loanAmount,
         0
@@ -1215,21 +1216,30 @@ export default {
      *                              1 = At the beginning of the period
      * @returns {number}
      */
+    // Formula : https://superuser.com/questions/871404/what-would-be-the-the-mathematical-equivalent-of-this-excel-formula-pmt
+
     pmt (rate_per_period, number_of_payments, present_value, future_value, type) {
         future_value = typeof future_value !== 'undefined' ? future_value : 0;
         type = typeof type !== 'undefined' ? type : 0;
 
-      if (rate_per_period != 0.0) {
-        // Interest rate exists
-        var q = Math.pow(1 + rate_per_period, number_of_payments);
-        return - (rate_per_period * (future_value + (q * present_value))) / ((-1 + q) * (1 + rate_per_period * (type)));
+      // if (rate_per_period != 0.0) {
+      //   // Interest rate exists
+      //   var R = Math.pow(1 + rate_per_period, number_of_payments);
+      //   return - (rate_per_period * (future_value + (R * present_value))) / ((1 + rate_per_period * (type)) * (R-1));
 
-      } else if (number_of_payments != 0.0) {
-        // No interest rate, but number of payments exists
-        return - (future_value + present_value) / number_of_payments;
+      // } else if (number_of_payments != 0.0) {
+      //   // No interest rate, but number of payments exists
+      //   return - (future_value + present_value) / number_of_payments;
+      // }
+
+      if(number_of_payments <= 0){
+        if (rate_per_period != 0){
+          return ((future_value + present_value) * rate_per_period) / (1- Math.pow((1 + rate_per_period), (-1*number_of_payments)))
+        }else{
+          return (future_value + present_value / number_of_payments);
+        }
       }
-
-      return 0;
+      return present_value + future_value;
     },
     showBuyerDetails() {
       let param = {

@@ -26,13 +26,13 @@ export default {
                         })
     },
 
-    alertError (message) {
+    alertError (message, customClass = 'swall-custom') {
       return this.$swal({
                           heightAuto: false,
                           title: 'Error',
                           text: String(message),
                           type: 'error',
-                          customClass: 'swall-custom',
+                          customClass: customClass,
                         })
     },
 
