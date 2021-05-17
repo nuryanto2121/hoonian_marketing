@@ -7,7 +7,7 @@
               <b-col lg="12" xl="12">
                 <b-row>
                   <b-col lg="2" xl="2" style="margin-right: 20px;">
-                    <b-img :src="urlHoonian + ModelDetail.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                    <b-img :src="urlHoonian + ModelDetail.icon_project" alt="" style="height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                   </b-col>
                   <b-col>
                     <b-row>

@@ -236,8 +236,8 @@ export default {
         current_nup_no: "",
         time_remain: "",
         next_nup_no: "",
-        nup_id: "",
-        nup_no: "",
+        unit_id: "",
+        unit_no: "",
         price: 0,
       },
       AvailableUnits: []
@@ -263,8 +263,8 @@ export default {
         current_nup_no: "",
         time_remain: "",
         next_nup_no: "",
-        nup_id: "",
-        nup_no: "",
+        unit_id: "",
+        unit_no: "",
         price: 0,
       };
     },
@@ -272,9 +272,11 @@ export default {
         this.AvailableUnits = data;
     },
     OnStatusClick(data) {
-        this.Model.nup_id = data.nup_id;
-        this.Model.nup_no = data.nup_no;
+      if (data.status) {
+        this.Model.unit_id = data.unit_id;
+        this.Model.unit_no = data.unit_no;
         this.Model.price = parseFloat(data.price);
+      }
     },
     doSave() {
       this.$validator._base.validateAll("FormEntry").then((result) => {

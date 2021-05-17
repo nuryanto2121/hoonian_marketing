@@ -5,6 +5,11 @@
                 <b-col lg="12" xl="12">
                     <div class="card">
                         <div class="card__body">
+                            <span style="color: black !important;" class="title-primary">Project List</span>
+                        </div>
+                     </div>
+                    <div class="card">
+                        <div class="card__body">
                             <b-row>
                                 <b-col xl="4" lg="4"
                                     v-for="(data, index) in Model" :key="data.id"
@@ -28,12 +33,12 @@
                                             </b-row>
                                             <b-row style="padding: 0px 10px 0px 10px !important;">
                                                 <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                                                    {{ $t('start_from') }} {{ isCurrency(data.start_from_price, 0) }}
+                                                    {{ $t('start_from') }} IDR {{ isCurrency(data.start_from_price, 0) }}
                                                 </b-col>
                                             </b-row>
                                             <b-row style="padding: 0px 10px !important; padding-bottom: 10px;">
                                                 <b-col style="font-size: 12px; color: #828282;">
-                                                    {{ isCurrency(data.price_per_meter_square,0) }} / m<sup>2</sup>
+                                                    IDR {{ isCurrency(data.price_per_meter_square,0) }} / m<sup>2</sup>
                                                 </b-col>
                                             </b-row>
                                             <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
@@ -50,7 +55,7 @@
                                                     <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
                                                     {{data.total_unit}} {{ $t('units') }}
                                                 </b-col>
-                                                <b-col style="padding-right: 0px !important; padding-left: 0px !important;">
+                                                <b-col lg="4" class="col-bd-room" style="padding-right: 0px !important; padding-left: 0px !important;">
                                                     &nbsp; | &nbsp;
                                                     <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
                                                     {{data.unit_type_desc}}
@@ -178,3 +183,12 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@media (min-width: 992px) {
+    .col-bd-room {
+        flex: 0 0 36%;
+        max-width: 36%;
+    }
+}
+</style>

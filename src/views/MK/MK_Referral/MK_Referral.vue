@@ -61,7 +61,7 @@
                 <br>
             </b-col>
         </b-row>
-        <b-row>
+        <b-row style="margin-bottom: 20px;">
           <b-col style="text-align: center;">
             <ABSButton
                   :text="'Save'"

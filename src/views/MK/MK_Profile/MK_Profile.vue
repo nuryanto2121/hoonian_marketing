@@ -189,10 +189,10 @@
                                     </b-col>
                                 </template>
                                 <template slot="price" slot-scope="data">
-                                    {{isCurrency(data.item.price, decimal)}}
+                                    IDR {{isCurrency(data.item.price, decimal)}}
                                 </template>
                                 <template slot="commission" slot-scope="data">
-                                    {{isCurrency(data.item.commission, decimal)}}
+                                    IDR {{isCurrency(data.item.commission, decimal)}}
                                 </template>
                             </HOOList>
                         </b-col>

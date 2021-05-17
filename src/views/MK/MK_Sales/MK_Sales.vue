@@ -7,9 +7,9 @@
             <b-col>
               <span style="color: black;" class="title-primary">Last 12 Months</span>
             </b-col>
-            <b-col>
+            <b-col style="max-width: max-content;">
               <b-row>
-                <b-col lg="2" xl="5" style="text-align: right; bottom: 5px; max-width: max-content;">
+                <b-col lg="3" xl="5" style="text-align: right; bottom: 5px; max-width: max-content;">
                     <span style="font-weight: bold; font-size: 13px;">
                         Show By &nbsp;&nbsp;
                     </span>
@@ -200,7 +200,7 @@ export default {
         cVisible:  true,
         cParentForm: 'FormEntry',
         cInputStatus: "new",
-        cGroup: true
+        cGroup: false
       },
 
       salesHeader: [
