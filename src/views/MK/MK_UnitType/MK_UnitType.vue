@@ -906,7 +906,7 @@ export default {
         cType: "decimal",
         cProtect: false,
         cParentForm: "FormEntry",
-        cDecimal: 2,
+        cDecimal: 0,
         cInputStatus: "new"
       },
       PI_tenor: {
@@ -1041,12 +1041,16 @@ export default {
     },
     calculate() {
       // let loanAmount = this.dataRowClick.price * +this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let loanPercentage = this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let unitPrice = this.replaceAllString(this.dataRowClick.price, ',', '', 'number');
       let loanAmount = this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number');
+      
+      
       let pmt = this.pmt(
         // interest akan dihitung dalam %, jadi dibagi 100 dan dibagi 12 dari tahun ke bulan
         this.replaceAllString(this.Calculate.interest, ',', '', 'number') / (12*100),
         this.replaceAllString(this.Calculate.tenor, ',', '', 'number'),
-        loanAmount,
+        (loanAmount == 0) ? loanPercentage * unitPrice / 100 : loanAmount,
         0
       )
       this.monthlyInstallment = pmt;
@@ -1238,6 +1242,8 @@ export default {
         }else{
           return (future_value + present_value / number_of_payments);
         }
+      }else{
+        
       }
       return present_value + future_value;
     },
