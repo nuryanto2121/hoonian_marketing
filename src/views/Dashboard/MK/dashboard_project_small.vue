@@ -264,6 +264,8 @@ export default {
       ).then((response) => {
         if (response == null) return;
         let data = response.data;
+        this.Model = [];
+        this.Model2 = [];
         for (let x = 0; x < data.length; x++) {
           if (x % 2 == 0) {
             this.Model.push(data[x]);
