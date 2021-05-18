@@ -154,6 +154,20 @@
                     <b-row>
                       <b-col md="12">
                         <span>
+                          <label class="lbl-poppins">Marketing {{ $t('group') }}</label>
+                        </span>
+                        <HOODropDown
+                          @change="Onmarketing_group_idChange"
+                          :prop="PI_marketing_group_id"
+                          v-model="Model.marketing_group_id"
+                          :label="Model.marketing_group_idLabel"
+                          ref="ref_marketing_group_id"
+                        />
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col md="12">
+                        <span>
                           <label class="lbl-poppins">{{ $t('email') }}</label>
                         </span>
                         <ACCTextBox
@@ -247,6 +261,10 @@ export default {
         id_no: "",
         thumbnail_image: "",
         mobile_app_user_id: "",
+        principle_id: "",
+        marketing_group_id: "",
+        marketing_group_idLabel: "",
+        assign_project_cnt: 0
       },
 
       Headers: [
@@ -335,10 +353,29 @@ export default {
         cDecimal: 2,
         cInputStatus: "new"
       },
+      PI_marketing_group_id: {
+        dataLookUp: {
+          url: "/api/hoonian-website/marketing-agent-group-lookup",
+          param: {
+          }
+        },
+        cValidate: "",
+        cName: "marketing_group_id",
+        ckey: false,
+        cOrder: 3,
+        cProtect: false,
+        cParentForm: "FormEntrySalesCancel",
+        cStatic: false,
+        cOption: [],
+        cDisplayColumn: "",
+        cInputStatus: this.inputStatus,
+        cClearable: false,
+        isShow: true,
+      },
       PI_email: {
         cValidate: "email",
         cName: "Email",
-        cOrder: 3,
+        cOrder: 4,
         cKey: false,
         cType: "email",
         cProtect: false,
@@ -349,7 +386,7 @@ export default {
       PI_id_no: {
         cValidate: "",
         cName: "ID No",
-        cOrder: 3,
+        cOrder: 5,
         cKey: false,
         cType: "tel",
         cProtect: false,
@@ -360,7 +397,7 @@ export default {
       PI_id_pict: {
         cValidate: "",
         cName: "id_pict",
-        cOrder: 5,
+        cOrder: 6,
         cTitle: "Upload Photo",
         cType: "id_pict",
         cParentForm: "FormEntry"
@@ -382,6 +419,10 @@ export default {
       this.$refs.ref_assignedProject.doGetList("");
       this.$refs.Modal_AssignProject._show();
     },
+    Onmarketing_group_idChange(data) {
+      this.Model.marketing_group_id = data.id;
+      this.Model.marketing_group_idLabel = data.label;
+    },
     OnMarketingClick(data) {
       var param = data;
       param.isEdit = false;
@@ -402,6 +443,10 @@ export default {
         id_no: "",
         thumbnail_image: "",
         mobile_app_user_id: "",
+        principle_id: this.getDataUser().principle_id,
+        assign_project_cnt: 0,
+        marketing_group_id: "",
+        marketing_group_idLabel: "",
       }
     },
     doAdd() {
