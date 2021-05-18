@@ -317,6 +317,7 @@
                                   :prop="PI_loan_percentage"
                                   v-model="Calculate.loan_percentage"
                                   ref="ref_loan_percentage"
+                                  @input="onLoanPercentage"
                                 />
                               </b-col>
                               <b-col md="6">
@@ -339,6 +340,7 @@
                                   :prop="PI_loan_amount"
                                   v-model="Calculate.loan_amount"
                                   ref="ref_loan_amount"
+                                  @input="onLoanAmount"
                                 />
                               </b-col>
                               <b-col md="6">
@@ -602,7 +604,7 @@
                               <label class="lbl-poppins">{{ $t('price') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
-                              {{ isCurrency(dataBuyerDetail.info.price, 0) }}
+                              IDR {{ isCurrency(dataBuyerDetail.info.price, 0) }}
                             </b-col>
                           </b-row>
                         </b-col>
@@ -612,7 +614,7 @@
                               <label class="lbl-poppins">{{ $t('booking_fee') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
-                              {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
+                              IDR {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
                             </b-col>
                           </b-row>
                           <b-row>
@@ -645,7 +647,7 @@
                               <label class="lbl-poppins">{{ $t('commission') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
-                              {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
+                              IDR {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
                             </b-col>
                           </b-row>
                         </b-col>
@@ -906,7 +908,7 @@ export default {
         cType: "decimal",
         cProtect: false,
         cParentForm: "FormEntry",
-        cDecimal: 2,
+        cDecimal: 0,
         cInputStatus: "new"
       },
       PI_tenor: {
@@ -1015,6 +1017,13 @@ export default {
     }
   },
   methods: {
+    onLoanPercentage(data){
+      this.Calculate.loan_amount = (this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number') * this.dataRowClick.price / 100).toFixed(0);
+    },
+    onLoanAmount(){
+      this.Calculate.loan_percentage = (this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number') * 100 / this.dataRowClick.price).toFixed(2);
+
+    },
     changeImage(path) {
       this.Model.data.layout_image = path;
     },
@@ -1041,12 +1050,16 @@ export default {
     },
     calculate() {
       // let loanAmount = this.dataRowClick.price * +this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let loanPercentage = this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let unitPrice = this.replaceAllString(this.dataRowClick.price, ',', '', 'number');
       let loanAmount = this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number');
+      
+      
       let pmt = this.pmt(
         // interest akan dihitung dalam %, jadi dibagi 100 dan dibagi 12 dari tahun ke bulan
         this.replaceAllString(this.Calculate.interest, ',', '', 'number') / (12*100),
         this.replaceAllString(this.Calculate.tenor, ',', '', 'number'),
-        loanAmount,
+        (loanAmount == 0) ? loanPercentage * unitPrice / 100 : loanAmount,
         0
       )
       this.monthlyInstallment = pmt;
@@ -1232,12 +1245,14 @@ export default {
       //   return - (future_value + present_value) / number_of_payments;
       // }
 
-      if(number_of_payments >= 0){
+      if(number_of_payments > 0){
         if (rate_per_period != 0){
           return ((future_value + present_value) * rate_per_period) / (1- Math.pow((1 + rate_per_period), (-1*number_of_payments)))
         }else{
           return (future_value + present_value / number_of_payments);
         }
+      }else{
+        
       }
       return present_value + future_value;
     },
