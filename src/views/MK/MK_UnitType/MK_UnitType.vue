@@ -319,6 +319,7 @@
                                   :prop="PI_loan_percentage"
                                   v-model="Calculate.loan_percentage"
                                   ref="ref_loan_percentage"
+                                  @input="onLoanPercentage"
                                 />
                               </b-col>
                               <b-col md="6">
@@ -341,6 +342,7 @@
                                   :prop="PI_loan_amount"
                                   v-model="Calculate.loan_amount"
                                   ref="ref_loan_amount"
+                                  @input="onLoanAmount"
                                 />
                               </b-col>
                               <b-col md="6">
@@ -1017,6 +1019,13 @@ export default {
     }
   },
   methods: {
+    onLoanPercentage(data){
+      this.Calculate.loan_amount = (this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number') * this.dataRowClick.price / 100).toFixed(0);
+    },
+    onLoanAmount(){
+      this.Calculate.loan_percentage = (this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number') * 100 / this.dataRowClick.price).toFixed(2);
+
+    },
     changeImage(path) {
       this.Model.data.layout_image = path;
     },
@@ -1238,7 +1247,7 @@ export default {
       //   return - (future_value + present_value) / number_of_payments;
       // }
 
-      if(number_of_payments >= 0){
+      if(number_of_payments > 0){
         if (rate_per_period != 0){
           return ((future_value + present_value) * rate_per_period) / (1- Math.pow((1 + rate_per_period), (-1*number_of_payments)))
         }else{
