@@ -97,7 +97,8 @@
                  {{ $t('net_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.data.net_area}} m <sup>2</sup>
+                 {{Model.data.net_area}}
+                 <!-- m <sup>2</sup> -->
                </b-col>
              </b-row>
              <b-row class="row-view-black">
@@ -105,7 +106,8 @@
                  {{ $t('gross_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.data.gross_area}} m <sup>2</sup>
+                 {{Model.data.gross_area}}
+                 <!-- m <sup>2</sup> -->
                </b-col>
              </b-row>
              <b-row style="margin-top: 40px; color: white;">
