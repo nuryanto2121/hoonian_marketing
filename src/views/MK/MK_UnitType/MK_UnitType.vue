@@ -1097,7 +1097,9 @@ export default {
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
-        this.showVA(response.data.transaction_id);
+        // this.showVA(response.data.transaction_id);
+        window.open(response.data.payment.redirect_url);
+        this.doBack();
       });
     },
     showVA(id) {
