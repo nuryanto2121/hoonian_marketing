@@ -192,6 +192,7 @@ export default {
       }
       this.postJSON(this.urlHoonian + '/api/marketing-website/token/purchase', param).then((response) => {
         if (response == null) return;
+        window.open(response.data.payment.redirect_url);
         this.doBack();
       });
     },
