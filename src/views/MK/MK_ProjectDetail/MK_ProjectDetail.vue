@@ -211,7 +211,12 @@
              </template>
            </b-col>
            <b-col sm="6">
-             <vue-horizontal-list
+            <div style="overflow-x: auto; white-space: nowrap; display: block !important;">
+              <template v-for="(data, index) in Model.facility_images">
+                <b-img v-bind:key="index" :src="urlHoonian + data.thumbnail_image" alt="" style="height: 310px; cursor: pointer; max-width: 90%; margin-left: 5px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(data)" />
+              </template>
+            </div>
+             <!-- <vue-horizontal-list
               v-if="Model.facility_images.length > 0"
               :items="Model.facility_images"
               :options="optionsFacilities"
@@ -235,7 +240,7 @@
                   </b-col>
                 </b-row>
               </template>
-            </vue-horizontal-list>
+            </vue-horizontal-list> -->
            </b-col>
          </b-row>
 

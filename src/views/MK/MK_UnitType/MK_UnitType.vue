@@ -97,7 +97,8 @@
                  {{ $t('net_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.data.net_area}} m <sup>2</sup>
+                 {{Model.data.net_area}}
+                 <!-- m <sup>2</sup> -->
                </b-col>
              </b-row>
              <b-row class="row-view-black">
@@ -105,7 +106,8 @@
                  {{ $t('gross_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.data.gross_area}} m <sup>2</sup>
+                 {{Model.data.gross_area}}
+                 <!-- m <sup>2</sup> -->
                </b-col>
              </b-row>
              <b-row style="margin-top: 40px; color: white;">
@@ -1096,7 +1098,9 @@ export default {
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
-        this.showVA(response.data.transaction_id);
+        // this.showVA(response.data.transaction_id);
+        window.open(response.data.payment.redirect_url);
+        this.doBack();
       });
     },
     showVA(id) {

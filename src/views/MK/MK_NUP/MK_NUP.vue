@@ -55,13 +55,19 @@
                     </b-col>
                   </template>
                   <template slot="total_nup" slot-scope="data">
-                    {{data.item.total_nup}}
-                    <ABSButton
-                      text="No NUP"
-                      classButton="button button--hoonian"
-                      icon="wallet"
-                      @click="doShowNoNUP(data.item)"
-                    />
+                    <b-row>
+                      <b-col sm="2">
+                        {{data.item.total_nup}}
+                      </b-col>
+                      <b-col>
+                        <ABSButton
+                          text="No NUP"
+                          classButton="button button--hoonian"
+                          icon="wallet"
+                          @click="doShowNoNUP(data.item)"
+                        />
+                      </b-col>
+                    </b-row>
                   </template>
                 </HOOList>
             </b-col>
