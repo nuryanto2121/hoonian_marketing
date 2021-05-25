@@ -286,7 +286,9 @@ export default {
         param
       ).then((response) => {
         if (response == null) return;
-        this.showPaymentThroughVA(response.data.nup_purchase_id);
+        // this.showPaymentThroughVA(response.data.nup_purchase_id);
+        window.open(response.data.payment.redirect_url);
+        this.doBack();
       });
     },
   },
