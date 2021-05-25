@@ -275,6 +275,7 @@ export default {
         email: this.Model.email,
         id_no: this.Model.id_no,
         thumbnail_image: this.Model.id_picture,
+        marketing_agent_id: this.getDataUser().marketing_id,
         project_id: this.paramFromList.id,
         marketing_id: this.getDataUser().marketing_id,
         principle_id: this.getDataUser().principle_id,
