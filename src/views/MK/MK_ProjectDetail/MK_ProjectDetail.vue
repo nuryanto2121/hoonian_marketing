@@ -964,6 +964,7 @@ export default {
               param: {
                 tower_cluster_id: data[i].id,
                 lang_id: this.getDataUser().lang_id,
+                principle_id: this.getDataUser().principle_id,
               }
             }
           });

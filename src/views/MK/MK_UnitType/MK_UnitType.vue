@@ -815,6 +815,7 @@ export default {
           tower_cluster_id: "",
           type: "",
           lang_id: this.getDataUser().lang_id,
+          principle_id: this.getDataUser().principle_id,
         }
       },
       unitListHeader: [
@@ -1151,6 +1152,7 @@ export default {
       this.propList.param.unit_type_id = this.paramFromList.availableUnitTypes.id;
       this.propList.param.marketing_agent_id = this.getDataUser().marketing_id;
       this.propList.param.tower_cluster_id = this.Model.data.tower_cluster_id;
+      this.propList.param.principle_id = this.getDataUser().principle_id;
       this.propList.param.type = this.type;
 
       this.$nextTick(() => {
@@ -1198,6 +1200,7 @@ export default {
     getUnitTypeDetail() {
       let param = {
         unit_type_id: this.paramFromList.availableUnitTypes.id,
+        principle_id: this.getDataUser().principle_id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/detail', param).then((response) => {
@@ -1274,6 +1277,7 @@ export default {
     getOtherSuggestion() {
       let param = {
         unit_type_id: this.paramFromList.availableUnitTypes.id,
+        principle_id: this.getDataUser().principle_id,
       };
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/project/unit-type/suggestion",
