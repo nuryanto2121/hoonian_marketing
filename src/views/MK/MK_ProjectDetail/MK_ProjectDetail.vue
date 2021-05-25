@@ -174,17 +174,17 @@
                     {{Model.infos[index].header}}
                   </div>
                 </b-col>
-                <b-col sm="3" v-if="Model.infos.length > (index + 1)" class="row-view-black">
+                <b-col sm="3" class="row-view-black">
                   <div style="margin-right: 10px !important; padding-left: unset !important;">
                     {{Model.infos[index].body}}
                   </div>
                 </b-col>
-                <b-col sm="3" v-if="Model.infos.length > (index + 2)" style="padding-left: unset !important; padding-right: unset !important;">
+                <b-col sm="3" v-if="Model.infos.length > (index + 1)" style="padding-left: unset !important; padding-right: unset !important;">
                   <div class="row-view-black" style="margin-left: 10px !important;">
                     {{Model.infos[index + 1].header}}
                   </div>
                 </b-col>
-                <b-col sm="3" class="row-view-black" v-if="Model.infos.length > (index + 3)">
+                <b-col sm="3" v-if="Model.infos.length > (index + 1)" class="row-view-black">
                   <div style="margin-left: 10px !important; padding-left: unset !important;">
                     {{Model.infos[index + 1].body}}
                   </div>
