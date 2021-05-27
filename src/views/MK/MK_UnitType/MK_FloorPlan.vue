@@ -39,7 +39,9 @@
               <v-stage :config="stageSize" ref="stage">
                 <v-layer>
                   <v-image :config="{
-                    image: image
+                    image: image,
+                    width: 1000,
+                    height: 490,
                   }"/>
                   <template v-for="data in savedShape">
                     <v-line @click="onShapeClick" :config="{
@@ -64,7 +66,8 @@
   </div>
 </template>
 <script>
-const width = window.innerWidth;
+// const width = window.innerWidth;
+const width = 1000;
 const height = 500;
 export default {
   computed: {
@@ -189,8 +192,8 @@ export default {
           this.image = image;
 
           // console.log(image.width + "X" + image.height)
-          this.stageSize.width = image.width;
-          this.stageSize.height = image.height;
+          // this.stageSize.width = image.width;
+          // this.stageSize.height = image.height;
         };
       });
     },
