@@ -3,246 +3,253 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-         <b-row>
-           <b-col>
-             {{Model.data.project_name}}
-           </b-col>
-           <b-col sm="3">
-             {{ $t('start_from') }} IDR {{ isCurrency(Model.data.start_from_price, 0) }}
-           </b-col>
-         </b-row>
-         <b-row>
-           <b-col style="color: #828282; font-size: 12px;">
-             {{Model.data.address}}
-           </b-col>
-           <b-col style="color: #828282; font-size: 12px;" sm="3">
-            IDR {{ isCurrency(Model.data.price_per_meter_square,0) }} / m<sup>2</sup>
-           </b-col>
-         </b-row>
-         <b-row style="margin-top: 10px;">
-           <b-col sm="6" style="padding: unset !important;">
-             <b-img :src="urlHoonian + Model.data.main_pic" alt=""
-                :style="`height: 310px;`"
-                fluid-grow @error="onImageLoadFailure($event)" />
-           </b-col>
-           <b-col sm="3" style="padding: unset !important; background: black; color: white;">
-            <div v-for="(image, index) in Model.image" :key="index">
-              <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
+          <div>
+            <b-row>
+              <b-col>
+                {{Model.data.project_name}}
+              </b-col>
+              <b-col sm="3">
+                {{ $t('start_from') }} IDR {{ isCurrency(Model.data.start_from_price, 0) }}
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col style="color: #828282; font-size: 12px;">
+                {{Model.data.address}}
+              </b-col>
+              <b-col style="color: #828282; font-size: 12px;" sm="3">
+                IDR {{ isCurrency(Model.data.price_per_meter_square,0) }} / m<sup>2</sup>
+              </b-col>
+            </b-row>
+          </div>
+
+          <b-row style="margin-top: 10px;">
+            <b-col sm="6" style="padding: unset !important;">
+              <b-img :src="urlHoonian + Model.data.main_pic" alt=""
+                  :style="`height: 310px;`"
+                  fluid-grow @error="onImageLoadFailure($event)" />
+            </b-col>
+            <b-col sm="3" style="padding: unset !important; background: black; color: white;">
+              <div v-for="(image, index) in Model.image" :key="index">
+                <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
+                  <b-col>
+                    <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
+                      :style="`width: 90px; height: 90px; cursor: pointer;`"
+                      fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
+                  </b-col>
+                  <b-col v-if="Model.image.length > (index + 1)">
+                    <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
+                      :style="`width: 90px; height: 90px; cursor: pointer;`"
+                      fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
+                  </b-col>
+                </b-row>
+              </div>
+            </b-col>
+            <b-col sm="3" style="padding: unset !important; background: black; color: white; text-align: center;">
+              <b-row style="margin-top: 10px;">
                 <b-col>
-                  <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
-                    :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
-                </b-col>
-                <b-col v-if="Model.image.length > (index + 1)">
-                  <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
-                    :style="`width: 90px; height: 90px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
+                  <div style="border: 1px solid #FFFFFF;
+                              box-sizing: border-box;">
+                    <b-row style="cursor: pointer;" @click="openBuildingPlan">
+                      <b-col sm="2" align-self="center">
+                        <b-img :src="require('@/assets/icon-svg/building_plan.svg')" alt="" style=""/>
+                      </b-col>
+                      <b-col align-self="center" style="padding: 5px !important;">
+                        {{ $t('building_plan') }}
+                      </b-col>
+                    </b-row>
+                  </div>
                 </b-col>
               </b-row>
-            </div>
-           </b-col>
-           <b-col sm="3" style="padding: unset !important; background: black; color: white; text-align: center;">
-             <b-row style="margin-top: 10px;">
-               <b-col>
-                 <div style="border: 1px solid #FFFFFF;
-                            box-sizing: border-box;">
-                  <b-row style="cursor: pointer;" @click="openBuildingPlan">
-                    <b-col sm="2" align-self="center">
-                      <b-img :src="require('@/assets/icon-svg/building_plan.svg')" alt="" style=""/>
-                    </b-col>
-                    <b-col align-self="center" style="padding: 5px !important;">
-                      {{ $t('building_plan') }}
-                    </b-col>
-                  </b-row>
-                 </div>
-               </b-col>
-             </b-row>
-             <b-row style="margin-top: 5px;">
-               <b-col>
-                 <div style="border: 1px solid #FFFFFF;
-                            box-sizing: border-box;">
-                  <b-row style="cursor: pointer;" @click="open360VR">
-                    <b-col sm="2" align-self="center">
-                      <b-img :src="require('@/assets/icon-svg/vr.svg')" alt="" style=""/>
-                    </b-col>
-                    <b-col align-self="center" style="padding: 5px !important;">
-                      360<sup>o</sup> {{ $t('vr') }}
-                    </b-col>
-                  </b-row>
-                 </div>
-               </b-col>
-             </b-row>
-             <b-row style="margin-top: 5px;">
-               <b-col>
-                 <div style="border: 1px solid #FFFFFF;
-                            box-sizing: border-box;">
-                  <b-row style="cursor: pointer;" @click="openVideo">
-                    <b-col sm="2" align-self="center">
-                      <b-img :src="require('@/assets/icon-svg/video.svg')" alt="" style=""/>
-                    </b-col>
-                    <b-col align-self="center" style="padding: 5px !important;">
-                      {{ $t('video') }}
-                    </b-col>
-                  </b-row>
-                 </div>
-               </b-col>
-             </b-row>
-             <b-row style="margin-top: 5px;">
-               <b-col>
-                 <div style="border: 1px solid #FFFFFF;
-                            box-sizing: border-box;">
-                  <b-row style="cursor: pointer;" @click="openBrochure">
-                    <b-col sm="2" align-self="center">
-                      <b-img :src="require('@/assets/icon-svg/e_brochure.svg')" alt="" style=""/>
-                    </b-col>
-                    <b-col align-self="center" style="padding: 5px !important;">
-                      {{ $t('e_brochure') }}
-                    </b-col>
-                  </b-row>
-                 </div>
-               </b-col>
-             </b-row>
-             <b-row style="margin-top: 5px;">
-               <b-col>
-                 <div style="border: 1px solid #FFFFFF;
-                            box-sizing: border-box;">
-                  <b-row style="cursor: pointer;" @click="openMap">
-                    <b-col sm="2" align-self="center">
-                      <b-img :src="require('@/assets/icon-svg/map-pin-white.svg')" alt="" style=""/>
-                    </b-col>
-                    <b-col align-self="center" style="padding: 5px !important;">
-                      {{ $t('map') }}
-                    </b-col>
-                  </b-row>
-                 </div>
-               </b-col>
-             </b-row>
-             <b-row style="margin-top: 40px;">
-               <b-col>
-                <ShareNetwork
-                  network="facebook"
-                  :url="urlHoonian + Model.data.main_pic"
-                  :title="Model.share.title"
-                  description="Hoonian"
-                  :quote="Model.share.title"
-                  hashtags="hoonian"
-                >
-                  <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
-                </ShareNetwork>
-               </b-col>
-               <b-col>
-                 <ShareNetwork
-                  network="twitter"
-                  :url="urlHoonian + Model.data.main_pic"
-                  :title="Model.share.title"
-                  description="Hoonian"
-                  :quote="Model.share.title"
-                  hashtags="hoonian"
-                >
-                  <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
-                </ShareNetwork>
-               </b-col>
-               <b-col>
-                 <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
-               </b-col>
-               <b-col>
-                 <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
-               </b-col>
-             </b-row>
-           </b-col>
-         </b-row>
-
-         <b-row style="margin-top: 10px;">
-           <b-col style="color: #828282;">
-             {{Model.data.project_status}}
-             &nbsp;&nbsp; > &nbsp;&nbsp;
-             {{Model.data.location_name}}
-             &nbsp;&nbsp; > &nbsp;&nbsp;
-             {{Model.data.project_name}}
-           </b-col>
-         </b-row>
-
-         <b-row style="margin-top: 10px;">
-           <b-col>
-             <div style="text-shadow: 0.5px 0px; font-size: 22px;">
-               Project Information
-             </div>
-             <template v-for="(info, index) in Model.infos">
-               <b-row v-if="index % 2 == 0" :key="index">
-                <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
-                  <div class="row-view-black" style="text-shadow: 0.7px 0px;">
-                    {{Model.infos[index].header}}
+              <b-row style="margin-top: 5px;">
+                <b-col>
+                  <div style="border: 1px solid #FFFFFF;
+                              box-sizing: border-box;">
+                    <b-row style="cursor: pointer;" @click="open360VR">
+                      <b-col sm="2" align-self="center">
+                        <b-img :src="require('@/assets/icon-svg/vr.svg')" alt="" style=""/>
+                      </b-col>
+                      <b-col align-self="center" style="padding: 5px !important;">
+                        360<sup>o</sup> {{ $t('vr') }}
+                      </b-col>
+                    </b-row>
                   </div>
                 </b-col>
-                <b-col sm="3" class="row-view-black">
-                  <div style="margin-right: 10px !important; padding-left: 10px !important;">
-                    {{Model.infos[index].body}}
+              </b-row>
+              <b-row style="margin-top: 5px;">
+                <b-col>
+                  <div style="border: 1px solid #FFFFFF;
+                              box-sizing: border-box;">
+                    <b-row style="cursor: pointer;" @click="openVideo">
+                      <b-col sm="2" align-self="center">
+                        <b-img :src="require('@/assets/icon-svg/video.svg')" alt="" style=""/>
+                      </b-col>
+                      <b-col align-self="center" style="padding: 5px !important;">
+                        {{ $t('video') }}
+                      </b-col>
+                    </b-row>
                   </div>
                 </b-col>
-                <b-col v-if="Model.infos.length > (index + 1)" sm="3" style="padding-left: unset !important; padding-right: unset !important;">
-                  <div class="row-view-black" style="margin-left: 10px !important; text-shadow: 0.7px 0px;">
-                    {{Model.infos[index + 1].header}}
+              </b-row>
+              <b-row style="margin-top: 5px;">
+                <b-col>
+                  <div style="border: 1px solid #FFFFFF;
+                              box-sizing: border-box;">
+                    <b-row style="cursor: pointer;" @click="openBrochure">
+                      <b-col sm="2" align-self="center">
+                        <b-img :src="require('@/assets/icon-svg/e_brochure.svg')" alt="" style=""/>
+                      </b-col>
+                      <b-col align-self="center" style="padding: 5px !important;">
+                        {{ $t('e_brochure') }}
+                      </b-col>
+                    </b-row>
                   </div>
                 </b-col>
-                <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black">
-                  <div style="margin-right: 10px !important; padding-left: 10px !important;">
-                    {{Model.infos[index + 1].body}}
+              </b-row>
+              <b-row style="margin-top: 5px;">
+                <b-col>
+                  <div style="border: 1px solid #FFFFFF;
+                              box-sizing: border-box;">
+                    <b-row style="cursor: pointer;" @click="openMap">
+                      <b-col sm="2" align-self="center">
+                        <b-img :src="require('@/assets/icon-svg/map-pin-white.svg')" alt="" style=""/>
+                      </b-col>
+                      <b-col align-self="center" style="padding: 5px !important;">
+                        {{ $t('map') }}
+                      </b-col>
+                    </b-row>
                   </div>
                 </b-col>
-               </b-row>
-             </template>
-           </b-col>
-         </b-row>
-
-         <b-row style="margin-top: 10px;">
-           <b-col sm="6">
-             <div style="text-shadow: 0.5px 0px; font-size: 22px;">
-               Facilities
-             </div>
-             <template v-for="(facility, index) in Model.facilities">
-               <b-row v-if="index % 2 == 0" :key="index">
-                <b-col sm="6" class="row-view-black" style="margin-right: 10px !important; padding-left: unset !important;">
-                  {{Model.facilities[index].body}}
+              </b-row>
+              <b-row style="margin-top: 40px;">
+                <b-col>
+                  <ShareNetwork
+                    network="facebook"
+                    :url="urlHoonian + Model.data.main_pic"
+                    :title="Model.share.title"
+                    description="Hoonian"
+                    :quote="Model.share.title"
+                    hashtags="hoonian"
+                  >
+                    <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
+                  </ShareNetwork>
                 </b-col>
-                <b-col class="row-view-black" style="margin-left: 10px !important; padding-left: unset !important;" v-if="Model.facilities.length > (index + 1)">
-                  {{Model.facilities[index + 1].body}}
+                <b-col>
+                  <ShareNetwork
+                    network="twitter"
+                    :url="urlHoonian + Model.data.main_pic"
+                    :title="Model.share.title"
+                    description="Hoonian"
+                    :quote="Model.share.title"
+                    hashtags="hoonian"
+                  >
+                    <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
+                  </ShareNetwork>
                 </b-col>
-               </b-row>
-             </template>
-           </b-col>
-           <b-col sm="6">
-            <div style="overflow-x: auto; white-space: nowrap; display: block !important;">
-              <template v-for="(data, index) in Model.facility_images">
-                <b-img v-bind:key="index" :src="urlHoonian + data.thumbnail_image" alt="" style="height: 310px; cursor: pointer; max-width: 90%; margin-left: 5px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(data)" />
-              </template>
-            </div>
-             <!-- <vue-horizontal-list
-              v-if="Model.facility_images.length > 0"
-              :items="Model.facility_images"
-              :options="optionsFacilities"
-            >
-              <template v-slot:nav-prev>
-              </template>
+                <b-col>
+                  <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
+                </b-col>
+                <b-col>
+                  <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
 
-              <template v-slot:nav-next>
-              </template>
-
-              <template v-slot:start>
-              </template>
-
-              <template v-slot:end>
-              </template>
-
-              <template v-slot:default="{item}">
-                <b-row>
-                  <b-col>
-                    <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 310px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+          <div style="background: #F8F8F8;">
+            <b-row style="padding-top: 10px;">
+              <b-col style="color: #828282;">
+                {{Model.data.project_status}}
+                &nbsp;&nbsp; > &nbsp;&nbsp;
+                {{Model.data.location_name}}
+                &nbsp;&nbsp; > &nbsp;&nbsp;
+                {{Model.data.project_name}}
+              </b-col>
+            </b-row>
+            <b-row style="margin-top: 10px;">
+              <b-col>
+                <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
+                  Project Information
+                </div>
+                <template v-for="(info, index) in Model.infos">
+                  <b-row v-if="index % 2 == 0" :key="index">
+                    <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
+                      <div class="row-view-black" style="text-shadow: 0.7px 0px;">
+                        {{Model.infos[index].header}}
+                      </div>
+                    </b-col>
+                    <b-col sm="3" class="row-view-black">
+                      <div style="margin-right: 10px !important; padding-left: 10px !important;">
+                        {{Model.infos[index].body}}
+                      </div>
+                    </b-col>
+                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" style="padding-left: unset !important; padding-right: unset !important;">
+                      <div class="row-view-black" style="margin-left: 10px !important; text-shadow: 0.7px 0px;">
+                        {{Model.infos[index + 1].header}}
+                      </div>
+                    </b-col>
+                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black">
+                      <div style="margin-right: 10px !important; padding-left: 10px !important;">
+                        {{Model.infos[index + 1].body}}
+                      </div>
+                    </b-col>
+                  </b-row>
+                </template>
+              </b-col>
+            </b-row>
+          </div>
+          <div style="height: 10px;">
+          </div>
+         <div style="background: #F8F8F8; padding-top: 10px;">
+          <b-row>
+            <b-col sm="6">
+              <div style="text-shadow: 0.5px 0px; font-size: 22px;">
+                Facilities
+              </div>
+              <template v-for="(facility, index) in Model.facilities">
+                <b-row v-if="index % 2 == 0" :key="index">
+                  <b-col sm="6" class="row-view-black" style="margin-right: 10px !important; padding-left: unset !important;">
+                    {{Model.facilities[index].body}}
+                  </b-col>
+                  <b-col class="row-view-black" style="margin-left: 10px !important; padding-left: unset !important;" v-if="Model.facilities.length > (index + 1)">
+                    {{Model.facilities[index + 1].body}}
                   </b-col>
                 </b-row>
               </template>
-            </vue-horizontal-list> -->
-           </b-col>
-         </b-row>
+            </b-col>
+            <b-col sm="6">
+              <div style="overflow-x: auto; white-space: nowrap; display: block !important;">
+                <template v-for="(data, index) in Model.facility_images">
+                  <b-img v-bind:key="index" :src="urlHoonian + data.thumbnail_image" alt="" style="height: 310px; cursor: pointer; max-width: 90%; margin-left: 5px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(data)" />
+                </template>
+              </div>
+              <!-- <vue-horizontal-list
+                v-if="Model.facility_images.length > 0"
+                :items="Model.facility_images"
+                :options="optionsFacilities"
+              >
+                <template v-slot:nav-prev>
+                </template>
+
+                <template v-slot:nav-next>
+                </template>
+
+                <template v-slot:start>
+                </template>
+
+                <template v-slot:end>
+                </template>
+
+                <template v-slot:default="{item}">
+                  <b-row>
+                    <b-col>
+                      <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 310px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                    </b-col>
+                  </b-row>
+                </template>
+              </vue-horizontal-list> -->
+            </b-col>
+          </b-row>
+         </div>
 
          <b-row style="margin-top: 10px;">
            <b-col>
@@ -386,7 +393,7 @@
              Progress
            </b-col>
          </b-row>
-         <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
+         <b-row v-if="Progress.length > 0">
            <b-col>
              <vue-horizontal-list
               :items="Progress"
@@ -503,12 +510,12 @@
         </ABSModal>
         <ABSModalImage id="Modal_Image" ref="Modal_Image" size="md" />
 
-         <b-row v-if="Promotion.length > 0" style="margin-top: 10px;">
+         <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              Promotions
            </b-col>
          </b-row>
-         <b-row v-if="Promotion.length > 0" style="margin-top: 10px; background: #F8F8F8;">
+         <b-row v-if="Promotion.length > 0" style="background: #F8F8F8;">
            <b-col>
              <vue-horizontal-list
               :items="Promotion"
@@ -556,7 +563,7 @@
              Financial Partners
            </b-col>
          </b-row>
-         <b-row v-if="FinancialPartner.length > 0" style="margin-top: 10px;">
+         <b-row v-if="FinancialPartner.length > 0" style="">
            <b-col>
              <vue-horizontal-list
               :items="FinancialPartner"
@@ -598,7 +605,7 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="News.length > 0" style="margin-top: 10px; background: #F8F8F8;">
+         <b-row v-if="News.length > 0" style="padding-top: 10px; background: #F8F8F8;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                News
