@@ -251,7 +251,7 @@
           </b-row>
          </div>
 
-         <b-row style="margin-top: 20px;">
+         <b-row style="margin-top: 20px; padding-bottom: 20px;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                Nearby
@@ -287,7 +287,7 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 30px;">
+         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 20px;">
            <template v-for="(data, index) in AvailableUnitTypes">
             <b-col sm="12" :key="data.id">
               <span style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
@@ -393,7 +393,7 @@
              Progress
            </b-col>
          </b-row>
-         <b-row v-if="Progress.length > 0">
+         <b-row v-if="Progress.length > 0" style="padding-bottom: 20px;">
            <b-col>
              <vue-horizontal-list
               :items="Progress"
@@ -515,7 +515,7 @@
              Promotions
            </b-col>
          </b-row>
-         <b-row v-if="Promotion.length > 0" style="background: #F8F8F8;">
+         <b-row v-if="Promotion.length > 0" style="background: #F8F8F8; padding-bottom: 20px;">
            <b-col>
              <vue-horizontal-list
               :items="Promotion"
@@ -563,7 +563,7 @@
              Financial Partners
            </b-col>
          </b-row>
-         <b-row v-if="FinancialPartner.length > 0" style="">
+         <b-row v-if="FinancialPartner.length > 0" style="padding-bottom: 20px;">
            <b-col>
              <vue-horizontal-list
               :items="FinancialPartner"
@@ -611,7 +611,7 @@
                News
              </div>
              <template v-for="(news, index) in News">
-               <b-row :key="index" style="margin-top: 10px;">
+               <b-row :key="index" style="margin-top: 10px; padding-bottom: 20px;">
 
                  <!-- left -->
                  <template v-if="index % 2 == 0">
