@@ -165,7 +165,7 @@
                 {{Model.data.project_name}}
               </b-col>
             </b-row>
-            <b-row style="margin-top: 10px;">
+            <b-row style="margin-top: 20px; padding-bottom: 20px;">
               <b-col>
                 <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                   Project Information
@@ -197,9 +197,9 @@
               </b-col>
             </b-row>
           </div>
-          <div style="height: 10px;">
+          <div style="height: 20px;">
           </div>
-         <div style="background: #F8F8F8; padding-top: 10px;">
+         <div style="background: #F8F8F8; padding-top: 20px; padding-bottom: 20px;">
           <b-row>
             <b-col sm="6">
               <div style="text-shadow: 0.5px 0px; font-size: 22px;">
@@ -251,7 +251,7 @@
           </b-row>
          </div>
 
-         <b-row style="margin-top: 10px;">
+         <b-row style="margin-top: 20px;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                Nearby
@@ -287,7 +287,7 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 10px;">
+         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 30px;">
            <template v-for="(data, index) in AvailableUnitTypes">
             <b-col sm="12" :key="data.id">
               <span style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
@@ -388,7 +388,7 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
+         <b-row v-if="Progress.length > 0" style="margin-top: 30px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              Progress
            </b-col>
@@ -510,7 +510,7 @@
         </ABSModal>
         <ABSModalImage id="Modal_Image" ref="Modal_Image" size="md" />
 
-         <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8;">
+         <b-row v-if="Promotion.length > 0" style="padding-top: 20px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              Promotions
            </b-col>
@@ -558,7 +558,7 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="FinancialPartner.length > 0" style="margin-top: 10px;">
+         <b-row v-if="FinancialPartner.length > 0" style="margin-top: 20px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              Financial Partners
            </b-col>
@@ -605,7 +605,7 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="News.length > 0" style="padding-top: 10px; background: #F8F8F8;">
+         <b-row v-if="News.length > 0" style="padding-top: 20px; background: #F8F8F8;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
                News
