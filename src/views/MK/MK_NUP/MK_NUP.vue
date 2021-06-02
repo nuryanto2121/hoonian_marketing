@@ -269,7 +269,8 @@ export default {
     getProject() {
       let param = {
         company_group_id: this.company_group_id,
-        principle_id: this.getDataUser().principle_id
+        principle_id: this.getDataUser().principle_id,
+        marketing_agent_id: this.getDataUser().marketing_id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/nup/header', param).then((response) => {
