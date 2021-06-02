@@ -320,7 +320,7 @@ export default {
     getDataBy() {
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/v-launching/detail",
-        { release_period_id: this.paramFromList.id }
+        { release_period_id: this.paramFromList.id, marketing_id: this.getDataUser().marketing_id }
       ).then((response) => {
         if (response == null) return;
         this.Model = response.data;
