@@ -91,13 +91,13 @@
                                                         </b-col>
                                                     </b-row>
                                                     <b-row style="padding: 0px 10px 0px 10px !important;">
-                                                        <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                            <span style="font-size: 20px;"> {{data.h_left}} </span>
-                                                            <span style="font-size: 15px;">{{ $t('hours') }}</span>
+                                                        <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                            <span style="font-size: 40px;"> {{data.h_left}} </span>
+                                                            <span style="font-size: 20px;">{{ $t('hours') }}</span>
                                                         </b-col>
-                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                            <span style="font-size: 20px;"> {{data.m_left}} </span>
-                                                            <span style="font-size: 15px;">{{ $t('minutes') }}</span>
+                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                            <span style="font-size: 40px;"> {{data.m_left}} </span>
+                                                            <span style="font-size: 20px;">{{ $t('minutes') }}</span>
                                                         </b-col>
                                                     </b-row>
                                                 </template>
@@ -108,9 +108,9 @@
                                                         </b-col>
                                                     </b-row>
                                                     <b-row style="padding: 0px 10px 0px 10px !important;">
-                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                            <span style="font-size: 20px;"> {{data.d_left}} </span>
-                                                            <span style="font-size: 15px;">{{ $t('days') }}</span>
+                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                            <span style="font-size: 40px;"> {{data.d_left}} </span>
+                                                            <span style="font-size: 20px;">{{ $t('days') }}</span>
                                                         </b-col>
                                                     </b-row>
                                                 </template>

@@ -18,16 +18,16 @@
                                             </b-col>
                                         </b-row> -->
                                         <b-row>
-                                            <b-col style="font-size: 15px; text-align: center; font-weight: bold;">
+                                            <b-col style="font-size: 20px; text-align: center; font-weight: bold;">
                                                 {{ $t('time_to_launching') }}
                                             </b-col>
-                                            <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                <span style="font-size: 20px;"> {{paramFromList.h_left}} </span>
-                                                <span style="font-size: 15px;">{{ $t('hours') }}</span>
+                                            <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                <span style="font-size: 40px;"> {{paramFromList.h_left}} </span>
+                                                <span style="font-size: 20px;">{{ $t('hours') }}</span>
                                             </b-col>
-                                            <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                <span style="font-size: 20px;"> {{paramFromList.m_left}} </span>
-                                                <span style="font-size: 15px;">{{ $t('minutes') }}</span>
+                                            <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                <span style="font-size: 40px;"> {{paramFromList.m_left}} </span>
+                                                <span style="font-size: 20px;">{{ $t('minutes') }}</span>
                                             </b-col>
                                         </b-row>
                                     </template>
@@ -38,12 +38,14 @@
                                             </b-col>
                                         </b-row> -->
                                         <b-row>
-                                            <b-col style="font-size: 15px; text-align: center; font-weight: bold;">
-                                                {{ $t('day_to_launching') }}
+                                            <b-col style="font-size: 20px; text-align: center; font-weight: bold;">
+                                                <span class="center">
+                                                  {{ $t('day_to_launching') }}
+                                                </span>
                                             </b-col>
-                                            <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                <span style="font-size: 20px;"> {{paramFromList.d_left}} </span>
-                                                <span style="font-size: 15px;">{{ $t('days') }}</span>
+                                            <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                <span style="font-size: 40px;"> {{paramFromList.d_left}} </span>
+                                                <span style="font-size: 20px;">{{ $t('days') }}</span>
                                             </b-col>
                                         </b-row>
                                     </template>
@@ -84,7 +86,7 @@
                                     </b-col>
                                     <b-col style="text-align: center">
                                         <span style="font-size: 20px; font-weight: bold;">{{$t('time')}} {{$t('remain')}}</span> <br>
-                                        <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(235 87 87); line-height: 100px;">
+                                        <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(235 87 87); font-size: 35px; font-weight: bold; line-height: 100px;">
                                             <template v-if="paramFromList.status == 'i'">
                                                 <template v-if="!Model.inDays">
                                                     <span style="font-weight: bold; font-size: 35px;"> {{Model.h_left}} </span>
@@ -124,6 +126,7 @@
                                     isHeaderFixed
                                     noCard
                                     removePaddingTopBody
+                                    :cHeader="BuyerHeader"
                                 >
                                     <template slot="TitleTable">
                                         <b-col lg="6" xl="6">
@@ -143,6 +146,7 @@
                                     isHeaderFixed
                                     noCard
                                     removePaddingTopBody
+                                    :cHeader="UnitHeader"
                                     @onRenderData="UnitDataRender"
                                 >
                                     <template slot="TitleTable">
@@ -157,6 +161,7 @@
                                                 classButton="button button--hoonian"
                                                 @click="doSave"
                                                 :disabled="paramFromList.status !== 'i'"
+                                                styleButton="background-color: #414040 !important; color: #FFF !important; width: 150px; height: 35px; font-size: 15px !important;"
                                             />
                                         </b-col>
                                     </template>
@@ -213,6 +218,32 @@ export default {
           marketing_agent_id: ""
         }
       },
+      BuyerHeader: [
+        {
+          key: "no",
+          label: "No",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "nup_no",
+          label: "NUP No",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "buyer_name",
+          label: "Buyer Name",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "status",
+          label: "Status",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+      ],
       propList_unit: {
         url: "/api/marketing-website/v-launching/unit",
         initialWhere: "",
@@ -224,6 +255,44 @@ export default {
           marketing_agent_id: ""
         }
       },
+      UnitHeader: [
+        {
+          key: "no",
+          label: "No",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "tower",
+          label: "Tower",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "floor",
+          label: "Floor",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "unit_no",
+          label: "Unit No",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "price",
+          label: "Price",
+          tdClass: "ContentACCList2 notranslate th-cus-right poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+        {
+          key: "status",
+          label: "Select",
+          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins",
+        },
+      ],
       Model: {
         id: "",
         project_id: "",
