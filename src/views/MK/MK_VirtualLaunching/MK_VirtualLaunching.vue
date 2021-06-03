@@ -167,15 +167,17 @@ export default {
         for (let i = 0; i < response.data.length; i++) {
           const data = response.data[i];
           let h_left = 0, m_left = 0, d_left = 0, status = 'w', inDays = false;
+        //   console.log(new Date(this.momentUnix(data.start_datetime)))
           if (this.momentDateToUnix(new Date()) < data.start_datetime) {
             status = 'w';
-            if (this.momentDiff(new Date(), this.momentUnix(data.start_datetime), 'days') <= 1) {
-              h_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[0]);
-              m_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[1]);
+            if (this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime)), 'days') < 1) {
+              h_left = parseInt(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime)), 'hh:mm').split(':')[0]);
+              m_left = parseInt(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime)), 'hh:mm').split(':')[1]);
             }
             else {
               inDays = true;
-              d_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'DD'));
+            //   console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime)), 'hh:mm'))
+              d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime)), 'days'));
             }
           }
           else {
@@ -190,6 +192,8 @@ export default {
             d_left: d_left
           })
         }
+
+        console.log(this.Model)
       });
     },
   },

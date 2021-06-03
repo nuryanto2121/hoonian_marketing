@@ -87,6 +87,14 @@ export default {
       return frm[prefix];
     },
 
+    momentDiffFormat(from, to, format = 'hh:mm') {
+      if (!from || !to) return null
+      let ms = moment(from,"DD/MM/YYYY HH:mm:ss").diff(moment(to,"DD/MM/YYYY HH:mm:ss"));
+      let d = moment.duration(ms);
+      let s = moment.utc(ms).format(format); //Math.floor(d.asHours()) + moment.utc(ms).format(":mm:ss");
+      return s;
+    },
+
     momentUnix(unixTimestamp, frm = "YYYY-MM-DD") {
       return moment.unix(unixTimestamp).format(frm)
     },
