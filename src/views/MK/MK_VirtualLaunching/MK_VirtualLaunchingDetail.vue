@@ -129,7 +129,7 @@
                                     :cHeader="BuyerHeader"
                                 >
                                     <template slot="TitleTable">
-                                        <b-col lg="6" xl="6">
+                                        <b-col lg="6" xl="6" style="height: 35px;">
                                             <span class="title-primary" style="font-size: 18px;"> {{ $t('nup_buyer_list') }} </span>
                                         </b-col>
                                     </template>
@@ -214,6 +214,7 @@ export default {
         SortBy: "desc",
         ParamWhere: "",
         param: {
+          project_id: "",
           release_period_id: "",
           marketing_agent_id: ""
         }
@@ -393,6 +394,7 @@ export default {
       ).then((response) => {
         if (response == null) return;
         this.Model = response.data;
+        this.propList_buyer.param.project_id = this.Model.project_id;
         let h_left = 0, m_left = 0, d_left = 0, inDays = false;
         // console.log(this.momentUnix(this.Model.end_datetime), new Date())
         // console.log(this.momentDiff(this.momentUnix(this.Model.end_datetime), new Date(), 'days'))
