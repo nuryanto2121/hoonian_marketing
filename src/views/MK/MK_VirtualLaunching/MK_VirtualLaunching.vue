@@ -116,7 +116,7 @@
                                                 </template>
                                             </template>
                                             <template v-else>
-                                                <b-row style="padding: 30px 10px 10px 10px !important;">
+                                                <b-row style="padding: 30px 10px 10px 10px !important; margin-top: 20px;">
                                                     <b-col style="height: 50px; background-color: red; color: white; font-size: 18px; text-align: center; line-height: 50px;">
                                                         {{ $t('v_launching') }} {{ $t('in_progress') }}
                                                     </b-col>
@@ -167,17 +167,20 @@ export default {
         for (let i = 0; i < response.data.length; i++) {
           const data = response.data[i];
           let h_left = 0, m_left = 0, d_left = 0, status = 'w', inDays = false;
-        //   console.log(new Date(this.momentUnix(data.start_datetime)))
+          console.log(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")))
+          console.log(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days'))
           if (this.momentDateToUnix(new Date()) < data.start_datetime) {
             status = 'w';
-            if (this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime)), 'days') < 1) {
-              h_left = parseInt(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime)), 'hh:mm').split(':')[0]);
-              m_left = parseInt(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime)), 'hh:mm').split(':')[1]);
+            if (this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days') < 1) {
+                // console.log(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")))
+                // console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              h_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[0]);
+              m_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[1]);
             }
             else {
               inDays = true;
-            //   console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime)), 'hh:mm'))
-              d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime)), 'days'));
+            //   console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days'));
             }
           }
           else {
