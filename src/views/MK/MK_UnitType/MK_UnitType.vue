@@ -990,13 +990,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           // { end: 576, size: 1 },
           // { start: 576, end: 768, size: 2 },

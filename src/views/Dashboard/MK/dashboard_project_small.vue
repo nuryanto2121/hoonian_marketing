@@ -1,7 +1,7 @@
 <template>
   <div style="height: 95%">
     <b-row style="margin-top: 30px;">
-      <b-col style="padding-left: 15px !important; text-shadow: 0.5px 0px; font-size: 22px;">
+      <b-col v-if="Location.length > 0" style="padding-left: 15px !important; text-shadow: 0.5px 0px; font-size: 22px;">
         Search Project By Location
       </b-col>
       <b-col style="text-align: right; text-shadow: 0.5px 0px; font-size: 18px;">
@@ -183,13 +183,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           // { end: 576, size: 1 },
           // { start: 576, end: 768, size: 2 },
@@ -223,13 +223,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           { end: 576, size: 3 },
           { start: 576, end: 768, size: 4 },

@@ -775,13 +775,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           { size: 1 },
         ],
@@ -801,13 +801,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           { size: 4 },
         ],
@@ -827,13 +827,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           { size: 3 },
         ],
@@ -853,13 +853,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           { size: 3 },
         ],
