@@ -561,6 +561,7 @@ export default {
     this.getSales();
     this.PI_marketing.dataLookUp.param.principle_id = this.getDataUser().principle_id;
     this.$store.commit("setTitleMenu", "Sales");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

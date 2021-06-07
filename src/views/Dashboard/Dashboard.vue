@@ -18,6 +18,7 @@ export default {
     this.$router.replace({
       path: '/MK_Dashboard'
     })
+    this.$store.commit("setBackButton", false);
   }
 };
 </script>

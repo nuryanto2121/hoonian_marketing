@@ -478,6 +478,7 @@ export default {
   },
   mounted() {
       this.getDataBy();
+      this.$store.commit("setBackButton", false);
   },
 };
 </script>

@@ -310,6 +310,7 @@ export default {
   mounted() {
     this.getProject();
     this.$store.commit("setTitleMenu", "NUP");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>
