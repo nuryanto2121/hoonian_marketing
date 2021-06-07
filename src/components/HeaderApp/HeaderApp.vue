@@ -209,12 +209,12 @@
               </b-row>
             </div>
           </b-toast>
-          <span v-if="backButton" style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 16px; margin-right: 10px;">
+          <span v-if="backButton" style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 16px; margin-right: 15px;">
             <img :src="require('@/assets/icon-svg/back_button.svg')" alt style="margin-top: 12px; cursor: pointer;" @click="doBack" />
           </span>
-          <span style="color: #4A93B3; text-shadow: 0.8px 0px; font-size: 24px; display: table-cell; vertical-align: middle;">
+          <p style="color: #4A93B3; text-shadow: 0.8px 0px; font-size: 24px; display: table-cell; vertical-align: middle; height: 60px;">
             {{titleMenu}}
-          </span>
+          </p>
         <!-- </div> -->
       </div>
 
