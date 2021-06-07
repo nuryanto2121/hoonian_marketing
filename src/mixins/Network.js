@@ -770,6 +770,7 @@ export default {
       }
 
       if (String(message) === 'Error: Request failed with status code 404') { }
+      if (String(message) == 'Error: Network Error') { this.alertError("Server not responding") }
     },
 
     postEncode(fullUrl, param) {

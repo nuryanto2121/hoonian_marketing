@@ -193,24 +193,24 @@
                  <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'all' ? 'color: #4A93B3; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('all')">
                    ALL
                  </span>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'available' ? 'color: #219653; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('available')">
                    AVAILABLE
                  </span>
                </b-col>
                <b-col style="text-align: right;">
-                 <span style="margin-right: 20px; cursor: pointer;" @click="changeType('buyer')">
+                 <span style="margin-right: 30px; cursor: pointer; text-shadow: 0.5px 0px" @click="changeType('buyer')">
                    <span style="width: 17px; height: 17px; background: #56CCF2;">
                    &nbsp;&nbsp;&nbsp;&nbsp;
                   </span>
                   &nbsp;&nbsp;
                   YOUR BUYER
                  </span>
-                 <span style="text-shadow: 0.5px 0px; margin-right: 20px;">
+                 <span style="text-shadow: 0.9px 0px; margin-right: 30px;">
                    Booking Fee
                  </span>
                  <span style="color: #2F80ED">
-                   {{ isCurrency(Model.data.booking_fee, 0) }}
+                   IDR {{ isCurrency(Model.data.booking_fee, 0) }}
                  </span>
                </b-col>
              </b-row>
@@ -719,10 +719,10 @@
                           </b-col>
                         </b-row>
                         <b-row style="margin-top: 10px; padding: 0px 10px;">
-                          <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+                          <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
                             {{item.tower_cluster_name}} - {{item.unit_type}}
                           </b-col>
-                          <b-col style="font-size: 14px; text-align: right;">
+                          <b-col sm="4" style="font-size: 14px; text-align: right;">
                             <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                             {{item.location_name}}
                           </b-col>
@@ -745,7 +745,7 @@
                           <b-col offset="2" sm="2" style="text-align: right;">
                             | &nbsp;
                             <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
-                            {{item.total_bedroom}}
+                            {{item.total_bedroom}} BR
                           </b-col>
                           <b-col style="text-align: right;">
                             | &nbsp;

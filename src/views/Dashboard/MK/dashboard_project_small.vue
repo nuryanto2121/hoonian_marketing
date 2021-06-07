@@ -1,8 +1,16 @@
 <template>
   <div style="height: 95%">
-    <b-row>
-      <b-col style="padding-left: 15px !important;">
+    <b-row style="margin-top: 30px;">
+      <b-col style="padding-left: 15px !important; text-shadow: 0.5px 0px; font-size: 22px;">
         Search Project By Location
+      </b-col>
+      <b-col style="text-align: right; text-shadow: 0.5px 0px; font-size: 18px;">
+        <span style="position: absolute; width: 8px; height: 8px; background: #4A93B3; margin-top: 10px;">
+          &nbsp;
+        </span>
+        <span style="text-shadow: 0.5px 0px">
+          &nbsp;&nbsp;&nbsp;&nbsp; {{Location.length > 0 ? Location[0].company_group_name: ""}}
+        </span>
       </b-col>
     </b-row>
     <br />
@@ -28,7 +36,7 @@
           <template v-slot:default="{item}">
             <b-row>
               <b-col>
-                <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 105px;': 'height: 100px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
+                <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
                 <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
                   {{item.location}}
                 </div>
@@ -70,14 +78,14 @@
                   <b-col style="padding: unset !important;">
                     <b-img :src="urlHoonian + item.main_pic" alt=""
                     :style="`height: 310px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
                   </b-col>
                 </b-row>
                 <b-row style="padding: 10px !important;">
-                  <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+                  <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
                     {{item.project_name}}
                   </b-col>
-                  <b-col md="2" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                  <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                     {{item.project_category_name}}
                   </b-col>
                 </b-row>
@@ -89,7 +97,7 @@
                 </b-row>
                 <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
                   <b-col style="">
-                    {{ item.unit_type_desc }}
+                    {{ item.remarks }}
                   </b-col>
                 </b-row>
               </div>
@@ -130,14 +138,14 @@
                   <b-col style="padding: unset !important;">
                     <b-img :src="urlHoonian + item.main_pic" alt=""
                     :style="`height: 310px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
                   </b-col>
                 </b-row>
                 <b-row style="padding: 10px !important;">
-                  <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+                  <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
                     {{item.project_name}}
                   </b-col>
-                  <b-col md="2" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                  <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                     {{item.project_category_name}}
                   </b-col>
                 </b-row>
@@ -149,7 +157,7 @@
                 </b-row>
                 <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
                   <b-col style="">
-                    {{ item.unit_type_desc }}
+                    {{ item.remarks }}
                   </b-col>
                 </b-row>
               </div>

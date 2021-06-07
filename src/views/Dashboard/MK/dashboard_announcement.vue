@@ -28,7 +28,7 @@
           <template v-slot:default="{item}">
             <b-row>
               <b-col md="8">
-                <b-img :src="urlHoonian + item.image" alt="" style="height: 310px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                <b-img :src="urlHoonian + item.image" alt="" style="height: 310px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
               </b-col>
               <b-col md="4" style="background-color: #F8F8F8; min-height: 310px;">
                 <b-row>
@@ -66,13 +66,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+        list: {
+          // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
+          windowed: 100,
 
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        // },
+          // Because: #app {padding: 80px 24px;}
+          // padding: 24,
+        },
         responsive: [
           { size: 1 },
         ],
