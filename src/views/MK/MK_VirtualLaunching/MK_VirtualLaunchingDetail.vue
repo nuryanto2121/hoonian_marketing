@@ -211,7 +211,7 @@ export default {
         url: "/api/marketing-website/v-launching/buyer",
         initialWhere: "",
         SortField: "",
-        SortBy: "desc",
+        SortBy: "DESC",
         ParamWhere: "",
         param: {
           project_id: "",
