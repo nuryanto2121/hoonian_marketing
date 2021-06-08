@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 95%; padding-left: 5px; padding-right: 5px;">
+  <div style="height: 95%; padding-left: 5px; padding-right: 5px; margin-top: 20px;">
     <b-row>
       <b-col
         v-for="(data, index) in Model" :key="data.id"
@@ -10,23 +10,23 @@
               <b-col style="padding: unset !important;">
                 <b-img :src="urlHoonian + data.main_pic" alt=""
                 :style="`height: 310px; cursor: pointer;`"
-                fluid-grow @error="onImageLoadFailure($event)" />
+                fluid-grow @error="onImageLoadFailure($event)" rounded />
               </b-col>
             </b-row>
             <b-row style="padding: 10px !important;">
-              <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+              <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
                 {{data.project_name}}
               </b-col>
-              <b-col md="2" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+              <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                 {{data.project_category_name}}
               </b-col>
             </b-row>
-            <b-row style="padding: 10px !important;">
+            <b-row style="padding: 10px !important; padding-bottom: 0px;">
               <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
                 {{ $t('start_from') }} IDR {{ isCurrency(data.start_from_price, 0) }}
               </b-col>
             </b-row>
-            <b-row style="padding: 0px 10px !important; padding-bottom: 10px;">
+            <b-row style="padding: 0px 10px !important; padding-bottom: 10px; margin-top: 10px;">
               <b-col style="font-size: 12px;">
                 IDR {{ isCurrency(data.price_per_meter_square,0) }} / m<sup>2</sup>
               </b-col>
@@ -41,7 +41,7 @@
                 <b-img :src="require('@/assets/icon-svg/building.svg')" alt="" style="" />
                 {{data.project_type == 'H' ? 'High Rise': 'landed'}}
               </b-col>
-              <b-col>
+              <b-col sm="2">
                 | &nbsp;
                 <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
                 {{data.total_unit}} {{ $t('units') }}

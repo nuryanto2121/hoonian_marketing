@@ -36,6 +36,7 @@ const state = {
   dynamicMenu: [],
   projectId: null,
   titleMenu: "",
+  backButton: false,
 }
 
 const getters = {
@@ -73,6 +74,7 @@ const getters = {
   getDynamicMenu: state => { return state.dynamicMenu },
   getProjectId: state => { return state.projectId },
   getTitleMenu: state => { return state.titleMenu },
+  getBackButton: state => { return state.backButton },
 }
 
 const mutations = {
@@ -169,6 +171,9 @@ const mutations = {
   },
   setTitleMenu (state, data){
     state.titleMenu = data
+  },
+  setBackButton (state, data){
+    state.backButton = data
   },
 }
 

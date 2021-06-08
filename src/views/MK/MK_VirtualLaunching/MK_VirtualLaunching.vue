@@ -203,6 +203,7 @@ export default {
   mounted() {
     this.getData();
     this.$store.commit("setTitleMenu", "Virtual Launching");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

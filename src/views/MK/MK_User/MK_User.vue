@@ -500,6 +500,7 @@ export default {
   mounted() {
     this.$store.commit("setTitleMenu", "User");
     this.getProject();
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

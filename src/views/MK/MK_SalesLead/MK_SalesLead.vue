@@ -424,6 +424,7 @@ export default {
   mounted() {
     this.getProject();
     this.$store.commit("setTitleMenu", "Lead");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>
