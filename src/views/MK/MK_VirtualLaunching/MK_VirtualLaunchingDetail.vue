@@ -129,9 +129,14 @@
                                     :cHeader="BuyerHeader"
                                 >
                                     <template slot="TitleTable">
-                                        <b-col lg="6" xl="6" style="height: 35px;">
-                                            <span class="title-primary" style="font-size: 18px;"> {{ $t('nup_buyer_list') }} </span>
-                                        </b-col>
+                                      <b-col lg="6" xl="6" style="height: 35px;">
+                                        <span class="title-primary" style="font-size: 18px;"> {{ $t('nup_buyer_list') }} </span>
+                                      </b-col>
+                                    </template>
+                                    <template slot="status" slot-scope="data">
+                                      <span>
+                                        {{checkHM(data.item.status)}}
+                                      </span>
                                     </template>
                                 </HOOList>
                             </b-col>
@@ -338,6 +343,21 @@ export default {
         price: 0,
       };
     },
+    checkHM(num) {
+      // console.log(num, Number.isNaN(num))
+      let ret = "";
+      if (!Number.isNaN(num)) {
+        return num;
+      }
+      else {
+        let number = parseInt(num);
+        let mn = Math.floor(number / 60);
+        let hr = Math.floor(mn / 60);
+
+        ret = (hr > 0 ? (hr + " Hours ") : "") + (mn + " Minutes") ;
+        return ret;
+      }
+    },
     UnitDataRender(data) {
       this.AvailableUnits = data;
     },
@@ -377,6 +397,9 @@ export default {
         price: this.Model.price,
         unit_id: this.Model.unit_id,
         unit_no: this.Model.unit_no,
+        release_period_id: this.paramFromList.id,
+        principle_id: this.getDataUser().principle_id,
+        project_id: this.Model.project_id
       };
 
       this.postJSON(

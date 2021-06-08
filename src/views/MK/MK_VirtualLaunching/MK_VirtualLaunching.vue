@@ -151,7 +151,7 @@ export default {
       this.$router.push({ name: "MK_VirtualLaunchingDetail" });
     },
     doViewDetail(data) {
-      console.log(data);
+    //   console.log(data);
     },
     getData() {
       let param = {
@@ -167,8 +167,8 @@ export default {
         for (let i = 0; i < response.data.length; i++) {
           const data = response.data[i];
           let h_left = 0, m_left = 0, d_left = 0, status = 'w', inDays = false;
-          console.log(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")))
-          console.log(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days'))
+        //   console.log(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")))
+        //   console.log(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days'))
           if (this.momentDateToUnix(new Date()) < data.start_datetime) {
             status = 'w';
             if (this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days') < 1) {
@@ -196,7 +196,7 @@ export default {
           })
         }
 
-        console.log(this.Model)
+        // console.log(this.Model)
       });
     },
   },
