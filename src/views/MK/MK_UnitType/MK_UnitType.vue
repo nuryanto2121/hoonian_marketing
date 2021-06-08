@@ -742,7 +742,7 @@
                             <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
                             {{item.total}} {{ $t('units') }}
                           </b-col>
-                          <b-col offset="2" sm="2" style="text-align: right;">
+                          <b-col sm="4" style="text-align: right;">
                             | &nbsp;
                             <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
                             {{item.total_bedroom}} BR
