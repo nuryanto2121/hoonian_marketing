@@ -973,3 +973,16 @@ ul.box-languages {
   -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
 }
+
+.text-fourth {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.vhl-item {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}

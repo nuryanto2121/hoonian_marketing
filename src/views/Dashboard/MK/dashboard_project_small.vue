@@ -1,19 +1,18 @@
 <template>
   <div style="height: 95%">
     <b-row style="margin-top: 30px;">
-      <b-col v-if="Location.length > 0" style="padding-left: 15px !important; text-shadow: 0.5px 0px; font-size: 22px;">
+      <b-col v-if="Location.length > 0" style="padding-left: 10px !important; text-shadow: 0.5px 0px; font-size: 22px;">
         Search Project By Location
       </b-col>
       <b-col style="text-align: right; text-shadow: 0.5px 0px; font-size: 18px;">
         <span style="position: absolute; width: 8px; height: 8px; background: #4A93B3; margin-top: 10px;">
           &nbsp;
         </span>
-        <span style="text-shadow: 0.5px 0px">
+        <span style="text-shadow: 0.5px 0px; padding-right: 5px;">
           &nbsp;&nbsp;&nbsp;&nbsp; {{Location.length > 0 ? Location[0].company_group_name: ""}}
         </span>
       </b-col>
     </b-row>
-    <br />
     <b-row>
       <b-col>
         <vue-horizontal-list
@@ -46,6 +45,7 @@
         </vue-horizontal-list>
       </b-col>
     </b-row>
+    <br />
     <b-row>
       <b-col v-if="Model.length > 0" style="padding-left: 50px; padding-right: 50px;">
         <vue-horizontal-list
@@ -96,7 +96,7 @@
                   </b-col>
                 </b-row>
                 <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                  <b-col style="">
+                  <b-col style="min-height: 60px;" class="text-fourth">
                     {{ item.remarks }}
                   </b-col>
                 </b-row>
@@ -156,7 +156,7 @@
                   </b-col>
                 </b-row>
                 <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                  <b-col style="">
+                  <b-col style="min-height: 60px;" class="text-fourth">
                     {{ item.remarks }}
                   </b-col>
                 </b-row>

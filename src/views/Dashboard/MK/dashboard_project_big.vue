@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 95%; padding-left: 5px; padding-right: 5px;">
+  <div style="height: 95%; padding-left: 5px; padding-right: 5px; margin-top: 20px;">
     <b-row>
       <b-col
         v-for="(data, index) in Model" :key="data.id"
