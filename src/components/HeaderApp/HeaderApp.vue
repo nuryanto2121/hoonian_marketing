@@ -536,6 +536,11 @@ export default {
       
       this.closeMenu();
       this.$store.commit("setTitleMenu", "");
+
+      if (this.$route.path === "/" || this.$route.path === "/MK_Dashboard") {
+        this.$store.commit("setBackButton", false);
+        return;
+      }
       this.$store.commit("setBackButton", true);
     }
   },
