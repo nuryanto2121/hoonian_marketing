@@ -415,11 +415,12 @@ export default {
         param
       ).then((response) => {
         if (response == null) return;
+        window.open(response.data.payment.redirect_url);
         this.doBack();
       });
     },
     getDataBy() {
-      console.log(this.paramFromList)
+      // console.log(this.paramFromList)
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/v-launching/detail",
         { release_period_id: this.paramFromList.id, marketing_id: this.getDataUser().marketing_id }
