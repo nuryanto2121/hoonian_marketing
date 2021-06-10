@@ -171,12 +171,12 @@
            <b-col sm="3" style="padding: unset !important;">
             <div v-for="(image, index) in Model.image" :key="index">
               <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
-                <b-col>
+                <b-col sm="6">
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
-                <b-col v-if="Model.image.length > (index + 1)">
+                <b-col sm="6" v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
