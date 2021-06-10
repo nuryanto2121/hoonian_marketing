@@ -409,6 +409,7 @@ export default {
   mounted() {
     this.$store.commit("setTitleMenu", "Referral");
     this.getProject();
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

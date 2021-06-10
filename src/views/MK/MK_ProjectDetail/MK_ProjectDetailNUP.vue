@@ -275,6 +275,7 @@ export default {
         email: this.Model.email,
         id_no: this.Model.id_no,
         thumbnail_image: this.Model.id_picture,
+        marketing_agent_id: this.getDataUser().marketing_id,
         project_id: this.paramFromList.id,
         marketing_id: this.getDataUser().marketing_id,
         principle_id: this.getDataUser().principle_id,
@@ -286,7 +287,9 @@ export default {
         param
       ).then((response) => {
         if (response == null) return;
-        this.showPaymentThroughVA(response.data.nup_purchase_id);
+        // this.showPaymentThroughVA(response.data.nup_purchase_id);
+        window.open(response.data.payment.redirect_url);
+        this.doBack();
       });
     },
   },

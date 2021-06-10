@@ -2,7 +2,7 @@
   <div class="dashboard-page-chart">
     <div class="dashboard-page-chart__body">
       <b-row>
-        <b-col style="padding-left: 10px !important;">
+        <b-col style="text-shadow: 0.5px 0px; font-size: 22px; padding-left: 10px !important;">
           Search Project By Location
         </b-col>
       </b-row>
@@ -29,7 +29,7 @@
             <template v-slot:default="{item}">
               <b-row>
                 <b-col>
-                  <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 105px;': 'height: 100px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
+                  <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
                   <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
                     {{item.location}}
                   </div>
@@ -66,7 +66,7 @@
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
                 <b-col style="">
-                  {{ item.unit_type_desc }}
+                  {{ item.remarks }}
                 </b-col>
               </b-row>
             </div>
@@ -124,13 +124,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           { end: 576, size: 3 },
           { start: 576, end: 768, size: 4 },

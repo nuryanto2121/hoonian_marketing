@@ -4,12 +4,12 @@
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
           <b-row>
-            <b-col>
+            <b-col lg="8" xl="8">
               <span style="color: black;" class="title-primary">Last 12 Months</span>
             </b-col>
             <b-col style="max-width: max-content;">
               <b-row>
-                <b-col lg="3" xl="5" style="text-align: right; bottom: 5px; max-width: max-content;">
+                <b-col lg="3" xl="5" style="text-align: right; max-width: max-content;">
                     <span style="font-weight: bold; font-size: 13px;">
                         Show By &nbsp;&nbsp;
                     </span>
@@ -191,8 +191,8 @@ export default {
         cName: "show_by",
         cId: "rdshow_by",
         cRadioOptions: [
-          { text: "By Unit", value: 'unit' },
-          { text: "By Value", value: 'value' }
+          { text: "Unit", value: 'unit' },
+          { text: "Value", value: 'value' }
         ],
         cRadioDefaultOption: 'unit',
         cOrder: 1,
@@ -561,6 +561,7 @@ export default {
     this.getSales();
     this.PI_marketing.dataLookUp.param.principle_id = this.getDataUser().principle_id;
     this.$store.commit("setTitleMenu", "Sales");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

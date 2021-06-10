@@ -180,6 +180,7 @@ export default {
   },
   mounted() {
     this.renderDash2();
+    this.$store.commit("setBackButton", false);
   },
   created() {
     this.$store.commit("setParamPage", {});

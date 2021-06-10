@@ -55,13 +55,19 @@
                     </b-col>
                   </template>
                   <template slot="total_nup" slot-scope="data">
-                    {{data.item.total_nup}}
-                    <ABSButton
-                      text="No NUP"
-                      classButton="button button--hoonian"
-                      icon="wallet"
-                      @click="doShowNoNUP(data.item)"
-                    />
+                    <b-row>
+                      <b-col sm="2">
+                        {{data.item.total_nup}}
+                      </b-col>
+                      <b-col>
+                        <ABSButton
+                          text="No NUP"
+                          classButton="button button--hoonian"
+                          icon="wallet"
+                          @click="doShowNoNUP(data.item)"
+                        />
+                      </b-col>
+                    </b-row>
                   </template>
                 </HOOList>
             </b-col>
@@ -263,7 +269,8 @@ export default {
     getProject() {
       let param = {
         company_group_id: this.company_group_id,
-        principle_id: this.getDataUser().principle_id
+        principle_id: this.getDataUser().principle_id,
+        marketing_agent_id: this.getDataUser().marketing_id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/nup/header', param).then((response) => {
@@ -303,6 +310,7 @@ export default {
   mounted() {
     this.getProject();
     this.$store.commit("setTitleMenu", "NUP");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

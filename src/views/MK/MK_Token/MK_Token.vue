@@ -337,6 +337,7 @@ export default {
   mounted() {
     this.$store.commit("setTitleMenu", "Token");
     this.getProject();
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

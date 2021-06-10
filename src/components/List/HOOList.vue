@@ -1172,7 +1172,7 @@ export default {
         param_where: search,
         initial_where: temp,
         sort_field: this.sort,
-        sort_by: "",
+        sort_by: this.prop.SortBy,
         // source_field: "",
         // param_view: ""
         ...this.prop.param,

@@ -209,9 +209,12 @@
               </b-row>
             </div>
           </b-toast>
-          <span style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 16px;">
-            {{titleMenu}}
+          <span v-if="backButton" style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 16px; margin-right: 15px;">
+            <img :src="require('@/assets/icon-svg/back_button.svg')" alt style="margin-top: 12px; cursor: pointer;" @click="doBack" />
           </span>
+          <p style="color: #4A93B3; text-shadow: 0.8px 0px; font-size: 24px; display: table-cell; vertical-align: middle; height: 60px;">
+            {{titleMenu}}
+          </p>
         <!-- </div> -->
       </div>
 
@@ -491,6 +494,9 @@ export default {
     textMenu() {
       return this.$store.getters.textMenu;
     },
+    backButton() {
+      return this.$store.getters.getBackButton;
+    },
     titleMenu() {
       return this.$store.getters.getTitleMenu;
     },
@@ -530,6 +536,12 @@ export default {
       
       this.closeMenu();
       this.$store.commit("setTitleMenu", "");
+
+      if (this.$route.path === "/" || this.$route.path === "/MK_Dashboard") {
+        this.$store.commit("setBackButton", false);
+        return;
+      }
+      this.$store.commit("setBackButton", true);
     }
   },
   methods: {
@@ -540,7 +552,7 @@ export default {
       this.$bvToast.hide('dashboard-toast');
     },
     showDashboard() {
-      this.$router.push("/");
+      this.$router.push({ name: "MK_Dashboard" });
     },
     showSales() {
       this.$router.push({ name: "MK_Sales" });

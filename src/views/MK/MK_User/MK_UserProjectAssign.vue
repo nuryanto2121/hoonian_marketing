@@ -61,7 +61,7 @@
                                     />
                                 </b-col>
                                 <b-col lg="4" xl="4">
-                                    <b-img id="id_pict_show" :src="urlHoonian + project.icon_project" alt="" width="50" @error="onImageLoadFailure($event)" />
+                                    <b-img id="id_pict_show" :src="urlHoonian + project.icon_project" alt="" width="50" height="50" @error="onImageLoadFailure($event)" />
                                 </b-col>
                                 <b-col>
                                     <span>
@@ -76,7 +76,7 @@
                 <div class="card">
                     <div class="card__body">
                         <b-row>
-                            <b-col lg="2" xl="2" offset-lg="6" offset-xl="6">
+                            <b-col lg="2" xl="2" offset-lg="5" offset-xl="5">
                                 <ABSButton
                                     :text="'Save'"
                                     classButton="btn btn--default"
@@ -292,6 +292,8 @@ export default {
         email: "",
         id_no: "",
         thumbnail_image: "",
+        principle_id: "",
+        marketing_group_id: "",
       },
       AllProject: [],
 
@@ -376,6 +378,8 @@ export default {
         id_no: this.Model.id_no,
         thumbnail_image: this.Model.thumbnail_image,
         mobile_app_user_id: this.Model.mobile_app_user_id,
+        principle_id: this.getDataUser().principle_id,
+        marketing_group_id: this.paramFromList.marketing_group_id,
       }
       this.$refs.Modal_Edit._show();
     },

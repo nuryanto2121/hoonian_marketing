@@ -91,13 +91,13 @@
                                                         </b-col>
                                                     </b-row>
                                                     <b-row style="padding: 0px 10px 0px 10px !important;">
-                                                        <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                            <span style="font-size: 20px;"> {{data.h_left}} </span>
-                                                            <span style="font-size: 15px;">{{ $t('hours') }}</span>
+                                                        <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                            <span style="font-size: 40px;"> {{data.h_left}} </span>
+                                                            <span style="font-size: 20px;">{{ $t('hours') }}</span>
                                                         </b-col>
-                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                            <span style="font-size: 20px;"> {{data.m_left}} </span>
-                                                            <span style="font-size: 15px;">{{ $t('minutes') }}</span>
+                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                            <span style="font-size: 40px;"> {{data.m_left}} </span>
+                                                            <span style="font-size: 20px;">{{ $t('minutes') }}</span>
                                                         </b-col>
                                                     </b-row>
                                                 </template>
@@ -108,15 +108,15 @@
                                                         </b-col>
                                                     </b-row>
                                                     <b-row style="padding: 0px 10px 0px 10px !important;">
-                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold;">
-                                                            <span style="font-size: 20px;"> {{data.d_left}} </span>
-                                                            <span style="font-size: 15px;">{{ $t('days') }}</span>
+                                                        <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
+                                                            <span style="font-size: 40px;"> {{data.d_left}} </span>
+                                                            <span style="font-size: 20px;">{{ $t('days') }}</span>
                                                         </b-col>
                                                     </b-row>
                                                 </template>
                                             </template>
                                             <template v-else>
-                                                <b-row style="padding: 30px 10px 10px 10px !important;">
+                                                <b-row style="padding: 30px 10px 10px 10px !important; margin-top: 20px;">
                                                     <b-col style="height: 50px; background-color: red; color: white; font-size: 18px; text-align: center; line-height: 50px;">
                                                         {{ $t('v_launching') }} {{ $t('in_progress') }}
                                                     </b-col>
@@ -151,7 +151,7 @@ export default {
       this.$router.push({ name: "MK_VirtualLaunchingDetail" });
     },
     doViewDetail(data) {
-      console.log(data);
+    //   console.log(data);
     },
     getData() {
       let param = {
@@ -167,15 +167,20 @@ export default {
         for (let i = 0; i < response.data.length; i++) {
           const data = response.data[i];
           let h_left = 0, m_left = 0, d_left = 0, status = 'w', inDays = false;
+        //   console.log(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")))
+        //   console.log(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days'))
           if (this.momentDateToUnix(new Date()) < data.start_datetime) {
             status = 'w';
-            if (this.momentDiff(new Date(), this.momentUnix(data.start_datetime), 'days') <= 1) {
-              h_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[0]);
-              m_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'hh:mm').split(':')[1]);
+            if (this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days') < 1) {
+                // console.log(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")))
+                // console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              h_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[0]);
+              m_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[1]);
             }
             else {
               inDays = true;
-              d_left = parseInt(this.momentDiffFormat(new Date(), data.start_datetime, 'DD'));
+            //   console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(data.start_datetime, "YYYY-MM-DD HH:mm")), 'days'));
             }
           }
           else {
@@ -190,12 +195,15 @@ export default {
             d_left: d_left
           })
         }
+
+        // console.log(this.Model)
       });
     },
   },
   mounted() {
     this.getData();
     this.$store.commit("setTitleMenu", "Virtual Launching");
+    this.$store.commit("setBackButton", false);
   },
 };
 </script>

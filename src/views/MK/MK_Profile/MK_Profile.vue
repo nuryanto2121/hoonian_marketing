@@ -291,6 +291,7 @@ export default {
         marketing_id: "",
         user_id: "",
         notes: "",
+        marketing_agent_id: "",
       },
 
       PI_name: {
@@ -434,6 +435,7 @@ export default {
         marketing_id: "",
         user_id: "",
         notes: "",
+        marketing_agent_id: "",
       };
     },
     getDataBy() {
@@ -467,14 +469,16 @@ export default {
         );
     },
     M_Save() {
-        this.postJSON(this.urlHoonian + '/api/marketing-website/profile/edit', this.Model).then((response) => {
-            if (response == null) return;
-            this.doBack();
-        });
+      this.Model.marketing_agent_id = this.getDataUser().marketing_id;
+      this.postJSON(this.urlHoonian + '/api/marketing-website/profile/edit', this.Model).then((response) => {
+          if (response == null) return;
+          this.doBack();
+      });
     },
   },
   mounted() {
       this.getDataBy();
+      this.$store.commit("setBackButton", false);
   },
 };
 </script>

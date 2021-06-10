@@ -3,13 +3,13 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-         <b-row>
+         <b-row style="margin-top: 20px;">
            <b-col>
              {{paramFromList.projectName}}
            </b-col>
          </b-row>
          <b-row>
-           <b-col style="color: #828282; font-size: 12px;">
+           <b-col style="color: #828282; font-size: 12px; margin-top: 5px; margin-bottom: 10px;">
              {{paramFromList.address}}
            </b-col>
          </b-row>
@@ -26,7 +26,7 @@
              {{Model.data.unit_type_name}}
            </b-col>
          </b-row>
-         <b-row style="padding-top: 10px; background: #F8F8F8;">
+         <b-row align-v="end" style="padding-top: 10px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              {{ $t('unit_details') }}
            </b-col>
@@ -97,7 +97,8 @@
                  {{ $t('net_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.data.net_area}} m <sup>2</sup>
+                 {{Model.data.net_area}}
+                 m<sup>2</sup>
                </b-col>
              </b-row>
              <b-row class="row-view-black">
@@ -105,7 +106,8 @@
                  {{ $t('gross_area') }}
                </b-col>
                <b-col sm="4">
-                 {{Model.data.gross_area}} m <sup>2</sup>
+                 {{Model.data.gross_area}}
+                 m<sup>2</sup>
                </b-col>
              </b-row>
              <b-row style="margin-top: 40px; color: white;">
@@ -169,12 +171,12 @@
            <b-col sm="3" style="padding: unset !important;">
             <div v-for="(image, index) in Model.image" :key="index">
               <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
-                <b-col>
+                <b-col sm="6">
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
-                <b-col v-if="Model.image.length > (index + 1)">
+                <b-col sm="6" v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
@@ -191,24 +193,24 @@
                  <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'all' ? 'color: #4A93B3; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('all')">
                    ALL
                  </span>
-                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                  <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'available' ? 'color: #219653; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('available')">
                    AVAILABLE
                  </span>
                </b-col>
                <b-col style="text-align: right;">
-                 <span style="margin-right: 20px; cursor: pointer;" @click="changeType('buyer')">
+                 <span style="margin-right: 30px; cursor: pointer; text-shadow: 0.5px 0px" @click="changeType('buyer')">
                    <span style="width: 17px; height: 17px; background: #56CCF2;">
                    &nbsp;&nbsp;&nbsp;&nbsp;
                   </span>
                   &nbsp;&nbsp;
                   YOUR BUYER
                  </span>
-                 <span style="text-shadow: 0.5px 0px; margin-right: 20px;">
+                 <span style="text-shadow: 0.9px 0px; margin-right: 30px;">
                    Booking Fee
                  </span>
                  <span style="color: #2F80ED">
-                   {{ isCurrency(Model.data.booking_fee, 0) }}
+                   IDR {{ isCurrency(Model.data.booking_fee, 0) }}
                  </span>
                </b-col>
              </b-row>
@@ -241,6 +243,12 @@
                         {{data.item.unit_no}}
                       </span>
                     </template>
+                    <template slot="net_area" slot-scope="data">
+                      {{data.item.net_area}} m<sup>2</sup>
+                    </template>
+                    <template slot="gross_area" slot-scope="data">
+                      {{data.item.net_area}} m<sup>2</sup>
+                    </template>
                     <template slot="head_total_bedroom" slot-scope="data">
                       <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
                     </template>
@@ -250,7 +258,7 @@
                     <template slot="price" slot-scope="data">
                       <b-row>
                         <b-col align-self="center">
-                          {{ isCurrency(data.item.price, 0) }}
+                          IDR {{ isCurrency(data.item.price, 0) }}
                         </b-col>
                         <b-col sm="2">
                           <b-img :src="require('@/assets/icon-svg/calculator.svg')" alt="" style="" @click.stop="showCalculator(data.item)" />
@@ -317,6 +325,7 @@
                                   :prop="PI_loan_percentage"
                                   v-model="Calculate.loan_percentage"
                                   ref="ref_loan_percentage"
+                                  @input="onLoanPercentage"
                                 />
                               </b-col>
                               <b-col md="6">
@@ -339,6 +348,7 @@
                                   :prop="PI_loan_amount"
                                   v-model="Calculate.loan_amount"
                                   ref="ref_loan_amount"
+                                  @input="onLoanAmount"
                                 />
                               </b-col>
                               <b-col md="6">
@@ -602,7 +612,7 @@
                               <label class="lbl-poppins">{{ $t('price') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
-                              {{ isCurrency(dataBuyerDetail.info.price, 0) }}
+                              IDR {{ isCurrency(dataBuyerDetail.info.price, 0) }}
                             </b-col>
                           </b-row>
                         </b-col>
@@ -612,7 +622,7 @@
                               <label class="lbl-poppins">{{ $t('booking_fee') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
-                              {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
+                              IDR {{ isCurrency(dataBuyerDetail.info.booking_fee, 0) }}
                             </b-col>
                           </b-row>
                           <b-row>
@@ -645,7 +655,7 @@
                               <label class="lbl-poppins">{{ $t('commission') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
-                              {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
+                              IDR {{ isCurrency(dataBuyerDetail.info.marketing_commission, 0) }}
                             </b-col>
                           </b-row>
                         </b-col>
@@ -715,17 +725,17 @@
                           </b-col>
                         </b-row>
                         <b-row style="margin-top: 10px; padding: 0px 10px;">
-                          <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+                          <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
                             {{item.tower_cluster_name}} - {{item.unit_type}}
                           </b-col>
-                          <b-col style="font-size: 14px; text-align: right;">
+                          <b-col sm="4" style="font-size: 14px; text-align: right;">
                             <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                             {{item.location_name}}
                           </b-col>
                         </b-row>
                         <b-row style="margin-top: 5px !important; padding: 0px 10px;">
                           <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                            {{ $t('start_from') }} {{ isCurrency(item.start_from_price, 0) }}
+                            {{ $t('start_from') }} IDR {{ isCurrency(item.start_from_price, 0) }}
                           </b-col>
                         </b-row>
                         <b-row style="padding: 0px 10px;">
@@ -738,15 +748,15 @@
                             <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
                             {{item.total}} {{ $t('units') }}
                           </b-col>
-                          <b-col offset="2" sm="2" style="text-align: right;">
+                          <b-col sm="4" style="text-align: right;">
                             | &nbsp;
                             <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
-                            {{item.total_bedroom}}
+                            {{item.total_bedroom}} BR
                           </b-col>
                           <b-col style="text-align: right;">
                             | &nbsp;
                             <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
-                            {{item.net_area}} m <sup>2</sup>
+                            {{item.net_area}} m<sup>2</sup>
                           </b-col>
                         </b-row>
                       </div>
@@ -813,6 +823,7 @@ export default {
           tower_cluster_id: "",
           type: "",
           lang_id: this.getDataUser().lang_id,
+          principle_id: this.getDataUser().principle_id,
         }
       },
       unitListHeader: [
@@ -906,7 +917,7 @@ export default {
         cType: "decimal",
         cProtect: false,
         cParentForm: "FormEntry",
-        cDecimal: 2,
+        cDecimal: 0,
         cInputStatus: "new"
       },
       PI_tenor: {
@@ -985,13 +996,13 @@ export default {
         //   // padding between each item
         //   padding: 12,
         // },
-        // list: {
+        list: {
         //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-        //   // windowed: 1200,
+          windowed: 100,
 
         //   // Because: #app {padding: 80px 24px;}
         //   padding: 24,
-        // },
+        },
         responsive: [
           // { end: 576, size: 1 },
           // { start: 576, end: 768, size: 2 },
@@ -1015,6 +1026,13 @@ export default {
     }
   },
   methods: {
+    onLoanPercentage(data){
+      this.Calculate.loan_amount = (this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number') * this.dataRowClick.price / 100).toFixed(0);
+    },
+    onLoanAmount(){
+      this.Calculate.loan_percentage = (this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number') * 100 / this.dataRowClick.price).toFixed(2);
+
+    },
     changeImage(path) {
       this.Model.data.layout_image = path;
     },
@@ -1041,12 +1059,16 @@ export default {
     },
     calculate() {
       // let loanAmount = this.dataRowClick.price * +this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let loanPercentage = this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number');
+      let unitPrice = this.replaceAllString(this.dataRowClick.price, ',', '', 'number');
       let loanAmount = this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number');
+      
+      
       let pmt = this.pmt(
         // interest akan dihitung dalam %, jadi dibagi 100 dan dibagi 12 dari tahun ke bulan
         this.replaceAllString(this.Calculate.interest, ',', '', 'number') / (12*100),
         this.replaceAllString(this.Calculate.tenor, ',', '', 'number'),
-        loanAmount,
+        (loanAmount == 0) ? loanPercentage * unitPrice / 100 : loanAmount,
         0
       )
       this.monthlyInstallment = pmt;
@@ -1082,7 +1104,9 @@ export default {
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
-        this.showVA(response.data.transaction_id);
+        // this.showVA(response.data.transaction_id);
+        window.open(response.data.payment.redirect_url);
+        this.doBack();
       });
     },
     showVA(id) {
@@ -1138,6 +1162,7 @@ export default {
       this.propList.param.unit_type_id = this.paramFromList.availableUnitTypes.id;
       this.propList.param.marketing_agent_id = this.getDataUser().marketing_id;
       this.propList.param.tower_cluster_id = this.Model.data.tower_cluster_id;
+      this.propList.param.principle_id = this.getDataUser().principle_id;
       this.propList.param.type = this.type;
 
       this.$nextTick(() => {
@@ -1185,6 +1210,7 @@ export default {
     getUnitTypeDetail() {
       let param = {
         unit_type_id: this.paramFromList.availableUnitTypes.id,
+        principle_id: this.getDataUser().principle_id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/detail', param).then((response) => {
@@ -1232,12 +1258,14 @@ export default {
       //   return - (future_value + present_value) / number_of_payments;
       // }
 
-      if(number_of_payments <= 0){
+      if(number_of_payments > 0){
         if (rate_per_period != 0){
           return ((future_value + present_value) * rate_per_period) / (1- Math.pow((1 + rate_per_period), (-1*number_of_payments)))
         }else{
           return (future_value + present_value / number_of_payments);
         }
+      }else{
+        
       }
       return present_value + future_value;
     },
@@ -1259,6 +1287,7 @@ export default {
     getOtherSuggestion() {
       let param = {
         unit_type_id: this.paramFromList.availableUnitTypes.id,
+        principle_id: this.getDataUser().principle_id,
       };
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/project/unit-type/suggestion",
