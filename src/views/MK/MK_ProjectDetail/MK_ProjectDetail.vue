@@ -3,7 +3,7 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-          <div>
+          <div style="margin-top: 20px; margin-bottom: 20px;">
             <b-row>
               <b-col>
                 {{Model.data.project_name}}
@@ -266,14 +266,14 @@
                   fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                 <b-col align-self="center" v-if="index % 2 == 0" style="padding-left: 30px !important; padding-right: unset !important;">
-                  {{near.header}}
+                  <span style="font-size: 22px;">{{near.header}}</span>
                   <br />
                   {{near.body}}
                 </b-col>
 
                 <!-- right -->
                 <b-col align-self="center" v-if="index % 2 == 1" sm="6" style="padding-left: 30px !important; padding-right: unset !important;">
-                  {{near.header}}
+                  <span style="font-size: 22px;">{{near.header}}</span>
                   <br />
                   {{near.body}}
                 </b-col>
@@ -291,6 +291,10 @@
            <template v-for="(data, index) in AvailableUnitTypes">
             <b-col sm="12" :key="data.id">
               <span style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
+              <br />
+              <span style="color: #828282; text-shadow: 0.5px 0px;">{{data.tower_cluster_name}}</span>
+              <br />
+              &nbsp;
               <HOOList
                 :prop="data.propList"
                 :title="''"
@@ -313,11 +317,13 @@
                 removeCardTitle
                 removePaddingTopBody
                 noPaging
+                noTitle
               >
-                <template slot="TitleTable">
-                  <b-col lg="3" xl="3" style="padding-left: unset !important; color: #828282; font-size: 14px;" class="poppins">
-                    {{data.tower_cluster_name}}
-                  </b-col>
+                <template slot="gross_area" slot-scope="data">
+                  {{data.item.gross_area}} m<sup>2</sup>
+                </template>
+                <template slot="net_area" slot-scope="data">
+                  {{data.item.net_area}} m<sup>2</sup>
                 </template>
                 <template slot="start_from" slot-scope="data">
                   IDR {{ isCurrency(data.item.start_from, 0) }}

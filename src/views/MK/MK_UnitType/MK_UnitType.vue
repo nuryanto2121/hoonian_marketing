@@ -3,13 +3,13 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-         <b-row>
+         <b-row style="margin-top: 20px;">
            <b-col>
              {{paramFromList.projectName}}
            </b-col>
          </b-row>
          <b-row>
-           <b-col style="color: #828282; font-size: 12px;">
+           <b-col style="color: #828282; font-size: 12px; margin-top: 5px; margin-bottom: 10px;">
              {{paramFromList.address}}
            </b-col>
          </b-row>
@@ -26,7 +26,7 @@
              {{Model.data.unit_type_name}}
            </b-col>
          </b-row>
-         <b-row style="padding-top: 10px; background: #F8F8F8;">
+         <b-row align-v="end" style="padding-top: 10px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              {{ $t('unit_details') }}
            </b-col>
@@ -98,7 +98,7 @@
                </b-col>
                <b-col sm="4">
                  {{Model.data.net_area}}
-                 <!-- m <sup>2</sup> -->
+                 m<sup>2</sup>
                </b-col>
              </b-row>
              <b-row class="row-view-black">
@@ -107,7 +107,7 @@
                </b-col>
                <b-col sm="4">
                  {{Model.data.gross_area}}
-                 <!-- m <sup>2</sup> -->
+                 m<sup>2</sup>
                </b-col>
              </b-row>
              <b-row style="margin-top: 40px; color: white;">
@@ -243,6 +243,12 @@
                         {{data.item.unit_no}}
                       </span>
                     </template>
+                    <template slot="net_area" slot-scope="data">
+                      {{data.item.net_area}} m<sup>2</sup>
+                    </template>
+                    <template slot="gross_area" slot-scope="data">
+                      {{data.item.net_area}} m<sup>2</sup>
+                    </template>
                     <template slot="head_total_bedroom" slot-scope="data">
                       <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
                     </template>
@@ -252,7 +258,7 @@
                     <template slot="price" slot-scope="data">
                       <b-row>
                         <b-col align-self="center">
-                          {{ isCurrency(data.item.price, 0) }}
+                          IDR {{ isCurrency(data.item.price, 0) }}
                         </b-col>
                         <b-col sm="2">
                           <b-img :src="require('@/assets/icon-svg/calculator.svg')" alt="" style="" @click.stop="showCalculator(data.item)" />
@@ -729,7 +735,7 @@
                         </b-row>
                         <b-row style="margin-top: 5px !important; padding: 0px 10px;">
                           <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                            {{ $t('start_from') }} {{ isCurrency(item.start_from_price, 0) }}
+                            {{ $t('start_from') }} IDR {{ isCurrency(item.start_from_price, 0) }}
                           </b-col>
                         </b-row>
                         <b-row style="padding: 0px 10px;">
@@ -750,7 +756,7 @@
                           <b-col style="text-align: right;">
                             | &nbsp;
                             <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
-                            {{item.net_area}} m <sup>2</sup>
+                            {{item.net_area}} m<sup>2</sup>
                           </b-col>
                         </b-row>
                       </div>
