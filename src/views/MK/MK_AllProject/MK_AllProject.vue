@@ -6,47 +6,28 @@
           Search Project By Location
         </b-col>
       </b-row>
-      <br />
-      <b-row>
-        <b-col>
-          <vue-horizontal-list
-            v-if="Location.length > 0"
-            :items="Location"
-            :options="optionsLocation"
-          >
-            <template v-slot:nav-prev>
-            </template>
-
-            <template v-slot:nav-next>
-            </template>
-
-            <template v-slot:start>
-            </template>
-
-            <template v-slot:end>
-            </template>
-
-            <template v-slot:default="{item}">
-              <b-row>
-                <b-col>
-                  <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
-                  <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
-                    {{item.location}}
-                  </div>
-                </b-col>
-              </b-row>
-            </template>
-          </vue-horizontal-list>
+      <b-row style="margin-top: 10px;">
+        <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+          <template v-for="(item, index) in Location">
+            <b-row v-bind:key="index" style="display: inline-block !important; width: 17%;">
+              <b-col>
+                <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
+                <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
+                  {{item.location}}
+                </div>
+              </b-col>
+            </b-row>
+          </template>
         </b-col>
       </b-row>
-      <b-row>
+      <b-row style="margin-top: 20px;">
         <b-col sm="4" v-for="item in Model.data" :key="item.id" style="">
           <div class="card">
             <div class="card__body" style="padding: unset !important;">
               <b-row>
                 <b-col style="padding: unset !important;">
                   <b-img :src="urlHoonian + item.main_pic" alt=""
-                  :style="`height: 310px; cursor: pointer;`"
+                  :style="`height: 273px; cursor: pointer;`"
                   fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                 </b-col>
               </b-row>
@@ -200,6 +181,7 @@ export default {
   mounted() {
     this.getLocation();
     this.getData();
+    this.$store.commit("setTitleMenu", "All Project");
   },
 };
 </script>

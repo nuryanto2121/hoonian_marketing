@@ -31,7 +31,7 @@
              {{ $t('unit_details') }}
            </b-col>
            <b-col sm="3">
-             <b-row style="text-align: right;">
+             <b-row align-v="stretch">
                <b-col>
                 <ShareNetwork
                   network="facebook"
@@ -44,7 +44,7 @@
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
                 </ShareNetwork>
                 </b-col>
-                <b-col>
+                <b-col style="text-align: center;">
                   <ShareNetwork
                   network="twitter"
                   :url="urlHoonian + Model.data.main_pic"
@@ -56,10 +56,10 @@
                   <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
                 </ShareNetwork>
                 </b-col>
-                <b-col>
+                <b-col style="text-align: center;">
                   <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
                 </b-col>
-                <b-col>
+                <b-col style="text-align: right;">
                   <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
                 </b-col>
              </b-row>
@@ -1047,14 +1047,14 @@ export default {
     doCalculate() {
       this.$validator._base.validateAll("FormEntry").then((result) => {
         if (!result) return;
-        this.alertConfirmation("Are You Sure Want To Calculate This Data ?").then(
-          (ress) => {
-            if (ress.value) {
+        // this.alertConfirmation("Are You Sure Want To Calculate This Data ?").then(
+        //   (ress) => {
+        //     if (ress.value) {
               this.$validator.errors.clear("FormEntry");
               this.calculate();
-            }
-          }
-        );
+        //     }
+        //   }
+        // );
       });
     },
     calculate() {

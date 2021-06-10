@@ -171,13 +171,13 @@
                   Project Information
                 </div>
                 <template v-for="(info, index) in Model.infos">
-                  <b-row v-if="index % 2 == 0" :key="index">
+                  <b-row v-if="index % 2 == 0" :key="index" align-v="baseline">
                     <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
-                      <div class="row-view-black" style="text-shadow: 0.7px 0px;">
+                      <div class="row-view-black text-fourth" style="text-shadow: 0.7px 0px;">
                         {{Model.infos[index].header}}
                       </div>
                     </b-col>
-                    <b-col sm="3" class="row-view-black">
+                    <b-col sm="3" class="row-view-black text-fourth">
                       <div style="margin-right: 10px !important; padding-left: 10px !important;">
                         {{Model.infos[index].body}}
                       </div>
@@ -187,7 +187,7 @@
                         {{Model.infos[index + 1].header}}
                       </div>
                     </b-col>
-                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black">
+                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black text-fourth">
                       <div style="margin-right: 10px !important; padding-left: 10px !important;">
                         {{Model.infos[index + 1].body}}
                       </div>
