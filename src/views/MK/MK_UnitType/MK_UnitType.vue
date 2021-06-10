@@ -1154,6 +1154,7 @@ export default {
 
     },
     rowClicked(data) {
+      if (data.status == 'available') return;
       this.dataRowClick = data;
       this.showBuyerDetails();
     },
