@@ -718,7 +718,7 @@ export default {
           key: "unit_type",
           label: "UNIT TYPE",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "gross_area",
