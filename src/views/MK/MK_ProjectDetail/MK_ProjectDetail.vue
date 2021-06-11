@@ -3,7 +3,7 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-          <div>
+          <div style="margin-top: 20px; margin-bottom: 20px;">
             <b-row>
               <b-col>
                 {{Model.data.project_name}}
@@ -31,12 +31,12 @@
             <b-col sm="3" style="padding: unset !important; background: black; color: white;">
               <div v-for="(image, index) in Model.image" :key="index">
                 <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
-                  <b-col>
+                  <b-col sm="6">
                     <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                       :style="`width: 90px; height: 90px; cursor: pointer;`"
                       fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                   </b-col>
-                  <b-col v-if="Model.image.length > (index + 1)">
+                  <b-col sm="6" v-if="Model.image.length > (index + 1)">
                     <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                       :style="`width: 90px; height: 90px; cursor: pointer;`"
                       fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
@@ -171,13 +171,13 @@
                   Project Information
                 </div>
                 <template v-for="(info, index) in Model.infos">
-                  <b-row v-if="index % 2 == 0" :key="index">
+                  <b-row v-if="index % 2 == 0" :key="index" align-v="baseline">
                     <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
-                      <div class="row-view-black" style="text-shadow: 0.7px 0px;">
+                      <div class="row-view-black text-fourth" style="text-shadow: 0.7px 0px;">
                         {{Model.infos[index].header}}
                       </div>
                     </b-col>
-                    <b-col sm="3" class="row-view-black">
+                    <b-col sm="3" class="row-view-black text-fourth">
                       <div style="margin-right: 10px !important; padding-left: 10px !important;">
                         {{Model.infos[index].body}}
                       </div>
@@ -187,7 +187,7 @@
                         {{Model.infos[index + 1].header}}
                       </div>
                     </b-col>
-                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black">
+                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black text-fourth">
                       <div style="margin-right: 10px !important; padding-left: 10px !important;">
                         {{Model.infos[index + 1].body}}
                       </div>
@@ -266,14 +266,14 @@
                   fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                 <b-col align-self="center" v-if="index % 2 == 0" style="padding-left: 30px !important; padding-right: unset !important;">
-                  {{near.header}}
+                  <span style="font-size: 22px;">{{near.header}}</span>
                   <br />
                   {{near.body}}
                 </b-col>
 
                 <!-- right -->
                 <b-col align-self="center" v-if="index % 2 == 1" sm="6" style="padding-left: 30px !important; padding-right: unset !important;">
-                  {{near.header}}
+                  <span style="font-size: 22px;">{{near.header}}</span>
                   <br />
                   {{near.body}}
                 </b-col>
@@ -291,6 +291,10 @@
            <template v-for="(data, index) in AvailableUnitTypes">
             <b-col sm="12" :key="data.id">
               <span style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
+              <br />
+              <span style="color: #828282; text-shadow: 0.5px 0px;">{{data.tower_cluster_name}}</span>
+              <br />
+              &nbsp;
               <HOOList
                 :prop="data.propList"
                 :title="''"
@@ -313,11 +317,13 @@
                 removeCardTitle
                 removePaddingTopBody
                 noPaging
+                noTitle
               >
-                <template slot="TitleTable">
-                  <b-col lg="3" xl="3" style="padding-left: unset !important; color: #828282; font-size: 14px;" class="poppins">
-                    {{data.tower_cluster_name}}
-                  </b-col>
+                <template slot="gross_area" slot-scope="data">
+                  {{data.item.gross_area}} m<sup>2</sup>
+                </template>
+                <template slot="net_area" slot-scope="data">
+                  {{data.item.net_area}} m<sup>2</sup>
                 </template>
                 <template slot="start_from" slot-scope="data">
                   IDR {{ isCurrency(data.item.start_from, 0) }}
@@ -712,7 +718,7 @@ export default {
           key: "unit_type",
           label: "UNIT TYPE",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "gross_area",

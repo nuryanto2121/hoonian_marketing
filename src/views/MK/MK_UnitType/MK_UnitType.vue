@@ -3,13 +3,13 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-         <b-row>
+         <b-row style="margin-top: 20px;">
            <b-col>
              {{paramFromList.projectName}}
            </b-col>
          </b-row>
          <b-row>
-           <b-col style="color: #828282; font-size: 12px;">
+           <b-col style="color: #828282; font-size: 12px; margin-top: 5px; margin-bottom: 10px;">
              {{paramFromList.address}}
            </b-col>
          </b-row>
@@ -26,12 +26,12 @@
              {{Model.data.unit_type_name}}
            </b-col>
          </b-row>
-         <b-row style="padding-top: 10px; background: #F8F8F8;">
+         <b-row align-v="end" style="padding-top: 10px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              {{ $t('unit_details') }}
            </b-col>
            <b-col sm="3">
-             <b-row style="text-align: right;">
+             <b-row align-v="stretch">
                <b-col>
                 <ShareNetwork
                   network="facebook"
@@ -44,7 +44,7 @@
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
                 </ShareNetwork>
                 </b-col>
-                <b-col>
+                <b-col style="text-align: center;">
                   <ShareNetwork
                   network="twitter"
                   :url="urlHoonian + Model.data.main_pic"
@@ -56,10 +56,10 @@
                   <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
                 </ShareNetwork>
                 </b-col>
-                <b-col>
+                <b-col style="text-align: center;">
                   <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
                 </b-col>
-                <b-col>
+                <b-col style="text-align: right;">
                   <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
                 </b-col>
              </b-row>
@@ -98,7 +98,7 @@
                </b-col>
                <b-col sm="4">
                  {{Model.data.net_area}}
-                 <!-- m <sup>2</sup> -->
+                 m<sup>2</sup>
                </b-col>
              </b-row>
              <b-row class="row-view-black">
@@ -107,7 +107,7 @@
                </b-col>
                <b-col sm="4">
                  {{Model.data.gross_area}}
-                 <!-- m <sup>2</sup> -->
+                 m<sup>2</sup>
                </b-col>
              </b-row>
              <b-row style="margin-top: 40px; color: white;">
@@ -171,12 +171,12 @@
            <b-col sm="3" style="padding: unset !important;">
             <div v-for="(image, index) in Model.image" :key="index">
               <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
-                <b-col>
+                <b-col sm="6">
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
-                <b-col v-if="Model.image.length > (index + 1)">
+                <b-col sm="6" v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
                     :style="`width: 90px; height: 90px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
@@ -243,6 +243,12 @@
                         {{data.item.unit_no}}
                       </span>
                     </template>
+                    <template slot="net_area" slot-scope="data">
+                      {{data.item.net_area}} m<sup>2</sup>
+                    </template>
+                    <template slot="gross_area" slot-scope="data">
+                      {{data.item.net_area}} m<sup>2</sup>
+                    </template>
                     <template slot="head_total_bedroom" slot-scope="data">
                       <b-img :src="require('@/assets/icon-svg/bedroom.svg')" alt="" style=""/>
                     </template>
@@ -252,7 +258,7 @@
                     <template slot="price" slot-scope="data">
                       <b-row>
                         <b-col align-self="center">
-                          {{ isCurrency(data.item.price, 0) }}
+                          IDR {{ isCurrency(data.item.price, 0) }}
                         </b-col>
                         <b-col sm="2">
                           <b-img :src="require('@/assets/icon-svg/calculator.svg')" alt="" style="" @click.stop="showCalculator(data.item)" />
@@ -530,9 +536,9 @@
                     </template>
                     <template slot="content" v-if="dataBuyerDetail">
                       <b-row style="font-size: 15px !important;">
-                        <b-col sm="4" style="padding-left: unset !important;">
+                        <b-col sm="6" style="padding-left: unset !important;">
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('id_no') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -540,7 +546,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('buyer_name') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -548,7 +554,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -568,9 +574,9 @@
                         </b-col>
                       </b-row>
                       <b-row style="font-size: 15px !important;">
-                        <b-col sm="4" style="padding-left: unset !important;">
+                        <b-col sm="6" style="padding-left: unset !important;">
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('project_name') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -578,7 +584,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('unit_no') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -586,7 +592,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('unit_type') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -594,7 +600,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('date') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -602,7 +608,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('price') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -612,7 +618,7 @@
                         </b-col>
                         <b-col>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('booking_fee') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -620,7 +626,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('tower') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -628,7 +634,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('floor') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -636,7 +642,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('status') }}</label>
                             </b-col>
                             <b-col :style="dataBuyerDetail.info.status == 'available'? 'color: #219653;':
@@ -645,7 +651,7 @@
                             </b-col>
                           </b-row>
                           <b-row>
-                            <b-col>
+                            <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('commission') }}</label>
                             </b-col>
                             <b-col style="color: #4A93B3;">
@@ -729,7 +735,7 @@
                         </b-row>
                         <b-row style="margin-top: 5px !important; padding: 0px 10px;">
                           <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                            {{ $t('start_from') }} {{ isCurrency(item.start_from_price, 0) }}
+                            {{ $t('start_from') }} IDR {{ isCurrency(item.start_from_price, 0) }}
                           </b-col>
                         </b-row>
                         <b-row style="padding: 0px 10px;">
@@ -750,7 +756,7 @@
                           <b-col style="text-align: right;">
                             | &nbsp;
                             <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
-                            {{item.net_area}} m <sup>2</sup>
+                            {{item.net_area}} m<sup>2</sup>
                           </b-col>
                         </b-row>
                       </div>
@@ -1041,14 +1047,14 @@ export default {
     doCalculate() {
       this.$validator._base.validateAll("FormEntry").then((result) => {
         if (!result) return;
-        this.alertConfirmation("Are You Sure Want To Calculate This Data ?").then(
-          (ress) => {
-            if (ress.value) {
+        // this.alertConfirmation("Are You Sure Want To Calculate This Data ?").then(
+        //   (ress) => {
+        //     if (ress.value) {
               this.$validator.errors.clear("FormEntry");
               this.calculate();
-            }
-          }
-        );
+        //     }
+        //   }
+        // );
       });
     },
     calculate() {
@@ -1148,6 +1154,7 @@ export default {
 
     },
     rowClicked(data) {
+      if (data.status == 'available') return;
       this.dataRowClick = data;
       this.showBuyerDetails();
     },

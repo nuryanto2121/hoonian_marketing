@@ -13,157 +13,90 @@
         </span>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col>
-        <vue-horizontal-list
-          v-if="Location.length > 0"
-          :items="Location"
-          :options="optionsLocation"
-        >
-          <template v-slot:nav-prev>
-          </template>
-
-          <template v-slot:nav-next>
-          </template>
-
-          <template v-slot:start>
-          </template>
-
-          <template v-slot:end>
-          </template>
-
-          <template v-slot:default="{item}">
-            <b-row>
-              <b-col>
-                <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
-                <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
-                  {{item.location}}
-                </div>
-              </b-col>
-            </b-row>
-          </template>
-        </vue-horizontal-list>
+    <b-row style="margin-top: 10px;">
+      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+        <template v-for="(item, index) in Location">
+          <b-row v-bind:key="index" style="display: inline-block !important; width: 17%;">
+            <b-col>
+              <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
+              <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
+                {{item.location}}
+              </div>
+            </b-col>
+          </b-row>
+        </template>
       </b-col>
     </b-row>
-    <br />
-    <b-row>
-      <b-col v-if="Model.length > 0" style="padding-left: 50px; padding-right: 50px;">
-        <vue-horizontal-list
-          :items="Model"
-          :options="options"
-        >
-          <template v-slot:nav-prev>
-            <!-- <div>
-              <b-img :src="require('@/assets/icon-svg/chevron_left.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-left: unset !important;" />
-            </div> -->
-          </template>
-
-          <template v-slot:nav-next>
-            <!-- <div>
-              <b-img :src="require('@/assets/icon-svg/chevron_right.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-right: unset !important;" />
-            </div> -->
-          </template>
-
-          <template v-slot:start>
-            <!-- <div>First Item</div> -->
-          </template>
-
-          <template v-slot:end>
-            <!-- <div>Last Item</div> -->
-          </template>
-          <template v-slot:default="{item}">
-            <div class="card">
-              <div class="card__body" style="padding: unset !important;">
-                <b-row>
-                  <b-col style="padding: unset !important;">
-                    <b-img :src="urlHoonian + item.main_pic" alt=""
-                    :style="`height: 310px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
-                  </b-col>
-                </b-row>
-                <b-row style="padding: 10px !important;">
-                  <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
-                    {{item.project_name}}
-                  </b-col>
-                  <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
-                    {{item.project_category_name}}
-                  </b-col>
-                </b-row>
-                <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                  <b-col style="">
-                    <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
-                    {{item.location_name}}
-                  </b-col>
-                </b-row>
-                <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                  <b-col style="min-height: 60px;" class="text-fourth">
-                    {{ item.remarks }}
-                  </b-col>
-                </b-row>
-              </div>
+    <b-row v-if="Model.length > 0" style="margin-top: 20px;">
+      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+        <template v-for="(item, index) in Model">
+          <div class="card" v-bind:key="index" style="display: inline-block !important; width: 30%;">
+            <div class="card__body" style="padding: unset !important;">
+              <b-row>
+                <b-col style="padding: unset !important;">
+                  <b-img :src="urlHoonian + item.main_pic" alt=""
+                  :style="`height: 273px; cursor: pointer;`"
+                  fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
+                </b-col>
+              </b-row>
+              <b-row style="padding: 10px !important;">
+                <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
+                  {{item.project_name}}
+                </b-col>
+                <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                  {{item.project_category_name}}
+                </b-col>
+              </b-row>
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
+                <b-col style="">
+                  <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
+                  {{item.location_name}}
+                </b-col>
+              </b-row>
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
+                <b-col style="min-height: 60px;" class="text-fourth">
+                  {{ item.remarks }}
+                </b-col>
+              </b-row>
             </div>
-          </template>
-        </vue-horizontal-list>
+          </div>
+        </template>
       </b-col>
     </b-row>
-    <b-row>
-      <b-col v-if="Model2.length > 0" style="padding-left: 50px; padding-right: 50px;">
-        <vue-horizontal-list
-          :items="Model2"
-          :options="options"
-        >
-          <template v-slot:nav-prev>
-            <!-- <div>
-              <b-img :src="require('@/assets/icon-svg/chevron_left.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-left: unset !important;" />
-            </div> -->
-          </template>
-
-          <template v-slot:nav-next>
-            <!-- <div>
-              <b-img :src="require('@/assets/icon-svg/chevron_right.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-right: unset !important;" />
-            </div> -->
-          </template>
-
-          <template v-slot:start>
-            <!-- <div>First Item</div> -->
-          </template>
-
-          <template v-slot:end>
-            <!-- <div>Last Item</div> -->
-          </template>
-          <template v-slot:default="{item}">
-            <div class="card">
-              <div class="card__body" style="padding: unset !important;">
-                <b-row>
-                  <b-col style="padding: unset !important;">
-                    <b-img :src="urlHoonian + item.main_pic" alt=""
-                    :style="`height: 310px; cursor: pointer;`"
-                    fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
-                  </b-col>
-                </b-row>
-                <b-row style="padding: 10px !important;">
-                  <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
-                    {{item.project_name}}
-                  </b-col>
-                  <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
-                    {{item.project_category_name}}
-                  </b-col>
-                </b-row>
-                <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                  <b-col style="">
-                    <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
-                    {{item.location_name}}
-                  </b-col>
-                </b-row>
-                <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                  <b-col style="min-height: 60px;" class="text-fourth">
-                    {{ item.remarks }}
-                  </b-col>
-                </b-row>
-              </div>
+    <b-row v-if="Model2.length > 0" style="margin-top: 10px;">
+      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+        <template v-for="(item, index) in Model2">
+          <div class="card" v-bind:key="index" style="display: inline-block !important; width: 30%;">
+            <div class="card__body" style="padding: unset !important;">
+              <b-row>
+                <b-col style="padding: unset !important;">
+                  <b-img :src="urlHoonian + item.main_pic" alt=""
+                  :style="`height: 273px; cursor: pointer;`"
+                  fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
+                </b-col>
+              </b-row>
+              <b-row style="padding: 10px !important;">
+                <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
+                  {{item.project_name}}
+                </b-col>
+                <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                  {{item.project_category_name}}
+                </b-col>
+              </b-row>
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
+                <b-col style="">
+                  <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
+                  {{item.location_name}}
+                </b-col>
+              </b-row>
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
+                <b-col style="min-height: 60px;" class="text-fourth">
+                  {{ item.remarks }}
+                </b-col>
+              </b-row>
             </div>
-          </template>
-        </vue-horizontal-list>
+          </div>
+        </template>
       </b-col>
     </b-row>
     <div v-if="Model.length > 0" style="text-align: center; color: #4A93B3; cursor: pointer; margin-top: 10px;" @click="showMore">
@@ -176,75 +109,12 @@
 export default {
   data() {
     return {
-      options: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          // { end: 576, size: 1 },
-          // { start: 576, end: 768, size: 2 },
-          // { start: 768, end: 992, size: 3 },
-          // { size: 4 },
-          { end: 576, size: 2 },
-          { start: 576, end: 768, size: 3 },
-          { start: 768, end: 992, size: 3 },
-          { start: 992, end: 1200, size: 3 },
-          { start: 1200, size: 4 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
       Model: [],
       Model2: [],
       projectId: "all",
       locationId: "all",
       projectStatus: "all",
       Location: [],
-      optionsLocation: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          { end: 576, size: 3 },
-          { start: 576, end: 768, size: 4 },
-          { start: 768, end: 992, size: 6 },
-          { size: 8 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
     };
   },
   methods: {
