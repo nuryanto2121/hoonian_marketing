@@ -1091,6 +1091,13 @@ export default {
       });
     },
     confirmation() {
+      let typeData = "";
+      if (this.dataRowClick.status == 'available') {
+        typeData = "reserve";
+      } else if (this.dataRowClick.status == 'booked') {
+        typeData = "waiting";
+      }
+      
       let param = {
           handphone: this.BuyerDetails.handphone_no,
           customer_name: this.BuyerDetails.buyer_name,
@@ -1100,7 +1107,8 @@ export default {
           unit_id: this.dataRowClick.id,
           marketing_id: this.getDataUser().marketing_id,
           principle_id: this.getDataUser().principle_id,
-          project_id: this.paramFromList.id
+          project_id: this.paramFromList.id,
+          type: typeData,
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
