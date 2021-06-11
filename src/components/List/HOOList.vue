@@ -91,6 +91,7 @@
       <slot name="HeaderTable"></slot>
       <div class="table--list" :id="tableId">
         <b-table
+          id="table_hoolist"
           :responsive="true"
           :striped="true"
           :bordered="false"

@@ -974,6 +974,14 @@ ul.box-languages {
   -webkit-box-orient: vertical;
 }
 
+.text-third {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .text-fourth {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -985,4 +993,12 @@ ul.box-languages {
 .vhl-item {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
+}
+
+.table-info {
+  background-color: #56CCF2 !important;
+}
+
+#table_hoolist .remove-padding {
+  padding: 0 !important;
 }

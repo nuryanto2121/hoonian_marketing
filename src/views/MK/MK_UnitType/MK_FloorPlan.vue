@@ -48,7 +48,6 @@
                         points: data.point_unit,
                         tension: 0,
                         fill: data.color_cd,
-                        stroke: 'red',
                         closed: true,
                       }"
                     />
@@ -127,6 +126,8 @@ export default {
     callbackDropdown(data) {
       if (data.length > 0) {
         this.tempFloor = data;
+        this.index = 0;
+        this.Onblock_floorChange(this.tempFloor[0]);
       } else {
         this.tempFloor = [];
       }
@@ -202,6 +203,7 @@ export default {
     this.PI_block_floor.dataLookUp.param.project_id = this.paramFromList.id;
     this.PI_block_floor.dataLookUp.param.tower_cluster_id = this.paramFromList.tower_cluster_id;
     this.PI_block_floor.dataLookUp.param.lang_id = this.getDataUser().lang_id;
+    this.$refs.ref_block_floor.getData();
   }
 };
 </script>
