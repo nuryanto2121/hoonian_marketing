@@ -827,7 +827,7 @@ export default {
         })
     },
 
-    postJSON(fullUrl, param) {
+    postJSON(fullUrl, param, isManualStopLoader = false) {
       var paramtoset = param
       
       if (fullUrl === this.getUrlAPIChat()) { } else {
@@ -859,7 +859,8 @@ export default {
           let message = responses.Message
           // this.error = true
 
-          this.$store.commit('setStatusLoader', false)
+          if (!isManualStopLoader)
+            this.$store.commit('setStatusLoader', false)
           if (error) {
             this.alertError(message)
             return null

@@ -43,7 +43,7 @@
                 <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
                   {{item.project_name}}
                 </b-col>
-                <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                <b-col sm="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>
@@ -54,7 +54,7 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                <b-col style="min-height: 60px;" class="text-fourth">
+                <b-col style="min-height: 60px; white-space: normal !important;" class="text-fourth">
                   {{ item.remarks }}
                 </b-col>
               </b-row>
@@ -90,7 +90,7 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                <b-col style="min-height: 60px;" class="text-fourth">
+                <b-col style="min-height: 60px; white-space: normal !important;" class="text-fourth">
                   {{ item.remarks }}
                 </b-col>
               </b-row>
@@ -144,6 +144,10 @@ export default {
         let data = response.data;
         this.Model = [];
         this.Model2 = [];
+        if (data.length <= 8) {
+          this.Model = data;
+          return;
+        }
         for (let x = 0; x < data.length; x++) {
           if (x % 2 == 0) {
             this.Model.push(data[x]);

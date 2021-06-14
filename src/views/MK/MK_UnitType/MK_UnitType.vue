@@ -31,8 +31,8 @@
              {{ $t('unit_details') }}
            </b-col>
            <b-col sm="3">
-             <b-row align-v="stretch">
-               <b-col>
+             <b-row>
+               <b-col sm="2">
                 <ShareNetwork
                   network="facebook"
                   :url="urlHoonian + Model.data.main_pic"
@@ -44,23 +44,32 @@
                   <b-img :src="require('@/assets/icon-svg/facebook_white.svg')" alt="" style=""/>
                 </ShareNetwork>
                 </b-col>
-                <b-col style="text-align: center;">
-                  <ShareNetwork
-                  network="twitter"
-                  :url="urlHoonian + Model.data.main_pic"
-                  :title="Model.share.title"
-                  description="Hoonian"
-                  :quote="Model.share.title"
-                  hashtags="hoonian"
-                >
-                  <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
-                </ShareNetwork>
+                <b-col sm="8" style="padding: unset !important;">
+                  <b-container>
+                    <b-row>
+                      <b-col style="text-align: center;">
+                        <ShareNetwork
+                          network="twitter"
+                          :url="urlHoonian + Model.data.main_pic"
+                          :title="Model.share.title"
+                          description="Hoonian"
+                          :quote="Model.share.title"
+                          hashtags="hoonian"
+                        >
+                          <b-img :src="require('@/assets/icon-svg/twitter_white.svg')" alt="" style=""/>
+                        </ShareNetwork>
+                      </b-col>
+                    
+                      <b-col style="text-align: center;">
+                        <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
+                      </b-col>
+                    </b-row>
+                  </b-container>
                 </b-col>
-                <b-col style="text-align: center;">
-                  <b-img :src="require('@/assets/icon-svg/whatsapp_white.svg')" alt="" style="cursor: pointer;" @click="doWhatsapp"/>
-                </b-col>
-                <b-col style="text-align: right;">
-                  <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
+                <b-col sm="2">
+                  <b-row align-h="end">
+                    <b-img :src="require('@/assets/icon-svg/email_white.svg')" alt="" style="cursor: pointer;" @click="doEmail"/>
+                  </b-row>
                 </b-col>
              </b-row>
            </b-col>
@@ -170,15 +179,15 @@
            </b-col>
            <b-col sm="3" style="padding: unset !important;">
             <div v-for="(image, index) in Model.image" :key="index">
-              <b-row v-if="index % 2 == 0" style="margin-top: 10px !important; margin-left: 5px !important; margin-right: 5px !important;">
-                <b-col sm="6">
+              <b-row v-if="index % 2 == 0" :style="index > 1? 'margin-top: 15px !important;': ''">
+                <b-col sm="6" style="padding-left: 10px !important; padding-right: 10px !important;">
                   <b-img :src="urlHoonian + Model.image[index].thumbnail_image" alt=""
-                    :style="`width: 90px; height: 90px; cursor: pointer;`"
+                    :style="`height: 93px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index].thumbnail_image)" />
                 </b-col>
-                <b-col sm="6" v-if="Model.image.length > (index + 1)">
+                <b-col sm="6" style="padding-left: 10px !important; padding-right: 10px !important;" v-if="Model.image.length > (index + 1)">
                   <b-img :src="urlHoonian + Model.image[index + 1].thumbnail_image" alt=""
-                    :style="`width: 90px; height: 90px; cursor: pointer;`"
+                    :style="`height: 93px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" @click="changeImage(Model.image[index + 1].thumbnail_image)" />
                 </b-col>
               </b-row>
@@ -237,6 +246,7 @@
                     noCard
                     removeCardTitle
                     removePaddingTopBody
+                    @onRenderData="UnitListRender"
                   >
                     <template slot="unit_no" slot-scope="data">
                       <span style="color: #4A93B3">
@@ -257,7 +267,7 @@
                     </template>
                     <template slot="price" slot-scope="data">
                       <b-row>
-                        <b-col align-self="center">
+                        <b-col :class="data.item.is_buyer? 'table-info': ''" style="display: flex; align-items: center;">
                           IDR {{ isCurrency(data.item.price, 0) }}
                         </b-col>
                         <b-col sm="2">
@@ -270,20 +280,22 @@
                     </template>
                     <template slot="status" slot-scope="data">
                       <b-row>
-                        <b-col align-self="center" :sm="data.item.status == 'available' || data.item.status == 'booked' ? 4: 12"
+                        <b-col align-self="center" :sm="data.item.status == AVAILABLE || data.item.status == BOOKED ? 4: 12"
                           style="padding-left: unset !important;">
-                          <span :style="data.item.status == 'available'? 'color: #219653;':
-                                      (data.item.status == 'sold'? 'color: #EB5757;': 'color: #F2C94C;')">
-                            {{data.item.status.toUpperCase()}}
+                          <span :style="data.item.status == AVAILABLE? 'color: #219653;':
+                                      (data.item.status == SOLD? 'color: #EB5757;': 'color: #F2C94C;')">
+                            <span style="text-shadow: 0.5px 0px;">
+                              {{data.item.status}}
+                            </span>
                           </span>
                         </b-col>
-                        <b-col v-if="data.item.status == 'available' || data.item.status == 'booked'">
+                        <b-col v-if="data.item.status == AVAILABLE || data.item.status == BOOKED">
                           <ABSButton
-                            :text="data.item.status == 'available'? 'Reservation' :
-                                  (data.item.status == 'booked'? 'Waiting List': '')"
+                            :text="data.item.status == AVAILABLE? 'Reservation' :
+                                  (data.item.status == BOOKED? 'Waiting List': '')"
 
-                            :classButton="data.item.status == 'available'? 'btn btn--default' :
-                                        (data.item.status == 'booked'? 'btn btn--yellow': '')"
+                            :classButton="data.item.status == AVAILABLE? 'btn btn--default' :
+                                        (data.item.status == BOOKED? 'btn btn--yellow': '')"
                             classIcon="icon-style-1"
                             @click="doReservationOrBooked(data.item)"
                             styleButton="height: 30px; width: 100%;"
@@ -392,7 +404,7 @@
                   </ABSModal>
                   <ABSModal id="Modal_Reservation" ref="Modal_Reservation" size="md">
                     <template slot="headerTitle">
-                      <span v-if="dataRowClick" class="title-primary"> {{ $t('buyer_details') }} - {{ dataRowClick.status == 'available'? 'Reservation': 'Waiting List' }} </span>
+                      <span v-if="dataRowClick" class="title-primary"> {{ $t('buyer_details') }} - {{ dataRowClick.status == AVAILABLE? 'Reservation': 'Waiting List' }} </span>
                     </template>
                     <template slot="content">
                       <b-row v-if="dataRowClick">
@@ -645,8 +657,8 @@
                             <b-col sm="4">
                               <label class="lbl-poppins">{{ $t('status') }}</label>
                             </b-col>
-                            <b-col :style="dataBuyerDetail.info.status == 'available'? 'color: #219653;':
-                                    (dataBuyerDetail.info.status == 'sold'? 'color: #EB5757;': 'color: #F2C94C;')">
+                            <b-col :style="dataBuyerDetail.info.status == AVAILABLE? 'color: #219653;':
+                                    (dataBuyerDetail.info.status == SOLD? 'color: #EB5757;': 'color: #F2C94C;')">
                               {{ dataBuyerDetail.info.status? dataBuyerDetail.info.status.toUpperCase(): "" }}
                             </b-col>
                           </b-row>
@@ -689,82 +701,58 @@
                  {{ $t('other_suggestion') }}
                </b-col>
              </b-row>
-             <b-row style="background: #F8F8F8;">
-               <b-col style="padding-left: 50px; padding-right: 50px;">
-                <vue-horizontal-list
-                  :items="OtherSuggestion"
-                  :options="options"
-                >
-                  <template v-slot:nav-prev>
-                    <!-- <div>
-                      <b-img :src="require('@/assets/icon-svg/chevron_left.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-left: unset !important;" />
-                    </div> -->
-                  </template>
-
-                  <template v-slot:nav-next>
-                    <!-- <div>
-                      <b-img :src="require('@/assets/icon-svg/chevron_right.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-right: unset !important;" />
-                    </div> -->
-                  </template>
-
-                  <template v-slot:start>
-                    <!-- <div>First Item</div> -->
-                  </template>
-
-                  <template v-slot:end>
-                    <!-- <div>Last Item</div> -->
-                  </template>
-                  <template v-slot:default="{item}">
-                    <div class="card">
-                      <div class="card__body" style="padding: unset !important;">
-                        <b-row>
-                          <b-col style="padding: unset !important;">
-                            <b-img :src="urlHoonian + item.thumbnail_image" alt=""
-                            :style="`height: 275px; cursor: pointer; position: relative;`"
-                            fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
-                          </b-col>
-                        </b-row>
-                        <b-row style="margin-top: 10px; padding: 0px 10px;">
-                          <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
-                            {{item.tower_cluster_name}} - {{item.unit_type}}
-                          </b-col>
-                          <b-col sm="4" style="font-size: 14px; text-align: right;">
-                            <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
-                            {{item.location_name}}
-                          </b-col>
-                        </b-row>
-                        <b-row style="margin-top: 5px !important; padding: 0px 10px;">
-                          <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                            {{ $t('start_from') }} IDR {{ isCurrency(item.start_from_price, 0) }}
-                          </b-col>
-                        </b-row>
-                        <b-row style="padding: 0px 10px;">
-                          <b-col style="font-size: 12px;">
-                            {{ isCurrency(item.price_per_meter_square,0) }} / m<sup>2</sup>
-                          </b-col>
-                        </b-row>
-                        <b-row style="font-size: 12px; padding: 20px 10px; margin-top: 10px;">
-                          <b-col>
-                            <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
-                            {{item.total}} {{ $t('units') }}
-                          </b-col>
-                          <b-col sm="4" style="text-align: right;">
-                            | &nbsp;
-                            <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
-                            {{item.total_bedroom}} BR
-                          </b-col>
-                          <b-col style="text-align: right;">
-                            | &nbsp;
-                            <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
-                            {{item.net_area}} m<sup>2</sup>
-                          </b-col>
-                        </b-row>
-                      </div>
+             <b-row style="padding-top: 10px; background: #F8F8F8;">
+              <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+                <template v-for="(item, index) in OtherSuggestion">
+                  <div class="card" v-bind:key="index" style="display: inline-block !important; width: 30%;">
+                    <div class="card__body" style="padding: unset !important;">
+                      <b-row>
+                        <b-col style="padding: unset !important;">
+                          <b-img :src="urlHoonian + item.thumbnail_image" alt=""
+                          :style="`height: 275px; cursor: pointer; position: relative;`"
+                          fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                        </b-col>
+                      </b-row>
+                      <b-row style="margin-top: 10px; padding: 0px 10px;">
+                        <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
+                          {{item.tower_cluster_name}} - {{item.unit_type}}
+                        </b-col>
+                        <b-col sm="4" style="font-size: 14px; text-align: right;">
+                          <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
+                          {{item.location_name}}
+                        </b-col>
+                      </b-row>
+                      <b-row style="margin-top: 5px !important; padding: 0px 10px;">
+                        <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+                          {{ $t('start_from') }} IDR {{ isCurrency(item.start_from_price, 0) }}
+                        </b-col>
+                      </b-row>
+                      <b-row style="padding: 0px 10px;">
+                        <b-col style="font-size: 12px;">
+                          {{ isCurrency(item.price_per_meter_square,0) }} / m<sup>2</sup>
+                        </b-col>
+                      </b-row>
+                      <b-row style="font-size: 12px; padding: 20px 10px; margin-top: 10px;">
+                        <b-col>
+                          <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
+                          {{item.total}} {{ $t('units') }}
+                        </b-col>
+                        <b-col sm="4" style="text-align: right;">
+                          | &nbsp;
+                          <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
+                          {{item.total_bedroom}} BR
+                        </b-col>
+                        <b-col style="text-align: right;">
+                          | &nbsp;
+                          <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
+                          {{item.net_area}} m<sup>2</sup>
+                        </b-col>
+                      </b-row>
                     </div>
-                  </template>
-                </vue-horizontal-list>
+                  </div>
+                </template>
               </b-col>
-             </b-row>
+            </b-row>
            </b-col>
          </b-row>
         </b-col>
@@ -786,6 +774,15 @@ export default {
       return param;
         }
       }
+    },
+    AVAILABLE() {
+      return "Available";
+    },
+    BOOKED() {
+      return "Booked";
+    },
+    SOLD() {
+      return "Sold";
     },
   },
   watch: {
@@ -874,7 +871,7 @@ export default {
         {
           key: "price",
           label: "PRICE",
-          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins remove-padding",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
@@ -1023,9 +1020,26 @@ export default {
         },
         // autoplay: { play: true, repeat: true, speed: 3000 },
       },
+      fields: {
+        unit_no: 'info',
+        block_floor_name: 'info',
+        net_area: 'info',
+        gross_area: 'info',
+        total_bedroom: 'info',
+        total_bathroom: 'info',
+        direction: 'info',
+        // price: 'info',
+      }
     }
   },
   methods: {
+    UnitListRender(data) {
+      data.forEach(el => {
+        if (el.is_buyer) {
+          el._cellVariants = this.fields;
+        }
+      });
+    },
     onLoanPercentage(data){
       this.Calculate.loan_amount = (this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number') * this.dataRowClick.price / 100).toFixed(0);
     },
@@ -1091,6 +1105,13 @@ export default {
       });
     },
     confirmation() {
+      let typeData = "";
+      if (this.dataRowClick.status == this.AVAILABLE) {
+        typeData = "reserve";
+      } else if (this.dataRowClick.status == this.BOOKED) {
+        typeData = "waiting";
+      }
+      
       let param = {
           handphone: this.BuyerDetails.handphone_no,
           customer_name: this.BuyerDetails.buyer_name,
@@ -1100,7 +1121,8 @@ export default {
           unit_id: this.dataRowClick.id,
           marketing_id: this.getDataUser().marketing_id,
           principle_id: this.getDataUser().principle_id,
-          project_id: this.paramFromList.id
+          project_id: this.paramFromList.id,
+          type: typeData,
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
@@ -1154,7 +1176,7 @@ export default {
 
     },
     rowClicked(data) {
-      if (data.status == 'available') return;
+      if (!data.is_buyer) return;
       this.dataRowClick = data;
       this.showBuyerDetails();
     },
@@ -1214,9 +1236,10 @@ export default {
         principle_id: this.getDataUser().principle_id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/detail', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/detail', param, true).then((response) => {
         if (response == null) return;
         this.Model = response.data;
+        this.changeImage(this.Model.image.length > 0? this.Model.image[0].thumbnail_image: '');
 
         this.setPropList();
       });
@@ -1291,9 +1314,7 @@ export default {
         principle_id: this.getDataUser().principle_id,
       };
       this.postJSON(
-        this.urlHoonian + "/api/marketing-website/project/unit-type/suggestion",
-        param
-      ).then((response) => {
+        this.urlHoonian + "/api/marketing-website/project/unit-type/suggestion", param, true).then((response) => {
         if (response == null) return;
         this.OtherSuggestion = response.data;
       });

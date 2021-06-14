@@ -173,21 +173,21 @@
                 <template v-for="(info, index) in Model.infos">
                   <b-row v-if="index % 2 == 0" :key="index" align-v="baseline">
                     <b-col sm="3" style="padding-left: unset !important; padding-right: unset !important;">
-                      <div class="row-view-black text-fourth" style="text-shadow: 0.7px 0px;">
+                      <div class="row-view-black text-single" style="text-shadow: 0.7px 0px;">
                         {{Model.infos[index].header}}
                       </div>
                     </b-col>
-                    <b-col sm="3" class="row-view-black text-fourth">
+                    <b-col sm="3" class="row-view-black text-single">
                       <div style="margin-right: 10px !important; padding-left: 10px !important;">
                         {{Model.infos[index].body}}
                       </div>
                     </b-col>
                     <b-col v-if="Model.infos.length > (index + 1)" sm="3" style="padding-left: unset !important; padding-right: unset !important;">
-                      <div class="row-view-black" style="margin-left: 10px !important; text-shadow: 0.7px 0px;">
+                      <div class="row-view-black text-single" style="margin-left: 10px !important; text-shadow: 0.7px 0px;">
                         {{Model.infos[index + 1].header}}
                       </div>
                     </b-col>
-                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black text-fourth">
+                    <b-col v-if="Model.infos.length > (index + 1)" sm="3" class="row-view-black text-single">
                       <div style="margin-right: 10px !important; padding-left: 10px !important;">
                         {{Model.infos[index + 1].body}}
                       </div>
@@ -207,10 +207,10 @@
               </div>
               <template v-for="(facility, index) in Model.facilities">
                 <b-row v-if="index % 2 == 0" :key="index">
-                  <b-col sm="6" class="row-view-black" style="margin-right: 10px !important; padding-left: unset !important;">
+                  <b-col sm="6" class="row-view-black text-single" style="margin-right: 10px !important; padding-left: unset !important;">
                     {{Model.facilities[index].body}}
                   </b-col>
-                  <b-col class="row-view-black" style="margin-left: 10px !important; padding-left: unset !important;" v-if="Model.facilities.length > (index + 1)">
+                  <b-col class="row-view-black text-single" style="margin-left: 10px !important; padding-left: unset !important;" v-if="Model.facilities.length > (index + 1)">
                     {{Model.facilities[index + 1].body}}
                   </b-col>
                 </b-row>
@@ -222,31 +222,6 @@
                   <b-img v-bind:key="index" :src="urlHoonian + data.thumbnail_image" alt="" style="height: 310px; cursor: pointer; max-width: 90%; margin-left: 5px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(data)" />
                 </template>
               </div>
-              <!-- <vue-horizontal-list
-                v-if="Model.facility_images.length > 0"
-                :items="Model.facility_images"
-                :options="optionsFacilities"
-              >
-                <template v-slot:nav-prev>
-                </template>
-
-                <template v-slot:nav-next>
-                </template>
-
-                <template v-slot:start>
-                </template>
-
-                <template v-slot:end>
-                </template>
-
-                <template v-slot:default="{item}">
-                  <b-row>
-                    <b-col>
-                      <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 310px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
-                    </b-col>
-                  </b-row>
-                </template>
-              </vue-horizontal-list> -->
             </b-col>
           </b-row>
          </div>
@@ -262,7 +237,7 @@
                  <!-- left -->
                 <b-col v-if="index % 2 == 0" sm="6" style="padding-left: unset !important; padding-right: unset !important;">
                   <b-img :src="urlHoonian + near.picture" alt=""
-                  :style="`height: 310px; cursor: pointer;`"
+                  :style="`height: 310px;`"
                   fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                 <b-col align-self="center" v-if="index % 2 == 0" style="padding-left: 30px !important; padding-right: unset !important;">
@@ -279,7 +254,7 @@
                 </b-col>
                 <b-col v-if="index % 2 == 1" style="padding-left: unset !important; padding-right: unset !important;">
                   <b-img :src="urlHoonian + near.picture" alt=""
-                  :style="`height: 310px; cursor: pointer;`"
+                  :style="`height: 310px;`"
                   fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                </b-row>
@@ -394,48 +369,33 @@
            </b-col>
          </b-row>
 
-         <b-row v-if="Progress.length > 0" style="margin-top: 30px;">
+         <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
              Progress
            </b-col>
          </b-row>
-         <b-row v-if="Progress.length > 0" style="padding-bottom: 20px;">
-           <b-col>
-             <vue-horizontal-list
-              :items="Progress"
-              :options="optionsProgress"
-            >
-              <template v-slot:nav-prev>
-              </template>
-
-              <template v-slot:nav-next>
-              </template>
-
-              <template v-slot:start>
-              </template>
-
-              <template v-slot:end>
-              </template>
-
-              <template v-slot:default="{item}">
+         <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
+          <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+            <template v-for="(item, index) in Progress">
+              <div v-bind:key="index" style="display: inline-block !important; width: 28%; margin-right: 20px;">
                 <b-row @click="showDetailProgress(item)">
-                  <b-col>
+                  <b-col style="padding: unset !important;">
                     <b-img :src="urlHoonian + item.main_image" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                   </b-col>
                 </b-row>
                 <b-row style="margin-top: 10px;">
-                  <b-col style="color: #52A0FC">
+                  <b-col style="color: #52A0FC; padding: unset !important;">
                     {{ isCurrency(item.percentage_completed, 0) }}% {{ $t('completed') }}
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col style="color: #828282; font-size: 12px;">
+                  <b-col style="color: #828282; font-size: 12px; padding: unset !important;">
                     {{momentUnix(item.created_at, "DD MMM YYYY")}}
                   </b-col>
                 </b-row>
-              </template>
-            </vue-horizontal-list>
-           </b-col>
+              </div>
+            </template>
+          </b-col>
          </b-row>
          <ABSModal id="Modal_Progress" ref="Modal_Progress" size="lg">
           <template slot="headerTitle">
@@ -470,42 +430,27 @@
                     <span class="title-primary" style="font-size: 14px;">{{ $t('notes') }}</span>
                      <b-row style="margin-top: 10px;">
                       <b-col style="border: solid 1px #dfe3f3; border-radius: 6px;">
-                        <div style="width: 100%; padding: 10px;">
-                          <span style="font-size: 13px;">{{ProgressDetail.info.notes}}</span>
+                        <div style="width: 100%; padding: 10px; min-height: 80px;">
+                          <span style="font-size: 13px;" class="text-third">{{ProgressDetail.info.notes}}</span>
                         </div>
                       </b-col>
                     </b-row>
-                    <b-row>
-                      <b-col>
-                        <vue-horizontal-list
-                          :items="ProgressDetail.medias"
-                          :options="optionsProgress"
-                        >
-                          <template v-slot:nav-prev>
-                          </template>
-
-                          <template v-slot:nav-next>
-                          </template>
-
-                          <template v-slot:start>
-                          </template>
-
-                          <template v-slot:end>
-                          </template>
-
-                          <template v-slot:default="{item}">
+                    <b-row style="margin-top: 10px;">
+                      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important; padding-left: unset !important;">
+                        <template v-for="(item, index) in ProgressDetail.medias">
+                          <div v-bind:key="index" style="width: 23%;">
                             <b-row>
                               <b-col style="padding-left: unset !important;">
                                 <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="showImage(item.thumbnail_image)" />
                               </b-col>
                             </b-row>
                             <b-row style="margin-top: 10px; background: #FFFFFF;">
-                              <b-col style="padding-left: unset !important;">
+                              <b-col style="padding-left: unset !important; text-shadow: 0.5px 0px; font-size: 14px;" class="text-single">
                                 {{item.remarks}}
                               </b-col>
                             </b-row>
-                          </template>
-                        </vue-horizontal-list>
+                          </div>
+                        </template>
                       </b-col>
                     </b-row>
                   </b-col>
@@ -521,47 +466,32 @@
              Promotions
            </b-col>
          </b-row>
-         <b-row v-if="Promotion.length > 0" style="background: #F8F8F8; padding-bottom: 20px;">
-           <b-col>
-             <vue-horizontal-list
-              :items="Promotion"
-              :options="optionsPromotion"
-            >
-              <template v-slot:nav-prev>
-              </template>
-
-              <template v-slot:nav-next>
-              </template>
-
-              <template v-slot:start>
-              </template>
-
-              <template v-slot:end>
-              </template>
-
-              <template v-slot:default="{item}">
+         <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
+          <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+            <template v-for="(item, index) in Promotion">
+              <div v-bind:key="index" style="display: inline-block !important; width: 40%; margin-right: 10px;">
                 <b-row style="box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
-                  <b-col>
+                  <b-col style="padding: unset !important;">
                     <b-row>
-                      <b-col>
-                        <b-img :src="urlHoonian + item.picture" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                      <b-col style="padding: unset !important;">
+                        <b-img :src="urlHoonian + item.picture" alt="" style="height: 200px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                       </b-col>
                     </b-row>
-                    <b-row style="margin-top: 10px; background: #FFFFFF;">
-                      <b-col>
+                    <b-row style="padding-top: 10px; background: #FFFFFF;">
+                      <b-col style="white-space: normal !important; text-shadow: 0.5px 0px; padding-left: 10px !important;">
                         {{item.promotion_name}}
                       </b-col>
                     </b-row>
                     <b-row style="background: #FFFFFF; padding: 10px 0px;">
-                      <b-col style="color: #828282; font-size: 12px;">
+                      <b-col style="color: #828282; font-size: 12px; padding-left: 10px !important;">
                         {{momentUnix(item.start_datetime, "DD MMM YYYY")}} - {{momentUnix(item.end_datetime, "DD MMM YYYY")}}
                       </b-col>
                     </b-row>
                   </b-col>
                 </b-row>
-              </template>
-            </vue-horizontal-list>
-           </b-col>
+              </div>
+            </template>
+          </b-col>
          </b-row>
 
          <b-row v-if="FinancialPartner.length > 0" style="margin-top: 20px;">
@@ -569,25 +499,10 @@
              Financial Partners
            </b-col>
          </b-row>
-         <b-row v-if="FinancialPartner.length > 0" style="padding-bottom: 20px;">
-           <b-col>
-             <vue-horizontal-list
-              :items="FinancialPartner"
-              :options="optionsFinancialPartner"
-            >
-              <template v-slot:nav-prev>
-              </template>
-
-              <template v-slot:nav-next>
-              </template>
-
-              <template v-slot:start>
-              </template>
-
-              <template v-slot:end>
-              </template>
-
-              <template v-slot:default="{item}">
+         <b-row v-if="FinancialPartner.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
+          <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+            <template v-for="(item, index) in FinancialPartner">
+              <div v-bind:key="index" style="display: inline-block !important; width: 37%; margin-right: 10px;">
                 <b-row style="background: #FFFFFF;
                               box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
                   <b-col sm="6" style="padding: 10px !important;">
@@ -595,20 +510,20 @@
                   </b-col>
                   <b-col sm="6" style="padding: 10px !important;">
                     <b-row>
-                      <b-col>
+                      <b-col style="white-space: normal;">
                         {{item.bank_name}}
                       </b-col>
                     </b-row>
                     <b-row style="margin-top: 10px;">
-                      <b-col style="font-size: 12px; color: #828282">
+                      <b-col style="font-size: 12px; color: #828282; white-space: normal;">
                         {{item.description}}
                       </b-col>
                     </b-row>
                   </b-col>
                 </b-row>
-              </template>
-            </vue-horizontal-list>
-           </b-col>
+              </div>
+            </template>
+          </b-col>
          </b-row>
 
          <b-row v-if="News.length > 0" style="padding-top: 20px; background: #F8F8F8;">
@@ -773,111 +688,6 @@ export default {
       Promotion: [],
       FinancialPartner: [],
       News: [],
-
-      optionsFacilities: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          { size: 1 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
-      optionsProgress: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          { size: 4 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
-      optionsPromotion: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          { size: 3 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
-      optionsFinancialPartner: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          { size: 3 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
     }
   },
   methods: {
@@ -955,9 +765,10 @@ export default {
         lang_id: this.getDataUser().lang_id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/detail', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/detail', param, true).then((response) => {
         if (response == null) return;
         this.Model = response.data;
+        this.changeImage(this.Model.image.length > 0? this.Model.image[0].thumbnail_image: '');
       });
     },
     getAvailableUnitTypes() {
@@ -966,9 +777,10 @@ export default {
         lang_id: this.getDataUser().lang_id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/available-unit-types-header', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/available-unit-types-header', param, true).then((response) => {
         if (response == null) return;
         let data = response.data;
+        if (data.length == 0) this.$store.commit('setStatusLoader', false);
 
         for (let i = 0; i < data.length; i++) {
           this.AvailableUnitTypes.push({
@@ -1012,7 +824,7 @@ export default {
         project_id: this.paramFromList.id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/progress', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/progress', param, true).then((response) => {
         if (response == null) return;
         this.Progress = response.data.list;
       });
@@ -1022,7 +834,7 @@ export default {
         project_id: this.paramFromList.id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/promotion', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/promotion', param, true).then((response) => {
         if (response == null) return;
         this.Promotion = response.data.list;
       });
@@ -1032,7 +844,7 @@ export default {
         project_id: this.paramFromList.id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/financial-partners', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/financial-partners', param, true).then((response) => {
         if (response == null) return;
         this.FinancialPartner = response.data;
       });
@@ -1042,7 +854,7 @@ export default {
         project_id: this.paramFromList.id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/news', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/news', param, true).then((response) => {
         if (response == null) return;
         this.News = response.data.list;
       });
@@ -1050,11 +862,11 @@ export default {
   },
   mounted() {
     this.getProject();
-    this.getAvailableUnitTypes();
     this.getProgress();
     this.getPromotion();
     this.getFinancialPartner();
     this.getNews();
+    this.getAvailableUnitTypes();
   },
 };
 </script>
