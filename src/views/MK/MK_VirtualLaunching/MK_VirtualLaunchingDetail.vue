@@ -22,11 +22,11 @@
                                                 {{ $t('time_to_launching') }}
                                             </b-col>
                                             <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
-                                                <span style="font-size: 40px;"> {{paramFromList.h_left}} </span>
+                                                <span style="font-size: 40px;"> {{Model.up_h_left}} </span>
                                                 <span style="font-size: 20px;">{{ $t('hours') }}</span>
                                             </b-col>
                                             <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
-                                                <span style="font-size: 40px;"> {{paramFromList.m_left}} </span>
+                                                <span style="font-size: 40px;"> {{Model.up_m_left}} </span>
                                                 <span style="font-size: 20px;">{{ $t('minutes') }}</span>
                                             </b-col>
                                         </b-row>
@@ -44,7 +44,7 @@
                                                 </span>
                                             </b-col>
                                             <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
-                                                <span style="font-size: 40px;"> {{paramFromList.d_left}} </span>
+                                                <span style="font-size: 40px;"> {{Model.up_d_left}} </span>
                                                 <span style="font-size: 20px;">{{ $t('days') }}</span>
                                             </b-col>
                                         </b-row>
@@ -387,7 +387,7 @@ export default {
         unit_no: "",
         price: 0,
         reserve_status: true,
-        active_nup: ""
+        active_nup: "",
       };
     },
     checkHM(num) {
@@ -485,7 +485,8 @@ export default {
         this.propList_buyer.param.project_id = this.Model.project_id;
         let h_left = 0, m_left = 0, d_left = 0, inDays = false, reserve_status = true;
           // console.log(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
-          // console.log(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")))
+          console.log(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm"))
+          console.log(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(this.momentUnix(this.paramFromList.start_datetime, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(this.momentUnix(this.paramFromList.end_datetime, "YYYY-MM-DD HH:mm")))
@@ -531,6 +532,22 @@ export default {
           // else if (this.momentDiff(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'days') > 0) {
           //   reserve_status = false;
           // }
+        }
+        else {
+          if (this.momentDateToUnix(new Date()) < this.Model.start_datetime) {
+            status = 'w';
+            if (this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'days') < 1) {
+                // console.log(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
+                // console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              this.Model.up_h_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[0]);
+              this.Model.up_m_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[1]);
+            }
+            else {
+              inDays = true;
+            //   console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              this.Model.up_d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'days'));
+            }
+          }
         }
 
         this.Model.inDays = inDays;
