@@ -22,11 +22,11 @@
                                                 {{ $t('time_to_launching') }}
                                             </b-col>
                                             <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
-                                                <span style="font-size: 40px;"> {{paramFromList.h_left}} </span>
+                                                <span style="font-size: 40px;"> {{Model.up_h_left}} </span>
                                                 <span style="font-size: 20px;">{{ $t('hours') }}</span>
                                             </b-col>
                                             <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
-                                                <span style="font-size: 40px;"> {{paramFromList.m_left}} </span>
+                                                <span style="font-size: 40px;"> {{Model.up_m_left}} </span>
                                                 <span style="font-size: 20px;">{{ $t('minutes') }}</span>
                                             </b-col>
                                         </b-row>
@@ -44,7 +44,7 @@
                                                 </span>
                                             </b-col>
                                             <b-col style="text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
-                                                <span style="font-size: 40px;"> {{paramFromList.d_left}} </span>
+                                                <span style="font-size: 40px;"> {{Model.up_d_left}} </span>
                                                 <span style="font-size: 20px;">{{ $t('days') }}</span>
                                             </b-col>
                                         </b-row>
@@ -130,16 +130,51 @@
                                     noCard
                                     removePaddingTopBody
                                     :cHeader="BuyerHeader"
+                                    @onRenderData="BuyerDataRender"
                                 >
                                     <template slot="TitleTable">
                                       <b-col lg="6" xl="6" style="height: 35px;">
                                         <span class="title-primary" style="font-size: 18px;"> {{ $t('nup_buyer_list') }} </span>
                                       </b-col>
                                     </template>
+                                    <!-- <template slot="no" slot-scope="data">
+                                      <div :style="data.item.status == 'On Progress' ? 'background-color: #f2994a;' : (data.item.status == 'Next No' ? 'background-color: #2d9cdb;' : 'background-color: #2d9cdb;')">
+                                        {{data.item.no}}
+                                      </div>
+                                    </template>
+                                    <template slot="nup_no" slot-scope="data">
+                                      <div :style="data.item.status == 'On Progress' ? 'background-color: #f2994a;' : (data.item.status == 'Next No' ? 'background-color: #2d9cdb;' : 'background-color: #2d9cdb;')">
+                                        {{data.item.nup_no}}
+                                      </div>
+                                    </template>
+                                    <template slot="buyer_name" slot-scope="data">
+                                      <div :style="data.item.status == 'On Progress' ? 'background-color: #f2994a;' : (data.item.status == 'Next No' ? 'background-color: #2d9cdb;' : 'background-color: #2d9cdb;')">
+                                        {{data.item.buyer_name}}
+                                      </div>
+                                    </template> -->
                                     <template slot="status" slot-scope="data">
-                                      <span>
-                                        {{checkHM(data.item.status)}}
-                                      </span>
+                                      <!-- <div :style="data.item.status == 'On Progress' ? 'background-color: #f2994a;' : (data.item.status == 'Next No' ? 'background-color: #2d9cdb;' : 'background-color: #2d9cdb;')"> -->
+                                        <template v-if="data.item.status == 'Unit Selected'">
+                                          <span style="color: #219653;">
+                                            {{data.item.status}}
+                                          </span>
+                                        </template>
+                                        <template v-else-if="data.item.status == 'Missed'">
+                                          <span style="color: #eb5757;">
+                                            {{data.item.status}}
+                                          </span>
+                                        </template>
+                                        <template v-else-if="data.item.status == 'On Progress' || data.item.status == 'Next No'">
+                                          <span style="color: #FFFFFF;">
+                                            {{data.item.status}}
+                                          </span>
+                                        </template>
+                                        <template v-else>
+                                          <span style="color: #f2c94c;">
+                                            {{checkHM(data.item.status)}}
+                                          </span>
+                                        </template>
+                                      <!-- </div> -->
                                     </template>
                                 </HOOList>
                             </b-col>
@@ -330,6 +365,11 @@ export default {
     doBack() {
       this.$router.go(-1);
     },
+    renderTdClass(value, key, item) {
+      console.log(item)
+      let cls = "ContentACCList2 notranslate th-cus-center poppins";
+      return cls
+    },
     M_ClearForm() {
       this.Model = {
         id: "",
@@ -347,7 +387,7 @@ export default {
         unit_no: "",
         price: 0,
         reserve_status: true,
-        active_nup: ""
+        active_nup: "",
       };
     },
     checkHM(num) {
@@ -368,6 +408,18 @@ export default {
     },
     UnitDataRender(data) {
       this.AvailableUnits = data;
+    },
+    BuyerDataRender(data) {
+      for (let x = 0; x < this.$refs.ref_buyer.items.length; x++ ) {
+        if (this.$refs.ref_buyer.items[x].status == 'On Progress') {
+          this.$refs.ref_buyer.items[x]._rowVariant = 'belang1';
+        }
+        else if (this.$refs.ref_buyer.items[x].status == 'Next No') {
+          this.$refs.ref_buyer.items[x]._rowVariant = 'belang2';
+        }
+        // data.item.status == 'On Progress' ? 'background-color: #f2994a;' : (data.item.status == 'Next No' ? 'background-color: #2d9cdb;'
+        // this.$refs.ref_buyer.items[x]._rowVariant = checked;
+      }
     },
     OnStatusClick(data) {
       this.Model.unit_id = data.unit_id;
@@ -414,7 +466,10 @@ export default {
         this.urlHoonian + "/api/marketing-website/v-launching/confirmation",
         param
       ).then((response) => {
-        if (response == null) return;
+        if (response == null) {
+          this.getDataBy();
+          return;
+        }
         window.open(response.data.payment.redirect_url);
         this.doBack();
       });
@@ -429,11 +484,12 @@ export default {
         this.Model = response.data;
         this.propList_buyer.param.project_id = this.Model.project_id;
         let h_left = 0, m_left = 0, d_left = 0, inDays = false, reserve_status = true;
-          console.log(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
+          // console.log(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
+          console.log(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm"))
           console.log(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")))
-          console.log(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")))
-          console.log(new Date(this.momentUnix(this.paramFromList.start_datetime, "YYYY-MM-DD HH:mm")))
-          console.log(new Date(this.momentUnix(this.paramFromList.end_datetime, "YYYY-MM-DD HH:mm")))
+          // console.log(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")))
+          // console.log(new Date(this.momentUnix(this.paramFromList.start_datetime, "YYYY-MM-DD HH:mm")))
+          // console.log(new Date(this.momentUnix(this.paramFromList.end_datetime, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")))
           // console.log(this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'days'))
           // console.log(this.momentDiff(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'days'))
@@ -476,6 +532,22 @@ export default {
           // else if (this.momentDiff(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'days') > 0) {
           //   reserve_status = false;
           // }
+        }
+        else {
+          if (this.momentDateToUnix(new Date()) < this.Model.start_datetime) {
+            status = 'w';
+            if (this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'days') < 1) {
+                // console.log(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
+                // console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              this.Model.up_h_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[0]);
+              this.Model.up_m_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[1]);
+            }
+            else {
+              inDays = true;
+            //   console.log(this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'HH:mm'))
+              this.Model.up_d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'days'));
+            }
+          }
         }
 
         this.Model.inDays = inDays;

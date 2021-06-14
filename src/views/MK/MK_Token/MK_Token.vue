@@ -173,43 +173,43 @@ export default {
       Headers: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "marketing_name",
-          label: "Marketing Name",
+          label: "MARKETING NAME",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "principle_name",
-          label: "Principle Name",
+          label: "PRINCIPLE NAME",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
-          label: "Project Name",
+          label: "PROJECT NAME",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_token",
-          label: "Total Token",
+          label: "TOTAL TOKEN",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "used",
-          label: "Used",
+          label: "USED",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "forfeited",
-          label: "Forfeited",
+          label: "FORFEITED",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },

@@ -22,19 +22,19 @@
                         <div style="position: absolute; bottom: 0;">
                           
                           <label style="font-weight: bold; font-size: 20px; margin-bottom: 10px;" class="lbl-poppins">{{$t('total_owned_token')}}</label> <br>
-                          <label style="font-weight: bolder; font-size: 20px;" class="title-primary">
-                            {{ModelDetail.total_owned_token}}
-                          </label>
+                          <span style="font-weight: 900; font-size: 20px;" class="title-primary">
+                            <strong>{{ModelDetail.total_owned_token}}</strong>
+                          </span>
                         </div>
                       </b-col>
                       <b-col lg="4" xl="4" style="margin-right: 20px;">
-                        <!-- <span style="font-weight: bolder; font-size: 20px; margin-bottom: 10px;" class="title-primary">
+                        <!-- <span style="font-weight: bold; font-size: 20px; margin-bottom: 10px;" class="title-primary">
                           {{ModelDetail.project_name}}
                         </span> <br> -->
                         <div style="position: absolute; bottom: 0;">
                           <label style="font-weight: bold; font-size: 20px; margin-bottom: 10px;" class="lbl-poppins">{{$t('token_value')}}</label> <br>
-                          <span style="font-weight: bolder; font-size: 20px;" class="title-primary">
-                            {{ModelDetail.token_value_project}}
+                          <span style="font-weight: 900; font-size: 20px;" class="title-primary">
+                            <strong>{{ModelDetail.token_value_project}}</strong>
                           </span>
                         </div>
                       </b-col>
@@ -55,7 +55,9 @@
                                     <label style="font-weight: bold; font-size: 20px;" class="lbl-poppins">{{$t('token_value')}}@</label>
                                   </span> <br>
                                   <span>
-                                    <label style="font-weight: bold; font-size: 20px;" class="title-primary">{{ModelDetail.token_value_s}}</label>
+                                    <label style="font-weight: bold; font-size: 20px;" class="title-primary">
+                                      <strong>{{ModelDetail.token_value_s}}</strong>
+                                    </label>
                                   </span>
                               </b-col>
                               <b-col md="3">
@@ -76,7 +78,9 @@
                                       <label style="font-weight: bold; font-size: 20px;" class="lbl-poppins">{{$t('purchase_value')}}</label>
                                   </span> <br>
                                   <span>
-                                    <label style="font-weight: bold; font-size: 20px;" class="title-primary">{{ModelDetail.purchase_value}}</label>
+                                    <label style="font-weight: bold; font-size: 20px;" class="title-primary">
+                                      <strong>{{ModelDetail.purchase_value}}</strong>
+                                    </label>
                                   </span>
                               </b-col>
                               <b-col md="3">

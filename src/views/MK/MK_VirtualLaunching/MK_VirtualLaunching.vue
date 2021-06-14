@@ -4,21 +4,13 @@
             <b-row class="dashboardBody poppins">
                 <b-col lg="12" xl="12">
                     <div class="card">
-                        <div class="card__title">
+                        <!-- <div class="card__title">
                         <b-row>
                             <b-col style="max-width: max-content !important">
                             <span>Project List</span>
                             </b-col>
-                            <!-- <b-col style="text-align: right">
-                            <ABSButton
-                                :text="'Back'"
-                                classButton="button button--back"
-                                classIcon="icon-style-1"
-                                @click="doBack"
-                            />
-                            </b-col> -->
                         </b-row>
-                        </div>
+                        </div> -->
                         <div class="card__body">
                             <span style="color: black !important;" class="title-primary">Project List</span>
                         </div>
@@ -116,9 +108,11 @@
                                                 </template>
                                             </template>
                                             <template v-else>
-                                                <b-row style="padding: 30px 10px 10px 10px !important; margin-top: 20px;">
-                                                    <b-col style="height: 50px; background-color: red; color: white; font-size: 18px; text-align: center; line-height: 50px;">
-                                                        {{ $t('v_launching') }} {{ $t('in_progress') }}
+                                                <b-row style="padding: 0px 10px 10px 10px !important; margin-top: 20px;">
+                                                    <b-col style="height: 70px; background-color: red; color: white; font-size: 17px; text-align: center; line-height: 50px;">
+                                                        <div style="width: 100%;" class="center">
+                                                            {{ $t('v_launching') }} {{ $t('in_progress') }}
+                                                        </div>
                                                     </b-col>
                                                 </b-row>
                                             </template>
