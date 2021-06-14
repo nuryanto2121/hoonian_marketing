@@ -4,17 +4,17 @@
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
           <b-row>
-            <b-col lg="8" xl="8">
+            <b-col lg="7" xl="7">
               <span style="color: black;" class="title-primary">Last 12 Months</span>
             </b-col>
             <b-col style="max-width: max-content;">
               <b-row>
-                <b-col lg="3" xl="5" style="text-align: right; max-width: max-content;">
+                <b-col lg="4" xl="5" style="text-align: right; max-width: max-content;">
                     <span style="font-weight: bold; font-size: 13px;">
                         Show By &nbsp;&nbsp;
                     </span>
                 </b-col>
-                <b-col style="text-align: right; margin-right: 15px !important;">
+                <b-col style="text-align: right;">
                     <ACCRadioButton
                         @input="Onshow_byChange"
                         :prop="PI_show_by"

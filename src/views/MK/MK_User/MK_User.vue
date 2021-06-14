@@ -270,43 +270,43 @@ export default {
       Headers: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "name",
-          label: "Marketing Name",
+          label: "MARKETING NAME",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "handphone",
-          label: "Hanphone No.",
+          label: "HANPHONE NO.",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "total_project",
-          label: "Total Project",
+          label: "TOTAL PROJECT",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "total_sales_unit",
-          label: "Total Sales (Unit)",
+          label: "TOTAL SALES (UNIT)",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "total_sales_price",
-          label: "Total Sales (Value)",
+          label: "TOTAL SALES (VALUE)",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         // {
         //   key: "forfeited",
-        //   label: "Forfeited",
+        //   label: "FORFEITED",
         //   thClass: "HeaderACCList2Poppins th-cus-center",
         //   tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         // },
@@ -315,13 +315,13 @@ export default {
       assignedProject_Headers: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "project_name",
-          label: "Project Name",
+          label: "PROJECT NAME",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },

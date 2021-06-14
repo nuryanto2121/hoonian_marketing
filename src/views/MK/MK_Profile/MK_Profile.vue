@@ -8,6 +8,16 @@
                     <b-row style="margin-bottom: 20px;">
                         <b-col lg="2" xl="2"  style="margin-right: 20px;">
                             <!-- image -->
+                            <b-img style="border-radius: 50%;" id="prof_pict_show" :src="urlHoonian + Model.profile_image" alt="" height="160" width="160" @error="onImageLoadFailure($event)" />
+                            <div class="pp_box">
+                              <font-awesome-icon style="font-size: 2em !important;" @click.stop="OnProfPictClick" class="icon-style-default title-primary center" icon="camera-retro" />
+                            </div>
+                            <HOOImageUpload
+                                :prop="PI_prof_pict"
+                                @change="Onprof_pictChange"
+                                v-model="Model.profile_image"
+                                ref="prof_pict"
+                            />
                         </b-col>
                         <b-col>
                             <b-row>
@@ -284,6 +294,7 @@ export default {
         email: "",
         id_no: "",
         thumbnail_image: "",
+        profile_image: "",
         mobile_app_user_id: "",
         lang_id: "",
         lang_idLabel: "",
@@ -401,6 +412,16 @@ export default {
         cDecimal: 2,
         cInputStatus: "new"
       },
+
+      
+      PI_prof_pict: {
+        cValidate: "",
+        cName: "prof_pict",
+        cOrder: 10,
+        cType: "prof_pict",
+        cParentForm: "FormEntry",
+        cStyle: "display: none"
+      },
     };
   },
   methods: {
@@ -409,6 +430,9 @@ export default {
     },
     OnIDPictClick() {
         this.$refs.id_pict.onClick();
+    },
+    OnProfPictClick() {
+      this.$refs.prof_pict.onClick();
     },
     Onlang_idChange(data) {
         this.Model.lang_id = data.id;
@@ -428,6 +452,7 @@ export default {
         email: "",
         id_no: "",
         thumbnail_image: "",
+        profile_image: "",
         mobile_app_user_id: "",
         lang_id: "",
         lang_idLabel: "",
@@ -496,5 +521,15 @@ export default {
 }
 .activate {
   box-shadow: 0px 5px 5px 2px #ccc;
+}
+.pp_box {
+  position: absolute;
+  top: 120px;
+  right: 5px;
+  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  box-shadow: 0px 3px 3px 0px #ccc;
+  background-color: white;
 }
 </style>
