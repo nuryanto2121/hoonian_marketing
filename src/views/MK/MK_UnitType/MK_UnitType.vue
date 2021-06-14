@@ -299,6 +299,7 @@
                             classIcon="icon-style-1"
                             @click="doReservationOrBooked(data.item)"
                             styleButton="height: 30px; width: 100%;"
+                            :disabled="disabledButtonStatus(data)"
                           />
                         </b-col>
                       </b-row>
@@ -784,6 +785,9 @@ export default {
     SOLD() {
       return "Sold";
     },
+    V_LAUNCHING() {
+      return "V-Launching";
+    },
   },
   watch: {
   },
@@ -1033,6 +1037,19 @@ export default {
     }
   },
   methods: {
+    disabledButtonStatus(data) {
+      let disabled = false;
+      if (data.item.booking_type == 'unreleased') {
+        disabled = true;
+      } else if (data.item.status == this.SOLD || data.item.status == this.BOOKED) {
+        // disabled = false;
+      } else if (data.item.status == this.V_LAUNCHING) {
+        disabled = true;
+      } else if (data.item.status == this.AVAILABLE) {
+        // disabled = false;
+      }
+      return disabled;
+    },
     UnitListRender(data) {
       data.forEach(el => {
         if (el.is_buyer) {
@@ -1123,6 +1140,7 @@ export default {
           principle_id: this.getDataUser().principle_id,
           project_id: this.paramFromList.id,
           type: typeData,
+          nup_no: "",
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
