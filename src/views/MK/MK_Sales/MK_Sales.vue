@@ -48,7 +48,7 @@
           </b-row>
           <template v-for="(data, index) in Model">
             <b-row style="background: #F8F8F8; padding-top: 10px; padding-bottom: 10px;" :key="data.id">
-              <b-col>
+              <b-col style="text-align: center;">
                 <b-img :src="urlHoonian + data.icon_project" alt=""
                   :style="`height: 80px;`" @error="onImageLoadFailure($event)" />
               </b-col>

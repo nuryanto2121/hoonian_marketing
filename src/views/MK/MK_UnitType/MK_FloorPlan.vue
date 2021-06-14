@@ -47,9 +47,36 @@
                     <v-line @click="onShapeClick" :config="{
                         points: data.point_unit,
                         tension: 0,
-                        fill: data.color_cd,
+                        fill: data.color_cd + '80',
                         closed: true,
                       }"
+                    />
+                    <v-text :config="{
+                      x: data.point_unit[0],
+                      y: data.point_unit[1],
+                      text: data.unit_type_name,
+                      fontSize: 24,
+                      fill: 'white',
+                      align: 'center'
+                    }"
+                    />
+                    <v-text :config="{
+                      x: data.point_unit[0],
+                      y: data.point_unit[1] + 25,
+                      text: data.unit_no,
+                      fontSize: 24,
+                      fill: 'white',
+                      align: 'center'
+                    }"
+                    />
+                    <v-text :config="{
+                      x: data.point_unit[0],
+                      y: data.point_unit[1] + 50,
+                      text: data.unit_status,
+                      fontSize: 24,
+                      fill: 'white',
+                      align: 'center'
+                    }"
                     />
                   </template>
                 </v-layer>
@@ -183,6 +210,9 @@ export default {
           arrToDisplay.push({
               point_unit: arrXY,
               color_cd: units[x].color_cd,
+              unit_no: units[x].unit_no,
+              unit_status: units[x].unit_status,
+              unit_type_name: units[x].unit_type_name,
           });
         }
         this.savedShape = arrToDisplay;
@@ -200,6 +230,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Floor Plan");
     this.PI_block_floor.dataLookUp.param.project_id = this.paramFromList.id;
     this.PI_block_floor.dataLookUp.param.tower_cluster_id = this.paramFromList.tower_cluster_id;
     this.PI_block_floor.dataLookUp.param.lang_id = this.getDataUser().lang_id;

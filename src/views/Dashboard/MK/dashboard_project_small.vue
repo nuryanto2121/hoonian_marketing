@@ -16,7 +16,7 @@
     <b-row style="margin-top: 10px;">
       <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
         <template v-for="(item, index) in Location">
-          <b-row v-bind:key="index" style="display: inline-block !important; width: 17%;">
+          <b-row v-bind:key="index" style="display: inline-block !important; width: 16.4%;">
             <b-col>
               <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 133px;': 'height: 121px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
               <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
@@ -40,10 +40,10 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 10px !important;">
-                <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
+                <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important;" class="text-single">
                   {{item.project_name}}
                 </b-col>
-                <b-col sm="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                <b-col sm="4" xl="3" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>
@@ -76,10 +76,10 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 10px !important;">
-                <b-col style="font-size: 14px; text-shadow: 0.5px 0px;" class="text-single">
+                <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important;" class="text-single">
                   {{item.project_name}}
                 </b-col>
-                <b-col md="4" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                <b-col sm="4" xl="3" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>

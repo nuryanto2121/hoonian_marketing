@@ -14,7 +14,7 @@
            </b-col>
          </b-row>
          <b-row style="margin-top: 10px; padding-top: 10px; background: #F8F8F8;">
-           <b-col style="color: #828282;">
+           <b-col style="color: #828282; font-size: 14px;">
              {{Model.data.project_status}}
              &nbsp;&nbsp; > &nbsp;&nbsp;
              {{Model.data.location_name}}
@@ -173,7 +173,7 @@
              </b-row>
            </b-col>
            <b-col sm="5" style="">
-             <b-img :src="urlHoonian + Model.data.layout_image" alt=""
+             <b-img :src="urlHoonian + Model.data.big_image" alt=""
                 :style="`height: 310px;`"
                 fluid-grow @error="onImageLoadFailure($event)" />
            </b-col>
@@ -1048,7 +1048,7 @@ export default {
 
     },
     changeImage(path) {
-      this.Model.data.layout_image = path;
+      this.Model.data.big_image = path;
     },
     timerPleasePayIn() {
       this.intervalPleasePayIn = setInterval(() => {

@@ -157,7 +157,7 @@
 
           <div style="background: #F8F8F8;">
             <b-row style="padding-top: 10px;">
-              <b-col style="color: #828282;">
+              <b-col style="color: #828282; font-size: 14px;">
                 {{Model.data.project_status}}
                 &nbsp;&nbsp; > &nbsp;&nbsp;
                 {{Model.data.location_name}}
@@ -385,7 +385,7 @@
                 </b-row>
                 <b-row style="margin-top: 10px;">
                   <b-col style="color: #52A0FC; padding: unset !important;">
-                    {{ isCurrency(item.percentage_completed, 0) }}% {{ $t('completed') }}
+                    {{ parseInt(item.percentage_completed) }}% {{ $t('completed') }}
                   </b-col>
                 </b-row>
                 <b-row>
@@ -418,7 +418,7 @@
                           margin: 0 auto !important;
                       ">
                           <div style="margin-top: 28%;">
-                              <span style="color: #333399; font-size: 36px; font-weight: bold;">{{ProgressDetail.info.progress_percentage}}%</span>
+                              <span style="color: #333399; font-size: 36px; font-weight: bold;">{{ProgressDetail.info.progress_percentage == null? 0 : parseInt(ProgressDetail.info.progress_percentage)}}%</span>
                           </div>
                       </div>
                       <div class="progress-x" style="text-align: center;">
