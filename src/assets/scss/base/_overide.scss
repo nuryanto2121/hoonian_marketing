@@ -998,6 +998,14 @@ ul.box-languages {
   -webkit-box-orient: vertical;
 }
 
+.text-eight {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 8;
+  -webkit-box-orient: vertical;
+}
+
 .vhl-item {
   padding-top: 10px !important;
   padding-bottom: 10px !important;
