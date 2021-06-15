@@ -54,7 +54,7 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                <b-col style="min-height: 60px; white-space: normal !important;" class="text-fourth">
+                <b-col style="min-height: 30px; white-space: normal !important;" class="text-double">
                   {{ item.remarks }}
                 </b-col>
               </b-row>
@@ -90,7 +90,7 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                <b-col style="min-height: 60px; white-space: normal !important;" class="text-fourth">
+                <b-col style="min-height: 30px; white-space: normal !important;" class="text-double">
                   {{ item.remarks }}
                 </b-col>
               </b-row>

@@ -48,20 +48,20 @@
           </b-row>
           <template v-for="(data, index) in Model">
             <b-row style="background: #F8F8F8; padding-top: 10px; padding-bottom: 10px;" :key="data.id">
-              <b-col style="text-align: center;">
+              <b-col sm="2" lg="1">
                 <b-img :src="urlHoonian + data.icon_project" alt=""
-                  :style="`height: 80px;`" @error="onImageLoadFailure($event)" />
+                  :style="`height: 80px; width: 80px;`" @error="onImageLoadFailure($event)" />
               </b-col>
-              <b-col sm="10">
+              <b-col sm="10" lg="11" style="padding-left: 10px !important;">
                 <b-row>
-                  <b-col>
+                  <b-col style="padding-left: unset !important;">
                     <span style="color: #4A93B3;">
                       {{data.project_name}}
                     </span>
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col>
+                  <b-col style="padding-left: unset !important;">
                     <label class="lbl-poppins">{{ $t('unit_sold') }}</label>
                     <br />
                     <span style="color: #4A93B3;">
