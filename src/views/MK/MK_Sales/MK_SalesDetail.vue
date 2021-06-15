@@ -193,7 +193,7 @@
             </b-col>
           </b-row>
           <b-row>
-            <b-col>
+            <b-col sm="6">
               <HOOList
                 :prop="propList"
                 :title="''"
