@@ -37,7 +37,7 @@
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col style="font-size: 14px;">
+                  <b-col style="font-size: 14px;" class="text-eight">
                     {{item.content}}
                   </b-col>
                 </b-row>

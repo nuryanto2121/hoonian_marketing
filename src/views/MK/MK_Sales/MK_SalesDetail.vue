@@ -4,9 +4,9 @@
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
           <b-row style="font-size: 15px !important; margin-top: 20px;">
-            <b-col sm="4" style="padding-left: unset !important;">
+            <b-col sm="6" style="padding-left: unset !important;">
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('id_no') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -14,7 +14,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('buyer_name') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -22,7 +22,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -44,7 +44,7 @@
           <b-row style="font-size: 15px !important;">
             <b-col sm="6" style="padding-left: unset !important;">
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('project_name') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -52,7 +52,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('unit_no') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -60,7 +60,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('unit_type') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -68,7 +68,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('date') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -76,7 +76,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('price') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -84,7 +84,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('status') }}</label>
                 </b-col>
                 <b-col :style="dataBuyerDetail.info.status == 'available'? 'color: #219653;':
@@ -95,7 +95,7 @@
             </b-col>
             <b-col>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('booking_fee') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -103,7 +103,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('tower') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -111,7 +111,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('floor') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -119,7 +119,7 @@
                 </b-col>
               </b-row>
               <b-row>
-                <b-col>
+                <b-col sm="4">
                   <label class="lbl-poppins">{{ $t('commission') }}</label>
                 </b-col>
                 <b-col style="color: #4A93B3;">
@@ -133,7 +133,7 @@
                     classButton="btn btn--default"
                     classIcon="icon-style-1"
                     @click="doCancel"
-                    styleButton="height: 40px; width: 40%;"
+                    styleButton="height: 40px; width: 30%;"
                   />
                 </b-col>
               </b-row>
@@ -193,7 +193,7 @@
             </b-col>
           </b-row>
           <b-row>
-            <b-col>
+            <b-col sm="6">
               <HOOList
                 :prop="propList"
                 :title="''"

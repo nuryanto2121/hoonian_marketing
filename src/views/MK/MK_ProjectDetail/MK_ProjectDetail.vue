@@ -157,7 +157,7 @@
 
           <div style="background: #F8F8F8;">
             <b-row style="padding-top: 10px;">
-              <b-col style="color: #828282;">
+              <b-col style="color: #828282; font-size: 14px;">
                 {{Model.data.project_status}}
                 &nbsp;&nbsp; > &nbsp;&nbsp;
                 {{Model.data.location_name}}
@@ -385,7 +385,7 @@
                 </b-row>
                 <b-row style="margin-top: 10px;">
                   <b-col style="color: #52A0FC; padding: unset !important;">
-                    {{ isCurrency(item.percentage_completed, 0) }}% {{ $t('completed') }}
+                    {{ parseInt(item.percentage_completed) }}% {{ $t('completed') }}
                   </b-col>
                 </b-row>
                 <b-row>
@@ -418,7 +418,7 @@
                           margin: 0 auto !important;
                       ">
                           <div style="margin-top: 28%;">
-                              <span style="color: #333399; font-size: 36px; font-weight: bold;">{{ProgressDetail.info.progress_percentage}}%</span>
+                              <span style="color: #333399; font-size: 36px; font-weight: bold;">{{ProgressDetail.info.percentage_completed == null? 0 : parseInt(ProgressDetail.info.percentage_completed)}}%</span>
                           </div>
                       </div>
                       <div class="progress-x" style="text-align: center;">
@@ -455,6 +455,45 @@
                     </b-row>
                   </b-col>
                 </b-row>
+              </b-col>
+            </b-row>
+          </template>
+        </ABSModal>
+        <ABSModal id="Modal_FinancialPartners" ref="Modal_FinancialPartners" size="lg">
+          <template slot="headerTitle">
+            <span class="title-primary">Financial Partner Detail</span>
+          </template>
+          <template slot="content">
+            <b-row>
+              <b-col md="12" style="padding: unset !important;">
+                <b-row>
+                  <b-col sm="3">
+                    <b-img :src="urlHoonian + FinancialPartnersDetail.bank_logo" alt="" style="height: 100px;" fluid-grow @error="onImageLoadFailure($event)" />
+                  </b-col>
+                  <b-col>
+                    <b-row>
+                      <b-col style="font-size: 14px;">
+                        {{FinancialPartnersDetail.bank_name}}
+                      </b-col>
+                    </b-row>
+                    <b-row>
+                      <b-col style="font-size: 12px; color: #828282;" class="text-third">
+                        {{FinancialPartnersDetail.description}}
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+                <div style="max-height: 200px; overflow-y: scroll; margin-top: 10px;">
+                  <template v-for="(dataFinancial, index) in FinancialPartnersDetail.header_body">
+                    <b-row :key="index" style="margin-bottom: 10px;">
+                      <b-col>
+                        <span style="font-size: 22px;">{{dataFinancial.header}}</span>
+                        <br />
+                        {{dataFinancial.body}}
+                      </b-col>
+                    </b-row>
+                  </template>
+                </div>
               </b-col>
             </b-row>
           </template>
@@ -502,13 +541,13 @@
          <b-row v-if="FinancialPartner.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
           <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
             <template v-for="(item, index) in FinancialPartner">
-              <div v-bind:key="index" style="display: inline-block !important; width: 37%; margin-right: 10px;">
+              <div v-bind:key="index" style="display: inline-block !important; width: 37%; margin-right: 10px;" @click="showDetailFinancialPartners(item)">
                 <b-row style="background: #FFFFFF;
                               box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
                   <b-col sm="6" style="padding: 10px !important;">
                     <b-img :src="urlHoonian + item.bank_logo" alt="" style="height: 100px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                   </b-col>
-                  <b-col sm="6" style="padding: 10px !important;">
+                  <b-col sm="6" style="padding: 10px !important; cursor: pointer;">
                     <b-row>
                       <b-col style="white-space: normal;">
                         {{item.bank_name}}
@@ -687,6 +726,13 @@ export default {
       },
       Promotion: [],
       FinancialPartner: [],
+      FinancialPartnersDetail: {
+        id: "",
+        bank_name: "",
+        bank_logo: "",
+        description: "",
+        headerbody: [],
+      },
       News: [],
     }
   },
@@ -699,6 +745,9 @@ export default {
     },
     showDetailProgress(data) {
       this.getProgressDetail(data.id);
+    },
+    showDetailFinancialPartners(data) {
+      this.getFinancialPartners(data.id);
     },
     showImage(pathUrl) {
       this.$refs.Modal_Image._show(this.urlHoonian + pathUrl);
@@ -715,6 +764,21 @@ export default {
         let data = response.data;
         this.ProgressDetail = data;
         this.$refs.Modal_Progress._show();
+      });
+    },
+    getFinancialPartners(id) {
+      let param = {
+        id: id,
+        lang_id: this.getDataUser().lang_id,
+      };
+      this.postJSON(
+        this.urlHoonian + "/api/marketing-website/project/financial-partners-detail",
+        param
+      ).then((response) => {
+        if (response == null) return;
+        let data = response.data;
+        this.FinancialPartnersDetail = data;
+        this.$refs.Modal_FinancialPartners._show();
       });
     },
     openBuildingPlan() {

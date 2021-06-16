@@ -44,12 +44,39 @@
                     height: 490,
                   }"/>
                   <template v-for="data in savedShape">
-                    <v-line @click="onShapeClick" :config="{
+                    <v-line @click="showBuyerDetails(data)" :config="{
                         points: data.point_unit,
                         tension: 0,
-                        fill: data.color_cd,
+                        fill: data.color_cd + '80',
                         closed: true,
                       }"
+                    />
+                    <!-- <v-text :config="{
+                      x: data.point_unit[0],
+                      y: data.point_unit[1],
+                      text: data.unit_type_name,
+                      fontSize: 24,
+                      fill: 'white',
+                      align: 'center'
+                    }"
+                    />
+                    <v-text :config="{
+                      x: data.point_unit[0],
+                      y: data.point_unit[1] + 25,
+                      text: data.unit_no,
+                      fontSize: 24,
+                      fill: 'white',
+                      align: 'center'
+                    }"
+                    />
+                    <v-text :config="{
+                      x: data.point_unit[0],
+                      y: data.point_unit[1] + 50,
+                      text: data.unit_status,
+                      fontSize: 24,
+                      fill: 'white',
+                      align: 'center'
+                    }" -->
                     />
                   </template>
                 </v-layer>
@@ -58,6 +85,7 @@
             <b-col align-self="center" sm="1" style="text-align: center;">
               <b-img :src="require('@/assets/icon-svg/right_floor_plan.svg')" alt="" style="cursor: pointer;" @click="onRight" />
             </b-col>
+            <MKBuyerDetailReserve ref="Modal_BuyerDetailReserve" />
           </b-row>
         </b-col>
       </b-row>
@@ -65,10 +93,14 @@
   </div>
 </template>
 <script>
+import MKBuyerDetailReserve from "./MK_BuyerDetailReserve";
 // const width = window.innerWidth;
 const width = 1000;
 const height = 500;
 export default {
+  components: {
+    MKBuyerDetailReserve
+  },
   computed: {
     paramFromList() {
       let param = this.$store.getters.getParamPage;
@@ -123,6 +155,16 @@ export default {
     }
   },
   methods: {
+    showBuyerDetails(data) {
+      const param = {
+        id: data.unit_id,
+        status: data.unit_status,
+        block_floor_name: this.Model.block_floorLabel,
+        unit_no: data.unit_no,
+        booking_type: data.booking_type,
+      };
+      this.$refs.Modal_BuyerDetailReserve.doReservationOrBooked(param);
+    },
     callbackDropdown(data) {
       if (data.length > 0) {
         this.tempFloor = data;
@@ -181,8 +223,13 @@ export default {
             arrXY.push(units[x].points[idx].y_point);
           }
           arrToDisplay.push({
-              point_unit: arrXY,
-              color_cd: units[x].color_cd,
+            booking_type: units[x].booking_type,
+            color_cd: units[x].color_cd,
+            point_unit: arrXY,
+            unit_id: units[x].unit_id,
+            unit_no: units[x].unit_no,
+            unit_status: units[x].unit_status,
+            unit_type_name: units[x].unit_type_name,
           });
         }
         this.savedShape = arrToDisplay;
@@ -200,6 +247,7 @@ export default {
     },
   },
   mounted() {
+    this.$store.commit("setTitleMenu", "Floor Plan");
     this.PI_block_floor.dataLookUp.param.project_id = this.paramFromList.id;
     this.PI_block_floor.dataLookUp.param.tower_cluster_id = this.paramFromList.tower_cluster_id;
     this.PI_block_floor.dataLookUp.param.lang_id = this.getDataUser().lang_id;
