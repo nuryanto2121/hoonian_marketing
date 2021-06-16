@@ -174,44 +174,44 @@ export default {
         {
           key: "no",
           label: "NO",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "marketing_name",
           label: "MARKETING NAME",
-          thClass: "HeaderACCList2Poppins th-cus-center",
+          thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "principle_name",
           label: "PRINCIPLE NAME",
-          thClass: "HeaderACCList2Poppins th-cus-center",
+          thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
           label: "PROJECT NAME",
-          thClass: "HeaderACCList2Poppins th-cus-center",
+          thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_token",
           label: "TOTAL TOKEN",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "used",
           label: "USED",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "forfeited",
           label: "FORFEITED",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
       ],
 

@@ -20,7 +20,7 @@
                             <b-row>
                                 <b-col xl="4" lg="4"
                                     v-for="(data, index) in Model" :key="data.id"
-                                    :style="`padding: unset !important; ${index == 0 && Model.length > 1? 'padding-right: 10px !important;': ''} ${index == 1 ? 'padding-left: 10px !important;': ''}`">
+                                    :style="`padding: unset !important; ${index == 0 ? 'padding-right: 10px !important;': ''} ${index == (Model.length - 1) ? 'padding-left: 10px !important;': ''}`">
                                     <div class="card" @click="OnLaunchingClick(data)">
                                         <div class="card__body" style="padding: unset !important;">
                                             <b-row>
@@ -32,7 +32,7 @@
                                             </b-row>
                                             <b-row style="padding: 10px 10px 10px 10px !important;">
                                                 <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                                                    {{data.project_name}}
+                                                    {{cutWord(data.project_name, 27)}}
                                                 </b-col>
                                                 <b-col md="2" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                                                     {{data.project_category_name}}
