@@ -863,7 +863,8 @@ export default {
           if (!isManualStopLoader)
             this.$store.commit('setStatusLoader', false)
           if (error) {
-            this.alertError(message)
+            if (message == 'Session Expired') return;
+            this.alertError(message);
             return null
           }
 
