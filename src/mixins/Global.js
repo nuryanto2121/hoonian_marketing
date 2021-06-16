@@ -360,6 +360,11 @@ export default {
       return url.replace('http://','').replace('https://','').split(/[/?#]/)[0];
     else ""
   },
+  
+  cutWord(txt, len, withdot = false) {
+    let txt2 = txt.substring(0,len);
+    return txt2 + (txt.length > len ? (withdot ? '...' : '') : '');
+  }
   },
 
 }
