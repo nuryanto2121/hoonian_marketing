@@ -750,7 +750,8 @@ export default {
 
     checkResponseCode(message) {
       if (message.response) {
-        if (message.response.data.Message == 'Your Session Has Expired' || message.response.data.Message == 'Invalid Token' || message.response.data.Message == 'Invalid User') {
+        if (message.response.data.Message == 'Your Session Has Expired' || message.response.data.Message == 'Invalid Token' || message.response.data.Message == 'Invalid User' ||
+            message.response.data.Message == 'Session Expired') {
           this.doClearLocalStorage()
           this.$router.replace({
             path: '/sign-in'
