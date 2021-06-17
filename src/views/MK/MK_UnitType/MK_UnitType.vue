@@ -973,6 +973,7 @@ export default {
     },
     changeImage(path) {
       this.Model.data.big_image = path;
+      this.$forceUpdate();
     },
     timerPleasePayIn() {
       this.intervalPleasePayIn = setInterval(() => {
