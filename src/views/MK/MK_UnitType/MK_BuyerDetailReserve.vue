@@ -364,7 +364,12 @@ export default {
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/buyer-nup-list', param).then((response) => {
         if (response == null) return;
-        this.nupData = response.data;
+        let data = response.data;
+        this.nupData = data.nup_list;
+        this.BuyerDetails.id_no = data.buyer_info.id_no;
+        this.BuyerDetails.email = data.buyer_info.email;
+        this.BuyerDetails.id_picture = data.buyer_info.thumbnail_image;
+        this.BuyerDetails.buyer_name = data.buyer_info.name;
       });
     },
     isNUP() {

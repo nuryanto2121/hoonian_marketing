@@ -280,7 +280,7 @@
                     </template>
                     <template slot="status" slot-scope="data">
                       <b-row>
-                        <b-col align-self="center" :sm="data.item.status == AVAILABLE || data.item.status == BOOKED ? 4: 12"
+                        <b-col align-self="center" :sm="data.item.status == AVAILABLE || data.item.status == BOOKED || data.item.booking_type == UNRELEASED ? 4: 12"
                           style="padding-left: unset !important;">
                           <span :style="data.item.status == AVAILABLE? 'color: #219653;':
                                       (data.item.status == SOLD? 'color: #EB5757;': 'color: #F2C94C;')">
@@ -289,12 +289,12 @@
                             </span>
                           </span>
                         </b-col>
-                        <b-col v-if="data.item.status == AVAILABLE || data.item.status == BOOKED">
+                        <b-col v-if="data.item.status == AVAILABLE || data.item.status == BOOKED || data.item.booking_type == UNRELEASED">
                           <ABSButton
-                            :text="data.item.status == AVAILABLE? 'Reservation' :
+                            :text="data.item.status == AVAILABLE || data.item.booking_type == UNRELEASED? 'Reservation' :
                                   (data.item.status == BOOKED? 'Waiting List': '')"
 
-                            :classButton="data.item.status == AVAILABLE? 'btn btn--default' :
+                            :classButton="data.item.status == AVAILABLE || data.item.booking_type == UNRELEASED? 'btn btn--default' :
                                         (data.item.status == BOOKED? 'btn btn--yellow': '')"
                             classIcon="icon-style-1"
                             @click="doReservationOrBooked(data.item)"
@@ -695,6 +695,9 @@ export default {
     V_LAUNCHING() {
       return "V-Launching";
     },
+    UNRELEASED() {
+      return "unreleased";
+    },
   },
   watch: {
   },
@@ -946,7 +949,7 @@ export default {
   methods: {
     disabledButtonStatus(data) {
       let disabled = false;
-      if (data.item.booking_type == 'unreleased') {
+      if (data.item.booking_type == this.UNRELEASED) {
         disabled = true;
       } else if (data.item.status == this.SOLD || data.item.status == this.BOOKED) {
         // disabled = false;
