@@ -379,7 +379,7 @@
               <b-col v-bind:key="index" @click="showDetailProgress(data, index)">
                 <b-row>
                   <b-col>
-                    <b-img :src="urlHoonian + data.main_image" alt="" style="height: 100px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                    <b-img :src="urlHoonian + data.main_image" alt="" style="height: 130px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                   </b-col>
                 </b-row>
                 <!-- <b-row>
@@ -495,7 +495,7 @@
               <b-col md="12" style="padding: unset !important;">
                 <b-row>
                   <b-col sm="3">
-                    <b-img :src="urlHoonian + FinancialPartnersDetail.bank_logo" alt="" style="height: 100px;" fluid-grow @error="onImageLoadFailure($event)" />
+                    <b-img :src="urlHoonian + FinancialPartnersDetail.bank_logo" alt="" style="height: 10px;" fluid-grow @error="onImageLoadFailure($event)" />
                   </b-col>
                   <b-col>
                     <b-row>
