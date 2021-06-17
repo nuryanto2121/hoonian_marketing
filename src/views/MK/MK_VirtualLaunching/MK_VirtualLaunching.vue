@@ -108,7 +108,7 @@
                                                 </template>
                                             </template>
                                             <template v-else>
-                                                <b-row style="padding: 0px 10px 10px 10px !important; margin-top: 20px;">
+                                                <b-row style="padding: 0px 10px 10px 10px !important; margin-top: 30px;">
                                                     <b-col style="height: 70px; background-color: red; color: white; font-size: 17px; text-align: center; line-height: 50px;">
                                                         <div style="width: 100%;" class="center">
                                                             {{ $t('v_launching') }} {{ $t('in_progress') }}
