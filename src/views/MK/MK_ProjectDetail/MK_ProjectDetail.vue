@@ -375,6 +375,32 @@
            </b-col>
          </b-row>
          <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
+            <template v-for="(data, index) in Progress">
+              <b-col v-bind:key="index" @click="showDetailProgress(data, index)">
+                <b-row>
+                  <b-col>
+                    <b-img :src="urlHoonian + data.main_image" alt="" style="height: 100px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                  </b-col>
+                </b-row>
+                <!-- <b-row>
+                  <b-col style="font-size: 18px; font-weight: bold;">
+                    {{data.project_name}}
+                  </b-col>
+                </b-row> -->
+                <b-row>
+                  <b-col style="font-size: 12px; color: #52A0FC;">
+                    {{isCurrency(parseInt(data.percentage_completed), 0)}}% {{ $t('completed') }}
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col style="font-size: 12px; color: rgba(159, 162, 174, 0.7);">
+                    {{momentUnix(data.created_at, "DD MMM YYYY")}}
+                  </b-col>
+                </b-row>
+              </b-col>
+            </template>
+          </b-row>
+         <!-- <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
           <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
             <template v-for="(item, index) in Progress">
               <div v-bind:key="index" style="display: inline-block !important; width: 28%; margin-right: 20px;">
@@ -396,7 +422,8 @@
               </div>
             </template>
           </b-col>
-         </b-row>
+         </b-row> -->
+         
          <ABSModal id="Modal_Progress" ref="Modal_Progress" size="lg">
           <template slot="headerTitle">
             <span class="title-primary"> {{ProgressDetail.info.project_name}} - {{ProgressDetail.info.location_name}} </span>
@@ -506,6 +533,49 @@
            </b-col>
          </b-row>
          <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
+            <template v-for="(data, index) in Promotion">
+              <b-col md="3" v-bind:key="index" :style="`box-shadow: 2px 6px 11px -7px black; border-radius: 6px;
+                -webkit-box-flex: 0;
+                flex: 0 0 21%;
+                padding: 0px !important;
+                max-width: 21%;` + (index < Promotion.length-1 ? 'margin-right: 5%;' : '')
+              "  @click="showPromotion(data, index)">
+                <b-row>
+                  <b-col style="height: 18vw; padding: 0px !important;">
+                    <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                    <!-- <div style="position: absolute;
+                      top: 18px;
+                      right: 0%;
+                      background: #52A0FC;
+                      border-radius: 5px;
+                      width: 100px;
+                      padding: 5px;
+                      text-align: center;
+                      font-size: 14px;
+                      color: white;">
+                      <b>{{data.total_buyer}} Buyers</b>
+                    </div> -->
+                  </b-col>
+                </b-row>
+                <b-row>
+                  <b-col style="font-size: 15px; font-weight: bold;">
+                    {{cutWord(data.promotion_name, 20)}}
+                  </b-col>
+                </b-row>
+                <!-- <b-row>
+                  <b-col style="font-size: 12px; color: #52A0FC;">
+                    {{cutWord(data.project_name,25)}}
+                  </b-col>
+                </b-row> -->
+                <b-row>
+                  <b-col style="font-size: 12px; color: #616161;">
+                    {{momentUnix(data.start_datetime, "DD MMM YYYY")}} - {{momentUnix(data.end_datetime, "DD MMM YYYY")}}
+                  </b-col>
+                </b-row>
+              </b-col>
+            </template>
+          </b-row>
+         <!-- <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
           <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
             <template v-for="(item, index) in Promotion">
               <div v-bind:key="index" style="display: inline-block !important; width: 40%; margin-right: 10px;">
@@ -531,7 +601,7 @@
               </div>
             </template>
           </b-col>
-         </b-row>
+         </b-row> -->
 
          <b-row v-if="FinancialPartner.length > 0" style="margin-top: 20px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
