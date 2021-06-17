@@ -369,6 +369,7 @@ export default {
         this.BuyerDetails.id_no = data.buyer_info.id_no;
         this.BuyerDetails.email = data.buyer_info.email;
         this.BuyerDetails.id_picture = data.buyer_info.thumbnail_image;
+        this.BuyerDetails.buyer_name = data.buyer_info.name;
       });
     },
     isNUP() {
