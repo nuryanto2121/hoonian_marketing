@@ -413,7 +413,8 @@ export default {
         remarks: this.Model.description,
         marketing_agent_id: this.getDataUser().marketing_id,
         marketing_agent_name: this.getDataUser().user_name,
-        thumbnail_image: this.Model.name_card
+        thumbnail_image: this.Model.name_card,
+        principle_id: this.getDataUser().principle_id,
       }
       this.postJSON(this.urlHoonian + '/api/marketing-website/lead/add', param).then((response) => {
         if (response == null) return;
