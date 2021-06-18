@@ -319,8 +319,8 @@
            </template>
          </b-row>
 
-         <b-row v-if="Model.nup" style="margin-top: 10px; font-size: 13px;">
-           <b-col offset-md="2" md="4">
+         <b-row v-if="Model.nup || Model.vlaunching" style="margin-top: 10px; font-size: 13px;">
+           <b-col v-if="Model.nup" :offset-md="Model.nup && Model.vlaunching ? '2': '4'" md="4">
              <div style="background: #FFFFFF;
                           box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
               <b-row>
@@ -347,7 +347,7 @@
               </b-row>
              </div>
            </b-col>
-           <b-col md="4">
+           <b-col v-if="Model.vlaunching" :offset-md="Model.nup && Model.vlaunching ? '': '4'" md="4">
              <div style="background: #FFFFFF;
                           box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
               <b-row>
