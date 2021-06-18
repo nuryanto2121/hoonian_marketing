@@ -91,13 +91,13 @@
                                             <template v-if="paramFromList.status == 'i'">
                                                 <template v-if="!Model.inDays">
                                                     <span style="font-weight: bold; font-size: 35px;"> {{Model.h_left}} </span>
-                                                    <span style="font-weight: bold; font-size: 20px;">{{ $t('hours') }}</span> &nbsp;
+                                                    <span style="font-weight: bold; font-size: 20px;">{{ Model.h_left > 1 ? $t('hours') : $t('hour') }}</span> &nbsp;
                                                     <span style="font-weight: bold; font-size: 35px;"> {{Model.m_left}} </span>
-                                                    <span style="font-weight: bold; font-size: 20px;">{{ $t('minutes') }}</span>
+                                                    <span style="font-weight: bold; font-size: 20px;">{{ Model.m_left > 1 ? $t('minutes') : $t('minute') }}</span>
                                                 </template>
                                                 <template v-else>
                                                     <span style="font-weight: bold; font-size: 35px;"> {{Model.d_left}} </span>
-                                                    <span style="font-weight: bold; font-size: 20px;">{{ $t('days') }}</span>
+                                                    <span style="font-weight: bold; font-size: 20px;">{{ Model.d_left > 1 ? $t('days') : $t('day') }}</span>
                                                 </template>
                                             </template>
                                             <template v-else> - </template>
@@ -485,8 +485,13 @@ export default {
         this.propList_buyer.param.project_id = this.Model.project_id;
         let h_left = 0, m_left = 0, d_left = 0, inDays = false, reserve_status = true;
           // console.log(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
-          console.log(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm"))
+          let today = new Date();
+          // console.log(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm"))
           console.log(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")))
+          // console.log(new Date(today.setDate(today.getDate() + 1)))
+          // console.log(this.momentDiff(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(today.setDate(today.getDate() + 1)), 'days'))
+          // console.log(this.momentDiffFormat(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(), 'DD'))
+          // console.log(this.momentDiffFormat(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm'))
           // console.log(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(this.momentUnix(this.paramFromList.start_datetime, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(this.momentUnix(this.paramFromList.end_datetime, "YYYY-MM-DD HH:mm")))
@@ -501,25 +506,39 @@ export default {
             let today = new Date();
             let st_dt_sec = (st_dt.getHours()*60) + st_dt.getMinutes();
             let today_sec = (today.getHours()*60) + today.getMinutes();
+            let diff = st_dt - today;
+            console.log(diff)
+            console.log('sec', diff/1000)
+            console.log('min', (diff/1000)/60)
+            console.log('hour', ((diff/1000)/60)/60)
+            // console.log('sec', diff)
             // console.log(st_dt.getHours(), st_dt.getMinutes())
             // console.log(today.getHours(), today.getMinutes())
             // console.log((st_dt.getHours()*60) + st_dt.getMinutes(), (today.getHours()*60) + today.getMinutes())
-            if (today_sec > st_dt_sec) {
+            console.log(today_sec, st_dt_sec)
+            if (today > st_dt) {
               reserve_status = false;
             }
-            else {
+            else if (today == st_dt) {
+              console.log('=', this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), 'HH:mm'))
               h_left = parseInt(this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), 'HH:mm').split(':')[0]);
               m_left = parseInt(this.momentDiffFormat(new Date(), new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), 'HH:mm').split(':')[1]);
+            }
+            else {
+              console.log('<', this.momentDiffFormat(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm'))
+              h_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[0]);
+              m_left = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[1]);
             }
           }
           else if (this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), 'days') < 0) {
             reserve_status = false;
           }
-          // else {
-          //   inDays = true;
-          //   reserve_status = false;
-          //   d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")), 'days'));
-          // }
+          else {
+            inDays = true;
+            // reserve_status = false;
+            d_left = parseInt(this.momentDiff(new Date(), new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), 'days'));
+            console.log(d_left)
+          }
 
           // if (this.momentDiff(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'days') == 0) {
           //   let hhh = parseInt(this.momentDiffFormat(new Date(this.momentUnix(this.Model.end_datetime, "YYYY-MM-DD HH:mm")), new Date(), 'HH:mm').split(':')[0]);

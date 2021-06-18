@@ -42,6 +42,7 @@
     "v_launching": "V-Lauching",
     "selection": "Selection",
     "days": "Days", "hours": "Hours", "minutes": "Minutes",
+    "day": "Day", "hour": "Hour", "minute": "Minute",
     "next": "Next",
     "prev": "Prev",
     "sold": "Sold",

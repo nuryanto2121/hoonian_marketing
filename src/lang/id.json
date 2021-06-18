@@ -42,6 +42,7 @@
     "v_launching": "Perluncuran-V",
     "selection": "Dipilih",
     "days": "Hari", "hours": "Jam", "minutes": "Menit",
+    "day": "Hari", "hour": "Jam", "minute": "Menit",
     "next": "Selanjutnya",
     "prev": "Sebelumnya",
     "sold": "Terjual",
