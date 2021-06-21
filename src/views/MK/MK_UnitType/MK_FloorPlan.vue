@@ -205,6 +205,7 @@ export default {
         principle_id: this.getDataUser().principle_id,
         lang_id: this.getDataUser().lang_id,
         block_floor_id: this.Model.block_floor,
+        unit_type_id: this.paramFromList.availableUnitTypes.id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/floor-plan', param).then((response) => {
