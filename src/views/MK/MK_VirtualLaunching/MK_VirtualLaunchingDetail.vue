@@ -487,7 +487,7 @@ export default {
           // console.log(new Date(this.momentUnix(this.Model.start_datetime, "YYYY-MM-DD HH:mm")))
           let today = new Date();
           // console.log(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm"))
-          console.log(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")))
+          // console.log(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")))
           // console.log(new Date(today.setDate(today.getDate() + 1)))
           // console.log(this.momentDiff(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(today.setDate(today.getDate() + 1)), 'days'))
           // console.log(this.momentDiffFormat(new Date(this.momentUnix(this.Model.time_remain, "YYYY-MM-DD HH:mm")), new Date(), 'DD'))
@@ -507,15 +507,15 @@ export default {
             let st_dt_sec = (st_dt.getHours()*60) + st_dt.getMinutes();
             let today_sec = (today.getHours()*60) + today.getMinutes();
             let diff = st_dt - today;
-            console.log(diff)
-            console.log('sec', diff/1000)
-            console.log('min', (diff/1000)/60)
-            console.log('hour', ((diff/1000)/60)/60)
+            // console.log(diff)
+            // console.log('sec', diff/1000)
+            // console.log('min', (diff/1000)/60)
+            // console.log('hour', ((diff/1000)/60)/60)
             // console.log('sec', diff)
             // console.log(st_dt.getHours(), st_dt.getMinutes())
             // console.log(today.getHours(), today.getMinutes())
             // console.log((st_dt.getHours()*60) + st_dt.getMinutes(), (today.getHours()*60) + today.getMinutes())
-            console.log(today_sec, st_dt_sec)
+            // console.log(today_sec, st_dt_sec)
             if (today > st_dt) {
               reserve_status = false;
             }
