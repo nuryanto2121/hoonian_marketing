@@ -3,7 +3,7 @@
     <div class="dashboard-page-chart__body">
       <b-row>
         <b-col style="text-shadow: 0.5px 0px; font-size: 22px; padding-left: 10px !important;">
-          Search Project By Location
+          {{ $t('search_project_by_location') }}
         </b-col>
       </b-row>
       <b-row style="margin-top: 10px;">

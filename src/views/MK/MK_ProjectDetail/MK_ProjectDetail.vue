@@ -168,7 +168,7 @@
             <b-row style="margin-top: 20px; padding-bottom: 20px;">
               <b-col>
                 <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
-                  Project Information
+                  {{ $t('project_information') }}
                 </div>
                 <template v-for="(info, index) in Model.infos">
                   <b-row v-if="index % 2 == 0" :key="index" align-v="baseline">
@@ -203,7 +203,7 @@
           <b-row>
             <b-col sm="6">
               <div style="text-shadow: 0.5px 0px; font-size: 22px;">
-                Facilities
+                {{ $t('facilities') }}
               </div>
               <template v-for="(facility, index) in Model.facilities">
                 <b-row v-if="index % 2 == 0" :key="index">
@@ -229,7 +229,7 @@
          <b-row style="margin-top: 20px; padding-bottom: 20px;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
-               Nearby
+               {{ $t('nearby') }}
              </div>
              <template v-for="(near, index) in Model.nearby">
                <b-row :key="index" style="background: #F8F8F8;">
@@ -265,7 +265,7 @@
          <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 20px;">
            <template v-for="(data, index) in AvailableUnitTypes">
             <b-col sm="12" :key="data.id">
-              <span style="text-shadow: 0.5px 0px; font-size: 22px;">Available Unit Types</span>
+              <span style="text-shadow: 0.5px 0px; font-size: 22px;">{{ $t('available_unit_types') }}</span>
               <br />
               <span style="color: #828282; text-shadow: 0.5px 0px;">{{data.tower_cluster_name}}</span>
               <br />
@@ -371,7 +371,7 @@
 
          <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
-             Progress
+             {{ $t('progress') }}
            </b-col>
          </b-row>
          <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
@@ -529,7 +529,7 @@
 
          <b-row v-if="Promotion.length > 0" style="padding-top: 20px; background: #F8F8F8;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
-             Promotions
+             {{ $t('promotions') }}
            </b-col>
          </b-row>
          <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
@@ -605,7 +605,7 @@
 
          <b-row v-if="FinancialPartner.length > 0" style="margin-top: 20px;">
            <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
-             Financial Partners
+             {{ $t('financial_partners') }}
            </b-col>
          </b-row>
          <b-row v-if="FinancialPartner.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
@@ -638,7 +638,7 @@
          <b-row v-if="News.length > 0" style="padding-top: 20px; background: #F8F8F8;">
            <b-col>
              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
-               News
+               {{ $t('news') }}
              </div>
              <template v-for="(news, index) in News">
                <b-row :key="index" style="margin-top: 10px; padding-bottom: 20px;">

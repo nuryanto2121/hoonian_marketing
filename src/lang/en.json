@@ -108,5 +108,12 @@
     "log_book": "Log Book",
     "other_suggestion": "Other Suggestion",
     "nup_list": "NUP List",
-    "check": "Check"
+    "check": "Check",
+    "search_project_by_location": "Search Project By Location",
+    "project_information": "Project Information",
+    "facilities": "Facilities",
+    "nearby": "Nearby",
+    "available_unit_types": "Available Unit Types",
+    "progress": "Progress",
+    "financial_partners": "Financial Partners"
 }

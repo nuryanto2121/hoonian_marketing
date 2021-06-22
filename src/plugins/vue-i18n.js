@@ -24,7 +24,7 @@ const messages = {
 }
 
 export const i18n = new VueI18n({
-  locale: 'en',
+  locale: localStorage.lsDataUser === undefined ? 'en' : JSON.parse(localStorage.lsDataUser).lang_id,
   messages,
   silentTranslationWarn: true
 })

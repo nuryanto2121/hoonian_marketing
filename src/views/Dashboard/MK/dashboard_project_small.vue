@@ -2,7 +2,7 @@
   <div style="height: 95%">
     <b-row style="margin-top: 30px;">
       <b-col v-if="Location.length > 0" style="padding-left: 10px !important; text-shadow: 0.5px 0px; font-size: 22px;">
-        Search Project By Location
+        {{ $t('search_project_by_location') }}
       </b-col>
       <b-col style="text-align: right; text-shadow: 0.5px 0px; font-size: 18px;">
         <span style="position: absolute; width: 8px; height: 8px; background: #4A93B3; margin-top: 10px;">
