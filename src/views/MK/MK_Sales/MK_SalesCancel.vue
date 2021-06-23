@@ -5,7 +5,7 @@
       <b-form :data-vv-scope="'FormEntrySalesCancel'" :data-vv-value-path="'FormEntrySalesCancel'">
         <b-row>
           <b-col>
-            <label class="lbl-bold">Reason</label>
+            <label class="lbl-bold">{{ $t('reason') }}</label>
             <HOODropDown
               @change="OnReasonChange"
               :prop="PI_reason"
@@ -17,7 +17,7 @@
         </b-row>
         <b-row>
           <b-col>
-            <label class="lbl-bold">Description</label>
+            <label class="lbl-bold">{{ $t('Description') }}</label>
             <ACCTextBox
               :prop="PI_description"
               v-model="Model.reason_description"
@@ -28,7 +28,7 @@
         <b-row style="margin-top: 10px;">
           <b-col md="12">
             <ABSButton
-              :text="'Save'"
+              :text="$t('save')"
               classButton="btn btn--default"
               classIcon="icon-style-default"
               @click="doSave"

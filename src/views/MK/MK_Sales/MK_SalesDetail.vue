@@ -38,7 +38,7 @@
           </b-row>
           <b-row class="row-view" style="margin-top: 20px;">
             <b-col>
-              <span class="title-primary"> {{ $t('unit_details') }} </span>
+              <span class="title-primary" style="font-weight: bold;"> {{ $t('unit') }} </span>
             </b-col>
           </b-row>
           <b-row style="font-size: 15px !important;">
@@ -129,7 +129,7 @@
               <b-row>
                 <b-col>
                   <ABSButton
-                    :text="'Booking Cancellation'"
+                    :text="$t('booking_cancellation')"
                     classButton="btn btn--default"
                     classIcon="icon-style-1"
                     @click="doCancel"
@@ -141,7 +141,7 @@
           </b-row>
           <b-row class="row-view" style="margin-top: 20px;">
             <b-col>
-              <span class="title-primary"> {{ $t('virtual_account') }} </span>
+              <span class="title-primary" style="font-weight: bold;"> {{ $t('virtual_account') }} </span>
             </b-col>
           </b-row>
           <b-row>
@@ -162,7 +162,7 @@
 
           <b-row class="row-view" style="margin-top: 20px;">
             <b-col>
-              <span class="title-primary"> {{ $t('log_book') }} </span>
+              <span class="title-primary" style="font-weight: bold;"> {{ $t('log_book') }} </span>
             </b-col>
           </b-row>
           <b-row>
@@ -184,7 +184,7 @@
               <span style="font-weight: bold; font-size: 15px;">{{momentDateFormatting(new Date(), "dddd, DD MMM YYYY")}}</span>
               &nbsp; &nbsp; &nbsp;
               <ABSButton
-                :text="'Save'"
+                :text="$t('save')"
                 classButton="btn btn--default"
                 classIcon="icon-style-1"
                 @click="doSave"
@@ -296,19 +296,19 @@ export default {
         },
         {
           key: "date",
-          label: "DATE",
+          label: this.$t('date').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "responder",
-          label: "RESPONDER",
+          label: this.$t('responder').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "notes",
-          label: "NOTES",
+          label: this.$t('notes').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
@@ -371,7 +371,7 @@ export default {
     this.propList.param.customer_transaction_id = this.paramFromList.id;
     this.customer_transaction_id = this.paramFromList.id;
     this.$refs.ref_list.doGetList("");
-    this.$store.commit("setTitleMenu", "Buyer Details");
+    this.$store.commit("setTitleMenu", this.$t('buyer_details'));
   },
 };
 </script>

@@ -115,5 +115,20 @@
     "nearby": "Nearby",
     "available_unit_types": "Available Unit Types",
     "progress": "Progress",
-    "financial_partners": "Financial Partners"
+    "financial_partners": "Financial Partners",
+    "last_12_months": "Last 12 Months",
+    "show_by": "Show By",
+    "marketing": "Marketing",
+    "unit": "Unit",
+    "save": "Save",
+    "responder": "Responder",
+    "booking_cancellation": "Booking Cancellation",
+    "reason": "Reason",
+    "detail_nup_buyers": "Detail NUP Buyers",
+    "pending": "Pending",
+    "total": "Total",
+    "no_of_buyer": "No of Buyer",
+    "total_nup_value": "Total NUP Value",
+    "nup_value": "NUP Value",
+    "upload_photo": "Upload Photo"
 }

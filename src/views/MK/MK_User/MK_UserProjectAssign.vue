@@ -357,7 +357,7 @@ export default {
         cValidate: "",
         cName: "id_pict",
         cOrder: 5,
-        cTitle: "Upload Photo",
+        cTitle: this.$t('upload_photo'),
         cType: "id_pict",
         cParentForm: "FormEntry"
       },

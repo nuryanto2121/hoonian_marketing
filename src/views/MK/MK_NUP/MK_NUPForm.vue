@@ -15,11 +15,11 @@
                       {{paramFromList.project_name}}
                     </span>
                     <br />
-                    <span style="text-shadow: 1.5px 0px; font-size: 18px;">
-                      Total NUP
+                    <span style="text-shadow: 1.0px 0px; font-size: 18px;">
+                      {{ $t('total') }} NUP
                     </span>
                     <br />
-                    <span style="color: #4A93B3; text-shadow: 1.5px 0px; font-size: 18px;">
+                    <span style="color: #4A93B3; text-shadow: 1.0px 0px; font-size: 18px;">
                       {{paramFromList.total_nup}}
                     </span>
                   </b-col>
@@ -27,21 +27,21 @@
               </b-col>
               <b-col offset-md="1" md="3" offset-lg="2">
                 <br />
-                <span style="text-shadow: 1.5px 0px; font-size: 18px;">
-                  No of Buyer
+                <span style="text-shadow: 1.0px 0px; font-size: 18px;">
+                  {{ $t('no_of_buyer') }}
                 </span>
                 <br />
-                <span style="color: #4A93B3; text-shadow: 1.5px 0px; font-size: 18px;">
+                <span style="color: #4A93B3; text-shadow: 1.0px 0px; font-size: 18px;">
                   {{paramFromList.total_buyer}}
                 </span>
               </b-col>
               <b-col offset-md="1" md="3">
                 <br />
-                <span style="text-shadow: 1.5px 0px; font-size: 18px;">
-                  Total NUP Value
+                <span style="text-shadow: 1.0px 0px; font-size: 18px;">
+                  {{ $t('total_nup_value') }}
                 </span>
                 <br />
-                <span style="color: #4A93B3; text-shadow: 1.5px 0px; font-size: 18px;">
+                <span style="color: #4A93B3; text-shadow: 1.0px 0px; font-size: 18px;">
                   IDR {{isCurrency(paramFromList.value * paramFromList.total_nup, 2)}}
                 </span>
               </b-col>
@@ -68,9 +68,9 @@
                 />
               </b-col>
               <b-col offset-md="1" md="3">
-                NUP Value @
+                {{ $t('nup_value') }} @
                 <br />
-                <span style="color: #4A93B3; text-shadow: 1.5px 0px; font-size: 18px;">
+                <span style="color: #4A93B3; text-shadow: 1.0px 0px; font-size: 18px;">
                   IDR {{isCurrency(paramFromList.value, 2)}}
                 </span>
               </b-col>
@@ -99,9 +99,9 @@
                 />
               </b-col>
               <b-col offset-md="1" md="3">
-                Purchase Value
+                {{ $t('purchase_value') }}
                 <br />
-                <span style="color: #4A93B3; text-shadow: 1.5px 0px; font-size: 18px;">
+                <span style="color: #4A93B3; text-shadow: 1.0px 0px; font-size: 18px;">
                   IDR {{isCurrency(paramFromList.total_nup * (Model.total_purchase? Model.total_purchase: 0), 2)}}
                 </span>
               </b-col>
@@ -270,7 +270,7 @@ export default {
         cValidate: "required",
         cName: "ID Picture",
         cOrder: 6,
-        cTitle: "Upload Photo",
+        cTitle: this.$t('upload_photo'),
         cType: "nup",
         cParentForm: "FormEntry"
       },
@@ -336,7 +336,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit("setTitleMenu", "Buy NUP");
+    this.$store.commit("setTitleMenu", this.$t('buy_nup'));
   },
 };
 </script>

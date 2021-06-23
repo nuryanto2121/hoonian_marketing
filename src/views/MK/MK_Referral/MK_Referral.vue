@@ -272,7 +272,7 @@ export default {
         cValidate: "",
         cName: "name_card",
         cOrder: 5,
-        cTitle: "Upload Photo",
+        cTitle: this.$t('upload_photo'),
         cType: "name_card",
         cParentForm: "FormEntry"
       },

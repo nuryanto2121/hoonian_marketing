@@ -254,7 +254,7 @@ export default {
         cValidate: "required",
         cName: "ID Picture",
         cOrder: 5,
-        cTitle: "Upload Photo",
+        cTitle: this.$t('upload_photo'),
         cType: "unit",
         cParentForm: "FormEntryBuyer"
       },
