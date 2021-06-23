@@ -3,7 +3,7 @@
         <div class="dashboard-page-chart__body">
             <b-row class="dashboardBody poppins">
                 <b-col lg="12" xl="12">
-                    <div class="card">
+                    <!-- <div class="card"> -->
                         <!-- <div class="card__title">
                         <b-row>
                             <b-col style="max-width: max-content !important">
@@ -11,12 +11,17 @@
                             </b-col>
                         </b-row>
                         </div> -->
-                        <div class="card__body">
-                            <span style="color: black !important;" class="title-primary">Project List</span>
-                        </div>
-                     </div>
+                        <!-- <div class="card__body">
+                            <span style="color: black !important;" class="title-primary">{{ $t('project_list') }}</span>
+                        </div> -->
+                     <!-- </div> -->
                     <div class="card">
                         <div class="card__body">
+                            <b-row>
+                                <b-col>
+                                    <span style="color: black !important; font-weight: bold; font-size: 20px !important;" class="title-primary">{{ $t('project_list') }}</span>
+                                </b-col>
+                            </b-row>
                             <b-row>
                                 <b-col xl="4" lg="4"
                                     v-for="(data, index) in Model" :key="data.id"
@@ -110,7 +115,7 @@
                                             <template v-else>
                                                 <b-row style="padding: 0px 10px 10px 10px !important; margin-top: 30px;">
                                                     <b-col style="height: 70px; background-color: red; color: white; font-size: 17px; text-align: center; line-height: 50px;">
-                                                        <div style="width: 100%;" class="center">
+                                                        <div style="width: 100%; line-height: 25px;" class="center">
                                                             {{ $t('v_launching') }} {{ $t('in_progress') }}
                                                         </div>
                                                     </b-col>

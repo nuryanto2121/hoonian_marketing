@@ -41,7 +41,7 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Token Details
+                      {{$t('token_details')}}
                     </b-col>
                   </template>
                   <template slot="date" slot-scope="data">
@@ -60,96 +60,6 @@
         </b-row>
         </b-col>
       </b-row>
-
-      <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
-        <template slot="headerTitle">
-          <span class="title-primary"> {{ $t('Add') }} Sales Lead </span>
-        </template>
-        <template slot="content">
-          <b-row>
-            <b-col md="12">
-              <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
-                <b-row>
-                  <b-col md="12">
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_handphone_no"
-                          v-model="Model.handphone_no"
-                          ref="ref_handphone_no"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('prospect_name') }}</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_prospect_name"
-                          v-model="Model.prospect_name"
-                          ref="ref_prospect_name"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('email') }}</label>
-                        </span>
-                        <ACCTextBox
-                          :prop="PI_email"
-                          v-model="Model.email"
-                          ref="ref_email"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="12">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('Description') }}</label>
-                        </span>
-                        <ACCTextArea
-                          :prop="PI_description"
-                          v-model="Model.description"
-                          ref="ref_description"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row>
-                      <b-col md="6">
-                        <span>
-                          <label class="lbl-poppins">{{ $t('name_card') }}</label>
-                        </span>
-                        <b-img id="name_card_show" :src="urlHoonian + Model.name_card" alt="" height="150" @error="onImageLoadFailure($event)" />
-                        <HOOImageUpload
-                          :prop="PI_name_card"
-                          @change="Onname_cardChange"
-                          v-model="Model.name_card"
-                        />
-                      </b-col>
-                    </b-row>
-                    <b-row style="margin-top: 10px;">
-                      <b-col md="6" offset-md="3">
-                        <ABSButton
-                          :text="'Save'"
-                          classButton="btn btn--default"
-                          classIcon="icon-style-1"
-                          @click="doSave"
-                          styleButton="height: 40px;width: 100%;"
-                        />
-                      </b-col>
-                    </b-row>
-                  </b-col>
-                </b-row>
-              </b-form>
-            </b-col>
-          </b-row>
-        </template>
-      </ABSModal>
     </div>
   </div>
 </template>
@@ -179,37 +89,37 @@ export default {
         },
         {
           key: "marketing_name",
-          label: "MARKETING NAME",
+          label: this.$t('marketing_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "principle_name",
-          label: "PRINCIPLE NAME",
+          label: this.$t('principle_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
-          label: "PROJECT NAME",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_token",
-          label: "TOTAL TOKEN",
+          label: this.$t('total_token').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "used",
-          label: "USED",
+          label: this.$t('used').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "forfeited",
-          label: "FORFEITED",
+          label: this.$t('forfeited').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },

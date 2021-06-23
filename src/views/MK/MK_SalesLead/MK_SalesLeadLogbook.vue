@@ -27,11 +27,11 @@
                             </b-row>
                             <b-row>
                                 <b-col style="max-width: max-content; padding-top: 8px;">
-                                    <span style="font-weight: bold; font-size: 15px;">{{momentDateFormatting(new Date(), "dddd, DD MMM YYYY")}}</span>
+                                    <span style="font-weight: bold; font-size: 15px;">{{ $t(momentDateFormatting(new Date(), "dddd")) }}, {{momentDateFormatting(new Date(), "DD MMM YYYY")}}</span>
                                 </b-col>
                                 <b-col lg="2" xl="2">
                                     <ABSButton
-                                    :text="'Save'"
+                                    :text="$t('save')"
                                     classButton="button button--hoonian"
                                     classIcon="icon-style-1"
                                     @click="doSave"
@@ -51,7 +51,7 @@
                                     />
                                 </b-col>
                                 <b-col style="max-width: max-content; padding-top: 8px;">
-                                    <span style="font-weight: bold; font-size: 15px;">{{ $t('stop') }} {{ $t('follow_up') }}</span>
+                                    <span style="font-weight: bold; font-size: 15px;">{{ $t('stop_follow_up') }} </span>
                                 </b-col>
                                 <b-col>
                                     <HOODropDown
