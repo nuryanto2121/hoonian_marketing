@@ -3,24 +3,24 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-          <b-row>
-            <b-col lg="7" xl="7">
-              <span style="color: black;" class="title-primary">Last 12 Months</span>
+          <b-row style="padding-top: 10px;">
+            <b-col sm="7" lg="7" xl="7">
+              <span style="color: black; font-size: 20px; font-weight: bold;">{{ $t('last_12_months') }}</span>
             </b-col>
-            <b-col style="max-width: max-content;">
+            <b-col>
               <b-row>
-                <b-col lg="4" xl="5" style="text-align: right; max-width: max-content;">
-                    <span style="font-weight: bold; font-size: 13px;">
-                        Show By &nbsp;&nbsp;
-                    </span>
+                <b-col sm="7" lg="7" style="text-align: right; max-width: max-content;">
+                  <span style="font-weight: bold; font-size: 13px;">
+                    {{ $t('show_by') }} &nbsp;&nbsp;
+                  </span>
                 </b-col>
-                <b-col style="text-align: right;">
-                    <ACCRadioButton
-                        @input="Onshow_byChange"
-                        :prop="PI_show_by"
-                        v-model="show_by"
-                        :ref="'ref_show_by'"
-                    />
+                <b-col style="">
+                  <ACCRadioButton
+                    @input="Onshow_byChange"
+                    :prop="PI_show_by"
+                    v-model="show_by"
+                    :ref="'ref_show_by'"
+                  />
                 </b-col>
               </b-row>
             </b-col>
@@ -33,7 +33,7 @@
             </b-col>
           </b-row>
           <b-row style="margin-top: 10px; margin-bottom: 20px;">
-            <b-col sm="2" align-self="center">
+            <b-col sm="2" align-self="center" style="font-weight: bold;">
               MARKETING
             </b-col>
             <b-col sm="3">
@@ -212,43 +212,43 @@ export default {
         },
         {
           key: "buyer_name",
-          label: "BUYER NAME",
+          label: this.$t('buyer_name').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "marketing",
-          label: "MARKETING",
+          label: this.$t('marketing').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "tower",
-          label: "TOWER",
+          label: this.$t('tower').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "unit_no",
-          label: "UNIT NO",
+          label: this.$t('unit_no').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "date",
-          label: "DATE",
+          label: this.$t('date').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "price",
-          label: "PRICE",
+          label: this.$t('price').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "status",
-          label: "STATUS",
+          label: this.$t('status').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
           thClass: "HeaderACCList2 th-cus-left poppins",
         },

@@ -7,18 +7,18 @@
               <b-col lg="12" xl="12">
                 <b-row style="overflow-x: auto; white-space: nowrap; display: block !important;">
                   <template v-for="(data, index) in ModelProject">
-                    <b-col lg="3" xl="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click="onProjectChange(index)">
+                    <b-col sm="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click="onProjectChange(index)">
                       <b-row class="noPadding">
-                        <b-col class="noPadding" lg="4" xl="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
+                        <b-col class="noPadding" sm="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
                           <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                         </b-col>
-                        <b-col class="noPadding" lg="6" xl="6">
+                        <b-col class="noPadding" sm="6">
                           <div class="center" style="text-align: center; width: 100%;">
                             <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total NUP </span> <br>
                             <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_nup}}</span>
                           </div>
                         </b-col>
-                        <b-col class="noPadding" lg="2" xl="2">
+                        <b-col class="noPadding" sm="2">
                           <font-awesome-icon v-if="data.total_nup" @click.stop="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
                         </b-col>
                       </b-row>
@@ -31,7 +31,7 @@
             <b-col lg="12" xl="12">
                 <HOOList
                   :prop="selectedProject == -1 ? {}: ModelProject[selectedProject].propList"
-                  :title="'Detail NUP Buyers'"
+                  :title="$t('detail_nup_buyers')"
                   @rowClicked="rowClicked"
                   @buttonDeleteClicked="doDeleteClick"
                   @rowDblClicked="doDoubleClick"
@@ -51,7 +51,7 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Detail NUP Buyers
+                      {{ $t('detail_nup_buyers') }}
                     </b-col>
                   </template>
                   <template slot="total_nup" slot-scope="data">
@@ -137,43 +137,43 @@ export default {
         },
         {
           key: "name",
-          label: "BUYER NAME",
+          label: this.$t('buyer_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "id_no",
-          label: "ID NO",
+          label: this.$t('id_no').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "handphone",
-          label: "HANDPHONE NO",
+          label: this.$t('handphone_no').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "marketing_name",
-          label: "MARKETING NAME",
+          label: this.$t('marketing_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
-          label: "PROJECT NAME",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_nup",
-          label: "TOTAL NUP",
+          label: `${this.$t('total').toUpperCase()} NUP`,
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "pending",
-          label: "PENDING",
+          label: this.$t('pending').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
