@@ -166,5 +166,6 @@
     "total_sales_price": "Total Sales (Value)",
     "personal_information": "Personal Information",
     "change_password": "Change Password",
-    "sales_detail": "Sales Detail"
+    "sales_detail": "Sales Detail",
+    "principle_name": "Principle Name"
 }
