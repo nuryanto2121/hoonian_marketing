@@ -200,7 +200,7 @@
                                     <template slot="ToolbarTable">
                                         <b-col align-self="center" class="col-right">
                                             <ABSButton
-                                                text="Confirmation"
+                                                :text="$t('confirmation')"
                                                 classButton="button button--hoonian"
                                                 @click="doSave"
                                                 :disabled="paramFromList.status !== 'i' || !(Model.active_nup && Model.active_nup !== '')"
