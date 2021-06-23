@@ -607,6 +607,7 @@ export default {
     isHeaderFixed: Boolean,
     removeCardTitle: Boolean,
     removePaddingTopBody: Boolean,
+    isAuth: String,
   },
   data() {
     return {
@@ -1109,12 +1110,12 @@ export default {
     doGetList: async function (searchh, method) {
       if (this.cStatic == true) return
 
-      await this.GetButtonStatus(
-        this.getDataUser().portfolio_id,
-        this.getDataUser().group_id,
-        this.getDataUser().user_id,
-        this.getOptionUrl()
-      );
+      // await this.GetButtonStatus(
+      //   this.getDataUser().portfolio_id,
+      //   this.getDataUser().group_id,
+      //   this.getDataUser().user_id,
+      //   this.getOptionUrl()
+      // );
       this.checkSortField();
       // if (this.getIsCallBack()) {
       // } else if (this.getIsPopup() && method == 'eb_getList') {
@@ -1164,10 +1165,10 @@ export default {
       let param = {
         // option_url: "",
         // line_no: "",
-        user_id: this.getDataUser().user_id,
-        portfolio_id: this.getDataUser().portfolio_id,
-        project_id: this.getDataUser().project_id,
-        subportfolio_id: this.getDataUser().subportfolio_id,
+        user_id: this.getDataUser()? this.getDataUser().user_id: "",
+        portfolio_id: this.getDataUser()? this.getDataUser().portfolio_id: "",
+        project_id: this.getDataUser()? this.getDataUser().project_id: "",
+        subportfolio_id: this.getDataUser()? this.getDataUser().subportfolio_id: "",
         current_page: this.currentPage,
         per_page: this.perPage,
         param_where: search,
@@ -1178,8 +1179,7 @@ export default {
         // param_view: ""
         ...this.prop.param,
       };
-
-      this.postJSON(this.urlHoonian + this.prop.url, param).then((response) => {
+      this.postJSON(this.urlHoonian + this.prop.url, param, false, this.isAuth).then((response) => {
         // this.loader = false;
         if (response == null) return;
 

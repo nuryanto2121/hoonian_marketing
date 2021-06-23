@@ -23,6 +23,10 @@ import MK_Profile from '@/views/MK/MK_Profile/MK_Profile'
 import MK_NUP from '@/views/MK/MK_NUP/MK_NUP'
 import MK_NUPForm from '@/views/MK/MK_NUP/MK_NUPForm'
 
+// Common
+import MK_ProjectDetailCommon from '@/views/MK/MK_ProjectDetailCommon/MK_ProjectDetailCommon'
+import MK_AllProjectCommon from '@/views/MK/MK_AllProjectCommon/MK_AllProjectCommon'
+
 export const MKRender = {
     path: '/MK',
     component: {
@@ -217,6 +221,24 @@ export const MKRender = {
             component: MK_NUPForm,
             meta: {
                 requiresAuth: true
+            }
+        },
+
+        // common
+        {
+            path: '/MK/MK_ProjectDetailCommon',
+            name: 'MK_ProjectDetailCommon',
+            component: MK_ProjectDetailCommon,
+            meta: {
+                requiresAuth: false
+            }
+        },
+        {
+            path: '/MK/MK_AllProjectCommon',
+            name: 'MK_AllProjectCommon',
+            component: MK_AllProjectCommon,
+            meta: {
+                requiresAuth: false
             }
         },
     ]

@@ -246,7 +246,7 @@ export default {
 
           localStorage.lsSession = JSON.stringify(session);
 
-          this.$router.push("/");
+          this.$router.push("/MK_Dashboard");
           location.reload();
           // }
         })
@@ -263,75 +263,6 @@ export default {
           }
         });
     },
-    onSubmit_() {
-      this.$store.commit("setStatusLoader", true);
-      var querystring = require("querystring");
-      axios
-        .post(
-          this.getUrlLogin(),
-          querystring.stringify({
-            UserLog: this.userName,
-            PassLog: this.passWord
-          }),
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json"
-            }
-          }
-        )
-        .then(response => {
-          this.$store.commit("setStatusLoader", false);
-          // response from API
-          var responses = response.data;
-          // console.log(responses);
-
-          var error = responses.Error;
-          var message = responses.Message;
-
-          if (error) {
-            this.alertError(message);
-          } else {
-            var data = responses.Data;
-            var dataUser = data.DataUser[0];
-
-            document.cookie = "googtrans=/en/" + dataUser.default_language;
-
-            if (this.rememberMe) {
-              var dataCookie = "username=" + this.userName; // + '; path=/sign-in' + ''
-              document.cookie = dataCookie;
-
-              dataCookie = "password=" + this.passWord; // + '; path=/sign-in' + ''
-              document.cookie = dataCookie;
-            }
-
-            var favoriteMenu = JSON.stringify(data.FavoriteMenu);
-            var menu = JSON.stringify(data.Menu);
-
-            const session = {
-              Session_Id: data.Session_Id,
-              sessionIdle: data.Idle
-            };
-
-            // set language hardcode
-            dataUser.language = "en";
-
-            localStorage.lsDataUser = JSON.stringify(dataUser);
-
-            localStorage.lsShortcutMenu = favoriteMenu;
-            localStorage.lsMenu = menu;
-
-            localStorage.lsSession = JSON.stringify(session);
-
-            this.$router.push("/");
-            location.reload();
-          }
-        })
-        .catch(err => {
-          // console.log(err)
-          this.$store.commit("setStatusLoader", false);
-        });
-    }
   }
 };
 </script>

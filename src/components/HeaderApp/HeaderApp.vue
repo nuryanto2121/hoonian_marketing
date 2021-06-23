@@ -70,7 +70,7 @@
 
             <div @mouseleave="closeMenu">
               <b-row>
-                <b-col sm="3" class="dashboard-text">
+                <b-col :sm="isLogin()? 3: 6" class="dashboard-text">
                   <div
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -83,7 +83,20 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="!isLogin()" sm="6" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="login"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/logout.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Log In
+                  </div>
+                </b-col>
+
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -96,7 +109,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -109,7 +122,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -123,7 +136,7 @@
                 </b-col>
               </b-row>
 
-              <b-row>
+              <b-row v-if="isLogin()">
                 <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
                 <b-col sm="3" class="dashboard-text">
                   <div 
@@ -181,7 +194,7 @@
               <hr />
 
               <b-row>
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -194,7 +207,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -425,25 +438,29 @@ export default {
     // this.$store.dispatch("handleTextMenu", true);
 
     // cek if user login or not
-    if (this.getDataUser() === undefined) {
-      this.$router.replace({
-        path: "/sign-in"
-      });
-      return;
+    switch(this.$route.path) {
+      case "/":
+      case "/MK/MK_ProjectDetailCommon":
+      case "/MK/MK_AllProjectCommon":
+        break;
+      default:
+        this.$router.replace({
+          path: "/sign-in"
+        });
+        return;
     }
     // this.$i18n.locale = this.getDataUser().language;
     // this.getAliasLanguage();
 
     // this.getSubportfolio();
     // console.log(this.getDataUser());
-    this.value = this.getDataUser().subportfolio_cd;
-    this.label =
-      this.getDataUser().portfolio_short_name;
+    this.value = this.getDataUser()? this.getDataUser().subportfolio_cd: "";
+    this.label = this.getDataUser()? this.getDataUser().portfolio_short_name: "PT HOONIAN";
       // " - " +
       // this.getDataUser().subportfolio_short_name;
     // console.log(this.label);
-    this.Username = this.getDataUser().user_name;
-    this.$refs.ref_project.getData();
+    this.Username = this.getDataUser()? this.getDataUser().user_name: "";
+    // this.$refs.ref_project.getData();
   },
   data() {
     return {
@@ -545,6 +562,9 @@ export default {
     }
   },
   methods: {
+    isLogin() {
+      return this.getDataUser()? true: false;
+    },
     showMenu() {
       this.$bvToast.show('dashboard-toast');
     },
@@ -552,7 +572,7 @@ export default {
       this.$bvToast.hide('dashboard-toast');
     },
     showDashboard() {
-      this.$router.push({ name: "MK_Dashboard" });
+      this.$router.push("/");
     },
     showSales() {
       this.$router.push({ name: "MK_Sales" });
@@ -580,6 +600,11 @@ export default {
     },
     logout() {
       this.signOut();
+    },
+    login() {
+      this.$router.replace({
+        path: "/sign-in"
+      });
     },
     onNewMenu() {},
     getSumChatNotif() {

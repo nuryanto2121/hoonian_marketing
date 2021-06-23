@@ -828,7 +828,7 @@ export default {
         })
     },
 
-    postJSON(fullUrl, param, isManualStopLoader = false) {
+    postJSON(fullUrl, param, isManualStopLoader = false, isAuth = true) {
       var paramtoset = param
       
       if (fullUrl === this.getUrlAPIChat()) { } else {
@@ -837,7 +837,14 @@ export default {
       let sessionId = '';
       if (fullUrl === this.getUrlForgotPassword() || fullUrl === this.getUrlAuthChangePassword()) {
       } else {
-        sessionId = this.getSession().Session_Id;
+        sessionId = isAuth? this.getSession().Session_Id: "";
+      }
+      let auth = {};
+      if (sessionId) {
+        auth = {
+          Authorization: 'Bearer ' + sessionId,
+          Token: sessionId,
+        };
       }
       return axios
         .post(
@@ -846,9 +853,8 @@ export default {
           headers: {
             'Content-Type': this.json,
             Accept: this.json,
-            Authorization: 'Bearer ' + sessionId,
-            Token: sessionId,
             "Access-Control-Allow-Origin": "*",
+            ...auth,
           }
         }
         )
