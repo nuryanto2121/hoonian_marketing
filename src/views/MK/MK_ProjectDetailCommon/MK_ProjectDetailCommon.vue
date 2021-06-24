@@ -293,7 +293,7 @@
                 removePaddingTopBody
                 noPaging
                 noTitle
-                isAuth
+                noAuth
               >
                 <template slot="gross_area" slot-scope="data">
                   {{data.item.gross_area}} m<sup>2</sup>
@@ -705,11 +705,16 @@
         </b-col>
       </b-row>
       <ABSModalImage id="Modal_Image" ref="Modal_Image" size="md" />
+      <MKContactMe ref="MK_ContactMe" />
     </div>
   </div>
 </template>
 <script>
+import MKContactMe from "../MK_ContactMe/MK_ContactMe";
 export default {
+  components: {
+    MKContactMe
+  },
   computed: {
     paramFromList() {
       let param = this.$store.getters.getParamPage;
@@ -958,7 +963,7 @@ export default {
       param.availableUnitTypes = data;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_UnitType" });
+      this.$router.push({ name: "MK_UnitTypeCommon" });
     },
     getProgress() {
       let param = {

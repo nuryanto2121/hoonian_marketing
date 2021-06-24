@@ -98,7 +98,7 @@ export default {
   },
   methods: {
     viewAll() {
-      this.$router.push({ name: "MK_AllPromotion" });
+      this.$router.push({ name: "MK_AllPromotionCommon" });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");

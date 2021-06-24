@@ -130,5 +130,8 @@
     "no_of_buyer": "No of Buyer",
     "total_nup_value": "Total NUP Value",
     "nup_value": "NUP Value",
-    "upload_photo": "Upload Photo"
+    "upload_photo": "Upload Photo",
+    "contact_me": "Contact Me",
+    "project": "Project",
+    "send": "Send"
 }

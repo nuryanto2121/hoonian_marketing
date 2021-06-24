@@ -12,12 +12,17 @@
           </template>
         </b-row>
       </template>
+      <MKContactMe ref="MK_ContactMe" />
     </div>
   </div>
 </template>
 
 <script>
+import MKContactMe from "../MK/MK_ContactMe/MK_ContactMe";
 export default {
+  components: {
+    MKContactMe
+  },
   data() {
     return {
       M_Dash: [],

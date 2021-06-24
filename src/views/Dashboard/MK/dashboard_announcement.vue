@@ -101,8 +101,6 @@ export default {
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/dashboard/announcement",
         param,
-        false,
-        false,
       ).then((response) => {
         if (response == null) return;
         this.Model = response.data;

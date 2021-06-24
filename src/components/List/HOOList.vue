@@ -607,7 +607,7 @@ export default {
     isHeaderFixed: Boolean,
     removeCardTitle: Boolean,
     removePaddingTopBody: Boolean,
-    isAuth: String,
+    noAuth: String,
   },
   data() {
     return {
@@ -1179,7 +1179,7 @@ export default {
         // param_view: ""
         ...this.prop.param,
       };
-      this.postJSON(this.urlHoonian + this.prop.url, param, false, this.isAuth).then((response) => {
+      this.postJSON(this.urlHoonian + this.prop.url, param, false, this.noAuth).then((response) => {
         // this.loader = false;
         if (response == null) return;
 

@@ -442,6 +442,9 @@ export default {
       case "/":
       case "/MK/MK_ProjectDetailCommon":
       case "/MK/MK_AllProjectCommon":
+      case "/MK/MK_AllPromotionCommon":
+      case "/MK/MK_UnitTypeCommon":
+      case "/MK/MK_FloorPlanCommon":
         break;
       default:
         this.$router.replace({
@@ -753,7 +756,7 @@ export default {
 
           // push user to sign-in
           this.$router.replace({
-            path: "/sign-in"
+            path: "/"
           });
         });
         }

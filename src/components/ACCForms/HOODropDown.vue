@@ -77,7 +77,8 @@ export default {
       cClearable: Boolean,
     },
     value: { type: [String, Number, Object, Array], default: "" },
-    label: { type: [String, Number, Object, Array], default: "" }
+    label: { type: [String, Number, Object, Array], default: "" },
+    noAuth: String,
   },
   data() {
     return {
@@ -310,7 +311,7 @@ export default {
           return;
         }
       }
-      this.postJSON(this.urlHoonian + this.prop.dataLookUp.url, this.prop.dataLookUp.param).then(response => {
+      this.postJSON(this.urlHoonian + this.prop.dataLookUp.url, this.prop.dataLookUp.param, false, this.noAuth).then(response => {
         if (loading) loading(false);
         if (response == null) return;
 
