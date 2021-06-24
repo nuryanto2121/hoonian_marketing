@@ -42,7 +42,7 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Referral List
+                      {{$t('referral_list')}}
                     </b-col>
                   </template>
                   <template slot="date" slot-scope="data">
@@ -64,7 +64,7 @@
         <b-row style="margin-bottom: 20px;">
           <b-col style="text-align: center;">
             <ABSButton
-                  :text="'Save'"
+                  :text="$t('save')"
                   classButton="btn btn--default"
                   classIcon="icon-style-1"
                   @click="doSave"
@@ -88,7 +88,7 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Selected Referral
+                      {{$t('selected_referral')}}
                     </b-col>
                   </template>
                   <template slot="date" slot-scope="data">
@@ -140,37 +140,37 @@ export default {
       ReferralHeaders: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "prospect_name",
-          label: "Prospect Name",
+          label: this.$t('prospect_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "referred_by",
-          label: "Referred By",
+          label: this.$t('referred_by').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "project_name",
-          label: "Project Name",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "date",
-          label: "Date",
+          label: this.$t('date').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "pick",
-          label: "Pick",
+          label: this.$t('pick').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
@@ -180,31 +180,31 @@ export default {
       SelectedHeaders: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "prospect_name",
-          label: "Prospect Name",
+          label: this.$t('prospect_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "referred_by",
-          label: "Referred By",
+          label: this.$t('referred_by').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "project_name",
-          label: "Project Name",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "marketing_name",
-          label: "Marketing Name",
+          label: this.$t('marketing_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },

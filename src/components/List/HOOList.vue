@@ -181,12 +181,12 @@
     </div>
     <div v-show="!noPaging" :class="'card__footer noBorder-2'" :style="noCard ? 'padding-left: unset !important; padding-right: unset !important;': ''">
       <b-form inline style="float: left; color: #333" :class="isPoppins ? 'font-poppins': ''">
-        <label
+        <!-- <label
           class="font-lbl"
           :class="isPoppins ? 'font-poppins': ''"
           style="margin-bottom: 0px !important; margin-right: 0px !important"
           >Page Size</label
-        >
+        > -->
         <b-form-select
           id="cmbPerPage"
           v-model="perPage"
@@ -196,7 +196,7 @@
           :class="isPoppins ? 'font-poppins': ''"
           :disabled="isDisableTable"
         ></b-form-select>
-        of {{ this.totalRows }} Records
+        {{$t('of_')}} {{ this.totalRows }} {{$t('records')}}
       </b-form>
 
       <b-pagination
@@ -1518,7 +1518,8 @@ export default {
                 key: str_array[i],
                 thClass: thClass,
                 tdClass: tdClass,
-                label: labelHeader,
+                // label: labelHeader,
+                label: this.$t(str_array[i]).toUpperCase(),
               });
             }
 

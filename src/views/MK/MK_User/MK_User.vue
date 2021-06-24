@@ -38,7 +38,7 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Marketing List
+                      {{$t('user_marketing_list')}}
                     </b-col>
                   </template>
                   <template slot="ToolbarTable">
@@ -59,7 +59,7 @@
                         </b-col>
                         <b-col>
                             <ABSButton
-                                :text="'View'"
+                                :text="$t('view')"
                                 classButton="btn btn--default"
                                 classIcon="icon-style-1"
                                 @click="doViewProject(data.item)"
@@ -276,31 +276,31 @@ export default {
         },
         {
           key: "name",
-          label: "MARKETING NAME",
+          label: this.$t('marketing_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "handphone",
-          label: "HANPHONE NO.",
+          label: this.$t('handphone_no').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_project",
-          label: "TOTAL PROJECT",
+          label: this.$t('total_project').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_sales_unit",
-          label: "TOTAL SALES (UNIT)",
+          label: this.$t('total_sales_unit').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "total_sales_price",
-          label: "TOTAL SALES (VALUE)",
+          label: this.$t('total_sales_price').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
@@ -321,7 +321,7 @@ export default {
         },
         {
           key: "project_name",
-          label: "PROJECT NAME",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },

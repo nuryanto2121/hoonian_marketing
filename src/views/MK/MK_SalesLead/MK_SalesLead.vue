@@ -14,7 +14,7 @@
                         </b-col>
                         <b-col class="noPadding" lg="6" xl="6">
                           <div class="center" style="text-align: center; width: 100%;">
-                            <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total Lead </span> <br>
+                            <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> {{ $t('total') + ' ' + $t('lead') }} </span> <br>
                             <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_sales_lead}}</span>
                           </div>
                         </b-col>
@@ -31,7 +31,7 @@
             <b-col lg="12" xl="12">
                 <HOOList
                   :prop="ModelProject[selectedProject].propList"
-                  :title="'Sales Lead Detail'"
+                  :title="$t('sales_lead_detail')"
                   @rowClicked="rowClicked"
                   @buttonDeleteClicked="doDeleteClick"
                   @rowDblClicked="doDoubleClick"
@@ -51,7 +51,7 @@
                 >
                   <template slot="TitleTable">
                     <b-col lg="3" xl="3" style="padding-left: unset !important;" class="title-list-primary">
-                      Sales Lead Details
+                      {{ $t('sales_lead_detail') }}
                     </b-col>
                   </template>
                   <template slot="date" slot-scope="data">
@@ -73,7 +73,7 @@
 
       <ABSModal id="Modal_Add" ref="Modal_Add" size="sm">
         <template slot="headerTitle">
-          <span class="title-primary"> {{ $t('Add') }} Sales Lead </span>
+          <span class="title-primary"> {{ $t('Add') + ' ' + $t('sales_lead')}} </span>
         </template>
         <template slot="content">
           <b-row>
@@ -145,7 +145,7 @@
                     <b-row style="margin-top: 10px;">
                       <b-col md="6" offset-md="3">
                         <ABSButton
-                          :text="'Save'"
+                          :text="$t('save')"
                           classButton="btn btn--default"
                           classIcon="icon-style-1"
                           @click="doSave"
@@ -183,43 +183,43 @@ export default {
       Headers: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "prospect_name",
-          label: "Prospect Name",
+          label: this.$t('prospect_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "handphone_no",
-          label: "Handphone No",
+          label: this.$t('handphone_no').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "project_name",
-          label: "Project Name",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "marketing_name",
-          label: "Marketing Name",
+          label: this.$t('marketing_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "date",
-          label: "Date",
+          label: this.$t('date').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "notes",
-          label: "Notes",
+          label: this.$t('notes').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },

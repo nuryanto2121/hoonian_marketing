@@ -62,7 +62,7 @@
                               </b-col>
                               <b-col md="3">
                                   <span>
-                                      <label style="font-weight: bold; font-size: 20px;" class="lbl-poppins">Total {{$t('purchase')}}</label>
+                                      <label style="font-weight: bold; font-size: 20px;" class="lbl-poppins">{{$t('total_purchase')}}</label>
                                   </span>
                                   <ACCTextBox
                                     :prop="PI_total_purchase"
@@ -85,7 +85,7 @@
                               </b-col>
                               <b-col md="3">
                                   <ABSButton
-                                    :text="'Purchase'"
+                                    :text="$t('purchase')"
                                     classButton="button button--hoonian"
                                     classIcon="icon-style-1"
                                     @click="doSave"
@@ -202,7 +202,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit("setTitleMenu", "Buy Token");
+    this.$store.commit("setTitleMenu", this.$t('buy_token'));
     this.getDataBy();
   },
 };

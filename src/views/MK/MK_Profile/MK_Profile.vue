@@ -23,7 +23,7 @@
                             <b-row>
                                 <b-col>
                                     <span>
-                                        <label class="title-primary" style="font-weight: bold;">Personal Information</label>
+                                        <label class="title-primary" style="font-weight: bold;">{{$t('personal_information')}}</label>
                                     </span>
                                 </b-col>
                             </b-row>
@@ -130,7 +130,7 @@
                             <b-row style="margin-top: 20px;">
                                 <b-col>
                                     <span>
-                                        <label class="title-primary" style="font-weight: bold;">Change Password</label>
+                                        <label class="title-primary" style="font-weight: bold;">{{$t('change_password')}}</label>
                                     </span>
                                 </b-col>
                             </b-row>
@@ -151,7 +151,7 @@
                                     <b-row class="noPadding">
                                         <b-col lg="6" xl="6">
                                             <ABSButton
-                                                :text="'Save'"
+                                                :text="$t('save')"
                                                 classButton="btn btn--default"
                                                 classIcon="icon-style-1"
                                                 @click="doSave"
@@ -195,7 +195,7 @@
                             >
                                 <template slot="TitleTable">
                                     <b-col lg="3" xl="3" style="padding-left: unset !important; color: black !important;" class="title-list-primary">
-                                        Sales Detail
+                                      {{$t('sales_detail')}}
                                     </b-col>
                                 </template>
                                 <template slot="price" slot-scope="data">
@@ -241,49 +241,49 @@ export default {
       Headers: [
         {
           key: "no",
-          label: "No",
+          label: "NO",
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "buyer_name",
-          label: "Buyer Name",
+          label: this.$t('buyer_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
-          label: "Project Name",
+          label: this.$t('project_name').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "tower",
-          label: "Tower",
+          label: this.$t('tower').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "unit_no",
-          label: "Unit No",
+          label: this.$t('unit_no').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "price",
-          label: "Price",
+          label: this.$t('price').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "commission",
-          label: "Commission",
+          label: this.$t('commission').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "status",
-          label: "Status",
+          label: this.$t('status').toUpperCase(),
           thClass: "HeaderACCList2Poppins th-cus-center",
           tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
