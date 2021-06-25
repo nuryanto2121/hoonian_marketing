@@ -737,7 +737,7 @@ export default {
           // marketing_agent_id: "",
           tower_cluster_id: "",
           type: "",
-          lang_id: "en"//this.getDataUser().lang_id,
+          lang_id: this.getLanguageCommon().lang_id,
           // principle_id: this.getDataUser().principle_id,
         }
       },

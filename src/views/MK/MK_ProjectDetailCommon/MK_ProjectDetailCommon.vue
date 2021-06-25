@@ -849,7 +849,7 @@ export default {
     getFinancialPartners(id) {
       let param = {
         id: id,
-        lang_id: "en"//this.getDataUser().lang_id,
+        lang_id: this.getLanguageCommon().lang_id,
       };
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/common/project/financial-partners-detail",
@@ -908,7 +908,7 @@ export default {
     getProject() {
       let param = {
         project_id: this.paramFromList.id,
-        lang_id: "en"//this.getDataUser().lang_id,
+        lang_id: this.getLanguageCommon().lang_id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/common/project/detail', param, true, false).then((response) => {
@@ -920,7 +920,7 @@ export default {
     getAvailableUnitTypes() {
       let param = {
         project_id: this.paramFromList.id,
-        lang_id: "en"//this.getDataUser().lang_id,
+        lang_id: this.getLanguageCommon().lang_id,
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/common/project/available-unit-types-header', param, true, false).then((response) => {
@@ -939,7 +939,7 @@ export default {
               ParamWhere: "",
               param: {
                 tower_cluster_id: data[i].id,
-                lang_id: "en"//this.getDataUser().lang_id,
+                lang_id: this.getLanguageCommon().lang_id,
                 // principle_id: this.getDataUser().principle_id,
               }
             }

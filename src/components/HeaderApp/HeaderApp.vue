@@ -252,7 +252,30 @@
           </a>
         </div> -->
 
-        <div class="container-notif" style="padding-right: 0px !important;">
+        <div v-if="!isLogin()" class="container-notif" style="padding-top: 8px !important; padding-right: 0px !important; width: 120px;">
+          <b-row class="noPadding">
+            <b-col>
+              <!-- <span>
+                <label class="lbl-poppins">{{ $t('language') }}</label>
+              </span> <br>
+              <span>
+                <font-awesome-icon class="icon-style-default title-primary" icon="globe" /> &nbsp;
+                <label class="title-primary">{{Model.lang_id == 'id' ? 'Indonesia' : "English"}}</label>
+              </span> -->
+              <HOODropDown
+                @change="Onlang_idChange"
+                :prop="PI_lang_id"
+                v-model="Model.lang_id"
+                :label="Model.lang_idLabel"
+                ref="ref_lang_id"
+              />
+            </b-col>
+          </b-row>
+        </div>
+        <div class="header--top__info-subportfolio notranslate" style="margin-right: 5px;">
+          {{label}}
+        </div>
+        <div class="container-notif" style="padding-right: 30px !important;">
           <a
             class="dropdown-toggle count-info"
             data-toggle="dropdown"
@@ -268,7 +291,6 @@
             >{{totalNotification}}</span>
           </a>
         </div>
-        <div class="header--top__info-subportfolio notranslate" style="margin-right: 10px;">{{label}}</div>
         <!-- <div class="header--top__profile-menu" @click="signOut" v-click-outside="closeHeader" style="margin-top: 10px;">
           <div class="avatar">
             <div class="image">
@@ -424,6 +446,10 @@
 
 export default {
   mounted() {
+    const data = this.getLanguageCommon();
+    this.Model.lang_id = data.lang_id;
+    this.Model.lang_idLabel = data.label;
+
     // comm: disini kamu ubah hideshow menunya, ternyata dikontrol dari menunya
     this.$store.dispatch("handlePaddingHeader", "0px");
     this.$store.dispatch("handlePaddingLeftContent", "0px");
@@ -493,6 +519,38 @@ export default {
       Username: "",
       totalChat: 0,
       totalNotification: 0,
+
+      Model: {
+        lang_id: "",
+        lang_idLabel: "",
+      },
+      PI_lang_id: {
+        dataLookUp: {
+          url: "",
+          param: {},
+        },
+        cValidate: "",
+        cName: "Language",
+        ckey: false,
+        cOrder: 3,
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cStatic: true,
+        cOption: [
+          {
+            id: "id",
+            label: "Indonesia",
+          },
+          {
+            id: "en",
+            label: "English",
+          }
+        ],
+        cDisplayColumn: "",
+        cInputStatus: "new",
+        cStyle: "",
+        cClearable: false,
+      },
     };
   },
   created: async function() {
@@ -565,6 +623,12 @@ export default {
     }
   },
   methods: {
+    Onlang_idChange(data) {
+      this.Model.lang_id = data.id;
+      this.Model.lang_idLabel = data.label;
+      this.setLanguageCommon();
+      location.reload();
+    },
     isLogin() {
       return this.getDataUser()? true: false;
     },
@@ -758,6 +822,8 @@ export default {
           this.$router.replace({
             path: "/"
           });
+          
+          location.reload();
         });
         }
       })
