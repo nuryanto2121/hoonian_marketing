@@ -102,7 +102,7 @@
                 {{ $t('purchase_value') }}
                 <br />
                 <span style="color: #4A93B3; text-shadow: 1.0px 0px; font-size: 18px;">
-                  IDR {{isCurrency(paramFromList.total_nup * (Model.total_purchase? Model.total_purchase: 0), 2)}}
+                  IDR {{isCurrency(paramFromList.value * (Model.total_purchase? Model.total_purchase: 0), 2)}}
                 </span>
               </b-col>
             </b-row>
