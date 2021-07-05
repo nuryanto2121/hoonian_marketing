@@ -123,6 +123,12 @@ export default {
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
+        {
+          key: "refund",
+          label: this.$t('refund').toUpperCase(),
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
       ],
 
       ModelProject: [],
