@@ -1,7 +1,7 @@
 <template>
   <div class="absolute-connection-wrapper">
     <header-app></header-app>
-    <sidebar-app></sidebar-app>
+    <!-- <sidebar-app></sidebar-app> -->
     <div class="content-app" id="content-app" :style="{ paddingLeft: paddingLeft }">      
       <big-menu></big-menu>
       <router-view></router-view>

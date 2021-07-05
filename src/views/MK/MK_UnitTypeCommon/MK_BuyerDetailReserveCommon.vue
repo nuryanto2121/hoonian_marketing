@@ -29,7 +29,7 @@
                       ref="ref_handphone_no"
                     />
                   </b-col>
-                  <b-col v-if="isNUP() || isToken() || isTime()" sm="2">
+                  <b-col v-if="isNUP()" sm="2">
                     <span>
                       <label class="lbl-poppins">&nbsp;</label>
                     </span>
@@ -379,23 +379,7 @@ export default {
         }
       }
       return false;
-    },
-    isToken() {
-      if (this.dataRowClick.booking_type) {
-        if (this.dataRowClick.booking_type == "token") {
-          return true;
-        }
-      }
-      return false;
-    },
-    isTime() {
-      if (this.dataRowClick.booking_type) {
-        if (this.dataRowClick.booking_type == "time") {
-          return true;
-        }
-      }
-      return false;
-    },
+    }
   },
   mounted() {
   },

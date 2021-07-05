@@ -177,6 +177,18 @@ export default {
           thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
+        {
+          key: "used",
+          label: this.$t('used').toUpperCase(),
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+        {
+          key: "refund",
+          label: this.$t('refund').toUpperCase(),
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
       ],
       HeaderNupList: [
         {
@@ -200,7 +212,7 @@ export default {
         url: "/api/marketing-website/nup/nup-no",
         initialWhere: "",
         SortField: "",
-        SortBy: "desc",
+        SortBy: "asc",
         ParamWhere: "",
         param: {
           marketing_agent_id: this.getDataUser().marketing_id,

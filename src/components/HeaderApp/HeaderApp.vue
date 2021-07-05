@@ -70,7 +70,7 @@
 
             <div @mouseleave="closeMenu">
               <b-row>
-                <b-col sm="3" class="dashboard-text">
+                <b-col :sm="isLogin()? 3: 6" class="dashboard-text">
                   <div
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -83,7 +83,20 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="!isLogin()" sm="6" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="login"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/logout.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Log In
+                  </div>
+                </b-col>
+
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -96,7 +109,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -109,7 +122,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -123,7 +136,7 @@
                 </b-col>
               </b-row>
 
-              <b-row>
+              <b-row v-if="isLogin()">
                 <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
                 <b-col sm="3" class="dashboard-text">
                   <div 
@@ -181,7 +194,7 @@
               <hr />
 
               <b-row>
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -194,7 +207,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -239,7 +252,30 @@
           </a>
         </div> -->
 
-        <div class="container-notif" style="padding-right: 0px !important;">
+        <div v-if="!isLogin()" class="container-notif" style="padding-top: 8px !important; padding-right: 0px !important; width: 120px;">
+          <b-row class="noPadding">
+            <b-col>
+              <!-- <span>
+                <label class="lbl-poppins">{{ $t('language') }}</label>
+              </span> <br>
+              <span>
+                <font-awesome-icon class="icon-style-default title-primary" icon="globe" /> &nbsp;
+                <label class="title-primary">{{Model.lang_id == 'id' ? 'Indonesia' : "English"}}</label>
+              </span> -->
+              <HOODropDown
+                @change="Onlang_idChange"
+                :prop="PI_lang_id"
+                v-model="Model.lang_id"
+                :label="Model.lang_idLabel"
+                ref="ref_lang_id"
+              />
+            </b-col>
+          </b-row>
+        </div>
+        <div class="header--top__info-subportfolio notranslate" style="margin-right: 5px;">
+          {{label}}
+        </div>
+        <div class="container-notif" style="padding-right: 30px !important;">
           <a
             class="dropdown-toggle count-info"
             data-toggle="dropdown"
@@ -255,7 +291,6 @@
             >{{totalNotification}}</span>
           </a>
         </div>
-        <div class="header--top__info-subportfolio notranslate" style="margin-right: 10px;">{{label}}</div>
         <!-- <div class="header--top__profile-menu" @click="signOut" v-click-outside="closeHeader" style="margin-top: 10px;">
           <div class="avatar">
             <div class="image">
@@ -411,6 +446,10 @@
 
 export default {
   mounted() {
+    const data = this.getLanguageCommon();
+    this.Model.lang_id = data.lang_id;
+    this.Model.lang_idLabel = data.label;
+
     // comm: disini kamu ubah hideshow menunya, ternyata dikontrol dari menunya
     this.$store.dispatch("handlePaddingHeader", "0px");
     this.$store.dispatch("handlePaddingLeftContent", "0px");
@@ -425,25 +464,32 @@ export default {
     // this.$store.dispatch("handleTextMenu", true);
 
     // cek if user login or not
-    if (this.getDataUser() === undefined) {
-      this.$router.replace({
-        path: "/sign-in"
-      });
-      return;
+    switch(this.$route.path) {
+      case "/":
+      case "/MK/MK_ProjectDetailCommon":
+      case "/MK/MK_AllProjectCommon":
+      case "/MK/MK_AllPromotionCommon":
+      case "/MK/MK_UnitTypeCommon":
+      case "/MK/MK_FloorPlanCommon":
+        break;
+      default:
+        this.$router.replace({
+          path: "/sign-in"
+        });
+        return;
     }
     // this.$i18n.locale = this.getDataUser().language;
     // this.getAliasLanguage();
 
     // this.getSubportfolio();
     // console.log(this.getDataUser());
-    this.value = this.getDataUser().subportfolio_cd;
-    this.label =
-      this.getDataUser().portfolio_short_name;
+    this.value = this.getDataUser()? this.getDataUser().subportfolio_cd: "";
+    this.label = this.getDataUser()? this.getDataUser().portfolio_short_name: "PT HOONIAN";
       // " - " +
       // this.getDataUser().subportfolio_short_name;
     // console.log(this.label);
-    this.Username = this.getDataUser().user_name;
-    this.$refs.ref_project.getData();
+    this.Username = this.getDataUser()? this.getDataUser().user_name: "";
+    // this.$refs.ref_project.getData();
   },
   data() {
     return {
@@ -473,6 +519,38 @@ export default {
       Username: "",
       totalChat: 0,
       totalNotification: 0,
+
+      Model: {
+        lang_id: "",
+        lang_idLabel: "",
+      },
+      PI_lang_id: {
+        dataLookUp: {
+          url: "",
+          param: {},
+        },
+        cValidate: "",
+        cName: "Language",
+        ckey: false,
+        cOrder: 3,
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cStatic: true,
+        cOption: [
+          {
+            id: "id",
+            label: "Indonesia",
+          },
+          {
+            id: "en",
+            label: "English",
+          }
+        ],
+        cDisplayColumn: "",
+        cInputStatus: "new",
+        cStyle: "",
+        cClearable: false,
+      },
     };
   },
   created: async function() {
@@ -545,6 +623,15 @@ export default {
     }
   },
   methods: {
+    Onlang_idChange(data) {
+      this.Model.lang_id = data.id;
+      this.Model.lang_idLabel = data.label;
+      this.setLanguageCommon();
+      location.reload();
+    },
+    isLogin() {
+      return this.getDataUser()? true: false;
+    },
     showMenu() {
       this.$bvToast.show('dashboard-toast');
     },
@@ -552,7 +639,7 @@ export default {
       this.$bvToast.hide('dashboard-toast');
     },
     showDashboard() {
-      this.$router.push({ name: "MK_Dashboard" });
+      this.$router.push("/");
     },
     showSales() {
       this.$router.push({ name: "MK_Sales" });
@@ -580,6 +667,11 @@ export default {
     },
     logout() {
       this.signOut();
+    },
+    login() {
+      this.$router.replace({
+        path: "/sign-in"
+      });
     },
     onNewMenu() {},
     getSumChatNotif() {
@@ -728,8 +820,10 @@ export default {
 
           // push user to sign-in
           this.$router.replace({
-            path: "/sign-in"
+            path: "/"
           });
+          
+          location.reload();
         });
         }
       })

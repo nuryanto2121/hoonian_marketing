@@ -46,6 +46,13 @@ export default {
       return localStorage.dashboardProjectID === undefined ? this.getDataUser().dashboard_project_id : this.getDataUser().dashboard_project_id
     },
 
+    getLanguageCommon() {
+      return localStorage.lang_common === undefined ? {lang_id: "en", label: "English"} : JSON.parse(localStorage.lang_common);
+    },
+    setLanguageCommon() {
+      localStorage.lang_common = JSON.stringify({lang_id: this.Model.lang_id, label: this.Model.lang_idLabel});
+    },
+
     // example use this method get session id
     // this.getSession().Session_Id
   }

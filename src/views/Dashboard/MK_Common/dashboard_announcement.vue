@@ -99,8 +99,10 @@ export default {
         company_group_id: this.company_group_id,
       };
       this.postJSON(
-        this.urlHoonian + "/api/marketing-website/dashboard/announcement",
+        this.urlHoonian + "/api/marketing-website/common/dashboard/announcement",
         param,
+        false,
+        false,
       ).then((response) => {
         if (response == null) return;
         this.Model = response.data;

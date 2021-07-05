@@ -146,6 +146,9 @@
     "total_nup_value": "Total NUP Value",
     "nup_value": "NUP Value",
     "upload_photo": "Upload Photo",
+    "contact_me": "Contact Me",
+    "project": "Project",
+    "send": "Send",
     "sales_lead_detail": "Sales Lead Detail",
     "sales_lead": "Sales Lead",
     "lead": "Lead",
@@ -168,5 +171,6 @@
     "personal_information": "Personal Information",
     "change_password": "Change Password",
     "sales_detail": "Sales Detail",
-    "principle_name": "Principle Name"
+    "principle_name": "Principle Name",
+    "refund": "Refund"
 }
