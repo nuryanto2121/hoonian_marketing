@@ -374,11 +374,8 @@ export default {
     },
     isNUP() {
       if (this.dataRowClick.booking_type) {
-        switch(this.dataRowClick.booking_type) {
-          case "nup":
-          case "token":
-          case "time":
-            return true;
+        if (this.dataRowClick.booking_type == "nup") {
+          return true;
         }
       }
       return false;
