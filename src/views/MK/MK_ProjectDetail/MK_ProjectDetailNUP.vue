@@ -34,7 +34,7 @@
               </b-col>
             </b-row>
             <b-row>
-              <b-col md="3">
+              <b-col md="2">
                 <span>
                   <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
                 </span>
@@ -42,6 +42,18 @@
                   :prop="PI_handphone_no"
                   v-model="Model.handphone_no"
                   ref="ref_email"
+                />
+              </b-col>
+              <b-col md="1">
+                <span>
+                  <label class="lbl-poppins">&nbsp;</label>
+                </span>
+                <ABSButton
+                  :text="$t('check')"
+                  classButton="btn btn--default"
+                  classIcon="icon-style-1"
+                  @click="getBuyerNUP"
+                  styleButton="height: 40px; width: 100%;"
                 />
               </b-col>
               <b-col offset-md="1" md="3">
@@ -235,6 +247,20 @@ export default {
     }
   },
   methods: {
+    getBuyerNUP() {
+      let param = {
+        buyer_phone: this.Model.handphone_no,
+      };
+      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/buyer-nup-list', param).then((response) => {
+        if (response == null) return;
+        let data = response.data;
+        // this.nupData = data.nup_list;
+        this.Model.id_no = data.buyer_info.id_no;
+        this.Model.email = data.buyer_info.email;
+        this.Model.id_picture = data.buyer_info.thumbnail_image;
+        this.Model.buyer_name = data.buyer_info.name;
+      });
+    },
     onImageLoadFailure(event) {
       // event.target.src = require("@/assets/logo_hoonian1.svg");
     },
