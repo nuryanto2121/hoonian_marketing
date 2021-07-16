@@ -204,7 +204,7 @@
                                                 classButton="button button--hoonian"
                                                 @click="doSave"
                                                 :disabled="paramFromList.status !== 'i' || !(Model.active_nup && Model.active_nup !== '')"
-                                                styleButton="background-color: #414040 !important; color: #FFF !important; width: 150px; height: 35px; font-size: 15px !important;"
+                                                styleButton="background-color: #414040 !important; color: #FFF !important; width: 150px; height: 35px; font-size: 14px !important;"
                                             />
                                         </b-col>
                                     </template>
