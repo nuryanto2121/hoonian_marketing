@@ -309,7 +309,7 @@ export default {
       param.project_id = this.ModelProject[this.selectedProject].id;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_Referra,Logbook" });
+      this.$router.push({ name: "MK_ReferralLogbook" });
     },
     getProject() {
       let param = {
@@ -402,7 +402,8 @@ export default {
         param
       ).then((response) => {
         if (response == null) return;
-        this.doBack();
+        // this.doBack();
+        this.getProject();
       });
     },
   },
