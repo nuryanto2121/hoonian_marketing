@@ -98,35 +98,6 @@ export default {
       projectStatus: "all",
 
       Location: [],
-      optionsLocation: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          { end: 576, size: 3 },
-          { start: 576, end: 768, size: 4 },
-          { start: 768, end: 992, size: 6 },
-          { size: 8 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
     };
   },
   methods: {

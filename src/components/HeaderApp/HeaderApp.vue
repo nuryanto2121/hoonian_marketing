@@ -68,7 +68,7 @@
             id="dashboard-toast" 
             static no-auto-hide no-close-button no-fade solid append-toast>
 
-            <div @mouseleave="closeMenu">
+            <div>
               <b-row>
                 <b-col :sm="isLogin()? 3: 6" class="dashboard-text">
                   <div
@@ -225,7 +225,7 @@
           <span v-if="backButton" style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 16px; margin-right: 15px;">
             <img :src="require('@/assets/icon-svg/back_button.svg')" alt style="margin-top: 12px; cursor: pointer;" @click="doBack" />
           </span>
-          <p style="color: #4A93B3; text-shadow: 0.8px 0px; font-size: 24px; display: table-cell; vertical-align: middle; height: 60px;">
+          <p style="color: #4A93B3; text-shadow: 0.8px 0px; font-size: 20px; display: table-cell; vertical-align: middle; height: 60px;">
             {{titleMenu}}
           </p>
         <!-- </div> -->
@@ -493,6 +493,7 @@ export default {
   },
   data() {
     return {
+      isShowMenu: false,
       favoriteMenus: [],
       language: null,
       classHeader: false,
@@ -633,7 +634,12 @@ export default {
       return this.getDataUser()? true: false;
     },
     showMenu() {
-      this.$bvToast.show('dashboard-toast');
+      if (this.isShowMenu) {
+        this.closeMenu();
+      } else {
+        this.$bvToast.show('dashboard-toast');
+      }
+      this.isShowMenu = !this.isShowMenu;
     },
     closeMenu() { 
       this.$bvToast.hide('dashboard-toast');

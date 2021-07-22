@@ -17,10 +17,10 @@
                   <b-col sm="6" :key="indexDetail">
                     <div class="card">
                       <div class="card__body" style="padding: unset !important;">
-                        <b-row>
-                          <b-col style="padding: unset !important;">
+                        <b-row align-h="center">
+                          <b-col sm="8" style="height: 18vw; padding: unset !important;">
                             <b-img :src="urlHoonian + promotion.details[indexDetail].picture" alt=""
-                            :style="`height: 160px; cursor: pointer; position: relative;`"
+                            :style="`max-height: 100%; cursor: pointer; position: relative;`"
                             fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(promotion.details[indexDetail])" />
                             <!-- <span style="position: absolute; width: 87%; left: 20px; top: 10px; background: rgba(0, 0, 0, 0.3); color: white; padding: 5px 10px; font-size: 12px;">
                               {{promotion.details[indexDetail].promotion_name}}
@@ -44,10 +44,10 @@
                   <b-col sm="6" :key="indexDetail" v-if="promotion.details.length > indexDetail + 1">
                     <div class="card">
                       <div class="card__body" style="padding: unset !important;">
-                        <b-row>
-                          <b-col style="padding: unset !important;">
+                        <b-row align-h="center">
+                          <b-col sm="8" style="height: 18vw; padding: unset !important;">
                             <b-img :src="urlHoonian + promotion.details[indexDetail + 1].picture" alt=""
-                            :style="`height: 160px; cursor: pointer; position: relative;`"
+                            :style="`max-height: 100%; cursor: pointer; position: relative;`"
                             fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(promotion.details[indexDetail + 1])" />
                             <!-- <span style="position: absolute; width: 87%; left: 20px; top: 10px; background: rgba(0, 0, 0, 0.3); color: white; padding: 5px 10px; font-size: 12px;">
                               {{promotion.details[indexDetail + 1].promotion_name}}

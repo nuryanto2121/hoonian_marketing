@@ -904,40 +904,6 @@ export default {
       pleasePayIn: "",
       intervalPleasePayIn: undefined,
       OtherSuggestion: [],
-      options: {
-        // item: {
-        //   // css class to inject into each individual item
-        //   class: "",
-        //   // padding between each item
-        //   padding: 12,
-        // },
-        list: {
-        //   // 1200 because @media (min-width: 1200px) and therefore I want to switch to windowed mode
-          windowed: 100,
-
-        //   // Because: #app {padding: 80px 24px;}
-        //   padding: 24,
-        },
-        responsive: [
-          // { end: 576, size: 1 },
-          // { start: 576, end: 768, size: 2 },
-          // { start: 768, end: 992, size: 3 },
-          // { size: 4 },
-          { end: 576, size: 2 },
-          // { start: 576, end: 768, size: 3 },
-          { start: 576, end: 1500, size: 3 },
-          // { start: 992, end: 1200, size: 4 },
-          { start: 1500, size: 4 },
-        ],
-        position: {
-          start: -1,
-        },
-        navigation: {
-          // when to show navigation
-          start: 5000,
-        },
-        // autoplay: { play: true, repeat: true, speed: 3000 },
-      },
       fields: {
         unit_no: 'info',
         block_floor_name: 'info',
@@ -973,10 +939,11 @@ export default {
     },
     onLoanPercentage(data){
       this.Calculate.loan_amount = (this.replaceAllString(this.Calculate.loan_percentage, ',', '', 'number') * this.dataRowClick.price / 100).toFixed(0);
+      this.Calculate.loan_amount = this.isCurrency(this.Calculate.loan_amount, 2);
     },
     onLoanAmount(){
       this.Calculate.loan_percentage = (this.replaceAllString(this.Calculate.loan_amount, ',', '', 'number') * 100 / this.dataRowClick.price).toFixed(2);
-
+      this.Calculate.loan_percentage = this.isCurrency(this.Calculate.loan_percentage, 2);
     },
     changeImage(path) {
       this.Model.data.big_image = path;

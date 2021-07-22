@@ -249,7 +249,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.commit("setTitleMenu", "Floor Plan");
+    this.$store.commit("setTitleMenu", this.$t('floor_plan_label'));
     this.PI_block_floor.dataLookUp.param.project_id = this.paramFromList.id;
     this.PI_block_floor.dataLookUp.param.tower_cluster_id = this.paramFromList.tower_cluster_id;
     this.PI_block_floor.dataLookUp.param.lang_id = this.getLanguageCommon().lang_id,

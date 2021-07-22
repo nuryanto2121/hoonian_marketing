@@ -80,7 +80,7 @@
     "bathrooms": "TEMPAT TIDUR",
     "net_area": "AREA BERSIH",
     "gross_area": "AREA KOTOR",
-    "floor_plan": "PERENCANAAN LANTAI",
+    "floor_plan": "TATA LANTAI",
     "layout": "LETAK",
     "buyer_name": "Nama Pembeli",
     "total_purchase": "Jumlah Pembelian",
@@ -171,5 +171,6 @@
     "change_password": "Ganti Sandi",
     "sales_detail": "Data Sales",
     "principle_name": "Nama Principle",
-    "refund": "Pengembalian"
+    "refund": "Pengembalian",
+    "floor_plan_label": "Tata Lantai"
 }

@@ -32,17 +32,17 @@
               </b-col>
               <b-col md="4" style="background-color: #F8F8F8; min-height: 310px;">
                 <b-row>
-                  <b-col style="font-size: 18px; text-shadow: 0.5px 0px;">
+                  <b-col style="font-size: 18px; text-shadow: 1.2px 0px;">
                     {{item.header}}
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col style="font-size: 14px;" class="text-eight">
+                  <b-col style="font-size: 14px; margin-top: 10px; text-align: justify" class="text-eight">
                     {{item.content}}
                   </b-col>
                 </b-row>
                 <b-row align-v="end" style="position: absolute; bottom: 0; width: 100%; padding-right: 8px;">
-                  <b-col align-self="end" style="font-size: 18px; text-shadow: 0.5px 0px; text-align: right;" class="text">
+                  <b-col align-self="end" style="font-size: 18px; text-shadow: 1.2px 0px; text-align: right;" class="text">
                     {{item.title}}
                   </b-col>
                 </b-row>
@@ -83,7 +83,7 @@ export default {
           // when to show navigation
           start: 5000,
         },
-        autoplay: { play: true, repeat: true, speed: 3000 },
+        autoplay: { play: true, repeat: true, speed: 4000 },
       },
       Model: [],
     };

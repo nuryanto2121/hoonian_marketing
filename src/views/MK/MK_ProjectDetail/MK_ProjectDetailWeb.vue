@@ -166,7 +166,7 @@
           </b-row>
           <b-row style="margin-top: 20px; padding-bottom: 20px;">
             <b-col>
-              <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
+              <div style="text-shadow: 1px 0px; font-size: 22px; margin-bottom: 10px;">
                 {{ $t('project_information') }}
               </div>
               <template v-for="(info, index) in Model.infos">
@@ -201,7 +201,7 @@
         <div style="background: #F8F8F8; padding-top: 20px; padding-bottom: 20px;">
         <b-row>
           <b-col sm="6">
-            <div style="text-shadow: 0.5px 0px; font-size: 22px;">
+            <div style="text-shadow: 1px 0px; font-size: 22px;">
               {{ $t('facilities') }}
             </div>
             <template v-for="(facility, index) in Model.facilities">
@@ -227,7 +227,7 @@
 
         <b-row style="margin-top: 20px; padding-bottom: 20px;">
           <b-col>
-            <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
+            <div style="text-shadow: 1px 0px; font-size: 22px; margin-bottom: 10px;">
               {{ $t('nearby') }}
             </div>
             <template v-for="(near, index) in Model.nearby">
@@ -264,7 +264,7 @@
         <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 20px;">
           <template v-for="(data, index) in AvailableUnitTypes">
           <b-col sm="12" :key="data.id">
-            <span style="text-shadow: 0.5px 0px; font-size: 22px;">{{ $t('available_unit_types') }}</span>
+            <span style="text-shadow: 1px 0px; font-size: 22px;">{{ $t('available_unit_types') }}</span>
             <br />
             <span style="color: #828282; text-shadow: 0.5px 0px;">{{data.tower_cluster_name}}</span>
             <br />
@@ -369,7 +369,7 @@
         </b-row>
 
         <b-row v-if="Progress.length > 0" style="margin-top: 10px;">
-          <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
+          <b-col style="text-shadow: 1px 0px; font-size: 22px;">
             {{ $t('progress') }}
           </b-col>
         </b-row>
@@ -527,7 +527,7 @@
       <ABSModalImage id="Modal_Image" ref="Modal_Image" size="md" />
 
         <b-row v-if="Promotion.length > 0" style="padding-top: 20px; background: #F8F8F8;">
-          <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
+          <b-col style="text-shadow: 1px 0px; font-size: 22px;">
             {{ $t('promotions') }}
           </b-col>
         </b-row>
@@ -603,7 +603,7 @@
         </b-row> -->
 
         <b-row v-if="FinancialPartner.length > 0" style="margin-top: 20px;">
-          <b-col style="text-shadow: 0.5px 0px; font-size: 22px;">
+          <b-col style="text-shadow: 1px 0px; font-size: 22px;">
             {{ $t('financial_partners') }}
           </b-col>
         </b-row>
@@ -636,7 +636,7 @@
 
         <b-row v-if="News.length > 0" style="padding-top: 20px; background: #F8F8F8;">
           <b-col>
-            <div style="text-shadow: 0.5px 0px; font-size: 22px; margin-bottom: 10px;">
+            <div style="text-shadow: 1px 0px; font-size: 22px; margin-bottom: 10px;">
               {{ $t('news') }}
             </div>
             <template v-for="(news, index) in News">
