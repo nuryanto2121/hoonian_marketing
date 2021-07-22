@@ -39,7 +39,7 @@
               </div> -->
             </b-col>
           </b-row>
-          <b-row style="padding-left: 10px; margin-top: 30px;">
+          <b-row style="padding-left: 10px; margin-top: 10px;">
             <b-col style="font-size: 15px; font-weight: bold;">
               {{cutWord(data.promotion_name, 20)}}
             </b-col>

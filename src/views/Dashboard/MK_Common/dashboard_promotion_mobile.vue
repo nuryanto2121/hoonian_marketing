@@ -39,7 +39,7 @@
               </div> -->
             </b-col>
           </b-row>
-          <b-row style="padding-left: 10px;">
+          <b-row style="padding-left: 10px; margin-top: 10px;">
             <b-col style="font-size: 15px; font-weight: bold;">
               {{cutWord(data.promotion_name, 20)}}
             </b-col>
@@ -49,7 +49,7 @@
               {{cutWord(data.project_name,25)}}
             </b-col>
           </b-row> -->
-          <b-row style="padding-left: 10px; padding-bottom: 5px;">
+          <b-row style="padding-left: 10px; padding-bottom: 10px;">
             <b-col style="font-size: 12px; color: #616161;">
               {{momentUnix(data.start_datetime, "MMM YYYY")}} - {{momentUnix(data.end_datetime, "MMM YYYY")}}
             </b-col>
