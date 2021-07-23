@@ -376,7 +376,7 @@
         <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
           <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important;">
           <template v-for="(data, index) in Progress">
-            <b-row v-bind:key="index" style="display: inline-block !important; width: 80%;">
+            <b-row v-bind:key="index" style="display: inline-block !important; width: 50%;">
             <b-col v-bind:key="index" @click="showDetailProgress(data, index)">
               <b-row>
                 <b-col>
