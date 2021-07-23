@@ -428,6 +428,10 @@ textarea.form-control {
   border: unset !important;
 }
 
+.XS {
+  min-width: 50px !important;
+}
+
 .S {
   min-width: 100px !important;
 }
@@ -438,6 +442,10 @@ textarea.form-control {
 
 .L {
   min-width: 200px !important;
+}
+
+.XL {
+  min-width: 250px !important;
 }
 
 .X {

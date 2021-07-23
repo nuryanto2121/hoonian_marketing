@@ -1040,6 +1040,9 @@ ul.box-languages {
   .width-project-location {
     width: 80%;
   }
+  .width-other-suggestion {
+    width: 80%;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
@@ -1053,6 +1056,9 @@ ul.box-languages {
     margin-top: 10px;
   }
   .width-project-location {
+    width: 30%;
+  }
+  .width-other-suggestion {
     width: 30%;
   }
 }
