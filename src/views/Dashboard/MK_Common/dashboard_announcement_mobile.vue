@@ -30,19 +30,19 @@
               <b-col md="8">
                 <b-img :src="urlHoonian + item.image" alt="" style="height: 200px;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
               </b-col>
-              <b-col md="4" style="background-color: #F8F8F8; min-height: 260px; padding-bottom: 50px;">
-                <b-row style="margin-top: 10px;">
-                  <b-col x style="font-size: 18px; text-shadow: 1.2px 0px;">
+              <b-col md="4" style="background-color: #F8F8F8; height: 200px; padding-bottom: 50px;">
+                <b-row class="mt-2 mt-sm-0">
+                  <b-col x style="font-size: 16px; text-shadow: 1.2px 0px;" class="text-single">
                     {{item.header}}
                   </b-col>
                 </b-row>
                 <b-row>
-                  <b-col style="font-size: 14px; margin-top: 10px; text-align: justify" class="text-eight">
+                  <b-col style="font-size: 11.5px; margin-top: 5px; text-align: justify" class="text-eight">
                     {{item.content}}
                   </b-col>
                 </b-row>
-                <b-row align-v="end" style="position: absolute; bottom: 10px; width: 100%; padding-right: 8px;">
-                  <b-col align-self="end" style="font-size: 18px; text-shadow: 1.2px 0px; text-align: right;" class="text">
+                <b-row align-v="end" style="position: absolute; bottom: 0px; width: 100%; padding-right: 8px;">
+                  <b-col align-self="end" style="font-size: 16px; text-shadow: 1.2px 0px; text-align: right;" class="text">
                     {{item.title}}
                   </b-col>
                 </b-row>
@@ -54,6 +54,7 @@
     </b-row>
   </div>
 </template>
+
 
 <script>
 export default {
