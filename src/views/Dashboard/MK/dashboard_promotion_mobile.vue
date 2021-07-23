@@ -20,7 +20,7 @@
           padding: 0px !important;` + (index < Model.length-1 ? 'margin-right: 5%;' : '')
         "  @click="doViewDetail(data)">
           <b-row>
-            <b-col style="height: 45vw; padding: 0px !important;">
+            <b-col style="height: 200px; padding: 0px !important;">
               <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
               <span class="highlight-project">
                 {{data.project_name}}

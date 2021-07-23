@@ -1,12 +1,12 @@
 <template>
   <div class="abs-login">
     <div class="abs-login__box-position-left" style="background: rgb(74, 147, 179);">
-      <div class="box-layer-form" style="width:100%; height: 75%; margin-right: 10px;">
+      <div class="box-layer-form" style="width:100%; height: 70%; margin-right: 20px; top: 100px; position: absolute;">
         <div class="row" style="height: 100%;">
           <!-- <div class="col">
             
           </div> -->
-          <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 35%; padding-top: 50px;">
+          <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 100px; padding-top: 50px;">
             <div class="box-layer-form">
                 <div style="text-align: center; width: 100%">
                     <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
@@ -63,7 +63,7 @@
                   </div>
                   <button
                     class="btn btn-big btn-block"
-                    style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:18px !important;margin-bottom:5px;font-weight: bold;"
+                    style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:18px !important;margin-bottom:15px;font-weight: bold;"
                     type="submit"
                   >Login</button>
                   <div class="forgot-password" style="text-align:center;">
@@ -144,6 +144,10 @@
           </div> -->
           <ABSLoader />
         </div>
+        <!-- <div class="row">
+          <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 30%; padding-top: 50px;">
+          </div>
+        </div> -->
       </div>
     </div>
   </div>
