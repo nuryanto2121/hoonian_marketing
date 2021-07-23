@@ -1027,13 +1027,25 @@ ul.box-languages {
 }
 
 @media (orientation:portrait) {
-  .width_project_small {
+  .width-search-project-location {
     width: 35%;
+  }
+  .gap-object-pagination-all-project {
+    margin-top: -30px;
+  }
+  .width-project-location {
+    width: 80%;
   }
 }
 
 @media (orientation:landscape) {
-  .width_project_small {
+  .width-search-project-location {
     width: 16.4%;
+  }
+  .gap-object-pagination-all-project {
+    margin-top: 10px;
+  }
+  .width-project-location {
+    width: 30%;
   }
 }

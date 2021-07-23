@@ -16,9 +16,9 @@
     <b-row style="margin-top: 10px;">
       <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
         <template v-for="(item, index) in Location">
-          <b-row v-bind:key="index" class="width_project_small" style="display: inline-block !important; overflow: hidden; padding-bottom: 5px;">
+          <b-row v-bind:key="index" class="width-search-project-location" style="display: inline-block !important; overflow: hidden; padding-bottom: 5px;">
             <b-col>
-              <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 87px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
+              <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 80px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
               <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
                 {{item.location}}
               </div>
@@ -28,14 +28,14 @@
       </b-col>
     </b-row>
     <b-row v-if="Model.length > 0" style="margin-top: 10px;">
-      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important; padding-bottom: 5px;">
         <template v-for="(item, index) in Model">
-          <div class="card" v-bind:key="index" style="display: inline-block !important; width: 30%;">
+          <div class="card width-project-location" v-bind:key="index" style="display: inline-block !important;">
             <div class="card__body" style="padding: unset !important;">
               <b-row>
                 <b-col style="padding: unset !important;">
                   <b-img :src="urlHoonian + item.main_pic" alt=""
-                  :style="`height: 273px; cursor: pointer;`"
+                  :style="`height: 200px; cursor: pointer;`"
                   fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
                 </b-col>
               </b-row>
@@ -43,14 +43,14 @@
                 <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important;" class="text-single">
                   {{item.project_name}}
                 </b-col>
-                <b-col sm="4" xl="3" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
-                  {{item.project_category_name}}
-                </b-col>
               </b-row>
-              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 12px;">
                 <b-col style="">
                   <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                   {{item.location_name}}
+                </b-col>
+                <b-col style="font-size: 12px; text-align: right; text-shadow: 0.5px 0px;">
+                  {{item.project_category_name}}
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
@@ -64,14 +64,14 @@
       </b-col>
     </b-row>
     <b-row v-if="Model2.length > 0" style="margin-top: 10px;">
-      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
+      <b-col style="overflow-x: auto; white-space: nowrap; display: block !important; padding-bottom: 5px;">
         <template v-for="(item, index) in Model2">
-          <div class="card" v-bind:key="index" style="display: inline-block !important; width: 30%;">
+          <div class="card width-project-location" v-bind:key="index" style="display: inline-block !important;">
             <div class="card__body" style="padding: unset !important;">
               <b-row>
                 <b-col style="padding: unset !important;">
                   <b-img :src="urlHoonian + item.main_pic" alt=""
-                  :style="`height: 273px; cursor: pointer;`"
+                  :style="`height: 200px; cursor: pointer;`"
                   fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
                 </b-col>
               </b-row>
@@ -79,14 +79,14 @@
                 <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important;" class="text-single">
                   {{item.project_name}}
                 </b-col>
-                <b-col sm="4" xl="3" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
-                  {{item.project_category_name}}
-                </b-col>
               </b-row>
-              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 12px;">
                 <b-col style="">
                   <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                   {{item.location_name}}
+                </b-col>
+                <b-col style="font-size: 12px; text-align: right; text-shadow: 0.5px 0px;">
+                  {{item.project_category_name}}
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
@@ -99,7 +99,7 @@
         </template>
       </b-col>
     </b-row>
-    <div v-if="Model.length > 0" style="text-align: center; color: #4A93B3; cursor: pointer; margin-top: 10px;" @click="showMore">
+    <div v-if="Model.length > 0" style="font-size: 12px; text-align: center; color: #4A93B3; cursor: pointer; margin-top: 10px;" @click="showMore">
       {{ $t('show_more') }}
     </div>
   </div>
