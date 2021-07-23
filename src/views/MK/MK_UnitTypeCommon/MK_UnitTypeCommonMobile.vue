@@ -189,7 +189,7 @@
                  IDR {{ isCurrency(Model.data.booking_fee, 0) }}
                </b-col>
              </b-row>
-             <b-row style="font-size: 14px; margin-top: 20px;">
+             <!-- <b-row style="font-size: 14px; margin-top: 20px;">
                <b-col cols="6">
                  <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'all' ? 'color: #4A93B3; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('all')">
                    ALL
@@ -208,7 +208,7 @@
                   YOUR BUYER
                  </span>
                </b-col>
-             </b-row>
+             </b-row> -->
              <b-row style="margin-top: 5px;">
                <b-col style="padding: unset !important;">
                  <HOOList
@@ -733,7 +733,7 @@ export default {
           key: "unit_no",
           label: "UNIT",
           tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-left XS poppins",
+          thClass: "HeaderACCList2 th-cus-center XS poppins",
         },
         {
           key: "block_floor_name",
