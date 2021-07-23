@@ -681,25 +681,25 @@
              <template v-for="(news, index) in News">
                <b-row :key="index" :style="index > 0 ? 'margin-top: 20px;' : ''">
 
-                <b-col cols="4" style="" @click="showWebsite(Model[index])">
-                    <b-img :src="urlHoonian + Model[index].main_image" alt=""
+                <b-col cols="4" style="" @click="showWebsite(News[index])">
+                    <b-img :src="urlHoonian + News[index].main_image" alt=""
                     :style="`height: 100px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                 <b-col  cols="8" style="" align-self="center">
                     <b-row>
                         <b-col style="color: #4A93B3; font-size: 15px;" class="text">
-                            {{Model[index].title}}
+                            {{News[index].title}}
                         </b-col>
                     </b-row>
                     <b-row>
                         <b-col style="color: #BDBDBD; font-size: 12px;">
-                            {{momentUnix(Model[index].created_at, "DD MMM YYYY")}}
+                            {{momentUnix(News[index].created_at, "DD MMM YYYY")}}
                         </b-col>
                     </b-row>
                     <b-row>
                         <b-col style="color: #BDBDBD; font-size: 12px;">
-                            {{getDomainName(Model[index].url)}}
+                            {{getDomainName(News[index].url)}}
                         </b-col>
                     </b-row>
                 </b-col>
@@ -808,19 +808,19 @@ export default {
           key: "unit_type",
           label: "UNIT TYPE",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins",
         },
         {
           key: "gross_area",
           label: "GROSS AREA",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins",
         },
         {
           key: "net_area",
           label: "NET AREA",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins",
         },
         {
           key: "total_bedroom",
@@ -852,7 +852,7 @@ export default {
           key: "start_from",
           label: "START FROM",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left M poppins",
         },
       ],
       Progress: [],
