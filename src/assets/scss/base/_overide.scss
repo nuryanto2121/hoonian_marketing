@@ -1043,11 +1043,51 @@ ul.box-languages {
   .promotion_card {
     width: 80%;
   }
+
+  .financial_card {
+    width: 80%;
+  }
+
+  .progress_card {
+    width: 50%;
+  }
+
+  .nup_launching_card {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  .pict_facilites {
+    height: 220px !important;
+    cursor: pointer;
+    max-width: 90% !important;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
   .promotion_card {
     width: 32%;
+  }
+
+  .financial_card {
+    width: 50%;
+  }
+
+  .progress_card {
+    width: 35%;
+  }
+
+  .nup_launching_card {
+    flex: 0 0 50% !important;
+    max-width: 50% !important;
+    width: 50% !important;
+  }
+
+  .pict_facilites {
+    height: 150px !important;
+    cursor: pointer;
+    max-width: 40% !important;
   }
 }
 
