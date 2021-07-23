@@ -1026,10 +1026,14 @@ ul.box-languages {
   background-color: #2d9cdb !important;
 }
 
-.width_project_small_landscape {
-  width: 16.4%;
+@media (orientation:portrait) {
+  .width_project_small {
+    width: 35%;
+  }
 }
 
-.width_project_small_potrait {
-  width: 35%;
+@media (orientation:landscape) {
+  .width_project_small {
+    width: 16.4%;
+  }
 }

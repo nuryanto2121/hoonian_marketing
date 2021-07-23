@@ -16,7 +16,7 @@
     <b-row style="margin-top: 10px;">
       <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
         <template v-for="(item, index) in Location">
-          <b-row v-bind:key="index" class="width_project_small_potrait-sm width_project_small_landscape-md" style="display: inline-block !important; overflow: hidden; padding-bottom: 5px;">
+          <b-row v-bind:key="index" class="width_project_small" style="display: inline-block !important; overflow: hidden; padding-bottom: 5px;">
             <b-col>
               <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 87px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
               <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
