@@ -245,7 +245,15 @@ export default {
       }
       this.postJSON(this.urlHoonian + '/api/marketing-website/lead/logbook/add', param).then((response) => {
         if (response == null) return;
-        this.doBack();
+        // this.doBack();
+        this.propList.initialWhere = this.paramFromList.project_id;
+        this.propList.param.sales_lead_id = this.paramFromList.sales_lead_id;
+        this.$refs.ref_logbook.doGetList("");
+
+        this.PI_refer_to.dataLookUp.param = {
+          company_group_id: this.company_group_id,
+          sales_lead_id: this.paramFromList.sales_lead_id
+        };
       });
     },
   },
