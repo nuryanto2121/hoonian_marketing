@@ -653,25 +653,25 @@
              <template v-for="(news, index) in News">
                <b-row :key="index" :style="index > 0 ? 'margin-top: 20px;' : ''">
 
-                <b-col cols="4" style="" @click="showWebsite(Model[index])">
-                    <b-img :src="urlHoonian + Model[index].main_image" alt=""
+                <b-col cols="4" style="" @click="showWebsite(News[index])">
+                    <b-img :src="urlHoonian + News[index].main_image" alt=""
                     :style="`height: 100px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                 <b-col  cols="8" style="" align-self="center">
                     <b-row>
                         <b-col style="color: #4A93B3; font-size: 15px;" class="text">
-                            {{Model[index].title}}
+                            {{News[index].title}}
                         </b-col>
                     </b-row>
                     <b-row>
                         <b-col style="color: #BDBDBD; font-size: 12px;">
-                            {{momentUnix(Model[index].created_at, "DD MMM YYYY")}}
+                            {{momentUnix(News[index].created_at, "DD MMM YYYY")}}
                         </b-col>
                     </b-row>
                     <b-row>
                         <b-col style="color: #BDBDBD; font-size: 12px;">
-                            {{getDomainName(Model[index].url)}}
+                            {{getDomainName(News[index].url)}}
                         </b-col>
                     </b-row>
                 </b-col>
