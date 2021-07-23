@@ -1026,12 +1026,16 @@ ul.box-languages {
   background-color: #2d9cdb !important;
 }
 
-.width_project_small_landscape {
-  width: 16.4%;
-}
-
-.width_project_small_potrait {
-  width: 35%;
+@media (orientation:portrait) {
+  .width-search-project-location {
+    width: 35%;
+  }
+  .gap-object-pagination-all-project {
+    margin-top: -30px;
+  }
+  .width-project-location {
+    width: 80%;
+  }
 }
 
 @media all and (orientation:portrait) {
@@ -1047,12 +1051,14 @@ ul.box-languages {
   }
 }
 
-// .promotion_card {
-//   &_portrait {
-//     width: 80%;
-//   }
-
-//   &_landscape {
-//     width: 16.4%;
-//   }
-// }
+@media (orientation:landscape) {
+  .width-search-project-location {
+    width: 16.4%;
+  }
+  .gap-object-pagination-all-project {
+    margin-top: 10px;
+  }
+  .width-project-location {
+    width: 30%;
+  }
+}
