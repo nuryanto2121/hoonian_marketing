@@ -1026,7 +1026,11 @@ ul.box-languages {
   background-color: #2d9cdb !important;
 }
 
-@media (orientation:portrait) {
+@media all and (orientation:portrait) {
+  // /* Styles for Portrait screen /
+  .promotion_card {
+    width: 80%;
+  }
   .width-search-project-location {
     width: 35%;
   }
@@ -1037,21 +1041,11 @@ ul.box-languages {
     width: 80%;
   }
 }
-
-@media all and (orientation:portrait) {
-  // /* Styles for Portrait screen /
-  .promotion_card {
-    width: 80%;
-  }
-}
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
   .promotion_card {
     width: 32%;
   }
-}
-
-@media (orientation:landscape) {
   .width-search-project-location {
     width: 16.4%;
   }
