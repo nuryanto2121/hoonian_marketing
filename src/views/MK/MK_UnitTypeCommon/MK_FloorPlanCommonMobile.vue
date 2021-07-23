@@ -15,6 +15,7 @@
                   :prop="PI_block_floor"
                   v-model="Model.block_floor"
                   :label="Model.block_floorLabel"
+                  noAuth
                   ref="ref_block_floor"
                 />
             </b-col>
@@ -84,7 +85,7 @@
 <script>
 import Konva from "konva";
 Konva.hitOnDragEnabled = true;
-import MKBuyerDetailReserve from "./MK_BuyerDetailReserve";
+import MKBuyerDetailReserve from "./MK_BuyerDetailReserveCommon";
 // const width = window.innerWidth;
 const width = 1000;
 const height = 500;
@@ -123,7 +124,7 @@ export default {
       savedShape: [],
       PI_block_floor: {
         dataLookUp: {
-          url: "/api/hoonian-website/block-floor-lookup",
+          url: "/api/marketing-website/common/project/block-floor-lookup",
           param: {
             project_id: "",
             tower_cluster_id: "",
@@ -270,13 +271,13 @@ export default {
     },
     getFloorPlan() {
       let param = {
-        principle_id: this.getDataUser().principle_id,
-        lang_id: this.getDataUser().lang_id,
+        // principle_id: this.getDataUser().principle_id,
+        lang_id: "en",//this.getDataUser().lang_id,
         block_floor_id: this.Model.block_floor,
         unit_type_id: this.paramFromList.availableUnitTypes.id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/floor-plan', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/common/project/unit-type/floor-plan', param, false, false).then((response) => {
         if (response == null) return;
         this.Model = {
           ...this.Model,
@@ -319,7 +320,7 @@ export default {
     this.$store.commit("setTitleMenu", this.$t('floor_plan_label'));
     this.PI_block_floor.dataLookUp.param.project_id = this.paramFromList.id;
     this.PI_block_floor.dataLookUp.param.tower_cluster_id = this.paramFromList.tower_cluster_id;
-    this.PI_block_floor.dataLookUp.param.lang_id = this.getDataUser().lang_id;
+    this.PI_block_floor.dataLookUp.param.lang_id = this.getLanguageCommon().lang_id,
     this.$refs.ref_block_floor.getData();
   }
 };

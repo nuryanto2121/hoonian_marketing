@@ -3,10 +3,8 @@
     <div class="dashboard-page-chart__body">
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
-          <b-row style="margin-top: 10px;">
-            <b-col sm="2" md="3">
-              <span style="text-shadow: 0.5px 0px;">{{Model.tower_cluster_name}}</span>
-              <br />
+          <b-row>
+            <b-col sm="2">
               <span>
                 {{ $t('select_floor') }}
                 </span>
@@ -15,30 +13,44 @@
                   :prop="PI_block_floor"
                   v-model="Model.block_floor"
                   :label="Model.block_floorLabel"
+                  noAuth
                   ref="ref_block_floor"
                 />
             </b-col>
+            <b-col style="color: #4A93B3; text-align: right;">
+              <br />
+              <span style="text-shadow: 0.5px 0px;">{{Model.tower_cluster_name}}</span>
+              <br />
+              <span style="font-size: 14px;">{{Model.block_floorLabel}}</span>
+            </b-col>
           </b-row>
+          <!-- <b-row>
+            <b-col>
+              <b-img :src="urlHoonian + Model.floor_plan_image" alt=""
+                :style="`height: 600px;`"
+                fluid-grow @error="onImageLoadFailure($event)" />
+            </b-col>
+          </b-row> -->
 
-          <b-row style="margin-top: 20px;">
-            <!-- <b-col align-self="center" sm="1" style="text-align: center;">
+          <b-row>
+            <b-col align-self="center" sm="1" style="text-align: center;">
               <b-img :src="require('@/assets/icon-svg/left_floor_plan.svg')" alt="" style="cursor: pointer;" @click="onLeft" />
-            </b-col> -->
-            <b-col ref="container" style="overflow: hidden; padding-bottom: 10px; margin-right: 5px;">
-              <v-stage :config="stageSize" ref="stage" @touchmove="onTouchMove" @touchend="onTouchend">
+            </b-col>
+            <b-col sm="10" ref="container">
+              <v-stage :config="stageSize" ref="stage">
                 <v-layer>
                   <v-image :config="{
                     image: image,
                     width: 1000,
                     height: 490,
                   }"/>
-                  <template v-for="data in savedShape">
+                  <!-- <template v-for="data in savedShape">
                     <v-line @click="showBuyerDetails(data)" :config="{
                         points: data.point_unit,
                         tension: 0,
                         fill: data.color_cd + '80',
                         closed: true,
-                      }"
+                      }" -->
                     />
                     <!-- <v-text :config="{
                       x: data.point_unit[0],
@@ -66,14 +78,14 @@
                       fill: 'white',
                       align: 'center'
                     }" -->
-                    />
-                  </template>
+                    <!-- />
+                  </template> -->
                 </v-layer>
               </v-stage>
             </b-col>
-            <!-- <b-col align-self="center" sm="1" style="text-align: center;">
+            <b-col align-self="center" sm="1" style="text-align: center;">
               <b-img :src="require('@/assets/icon-svg/right_floor_plan.svg')" alt="" style="cursor: pointer;" @click="onRight" />
-            </b-col> -->
+            </b-col>
             <MKBuyerDetailReserve ref="Modal_BuyerDetailReserve" />
           </b-row>
         </b-col>
@@ -82,9 +94,7 @@
   </div>
 </template>
 <script>
-import Konva from "konva";
-Konva.hitOnDragEnabled = true;
-import MKBuyerDetailReserve from "./MK_BuyerDetailReserve";
+import MKBuyerDetailReserve from "./MK_BuyerDetailReserveCommon";
 // const width = window.innerWidth;
 const width = 1000;
 const height = 500;
@@ -116,14 +126,13 @@ export default {
       },
       stageSize: {
         width: width,
-        height: height,
-        draggable: true,
+        height: height
       },
       image: null,
       savedShape: [],
       PI_block_floor: {
         dataLookUp: {
-          url: "/api/hoonian-website/block-floor-lookup",
+          url: "/api/marketing-website/common/project/block-floor-lookup",
           param: {
             project_id: "",
             tower_cluster_id: "",
@@ -144,85 +153,9 @@ export default {
       },
       index: -1,
       tempFloor: [],
-      lastCenter: null,
-      lastDist: 0,
     }
   },
   methods: {
-    getDistance(p1, p2) {
-      return Math.sqrt(Math.pow(p2.x - p1.x, 2) + Math.pow(p2.y - p1.y, 2));
-    },
-    getCenter(p1, p2) {
-      return {
-        x: (p1.x + p2.x) / 2,
-        y: (p1.y + p2.y) / 2,
-      };
-    },
-    onTouchMove(e) {
-      // console.log(e);
-      e.evt.preventDefault();
-
-      let touch1 = e.evt.touches[0];
-      let touch2 = e.evt.touches[1];
-      const stage = this.$refs.stage.getStage();
-      if (touch1 && touch2) {
-        // if the stage was under Konva's drag&drop
-        // we need to stop it, and implement our own pan logic with two pointers
-        if (stage.isDragging()) {
-          stage.stopDrag();
-        }
-
-        let p1 = {
-          x: touch1.clientX,
-          y: touch1.clientY,
-        };
-        let p2 = {
-          x: touch2.clientX,
-          y: touch2.clientY,
-        };
-
-        if (!this.lastCenter) {
-          this.lastCenter = this.getCenter(p1, p2);
-          return;
-        }
-        let newCenter = this.getCenter(p1, p2);
-
-        let dist = this.getDistance(p1, p2);
-
-        if (!this.lastDist) {
-          this.lastDist = dist;
-        }
-
-        // local coordinates of center point
-        let pointTo = {
-          x: (newCenter.x - stage.x()) / stage.scaleX(),
-          y: (newCenter.y - stage.y()) / stage.scaleX(),
-        };
-
-        let scale = stage.scaleX() * (dist / this.lastDist);
-
-        stage.scaleX(scale);
-        stage.scaleY(scale);
-
-        // calculate new position of the stage
-        let dx = newCenter.x - this.lastCenter.x;
-        let dy = newCenter.y - this.lastCenter.y;
-
-        let newPos = {
-          x: newCenter.x - pointTo.x * scale + dx,
-          y: newCenter.y - pointTo.y * scale + dy,
-        };
-
-        stage.position(newPos);
-
-        this.lastDist = dist;
-        this.lastCenter = newCenter;
-      }
-    },
-    onTouchend() {
-      this.lastDist = 0;
-      this.lastCenter = null;
-    },
     showBuyerDetails(data) {
       const param = {
         id: data.unit_id,
@@ -270,13 +203,13 @@ export default {
     },
     getFloorPlan() {
       let param = {
-        principle_id: this.getDataUser().principle_id,
-        lang_id: this.getDataUser().lang_id,
+        // principle_id: this.getDataUser().principle_id,
+        lang_id: "en",//this.getDataUser().lang_id,
         block_floor_id: this.Model.block_floor,
         unit_type_id: this.paramFromList.availableUnitTypes.id,
       };
 
-      this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/floor-plan', param).then((response) => {
+      this.postJSON(this.urlHoonian + '/api/marketing-website/common/project/unit-type/floor-plan', param, false, false).then((response) => {
         if (response == null) return;
         this.Model = {
           ...this.Model,
@@ -319,7 +252,7 @@ export default {
     this.$store.commit("setTitleMenu", this.$t('floor_plan_label'));
     this.PI_block_floor.dataLookUp.param.project_id = this.paramFromList.id;
     this.PI_block_floor.dataLookUp.param.tower_cluster_id = this.paramFromList.tower_cluster_id;
-    this.PI_block_floor.dataLookUp.param.lang_id = this.getDataUser().lang_id;
+    this.PI_block_floor.dataLookUp.param.lang_id = this.getLanguageCommon().lang_id,
     this.$refs.ref_block_floor.getData();
   }
 };
