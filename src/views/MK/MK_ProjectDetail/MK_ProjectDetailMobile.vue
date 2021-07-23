@@ -318,8 +318,8 @@
           </template>
         </b-row>
 
-        <b-row v-if="Model.nup || Model.vlaunching" style="margin-top: 10px; font-size: 13px;">
-          <b-col v-if="Model.nup" :offset-md="Model.nup && Model.vlaunching ? '2': '4'" md="4">
+        <b-row v-if="Model.nup" style="margin-top: 10px; font-size: 13px;">
+          <b-col md="4">
             <div style="background: #FFFFFF;
                         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
             <b-row>
@@ -328,25 +328,29 @@
                   &nbsp;
                 </div>
               </b-col>
-              <b-col align-self="center" style="padding: 15px 0px;">
-                <div>
+              <b-col align-self="center" style="padding: 10px 0px;">
+                <div style="text-shadow: 0.5px 0px;">
                   {{ $t('purchase_your_nup_now') }}
                 </div>
-                <div style="color: #828282">
+                <div>
                   {{momentUnix(Model.nup.start_datetime, "DD MMM YYYY")}} - {{momentUnix(Model.nup.end_datetime, "DD MMM YYYY")}}
                 </div>
               </b-col>
-              <b-col sm="4" align-self="center" class="col-right">
+              <b-col sm="4" align-self="center" class="col-right" style="padding-bottom: 10px;">
                 <ABSButton
                   :text="$t('buy_nup')"
                   classButton="button button--hoonian"
+                  styleButton="width: 100px;"
                   @click="buyNUP"
                 />
               </b-col>
             </b-row>
             </div>
           </b-col>
-          <b-col v-if="Model.vlaunching" :offset-md="Model.nup && Model.vlaunching ? '': '4'" md="4">
+        </b-row>
+
+        <b-row v-if="Model.vlaunching" style="margin-top: 10px; font-size: 13px;">
+          <b-col md="4">
             <div style="background: #FFFFFF;
                         box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);">
             <b-row>
@@ -355,11 +359,11 @@
                   &nbsp;
                 </div>
               </b-col>
-              <b-col align-self="center" style="padding: 15px 0px;">
+              <b-col align-self="center" style="padding: 10px 0px;">
                 <div style="text-shadow: 0.5px 0px;">
                   {{ $t('virtual_launching') }}
                 </div>
-                <div style="color: #828282">
+                <div>
                   {{momentUnix(Model.vlaunching.start_datetime, "DD MMM YYYY")}} - {{momentUnix(Model.vlaunching.end_datetime, "DD MMM YYYY")}}
                 </div>
               </b-col>
@@ -538,7 +542,7 @@
         <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
           <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important;">
           <template v-for="(data, index) in Promotion">
-            <b-row v-bind:key="index" style="display: inline-block !important; width: 80%;">
+            <b-row v-bind:key="index" style="display: inline-block !important;" class="promotion_card">
             <b-col :style="`box-shadow: 2px 6px 11px -7px black; border-radius: 6px;
               -webkit-box-flex: 0;
               flex: 0 0 21%;
@@ -578,7 +582,7 @@
               </b-row>
             </b-col>
             </b-row>
-            </template>
+          </template>
           </b-col>
         </b-row>
         <!-- <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">

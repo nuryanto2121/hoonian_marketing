@@ -378,31 +378,35 @@
            </b-col>
          </b-row>
          <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
-            <template v-for="(data, index) in Progress">
-              <b-col v-bind:key="index" @click="showDetailProgress(data, index)" style="cursor: pointer;">
-                <b-row>
-                  <b-col>
-                    <b-img :src="urlHoonian + data.main_image" alt="" style="height: 130px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
-                  </b-col>
-                </b-row>
-                <!-- <b-row>
-                  <b-col style="font-size: 18px; font-weight: bold;">
-                    {{data.project_name}}
-                  </b-col>
-                </b-row> -->
-                <b-row>
-                  <b-col style="font-size: 12px; color: #52A0FC;">
-                    {{isCurrency(parseInt(data.percentage_completed), 0)}}% {{ $t('completed') }}
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col style="font-size: 12px; color: rgba(159, 162, 174, 0.7);">
-                    {{momentUnix(data.created_at, "DD MMM YYYY")}}
-                  </b-col>
-                </b-row>
-              </b-col>
-            </template>
-          </b-row>
+          <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important;">
+          <template v-for="(data, index) in Progress">
+            <b-row v-bind:key="index" style="display: inline-block !important; width: 50%;">
+            <b-col v-bind:key="index" @click="showDetailProgress(data, index)">
+              <b-row>
+                <b-col>
+                  <b-img :src="urlHoonian + data.main_image" alt="" style="height: 130px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                </b-col>
+              </b-row>
+              <!-- <b-row>
+                <b-col style="font-size: 18px; font-weight: bold;">
+                  {{data.project_name}}
+                </b-col>
+              </b-row> -->
+              <b-row>
+                <b-col style="font-size: 12px; color: #52A0FC;">
+                  {{isCurrency(parseInt(data.percentage_completed), 0)}}% {{ $t('completed') }}
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col style="font-size: 12px; color: rgba(159, 162, 174, 0.7);">
+                  {{momentUnix(data.created_at, "DD MMM YYYY")}}
+                </b-col>
+              </b-row>
+            </b-col>
+            </b-row>
+          </template>
+          </b-col>
+        </b-row>
          <!-- <b-row v-if="Progress.length > 0" style="padding-top: 10px; padding-bottom: 20px;">
           <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
             <template v-for="(item, index) in Progress">
@@ -536,48 +540,51 @@
            </b-col>
          </b-row>
          <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
-            <template v-for="(data, index) in Promotion">
-              <b-col md="3" v-bind:key="index" :style="`box-shadow: 2px 6px 11px -7px black; border-radius: 6px;
-                -webkit-box-flex: 0;
-                flex: 0 0 21%;
-                padding: 0px !important;
-                max-width: 21%;` + (index < Promotion.length-1 ? 'margin-right: 5%;' : '')
-              "  @click="showPromotion(data, index)">
-                <b-row>
-                  <b-col style="height: 18vw; padding: 0px !important;">
-                    <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
-                    <!-- <div style="position: absolute;
-                      top: 18px;
-                      right: 0%;
-                      background: #52A0FC;
-                      border-radius: 5px;
-                      width: 100px;
-                      padding: 5px;
-                      text-align: center;
-                      font-size: 14px;
-                      color: white;">
-                      <b>{{data.total_buyer}} Buyers</b>
-                    </div> -->
-                  </b-col>
-                </b-row>
-                <b-row>
-                  <b-col style="font-size: 15px; font-weight: bold;">
-                    {{cutWord(data.promotion_name, 20)}}
-                  </b-col>
-                </b-row>
-                <!-- <b-row>
-                  <b-col style="font-size: 12px; color: #52A0FC;">
-                    {{cutWord(data.project_name,25)}}
-                  </b-col>
-                </b-row> -->
-                <b-row>
-                  <b-col style="font-size: 12px; color: #616161;">
-                    {{momentUnix(data.start_datetime, "DD MMM YYYY")}} - {{momentUnix(data.end_datetime, "DD MMM YYYY")}}
-                  </b-col>
-                </b-row>
-              </b-col>
-            </template>
-          </b-row>
+          <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important;">
+          <template v-for="(data, index) in Promotion">
+            <b-row v-bind:key="index" style="display: inline-block !important;" class="promotion_card">
+            <b-col :style="`box-shadow: 2px 6px 11px -7px black; border-radius: 6px;
+              -webkit-box-flex: 0;
+              flex: 0 0 21%;
+              padding: 0px !important;` + (index < Model.length-1 ? 'margin-right: 5%;' : '')
+            "  @click="doViewDetail(data)">
+              <b-row>
+                <b-col style="height: 45vw; padding: 0px !important;">
+                  <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                  <!-- <div style="position: absolute;
+                    top: 18px;
+                    right: 0%;
+                    background: #52A0FC;
+                    border-radius: 5px;
+                    width: 100px;
+                    padding: 5px;
+                    text-align: center;
+                    font-size: 14px;
+                    color: white;">
+                    <b>{{data.total_buyer}} Buyers</b>
+                  </div> -->
+                </b-col>
+              </b-row>
+              <b-row style="padding-left: 10px; margin-top: 10px;">
+                <b-col style="font-size: 15px; font-weight: bold;">
+                  {{cutWord(data.promotion_name, 20)}}
+                </b-col>
+              </b-row>
+              <!-- <b-row>
+                <b-col style="font-size: 12px; color: #52A0FC;">
+                  {{cutWord(data.project_name,25)}}
+                </b-col>
+              </b-row> -->
+              <b-row style="padding-left: 10px; padding-bottom: 10px;">
+                <b-col style="font-size: 12px; color: #616161;">
+                  {{momentUnix(data.start_datetime, "DD MMM YYYY")}} - {{momentUnix(data.end_datetime, "DD MMM YYYY")}}
+                </b-col>
+              </b-row>
+            </b-col>
+            </b-row>
+          </template>
+          </b-col>
+        </b-row>
          <!-- <b-row v-if="Promotion.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
           <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
             <template v-for="(item, index) in Promotion">
@@ -644,11 +651,34 @@
                {{ $t('news') }}
              </div>
              <template v-for="(news, index) in News">
-               <b-row :key="index" style="margin-top: 10px; padding-bottom: 20px;">
+               <b-row :key="index" :style="index > 0 ? 'margin-top: 20px;' : ''">
+
+                <b-col cols="4" style="" @click="showWebsite(Model[index])">
+                    <b-img :src="urlHoonian + Model[index].main_image" alt=""
+                    :style="`height: 100px; cursor: pointer;`"
+                    fluid-grow @error="onImageLoadFailure($event)" />
+                </b-col>
+                <b-col  cols="8" style="" align-self="center">
+                    <b-row>
+                        <b-col style="color: #4A93B3; font-size: 15px;" class="text">
+                            {{Model[index].title}}
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col style="color: #BDBDBD; font-size: 12px;">
+                            {{momentUnix(Model[index].created_at, "DD MMM YYYY")}}
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col style="color: #BDBDBD; font-size: 12px;">
+                            {{getDomainName(Model[index].url)}}
+                        </b-col>
+                    </b-row>
+                </b-col>
 
                  <!-- left -->
-                 <template v-if="index % 2 == 0">
-                  <b-col  sm="2" style="" @click="showWebsite(News[index])">
+                 <!-- <template v-if="index % 2 == 0">
+                  <b-col  sm="4" style="" @click="showWebsite(News[index])">
                     <b-img :src="urlHoonian + News[index].main_image" alt=""
                     :style="`height: 100px; cursor: pointer;`"
                     fluid-grow @error="onImageLoadFailure($event)" />
@@ -670,10 +700,10 @@
                       </b-col>
                     </b-row>
                   </b-col>
-                 </template>
+                 </template> -->
                 
                 <!-- right -->
-                <template v-if="index % 2 == 0 && News.length > index + 1">
+                <!-- <template v-if="index % 2 == 0 && News.length > index + 1">
                   <b-col  sm="2" style="" @click="showWebsite(News[index + 1])">
                     <b-img :src="urlHoonian + News[index + 1].main_image" alt=""
                     :style="`height: 100px; cursor: pointer;`"
@@ -696,7 +726,7 @@
                       </b-col>
                     </b-row>
                   </b-col>
-                 </template>
+                 </template> -->
                </b-row>
              </template>
            </b-col>
