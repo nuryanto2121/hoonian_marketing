@@ -730,7 +730,7 @@ export default {
           key: "unit_no",
           label: "UNIT",
           tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-left XS poppins",
+          thClass: "HeaderACCList2 th-cus-center XS poppins",
         },
         {
           key: "block_floor_name",
