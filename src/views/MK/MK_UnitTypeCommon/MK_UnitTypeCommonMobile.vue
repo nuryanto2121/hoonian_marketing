@@ -301,14 +301,14 @@
                         <b-col md="12" style="padding-left: unset !important; padding-right: unset !important;">
                           <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
                             <b-row style="text-shadow: 0.5px 0px; font-size: 18px;">
-                              <b-col md="6">
+                              <b-col cols="12">
                                 {{ $t('unit_no') }}
                                 <br />
                                 <span style="color: #4A93B3; font-size: 26px">
                                   <b>{{dataRowClick.unit_no}}</b>
                                 </span>
                               </b-col>
-                              <b-col md="6">
+                              <b-col cols="12">
                                 {{ $t('unit_price') }}
                                 <br />
                                 <span style="color: #4A93B3; font-size: 26px">
@@ -317,7 +317,7 @@
                               </b-col>
                             </b-row>
                             <b-row style="margin-top: 20px;">
-                              <b-col md="6">
+                              <b-col cols="12">
                                 <span>
                                   <label class="lbl-poppins">{{ $t('loan_percentage') }} (%)</label>
                                 </span>
@@ -328,7 +328,7 @@
                                   @input="onLoanPercentage"
                                 />
                               </b-col>
-                              <b-col md="6">
+                              <b-col cols="12">
                                 <span>
                                   <label class="lbl-poppins">{{ $t('interest') }} (%)</label>
                                 </span>
@@ -340,7 +340,7 @@
                               </b-col>
                             </b-row>
                             <b-row>
-                              <b-col md="6">
+                              <b-col cols="12">
                                 <span>
                                   <label class="lbl-poppins">{{ $t('loan_amount') }}</label>
                                 </span>
@@ -351,7 +351,7 @@
                                   @input="onLoanAmount"
                                 />
                               </b-col>
-                              <b-col md="6">
+                              <b-col cols="12">
                                 <span>
                                   <label class="lbl-poppins">{{ $t('tenor') }}</label>
                                 </span>
