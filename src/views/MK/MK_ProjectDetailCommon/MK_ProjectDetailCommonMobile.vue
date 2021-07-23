@@ -500,10 +500,10 @@
                     <b-row style="margin-top: 10px;">
                       <b-col style="overflow-x: auto; white-space: nowrap; display: block !important; padding-left: unset !important;">
                         <template v-for="(item, index) in ProgressDetail.medias">
-                          <div v-bind:key="index" style="width: 23%;">
+                          <div v-bind:key="index">
                             <b-row>
                               <b-col style="padding-left: unset !important;">
-                                <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 150px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="showImage(item.thumbnail_image)" />
+                                <b-img :src="urlHoonian + item.thumbnail_image" alt="" style="height: 150px; width: 150px !important; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="showImage(item.thumbnail_image)" />
                               </b-col>
                             </b-row>
                             <b-row style="margin-top: 10px; background: #FFFFFF;">
