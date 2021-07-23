@@ -13,7 +13,7 @@
     <b-row v-if="Model.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
         <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important;">
       <template v-for="(data, index) in Model">
-        <b-row v-bind:key="index" style="display: inline-block !important; width: 80%;">
+        <b-row v-bind:key="index" style="display: inline-block !important;" class="promotion_card">
         <b-col :style="`box-shadow: 2px 6px 11px -7px black; border-radius: 6px;
           -webkit-box-flex: 0;
           flex: 0 0 21%;
@@ -21,7 +21,7 @@
         "  @click="doViewDetail(data)">
           <b-row>
             <b-col style="height: 200px; padding: 0px !important;">
-              <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+              <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%; width: 100px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
               <span class="highlight-project">
                 {{data.project_name}}
               </span>

@@ -1033,3 +1033,26 @@ ul.box-languages {
 .width_project_small_potrait {
   width: 35%;
 }
+
+@media all and (orientation:portrait) {
+  // /* Styles for Portrait screen /
+  .promotion_card {
+    width: 80%;
+  }
+}
+@media all and (orientation:landscape) {
+  // / Styles for Landscape screen */
+  .promotion_card {
+    width: 32%;
+  }
+}
+
+// .promotion_card {
+//   &_portrait {
+//     width: 80%;
+//   }
+
+//   &_landscape {
+//     width: 16.4%;
+//   }
+// }
