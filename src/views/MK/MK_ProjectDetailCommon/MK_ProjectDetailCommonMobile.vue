@@ -629,12 +629,12 @@
                   </b-col>
                   <b-col sm="6" style="padding: 10px !important; cursor: pointer;">
                     <b-row>
-                      <b-col style="white-space: normal;">
+                      <b-col style="white-space: normal; font-size: 14px;">
                         {{item.bank_name}}
                       </b-col>
                     </b-row>
                     <b-row style="margin-top: 10px;">
-                      <b-col style="font-size: 12px; color: #828282; white-space: normal;">
+                      <b-col style="font-size: 12px; color: #828282; white-space: normal;" class="text-double">
                         {{item.description}}
                       </b-col>
                     </b-row>
