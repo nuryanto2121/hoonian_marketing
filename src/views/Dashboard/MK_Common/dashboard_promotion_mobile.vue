@@ -11,13 +11,13 @@
       </b-col>
     </b-row>
     <b-row v-if="Model.length > 0" style="padding-top: 10px; background: #F8F8F8; padding-bottom: 20px;">
-        <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important;">
+      <b-col class="noPadding" style="overflow-x: auto; white-space: nowrap; display: block !important; padding-bottom: 10px !important;">
       <template v-for="(data, index) in Model">
-        <b-row v-bind:key="index" style="display: inline-block !important;" class="promotion_card">
+        <b-row v-bind:key="index" :style="`display: inline-block !important;` + (index < Model.length-1 ? 'margin-right: 5% !important;' : '')" class="promotion_card">
         <b-col :style="`box-shadow: 2px 6px 11px -7px black; border-radius: 6px;
           -webkit-box-flex: 0;
           flex: 0 0 21%;
-          padding: 0px !important;` + (index < Model.length-1 ? 'margin-right: 5%;' : '')
+          padding: 0px !important;`
         "  @click="doViewDetail(data)">
           <b-row>
             <b-col style="height: 200px; padding: 0px !important;">
