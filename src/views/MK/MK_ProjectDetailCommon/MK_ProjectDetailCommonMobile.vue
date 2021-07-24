@@ -255,40 +255,35 @@
          </div>
 
          <b-row style="margin-top: 20px; padding-bottom: 20px;">
-           <b-col>
-             <div style="text-shadow: 1px 0px; font-size: 22px; margin-bottom: 10px;">
-               {{ $t('nearby') }}
-             </div>
-             <template v-for="(near, index) in Model.nearby">
-               <b-row :key="index" style="background: #F8F8F8;">
-
-                 <!-- left -->
-                <b-col v-if="index % 2 == 0" sm="6" style="padding-left: unset !important; padding-right: unset !important;">
-                  <b-img :src="urlHoonian + near.picture" alt=""
-                  :style="`height: 310px;`"
-                  fluid-grow @error="onImageLoadFailure($event)" />
-                </b-col>
-                <b-col align-self="center" v-if="index % 2 == 0" style="padding-left: 30px !important; padding-right: unset !important;">
-                  <span style="font-size: 22px;">{{near.header}}</span>
-                  <br />
-                  {{near.body}}
-                </b-col>
-
-                <!-- right -->
-                <b-col align-self="center" v-if="index % 2 == 1" sm="6" style="padding-left: 30px !important; padding-right: unset !important;">
-                  <span style="font-size: 22px;">{{near.header}}</span>
-                  <br />
-                  {{near.body}}
-                </b-col>
-                <b-col v-if="index % 2 == 1" style="padding-left: unset !important; padding-right: unset !important;">
-                  <b-img :src="urlHoonian + near.picture" alt=""
-                  :style="`height: 310px;`"
-                  fluid-grow @error="onImageLoadFailure($event)" />
-                </b-col>
-               </b-row>
-             </template>
-           </b-col>
-         </b-row>
+          <b-col>
+            <div style="text-shadow: 1px 0px; font-size: 22px;">
+              {{ $t('nearby') }}
+            </div>
+            <template v-for="(near, index) in Model.nearby">
+              <div :key="index">
+                <b-row style="margin-top: 20px;">
+                  <b-col md="12" style="padding: unset !important;">
+                    <b-img :src="urlHoonian + near.picture" alt="" style="height: 200px;" fluid-grow @error="onImageLoadFailure($event)" rounded />
+                  </b-col>
+                </b-row>
+                <b-row style="padding-top: 30px; background-color: #F8F8F8; height: 150px;">
+                  <b-col md="12">
+                    <b-row>
+                      <b-col x style="font-size: 16px; text-shadow: 0.5px 0px;" class="text-single">
+                        {{near.header}}
+                      </b-col>
+                    </b-row>
+                    <b-row style="margin-top: 5px;">
+                      <b-col style="font-size: 11.5px; text-align: justify" class="text-third">
+                        {{near.body}}
+                      </b-col>
+                    </b-row>
+                  </b-col>
+                </b-row>
+              </div>
+            </template>
+          </b-col>
+        </b-row>
 
          <b-row v-if="AvailableUnitTypes.length > 0" style="margin-top: 20px;">
            <template v-for="(data, index) in AvailableUnitTypes">
