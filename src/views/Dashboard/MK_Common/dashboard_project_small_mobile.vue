@@ -18,7 +18,7 @@
         <template v-for="(item, index) in Location">
           <b-row v-bind:key="index" class="width-search-project-location" style="display: inline-block !important; overflow: hidden; padding-bottom: 5px;">
             <b-col>
-              <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 80px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
+              <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 80px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
               <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
                 {{item.location}}
               </div>
@@ -36,11 +36,11 @@
                 <b-col style="padding: unset !important;">
                   <b-img :src="urlHoonian + item.main_pic" alt=""
                   :style="`height: 200px; cursor: pointer;`"
-                  fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
+                  fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                 </b-col>
               </b-row>
               <b-row style="padding: 10px !important;">
-                <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important;" class="text-single">
+                <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important; letter-spacing: 0.2em;" class="text-single">
                   {{item.project_name}}
                 </b-col>
               </b-row>
@@ -49,7 +49,7 @@
                   <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                   {{item.location_name}}
                 </b-col>
-                <b-col style="font-size: 12px; text-align: right; text-shadow: 0.5px 0px;">
+                <b-col style="font-size: 12px; text-align: right; text-shadow: 0.5px 0px; letter-spacing: 0.2em;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>
@@ -72,7 +72,7 @@
                 <b-col style="padding: unset !important;">
                   <b-img :src="urlHoonian + item.main_pic" alt=""
                   :style="`height: 200px; cursor: pointer;`"
-                  fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
+                  fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                 </b-col>
               </b-row>
               <b-row style="padding: 10px !important;">
@@ -99,7 +99,7 @@
         </template>
       </b-col>
     </b-row>
-    <div v-if="Model.length > 0" style="font-size: 12px; text-align: center; color: #4A93B3; cursor: pointer; margin-top: 10px;" @click="showMore">
+    <div v-if="Model.length > 0" style="font-size: 14px; text-align: center; color: #4A93B3; cursor: pointer; margin-top: 10px;" @click="showMore">
       {{ $t('show_more') }}
     </div>
   </div>

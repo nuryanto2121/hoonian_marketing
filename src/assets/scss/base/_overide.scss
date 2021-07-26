@@ -1063,6 +1063,22 @@ ul.box-languages {
     cursor: pointer;
     max-width: 90% !important;
   }
+
+  .height-text-announcement {
+    height: 222px;
+  }
+
+  .text-eight-announcement {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+  }
+
+  .project-big {
+    margin-top: 20px;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
@@ -1100,5 +1116,17 @@ ul.box-languages {
     height: 150px !important;
     cursor: pointer;
     max-width: 40% !important;
+  }
+
+  .height-text-announcement {
+    height: 175px;
+  }
+
+  .text-eight-announcement {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
   }
 }
