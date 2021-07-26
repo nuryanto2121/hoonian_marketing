@@ -290,8 +290,6 @@
             <span style="text-shadow: 1px 0px; font-size: 22px;">{{ $t('available_unit_types') }}</span>
             <br />
             <span style="color: #828282; text-shadow: 0.5px 0px;">{{data.tower_cluster_name}}</span>
-            <br />
-            &nbsp;
             <HOOList
               :prop="data.propList"
               :title="''"
