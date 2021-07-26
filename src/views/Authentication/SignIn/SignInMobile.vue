@@ -1,7 +1,7 @@
 <template>
   <div class="abs-login">
     <div class="abs-login__box-position-left bgc-login">
-      <div class="box-layer-form" style="width:100%; height: 70%; margin-right: 20px; top: 100px; position: absolute;">
+      <div class="box-layer-form" style="width:100%; height: 70%; margin-right: 20px; top: 20%; position: absolute;">
         <div class="row" style="height: 100%; margin-left: 20px !important; margin-right: 20px !important;">
           <div class="col display-only-landscape">
             <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 100%; top: 40% !important;" class="center" />
