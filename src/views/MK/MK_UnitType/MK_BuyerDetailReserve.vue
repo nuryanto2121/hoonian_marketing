@@ -7,29 +7,42 @@
       <b-row v-if="dataRowClick">
         <b-col md="12" style="padding-left: unset !important; padding-right: unset !important;">
           <b-form :data-vv-scope="'FormEntryBuyer'" :data-vv-value-path="'FormEntryBuyer'">
-            <b-row class="lbl-poppins">
-              <b-col cols="3" sm="2" style="padding-left: 10px !important;">
-                {{ $t('tower') }}
-              </b-col>
-              <b-col style="color: #4A93B3">
-                {{dataRowClick.tower_cluster_name}}
-              </b-col>
-            </b-row>
-            <b-row class="lbl-poppins">
-              <b-col cols="3" sm="2" style="padding-left: 10px !important;">
-                {{ $t('type') }}
-              </b-col>
-              <b-col style="color: #4A93B3">
-                {{dataRowClick.unit_type_name}}
-              </b-col>
-            </b-row>
-            <b-row class="row-view lbl-poppins">
-              <b-col cols="3" sm="2" style="padding-left: 10px !important;">
+            <div v-if="dataRowClick.isMobile">
+               <b-row class="lbl-poppins">
+                <b-col cols="3" sm="2" style="padding-left: 10px !important;">
+                  {{ $t('tower') }}
+                </b-col>
+                <b-col style="color: #4A93B3">
+                  {{dataRowClick.tower_cluster_name}}
+                </b-col>
+              </b-row>
+              <b-row class="lbl-poppins">
+                <b-col cols="3" sm="2" style="padding-left: 10px !important;">
+                  {{ $t('type') }}
+                </b-col>
+                <b-col style="color: #4A93B3">
+                  {{dataRowClick.unit_type_name}}
+                </b-col>
+              </b-row>
+              <b-row class="row-view lbl-poppins">
+                <b-col cols="3" sm="2" style="padding-left: 10px !important;">
+                  {{ $t('unit_no') }}
+                </b-col>
+                <b-col style="color: #4A93B3">
+                  {{dataRowClick.block_floor_name}} -
+                  {{dataRowClick.unit_no}}
+                </b-col>
+              </b-row>
+            </div>
+            <b-row v-else class="row-view">
+              <b-col class="lbl-poppins" style="padding-left: 10px !important;">
                 {{ $t('unit_no') }}
-              </b-col>
-              <b-col style="color: #4A93B3">
-                {{dataRowClick.block_floor_name}} -
-                {{dataRowClick.unit_no}}
+                <span style="color: #4A93B3">
+                  {{dataRowClick.tower_cluster_name}} -
+                  {{dataRowClick.unit_type_name}} -
+                  {{dataRowClick.block_floor_name}} -
+                  {{dataRowClick.unit_no}}
+                </span>
               </b-col>
             </b-row>
             <b-row>

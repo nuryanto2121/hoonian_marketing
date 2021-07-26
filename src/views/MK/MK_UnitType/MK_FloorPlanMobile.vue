@@ -33,7 +33,7 @@
                     height: 490,
                   }"/>
                   <template v-for="data in savedShape">
-                    <v-line @click="showBuyerDetails(data)" :config="{
+                    <v-line @touchstart="showBuyerDetails(data)" :config="{
                         points: data.point_unit,
                         tension: 0,
                         fill: data.color_cd + '80',
@@ -232,6 +232,7 @@ export default {
         booking_type: data.booking_type,
         tower_cluster_name: this.Model.tower_cluster_name,
         unit_type_name: data.unit_type_name,
+        isMobile: true,
       };
       this.$refs.Modal_BuyerDetailReserve.doReservationOrBooked(param);
     },

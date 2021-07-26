@@ -233,6 +233,7 @@ export default {
         booking_type: data.booking_type,
         tower_cluster_name: this.Model.tower_cluster_name,
         unit_type_name: data.unit_type_name,
+        isMobile: true,
       };
       this.$refs.Modal_BuyerDetailReserve.doReservationOrBooked(param);
     },
