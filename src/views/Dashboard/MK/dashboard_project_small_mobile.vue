@@ -45,11 +45,11 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 12px;">
-                <b-col style="">
+                <b-col style="font-size: 11px;">
                   <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                   {{item.location_name}}
                 </b-col>
-                <b-col style="font-size: 12px; text-align: right; text-shadow: 0.5px 0px; letter-spacing: 0.2em;">
+                <b-col style="font-size: 11px; text-align: right; text-shadow: 0.5px 0px; letter-spacing: 0.17em;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>
