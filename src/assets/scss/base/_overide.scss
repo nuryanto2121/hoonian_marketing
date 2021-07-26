@@ -1030,15 +1030,15 @@ ul.box-languages {
   // /* Styles for Portrait screen /
   .project-detail {
     &-info-card {
-      height: 5vh;
+      height: 7vh;
     }
-    &-img {
-      height: 5vh;
+    &-info-img {
+      height: 6vh !important;
     }
-    &-text {
-      height: 3vh;
+    &-info-text {
+      font-size: 3vh;
     }
-    &-sosmed {
+    &-info-sosmed {
       height: 6vh;
     }
   }
@@ -1133,13 +1133,13 @@ ul.box-languages {
     &-info-card {
       height: 11vh;
     }
-    &-img {
+    &-info-img {
       height: 10vh;
     }
-    &-text {
-      height: 6vh;
+    &-info-text {
+      font-size: 6vh;
     }
-    &-sosmed {
+    &-info-sosmed {
       height: 13vh;
     }
   }
