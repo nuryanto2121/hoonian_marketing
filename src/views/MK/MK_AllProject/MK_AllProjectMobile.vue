@@ -11,7 +11,7 @@
           <template v-for="(item, index) in Location">
             <b-row v-bind:key="index" class="width-search-project-location" style="display: inline-block !important; overflow: hidden; padding-bottom: 5px;">
               <b-col>
-                <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 80px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" rounded/>
+                <b-img :src="urlHoonian + item.picture" alt="" :style="item.id == locationId? 'height: 80px;': 'height: 75px;'" style="cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doProjectByLocation(item)" />
                 <div style="position: absolute; bottom: 0; color: white; font-weight: bold; font-size: 14px; margin-bottom: 5px; margin-left: 5px;">
                   {{item.location}}
                 </div>

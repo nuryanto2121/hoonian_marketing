@@ -262,7 +262,7 @@
               <div :key="index">
                 <b-row style="margin-top: 20px;">
                   <b-col md="12" style="padding: unset !important;">
-                    <b-img :src="urlHoonian + near.picture" alt="" style="height: 200px;" fluid-grow @error="onImageLoadFailure($event)" rounded />
+                    <b-img :src="urlHoonian + near.picture" alt="" style="height: 200px;" fluid-grow @error="onImageLoadFailure($event)" />
                   </b-col>
                 </b-row>
                 <b-row style="padding-top: 30px; background-color: #F8F8F8; height: 150px;">
