@@ -231,6 +231,8 @@ export default {
         block_floor_name: this.Model.block_floorLabel,
         unit_no: data.unit_no,
         booking_type: data.booking_type,
+        tower_cluster_name: this.Model.tower_cluster_name,
+        unit_type_name: data.unit_type_name,
       };
       this.$refs.Modal_BuyerDetailReserve.doReservationOrBooked(param);
     },

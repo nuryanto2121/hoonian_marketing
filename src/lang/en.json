@@ -174,5 +174,6 @@
     "sales_detail": "Sales Detail",
     "principle_name": "Principle Name",
     "refund": "Refund",
-    "floor_plan_label": "Floor Plan"
+    "floor_plan_label": "Floor Plan",
+    "type": "Type"
 }

@@ -974,6 +974,8 @@ export default {
     closePayment() {
     },
     doReservationOrBooked(data) {
+      data.tower_cluster_name = this.Model.data.tower_cluster_name;
+      data.unit_type_name = this.Model.data.unit_type_name;
       this.$refs.Modal_BuyerDetailReserve.doReservationOrBooked(data);
     },
     showCalculator(data) {
