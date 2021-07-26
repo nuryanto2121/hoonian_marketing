@@ -174,5 +174,6 @@
     "sales_detail": "Data Sales",
     "principle_name": "Nama Principle",
     "refund": "Pengembalian",
-    "floor_plan_label": "Tata Lantai"
+    "floor_plan_label": "Tata Lantai",
+    "type": "Tipe"
 }
