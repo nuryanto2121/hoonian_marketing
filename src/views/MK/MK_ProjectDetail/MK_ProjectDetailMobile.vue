@@ -266,60 +266,55 @@
             <div style="text-shadow: 1px 0px; font-size: 22px;">
               {{ $t('nearby') }}
             </div>
-            <!-- {{isPortrait}} -->
             <template v-for="(near, index) in Model.nearby">
-              <b-row :key="index" style="background: #F8F8F8;">
-                <template v-if="isPortrait">
-                  <!-- left -->
-                  <b-col cols="12" class="nearby-card" style="padding-left: unset !important; padding-right: unset !important;">
-                    <b-img :src="urlHoonian + near.picture" alt=""
-                    :style="`height: 310px;`"
-                    fluid-grow @error="onImageLoadFailure($event)" class="nearby-img" />
-                  </b-col>
-                  <b-col align-self="center" cols="12" class="nearby-text" style="padding-left: 30px !important; padding-right: unset !important;">
-                    <span style="font-size: 22px;">{{near.header}}</span>
-                    <br />
-                    {{near.body}}
-                  </b-col>
+              <div :key="index" style="background: #F8F8F8;">
+                <div class="display-only-potrait">
+                  <b-row style="margin-top: 20px;">
+                    <b-col md="12" style="padding: unset !important;">
+                      <b-img :src="urlHoonian + near.picture" alt="" style="height: 200px;" fluid-grow @error="onImageLoadFailure($event)" />
+                    </b-col>
+                  </b-row>
+                  <b-row style="padding-top: 30px; background-color: #F8F8F8; height: 150px;">
+                    <b-col md="12">
+                      <b-row>
+                        <b-col x style="font-size: 16px; text-shadow: 0.5px 0px;" class="text-single">
+                          {{near.header}}
+                        </b-col>
+                      </b-row>
+                      <b-row style="margin-top: 5px;">
+                        <b-col style="font-size: 11.5px; text-align: justify" class="text-third">
+                          {{near.body}}
+                        </b-col>
+                      </b-row>
+                    </b-col>
+                  </b-row>
+                </div>
+                <div class="display-only-landscape">
+                  <b-row>
+                    <!-- left -->
+                    <b-col v-if="index % 2 == 0" cols="6" style="padding-left: unset !important; padding-right: unset !important;">
+                      <b-img :src="urlHoonian + near.picture" alt=""
+                      :style="`height: 310px;`"
+                      fluid-grow @error="onImageLoadFailure($event)" />
+                    </b-col>
+                    <b-col align-self="center" v-if="index % 2 == 0" style="padding-left: 20px !important; padding-right: 10px; !important;">
+                      <div style="font-size: 22px;">{{near.header}}</div>
+                      <div style="margin-top: 10px;">{{near.body}}</div>
+                    </b-col>
 
-                  <!-- right -->
-                  <!-- <b-col align-self="center" v-if="index % 2 == 1" cols="12" class="nearby-text" style="padding-left: 30px !important; padding-right: unset !important;">
-                    <span style="font-size: 22px;">{{near.header}}</span>
-                    <br />
-                    {{near.body}}
-                  </b-col>
-                  <b-col v-if="index % 2 == 1" cols="12" class="nearby-card" style="padding-left: unset !important; padding-right: unset !important;">
-                    <b-img :src="urlHoonian + near.picture" alt=""
-                    :style="`height: 310px;`"
-                    fluid-grow @error="onImageLoadFailure($event)" class="nearby-img" />
-                  </b-col> -->
-                </template>
-                <template v-else>
-                  <!-- left -->
-                  <b-col v-if="index % 2 == 0" cols="12" class="nearby-card" style="padding-left: unset !important; padding-right: unset !important;">
-                    <b-img :src="urlHoonian + near.picture" alt=""
-                    :style="`height: 310px;`"
-                    fluid-grow @error="onImageLoadFailure($event)" class="nearby-img" />
-                  </b-col>
-                  <b-col align-self="center" v-if="index % 2 == 0" cols="12" class="nearby-text" style="padding-left: 30px !important; padding-right: unset !important;">
-                    <span style="font-size: 22px;">{{near.header}}</span>
-                    <br />
-                    {{near.body}}
-                  </b-col>
-
-                  <!-- right -->
-                  <b-col align-self="center" v-if="index % 2 == 1" cols="12" class="nearby-text" style="padding-left: 30px !important; padding-right: unset !important;">
-                    <span style="font-size: 22px;">{{near.header}}</span>
-                    <br />
-                    {{near.body}}
-                  </b-col>
-                  <b-col v-if="index % 2 == 1" cols="12" class="nearby-card" style="padding-left: unset !important; padding-right: unset !important;">
-                    <b-img :src="urlHoonian + near.picture" alt=""
-                    :style="`height: 310px;`"
-                    fluid-grow @error="onImageLoadFailure($event)" class="nearby-img" />
-                  </b-col>
-                </template>
-              </b-row>
+                    <!-- right -->
+                    <b-col align-self="center" v-if="index % 2 == 1" cols="6" style="padding-left: 20px !important; padding-right: 10px !important;">
+                      <div style="font-size: 22px;">{{near.header}}</div>
+                      <div style="margin-top: 10px;">{{near.body}}</div>
+                    </b-col>
+                    <b-col v-if="index % 2 == 1" style="padding-left: unset !important; padding-right: unset !important;">
+                      <b-img :src="urlHoonian + near.picture" alt=""
+                      :style="`height: 310px;`"
+                      fluid-grow @error="onImageLoadFailure($event)" />
+                    </b-col>
+                  </b-row>
+                </div>
+              </div>
             </template>
           </b-col>
         </b-row>
@@ -854,25 +849,11 @@ export default {
         }
       }
     },
-    // isPortrait() {
-    //   let x = window.screen.orientation;
-
-    //   let portrait = true;
-    //   // if(window.innerHeight < window.innerWidth) {
-    //   //   portrait = false
-    //   // }
-    //   if (x.type.includes("landscape")) {
-    //     portrait = false;
-    //   }
-
-    //   return portrait;
-    // }
   },
   watch: {
   },
   data() {
     return {
-      isPortrait: true,
       Model: {
         data: {},
         facilities: [],
@@ -1141,9 +1122,6 @@ export default {
         this.News = response.data.list;
       });
     },
-    // setOrientation(val) {
-    //   this.isPortrait = val;
-    // }
   },
   mounted() {
     this.getProject();
@@ -1152,15 +1130,6 @@ export default {
     this.getFinancialPartner();
     this.getNews();
     this.getAvailableUnitTypes();
-    // window.addEventListener("orientationchange", function() {
-    //   this.$nextTick(() => {
-    //     let x = window.screen.orientation.type
-    //     alert(x.includes("landscape"))
-    //     this.isPortrait = !x.includes("landscape");
-    //   });
-    //   this.$forceUpdate();
-    // }, false)
-    
   },
   created() {
   }
