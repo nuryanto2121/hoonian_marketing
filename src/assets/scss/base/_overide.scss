@@ -1042,6 +1042,9 @@ ul.box-languages {
       height: 6vh;
     }
   }
+  .bgc-login {
+    background: rgb(74, 147, 179) !important;
+  }
   .nearby {
     &-card {
       width: 100% !important;
@@ -1120,11 +1123,11 @@ ul.box-languages {
   }
 
   .display-only-potrait {
-    display: block;
+    display: block !important;
   }
 
   .display-only-landscape {
-    display: none;
+    display: none !important;
   }
 }
 @media all and (orientation:landscape) {
@@ -1142,6 +1145,9 @@ ul.box-languages {
     &-info-sosmed {
       height: 13vh;
     }
+  }
+  .bgc-login {
+    background: linear-gradient(90deg, #FFFF 50%, #4a93b3 50%) !important;
   }
   .nearby {
     &-card {
@@ -1211,10 +1217,10 @@ ul.box-languages {
   }
 
   .display-only-potrait {
-    display: none;
+    display: none !important;
   }
 
   .display-only-landscape {
-    display: block;
+    display: block !important;
   }
 }

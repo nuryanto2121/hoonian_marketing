@@ -1,148 +1,145 @@
 <template>
   <div class="abs-login">
-    <div class="abs-login__box-position-left" style="background: rgb(74, 147, 179);">
+    <div class="abs-login__box-position-left bgc-login">
       <div class="box-layer-form" style="width:100%; height: 70%; margin-right: 20px; top: 100px; position: absolute;">
-        <div class="row" style="height: 100%;">
-          <!-- <div class="col">
-            
-          </div> -->
-          <template class="display-only-landscape">
-            <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 50%;">
-              <div class="box-layer-form">
-                <div class="box-login-form">
-                  <b-form @submit.prevent="onSubmit">
-                    <div class="form-label-group text-field-position">
-                      <input
-                        v-model="userName"
-                        type="text"
-                        id="inputUsername"
-                        class="form-control clear-input"
-                        placeholder="Username"
-                        autofocus
-                        style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                        required
-                      />
-                      <span @click="removeUserName">&times;</span>
-                    </div>
-                    <div class="form-label-group text-field-position">
-                      <input
-                        v-model="passWord"
-                        type="password"
-                        id="inputPassword"
-                        class="form-control clear-input"
-                        placeholder="Password"
-                        autocomplete="off"
-                        style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                        required
-                      />
-                      <span @click="removePassword">&times;</span>
-                    </div>
-                    <div v-if="captchaTxt">
-                      <label
-                        style="text-align: center; width: 100%; background-color: cadetblue; border-radius: 5px;"
-                        for="captcha"
-                      >{{captcha}}</label>
-                      <input
-                        v-model="captCha"
-                        type="text"
-                        id="inputCaptcha"
-                        class="form-control"
-                        placeholder="input captcha"
-                        autocomplete="off"
-                        style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                        required
-                      />
-                    </div>
-                    <button
-                      class="btn btn-big btn-block"
-                      style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:14px !important;margin-bottom:5px;"
-                      type="submit"
-                    >Sign In</button>
-                    <div class="forgot-password" style="text-align:center;">
-                      <label
-                        @click="showForForgetPassword"
-                        for
-                        style="font-size:14px !important;color: rgb(74, 147, 179); cursor: pointer !important;"
-                      >Forget Password ?</label>
-                    </div>
-                  </b-form>
-                </div>
-              </div>
-            </div>
-          </template>
-          <template class="display-only-portrait">
-            <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 100px; padding-top: 50px;">
-              <div class="box-layer-form">
-                  <div style="text-align: center; width: 100%">
-                      <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
+        <div class="row" style="height: 100%; margin-left: 20px !important; margin-right: 20px !important;">
+          <div class="col display-only-landscape">
+            <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 100%; top: 40% !important;" class="center" />
+          </div>
+          <div class="col display-only-landscape" style="background-color: #FFFF; border-bottom-right-radius: 100px;">
+            <div class="box-layer-form">
+              <div class="box-login-form center" style="width: 70%;">
+                <b-form @submit.prevent="onSubmit">
+                  <div class="form-label-group text-field-position">
+                    <input
+                      v-model="userName"
+                      type="text"
+                      id="inputUsername"
+                      class="form-control clear-input"
+                      placeholder="Username"
+                      autofocus
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                    <span @click="removeUserName">&times;</span>
                   </div>
-                <div class="box-login-form" style="margin: 20px 25px 0 25px;">
-                  <b-form @submit.prevent="onSubmit">
-                  <span>
-                      <label class="lbl-poppins">{{ $t('username') }}</label>
-                  </span>
-                    <div class="form-label-group text-field-position">
-                      <input
-                        v-model="userName"
-                        type="text"
-                        id="inputUsername"
-                        class="form-control clear-input"
-                        placeholder="Username"
-                        autofocus
-                        style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                        required
-                      />
-                      <span @click="removeUserName">&times;</span>
-                    </div>
-                    <span>
-                      <label class="lbl-poppins">{{ $t('password') }}</label>
-                  </span>
-                    <div class="form-label-group text-field-position">
-                      <input
-                        v-model="passWord"
-                        type="password"
-                        id="inputPassword"
-                        class="form-control clear-input"
-                        placeholder="Enter Password"
-                        autocomplete="off"
-                        style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                        required
-                      />
-                      <span @click="removePassword">&times;</span>
-                    </div>
-                    <div v-if="captchaTxt">
-                      <label
-                        style="text-align: center; width: 100%; background-color: cadetblue; border-radius: 5px;"
-                        for="captcha"
-                      >{{captcha}}</label>
-                      <input
-                        v-model="captCha"
-                        type="text"
-                        id="inputCaptcha"
-                        class="form-control"
-                        placeholder="input captcha"
-                        autocomplete="off"
-                        style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                        required
-                      />
-                    </div>
-                    <button
-                      class="btn btn-big btn-block"
-                      style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:18px !important;margin-bottom:15px;font-weight: bold;"
-                      type="submit"
-                    >Login</button>
-                    <div class="forgot-password" style="text-align:center;">
-                      <label
-                        @click="showForForgetPassword"
-                        for
-                        style="font-size:14px !important;color: rgb(74, 147, 179); cursor: pointer !important;"
-                      >Forgot Password</label>
-                    </div>
-                  </b-form>
-                </div>
+                  <div class="form-label-group text-field-position">
+                    <input
+                      v-model="passWord"
+                      type="password"
+                      id="inputPassword"
+                      class="form-control clear-input"
+                      placeholder="Password"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                    <span @click="removePassword">&times;</span>
+                  </div>
+                  <div v-if="captchaTxt">
+                    <label
+                      style="text-align: center; width: 100%; background-color: cadetblue; border-radius: 5px;"
+                      for="captcha"
+                    >{{captcha}}</label>
+                    <input
+                      v-model="captCha"
+                      type="text"
+                      id="inputCaptcha"
+                      class="form-control"
+                      placeholder="input captcha"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                  </div>
+                  <button
+                    class="btn btn-big btn-block"
+                    style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:14px !important;margin-bottom:5px;"
+                    type="submit"
+                  >Sign In</button>
+                  <div class="forgot-password" style="text-align:center;">
+                    <label
+                      @click="showForForgetPassword"
+                      for
+                      style="font-size:14px !important;color: rgb(74, 147, 179); cursor: pointer !important;"
+                    >Forget Password ?</label>
+                  </div>
+                </b-form>
               </div>
             </div>
-          </template>
+          </div>
+
+          <div class="col display-only-potrait" style="background-color: #FFFF; border-bottom-right-radius: 100px; padding-top: 50px;">
+            <div class="box-layer-form">
+                <div style="text-align: center; width: 100%">
+                    <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
+                </div>
+              <div class="box-login-form" style="margin: 20px 25px 0 25px;">
+                <b-form @submit.prevent="onSubmit">
+                <span>
+                    <label class="lbl-poppins">{{ $t('username') }}</label>
+                </span>
+                  <div class="form-label-group text-field-position">
+                    <input
+                      v-model="userName"
+                      type="text"
+                      id="inputUsername"
+                      class="form-control clear-input"
+                      placeholder="Username"
+                      autofocus
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                    <span @click="removeUserName">&times;</span>
+                  </div>
+                  <span>
+                    <label class="lbl-poppins">{{ $t('password') }}</label>
+                </span>
+                  <div class="form-label-group text-field-position">
+                    <input
+                      v-model="passWord"
+                      type="password"
+                      id="inputPassword"
+                      class="form-control clear-input"
+                      placeholder="Enter Password"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                    <span @click="removePassword">&times;</span>
+                  </div>
+                  <div v-if="captchaTxt">
+                    <label
+                      style="text-align: center; width: 100%; background-color: cadetblue; border-radius: 5px;"
+                      for="captcha"
+                    >{{captcha}}</label>
+                    <input
+                      v-model="captCha"
+                      type="text"
+                      id="inputCaptcha"
+                      class="form-control"
+                      placeholder="input captcha"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                      required
+                    />
+                  </div>
+                  <button
+                    class="btn btn-big btn-block"
+                    style="background-color: rgb(74, 147, 179);height:50px;color:white;border-radius:8px;font-size:18px !important;margin-bottom:15px;font-weight: bold;"
+                    type="submit"
+                  >Login</button>
+                  <div class="forgot-password" style="text-align:center;">
+                    <label
+                      @click="showForForgetPassword"
+                      for
+                      style="font-size:14px !important;color: rgb(74, 147, 179); cursor: pointer !important;"
+                    >Forgot Password</label>
+                  </div>
+                </b-form>
+              </div>
+            </div>
+          </div>
           <!-- <div class="column-left">
             <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 450px;" />
           </div> -->
@@ -422,4 +419,23 @@ export default {
   font-weight: bold;
   color: rgb(74, 147, 179);
 }
+
+/* @media all and (orientation:landscape) {
+  .display-only-potrait {
+    display: none;
+  }
+
+  .display-only-landscape {
+    display: block;
+  }
+}
+@media all and (orientation:portrait) {
+  .display-only-potrait {
+    display: block;
+  }
+
+  .display-only-landscape {
+    display: none;
+  }
+} */
 </style>
