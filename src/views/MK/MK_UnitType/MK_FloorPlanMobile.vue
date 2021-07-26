@@ -33,7 +33,7 @@
                     height: 490,
                   }"/>
                   <template v-for="data in savedShape">
-                    <v-line @click="showBuyerDetails(data)" :config="{
+                    <v-line @touchstart="showBuyerDetails(data)" :config="{
                         points: data.point_unit,
                         tension: 0,
                         fill: data.color_cd + '80',
