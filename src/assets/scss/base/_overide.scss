@@ -1028,6 +1028,45 @@ ul.box-languages {
 
 @media all and (orientation:portrait) {
   // /* Styles for Portrait screen /
+  .project-detail {
+    &-info-card {
+      height: 5vh;
+    }
+    &-img {
+      height: 5vh;
+    }
+    &-text {
+      height: 3vh;
+    }
+    &-sosmed {
+      height: 6vh;
+    }
+  }
+  .nearby {
+    &-card {
+      width: 100% !important;
+    }
+    &-img {
+      margin-bottom: 20px;
+    }
+    &-text {
+      margin-bottom: 20px;
+    }
+  }
+  .news {
+    &-img {
+      flex: 0 0 33.333333% !important;
+      max-width: 33.333333% !important;
+      width: 33.333333% !important;
+      margin-bottom: 10px;
+    }
+    &-card {
+      flex: 0 0 66.666667% !important;
+      max-width: 66.666667% !important;
+      width: 66.666667% !important;
+      margin-bottom: 10px;
+    }
+  }
   .promotion_card {
     width: 80%;
   }
@@ -1049,7 +1088,7 @@ ul.box-languages {
   }
 
   .progress_card {
-    width: 50%;
+    width: 60%;
   }
 
   .nup_launching_card {
@@ -1066,6 +1105,39 @@ ul.box-languages {
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
+  .project-detail {
+    &-info-card {
+      height: 11vh;
+    }
+    &-img {
+      height: 10vh;
+    }
+    &-text {
+      height: 6vh;
+    }
+    &-sosmed {
+      height: 13vh;
+    }
+  }
+  .nearby {
+    &-card {
+      width: 50% !important;
+    }
+  }
+  .news {
+    &-img {
+      flex: 0 0 25% !important;
+      max-width: 25% !important;
+      width: 25% !important;
+      margin-bottom: 20px;
+    }
+    &-card {
+      flex: 0 0 25% !important;
+      max-width: 25% !important;
+      width: 25% !important;
+      margin-bottom: 20px;
+    }
+  }
   .promotion_card {
     width: 32%;
   }
