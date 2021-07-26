@@ -1079,6 +1079,14 @@ ul.box-languages {
   .project-big {
     margin-top: 20px;
   }
+
+  .display-only-potrait {
+    display: block;
+  }
+
+  .display-only-landscape {
+    display: none;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
@@ -1128,5 +1136,13 @@ ul.box-languages {
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
+  }
+
+  .display-only-potrait {
+    display: none;
+  }
+
+  .display-only-landscape {
+    display: block;
   }
 }

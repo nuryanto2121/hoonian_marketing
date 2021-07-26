@@ -133,7 +133,7 @@
                     classButton="btn btn--default"
                     classIcon="icon-style-1"
                     @click="doCancel"
-                    styleButton="height: 40px; width: 30%;"
+                    styleButton="height: 40px;"
                   />
                 </b-col>
               </b-row>
