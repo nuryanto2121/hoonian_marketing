@@ -45,7 +45,7 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 12px;">
-                <b-col style="font-size: 11px;">
+                <b-col style="font-size: 11px;" class="text-single">
                   <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                   {{item.location_name}}
                 </b-col>
@@ -76,16 +76,16 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 10px !important;">
-                <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important;" class="text-single">
+                <b-col style="font-size: 14px; text-shadow: 0.5px 0px; white-space: normal !important; letter-spacing: 0.2em;" class="text-single">
                   {{item.project_name}}
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 12px;">
-                <b-col style="">
+                <b-col style="font-size: 11px;" class="text-single">
                   <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                   {{item.location_name}}
                 </b-col>
-                <b-col style="font-size: 12px; text-align: right; text-shadow: 0.5px 0px;">
+                <b-col style="font-size: 11px; text-align: right; text-shadow: 0.5px 0px; letter-spacing: 0.17em;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>
