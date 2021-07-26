@@ -50,7 +50,7 @@
         </b-row>
 
         <div style="padding: 10px; background: #F8F8F8;">
-          <b-row align-v="center" style="cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white;" @click="openFloorPlan">
+          <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white;" @click="openFloorPlan">
             <b-col cols="1" style="padding: 10px !important;">
               <b-img :src="require('@/assets/icon-svg/floor_plan.svg')" alt="" style=""/>
             </b-col>
@@ -58,7 +58,7 @@
               {{ $t('floor_plan') }}
             </b-col>
           </b-row>
-          <b-row align-v="center" style="cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 10px;" @click="openLayout">
+          <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="openLayout">
             <b-col cols="1" style="padding: 10px !important;">
               <b-img :src="require('@/assets/icon-svg/layout.svg')" alt="" style=""/>
             </b-col>
@@ -66,7 +66,7 @@
               {{ $t('layout') }}
             </b-col>
           </b-row>
-          <b-row align-v="center" style="cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 10px;" @click="open360VR">
+          <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="open360VR">
             <b-col cols="1" style="padding: 10px !important;">
               <b-img :src="require('@/assets/icon-svg/vr.svg')" alt="" style=""/>
             </b-col>
@@ -74,7 +74,7 @@
               360<sup>o</sup> {{ $t('vr') }}
             </b-col>
           </b-row>
-          <b-row align-v="center" style="cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 10px;" @click="openBrochure">
+          <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="openBrochure">
             <b-col cols="1" style="padding: 10px !important;">
               <b-img :src="require('@/assets/icon-svg/e_brochure.svg')" alt="" style=""/>
             </b-col>
@@ -604,12 +604,12 @@
                         </b-col>
                       </b-row>
                       <b-row style="margin-top: 10px; padding: 0px 10px;">
-                        <b-col style="font-size: 12px; text-shadow: 0.5px 0px;" class="text-single">
-                          {{cutWord(item.tower_cluster_name, 10)}}
+                        <b-col style="font-size: 11.5px; text-shadow: 0.5px 0px; letter-spacing: 0.16em;" class="text-single">
+                          {{item.tower_cluster_name}}
                           -
-                          {{cutWord(item.unit_type, 10)}}...
+                          {{cutWord(item.unit_type, 6)}}...
                         </b-col>
-                        <b-col cols="5" style="font-size: 12px; text-align: right;">
+                        <b-col cols="4" style="font-size: 12px; text-align: right;">
                           <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                           {{item.location_name}}
                         </b-col>

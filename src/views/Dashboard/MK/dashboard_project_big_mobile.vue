@@ -1,25 +1,25 @@
 <template>
-  <div style="height: 95%; padding-left: 5px; margin-top: 20px;">
+  <div style="height: 95%; margin-top: 30px;">
     <b-row>
       <b-col
-        sm="12"
-        md="6"
+        cols="12"
+        sm="6"
         v-for="(data, index) in Model" :key="data.id"
-        :class="`${index == 0 && Model.length > 1? 'pl-0 pr-md-1': ''} ${index == 1 ? 'pl-md-1': ''}`">
+        :class="`${index == 0 && Model.length > 1? 'pl-0 pr-md-1': ''} ${index == 1 ? 'pl-0 pl-md-1 project-big': ''}`">
         <div class="card" @click="doViewDetail(data)">
           <div class="card__body" style="padding: unset !important;">
             <b-row>
               <b-col style="padding: unset !important;">
                 <b-img :src="urlHoonian + data.main_pic" alt=""
-                :style="`height: 200px; cursor: pointer;`"
-                fluid-grow @error="onImageLoadFailure($event)" rounded />
+                :style="`height: 215px; cursor: pointer;`"
+                fluid-grow @error="onImageLoadFailure($event)" />
               </b-col>
             </b-row>
             <b-row style="padding: 10px !important; padding-top: 20px;">
-              <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
-                {{cutWord(data.project_name, 15)}}...
+              <b-col style="font-size: 14px; text-shadow: 0.5px 0px; letter-spacing: 0.2em;" class="text-single">
+                {{cutWord(data.project_name, 13)}}...
               </b-col>
-              <b-col style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+              <b-col cols="5" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px; letter-spacing: 0.2em;">
                 {{data.project_category_name}}
               </b-col>
             </b-row>

@@ -29,8 +29,8 @@
                       ref="ref_handphone_no"
                     />
                   </b-col>
-                  <b-col v-if="isNUP() || isToken() || isTime()" sm="2">
-                    <span>
+                  <b-col v-if="isNUP() || isToken() || isTime()" sm="2" md="3">
+                    <span class="display-only-landscape">
                       <label class="lbl-poppins">&nbsp;</label>
                     </span>
                     <ABSButton

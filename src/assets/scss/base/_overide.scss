@@ -1102,6 +1102,30 @@ ul.box-languages {
     cursor: pointer;
     max-width: 90% !important;
   }
+
+  .height-text-announcement {
+    height: 222px;
+  }
+
+  .text-eight-announcement {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+  }
+
+  .project-big {
+    margin-top: 20px;
+  }
+
+  .display-only-potrait {
+    display: block;
+  }
+
+  .display-only-landscape {
+    display: none;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
@@ -1148,10 +1172,10 @@ ul.box-languages {
     margin-top: 10px;
   }
   .width-project-location {
-    width: 30%;
+    width: 35%;
   }
   .width-other-suggestion {
-    width: 30%;
+    width: 35%;
   }
 
   .financial_card {
@@ -1172,5 +1196,25 @@ ul.box-languages {
     height: 150px !important;
     cursor: pointer;
     max-width: 40% !important;
+  }
+
+  .height-text-announcement {
+    height: 175px;
+  }
+
+  .text-eight-announcement {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+  }
+
+  .display-only-potrait {
+    display: none;
+  }
+
+  .display-only-landscape {
+    display: block;
   }
 }

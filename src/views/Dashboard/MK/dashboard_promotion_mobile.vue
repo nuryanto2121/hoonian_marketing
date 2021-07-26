@@ -21,7 +21,7 @@
         "  @click="doViewDetail(data)">
           <b-row>
             <b-col style="height: 200px; padding: 0px !important;">
-              <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+              <b-img :src="urlHoonian + data.picture" alt="" class="center" style="max-height: 100%;" fluid-grow  @error="onImageLoadFailure($event)" />
               <span class="highlight-project">
                 {{data.project_name}}
               </span>
