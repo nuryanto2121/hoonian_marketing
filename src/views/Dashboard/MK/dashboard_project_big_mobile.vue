@@ -5,7 +5,7 @@
         cols="12"
         sm="6"
         v-for="(data, index) in Model" :key="data.id"
-        :class="`${index == 0 && Model.length > 1? 'pl-0 pr-md-1': ''} ${index == 1 ? 'pl-0 pl-md-1 project-big': ''}`">
+        :class="`${index == 0 && Model.length > 1? 'pl-0': ''} ${index == 1 ? 'pl-0 project-big': ''}`">
         <div class="card" @click="doViewDetail(data)">
           <div class="card__body" style="padding: unset !important;">
             <b-row>
