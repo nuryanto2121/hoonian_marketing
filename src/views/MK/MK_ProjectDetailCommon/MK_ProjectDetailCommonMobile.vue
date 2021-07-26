@@ -6,7 +6,7 @@
           <div style="margin-top: 20px; margin-bottom: 20px;">
           <b-row>
             <b-col>
-              <span style="font-weight: bold; word-spacing: 5px;">
+              <span style="font-weight: bold; letter-spacing: 3px;">
                 {{Model.data.project_name}}
               </span>
             </b-col>
@@ -18,7 +18,7 @@
               </span>
             </b-col>
           </b-row>
-          <b-row style="margin-top: 10px;">
+          <b-row style="margin-top: 15px;">
             <b-col>
               {{ $t('start_from') }} IDR {{ isCurrency(Model.data.start_from_price, 0) }}
             </b-col>
@@ -445,7 +445,7 @@
             <b-col v-bind:key="index" @click="showDetailProgress(data, index)">
               <b-row>
                 <b-col>
-                  <b-img :src="urlHoonian + data.main_image" alt="" style="height: 2000px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                  <b-img :src="urlHoonian + data.main_image" alt="" style="height: 200px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                 </b-col>
               </b-row>
               <!-- <b-row>
