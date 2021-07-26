@@ -1045,6 +1045,9 @@ ul.box-languages {
   .bgc-login {
     background: rgb(74, 147, 179) !important;
   }
+  .wrapper-login {
+    top: 10%;
+  }
   .nearby {
     &-card {
       width: 100% !important;
@@ -1148,6 +1151,9 @@ ul.box-languages {
   }
   .bgc-login {
     background: linear-gradient(90deg, #FFFF 50%, #4a93b3 50%) !important;
+  }
+  .wrapper-login {
+    top: 20%;
   }
   .nearby {
     &-card {

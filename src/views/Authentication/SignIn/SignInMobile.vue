@@ -1,12 +1,12 @@
 <template>
   <div class="abs-login">
     <div class="abs-login__box-position-left bgc-login">
-      <div class="box-layer-form" style="width:100%; height: 70%; margin-right: 20px; top: 20%; position: absolute;">
+      <div class="box-layer-form wrapper-login" style="width:100%; height: 70%; margin-right: 20px; position: absolute;">
         <div class="row" style="height: 100%; margin-left: 20px !important; margin-right: 20px !important;">
           <div class="col display-only-landscape">
             <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 100%; top: 40% !important;" class="center" />
           </div>
-          <div class="col display-only-landscape" style="background-color: #FFFF; border-bottom-right-radius: 100px;">
+          <div class="col display-only-landscape" style="background-color: #FFFF; border-radius: 10px 10px 100px 10px;">
             <div class="box-layer-form">
               <div class="box-login-form center" style="width: 70%;">
                 <b-form @submit.prevent="onSubmit">
@@ -69,7 +69,7 @@
             </div>
           </div>
 
-          <div class="col display-only-potrait" style="background-color: #FFFF; border-bottom-right-radius: 100px; padding-top: 50px;">
+          <div class="col display-only-potrait" style="background-color: #FFFF; border-radius: 10px 10px 100px 10px; padding-top: 50px;">
             <div class="box-layer-form">
                 <div style="text-align: center; width: 100%">
                     <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
