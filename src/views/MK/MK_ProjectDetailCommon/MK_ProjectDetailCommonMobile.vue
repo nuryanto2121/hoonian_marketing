@@ -405,7 +405,7 @@
             <b-col v-bind:key="index" @click="showDetailProgress(data, index)">
               <b-row>
                 <b-col>
-                  <b-img :src="urlHoonian + data.main_image" alt="" style="height: 130px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                  <b-img :src="urlHoonian + data.main_image" alt="" style="height: 130px;" fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
               </b-row>
               <!-- <b-row>
