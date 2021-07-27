@@ -4,7 +4,7 @@
       <b-col style="padding-left: 12px !important; text-shadow: 0.5px 0px; font-size: 22px;">
         {{ $t('promotions') }}
       </b-col>
-      <b-col style="text-align: right; padding-right: 12px !important; color: #4A93B3; cursor: pointer;">
+      <b-col style="text-size: 14px; text-align: right; padding-right: 12px !important; color: #4A93B3; cursor: pointer;">
         <span @click="viewAll">
           {{ $t('view_all') }}
         </span>
