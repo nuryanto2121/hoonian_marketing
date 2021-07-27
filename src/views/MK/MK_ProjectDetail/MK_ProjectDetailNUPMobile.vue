@@ -1,133 +1,131 @@
 <template>
-  <div class="dashboard-page-chart">
-    <div class="dashboard-page-chart__body">
-      <b-row class="dashboardBody">
-        <b-col lg="12" xl="12" style="background: white;">
-          <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
-            <b-row>
+  <div>
+    <b-row class="dashboardBody">
+      <b-col lg="12" xl="12" style="background: white;">
+        <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
+          <b-row>
+            <b-col>
+              <span>
+                <label class="lbl-poppins">{{ $t('buyer_name') }}</label>
+              </span>
+              <ACCTextBox
+                :prop="PI_buyer_name"
+                v-model="Model.buyer_name"
+                ref="ref_buyer_name"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <span>
+                <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
+              </span>
+              <ACCTextBox
+                :prop="PI_handphone_no"
+                v-model="Model.handphone_no"
+                ref="ref_email"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <span>
+                <label class="lbl-poppins">{{ $t('email') }}</label>
+              </span>
+              <ACCTextBox
+                :prop="PI_email"
+                v-model="Model.email"
+                ref="ref_email"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <span>
+                <label class="lbl-poppins">{{ $t('id_no') }}</label>
+              </span>
+              <ACCTextBox
+                :prop="PI_ID_no"
+                v-model="Model.id_no"
+                ref="ref_id_no"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <span>
+                <label class="lbl-poppins">{{ $t('id_picture') }}</label>
+              </span>
+              <b-img id="name_card_show" :src="urlHoonian + Model.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
+              <HOOImageUpload
+                :prop="PI_id_picture"
+                @change="OnIdPictureChange"
+                v-model="Model.id_picture"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <span>
+                <label class="lbl-poppins">{{ $t('total_purchase') }}</label>
+              </span>
+              <ACCTextBox
+                :prop="PI_total_purchase"
+                v-model="Model.total_purchase"
+                ref="ref_total_purchase"
+              />
+            </b-col>
+          </b-row>
+          
+          <b-row>
               <b-col>
-                <span>
-                  <label class="lbl-poppins">{{ $t('buyer_name') }}</label>
-                </span>
-                <ACCTextBox
-                  :prop="PI_buyer_name"
-                  v-model="Model.buyer_name"
-                  ref="ref_buyer_name"
-                />
+                  <span style="font-size: 14px; text-shadow: 0.5px 0px;">
+                      NUP Value @
+                  </span>
+                  <br />
+                  <span style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 14px;">
+                      IDR {{isCurrency(paramFromList.projectDetail.nup.value, 2)}}
+                  </span>
               </b-col>
-            </b-row>
-            <b-row>
               <b-col>
-                <span>
-                  <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
-                </span>
-                <ACCTextBox
-                  :prop="PI_handphone_no"
-                  v-model="Model.handphone_no"
-                  ref="ref_email"
-                />
+                  <span style="font-size: 14px; text-shadow: 0.5px 0px;">
+                      Purchase Value
+                  </span>
+                  <br />
+                  <span style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 14px;">
+                      IDR {{isCurrency(paramFromList.projectDetail.nup.value * (Model.total_purchase? Model.total_purchase: 0), 2)}}
+                  </span>
               </b-col>
-            </b-row>
-            <b-row>
-              <b-col>
-                <span>
-                  <label class="lbl-poppins">{{ $t('email') }}</label>
-                </span>
-                <ACCTextBox
-                  :prop="PI_email"
-                  v-model="Model.email"
-                  ref="ref_email"
-                />
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col>
-                <span>
-                  <label class="lbl-poppins">{{ $t('id_no') }}</label>
-                </span>
-                <ACCTextBox
-                  :prop="PI_ID_no"
-                  v-model="Model.id_no"
-                  ref="ref_id_no"
-                />
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col>
-                <span>
-                  <label class="lbl-poppins">{{ $t('id_picture') }}</label>
-                </span>
-                <b-img id="name_card_show" :src="urlHoonian + Model.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
-                <HOOImageUpload
-                  :prop="PI_id_picture"
-                  @change="OnIdPictureChange"
-                  v-model="Model.id_picture"
-                />
-              </b-col>
-            </b-row>
-            <b-row>
-              <b-col>
-                <span>
-                  <label class="lbl-poppins">{{ $t('total_purchase') }}</label>
-                </span>
-                <ACCTextBox
-                  :prop="PI_total_purchase"
-                  v-model="Model.total_purchase"
-                  ref="ref_total_purchase"
-                />
-              </b-col>
-            </b-row>
-            
+          </b-row>
+            <!-- <b-col>
+              <span>
+                <label class="lbl-poppins">&nbsp;</label>
+              </span>
+              <ABSButton
+                :text="$t('check')"
+                classButton="btn btn--default"
+                classIcon="icon-style-1"
+                @click="getBuyerNUP"
+                styleButton="height: 40px; width: 100%;"
+              />
+            </b-col> -->
             <b-row>
                 <b-col>
-                    <span style="font-size: 14px; text-shadow: 0.5px 0px;">
-                        NUP Value @
-                    </span>
-                    <br />
-                    <span style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 14px;">
-                        IDR {{isCurrency(paramFromList.projectDetail.nup.value, 2)}}
-                    </span>
-                </b-col>
-                <b-col>
-                    <span style="font-size: 14px; text-shadow: 0.5px 0px;">
-                        Purchase Value
-                    </span>
-                    <br />
-                    <span style="color: #4A93B3; text-shadow: 0.5px 0px; font-size: 14px;">
-                        IDR {{isCurrency(paramFromList.projectDetail.nup.value * (Model.total_purchase? Model.total_purchase: 0), 2)}}
-                    </span>
-                </b-col>
+                  <span>
+                      <label class="lbl-poppins">&nbsp;</label>
+                  </span>
+                  <ABSButton
+                      :text="$t('purchase')"
+                      classButton="btn btn--default"
+                      classIcon="icon-style-1"
+                      @click="doSave"
+                      styleButton="height: 40px; width: 100%;"
+                  />
+              </b-col>
             </b-row>
-              <!-- <b-col>
-                <span>
-                  <label class="lbl-poppins">&nbsp;</label>
-                </span>
-                <ABSButton
-                  :text="$t('check')"
-                  classButton="btn btn--default"
-                  classIcon="icon-style-1"
-                  @click="getBuyerNUP"
-                  styleButton="height: 40px; width: 100%;"
-                />
-              </b-col> -->
-              <b-row>
-                  <b-col>
-                    <span>
-                        <label class="lbl-poppins">&nbsp;</label>
-                    </span>
-                    <ABSButton
-                        :text="$t('purchase')"
-                        classButton="btn btn--default"
-                        classIcon="icon-style-1"
-                        @click="doSave"
-                        styleButton="height: 40px; width: 100%;"
-                    />
-                </b-col>
-              </b-row>
-          </b-form>
-        </b-col>
-      </b-row>
-    </div>
+        </b-form>
+      </b-col>
+    </b-row>
     <ABSModal id="Modal_Payment" ref="Modal_Payment" size="sm" @modalCancelClicked="doBack()">
       <template slot="headerTitle">
         <span class="title-primary"> {{ $t('payment_through_va') }} </span>
