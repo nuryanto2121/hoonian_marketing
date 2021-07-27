@@ -1053,6 +1053,12 @@ ul.box-languages {
     &-forgetpass {
       margin-top: 0;
     }
+
+    &-col-right {
+      margin-right: 5% !important;
+      margin-left: 5% !important;
+      // width: 100% !important;
+    }
   }
   .nearby {
     &-card {
@@ -1213,6 +1219,12 @@ ul.box-languages {
     &-forgetpass {
       margin-top: 20%;
     }
+
+    // &-col-right {
+    //   margin-right: 25% !important;
+    //   margin-left: 25% !important;
+    //   width: 100% !important;
+    // }
   }
   .nearby {
     &-card {

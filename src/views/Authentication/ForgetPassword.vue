@@ -4,18 +4,25 @@
       <div class="box-layer-form" style="width:100%;">
         <div class="row">
           <div class="column-left">
-            <div style="text-align: center; width: 100%" class="wrapper-forgetpass">
-              <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
-            </div>
+            <template v-if="isMobile()">
+              <div style="text-align: center; width: 100%; margin-bottom: 20px;" class="wrapper-forgetpass">
+                <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
+              </div>
+            </template>
+            <template v-else>
+              <div style="text-align: center; width: 100%">
+                <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
+              </div>
+            </template>
           </div>
-          <div class="column-right">
+          <div class="column-right wrapper-col-right">
             <div class="box-layer-form">
               <div class="box-login-form">
                 <b-form @submit.prevent="onSubmit">
                   <label style="font-size:14px !important;color:hsl(240, 49%, 41%);"><b>Forget Password ?</b></label><br />
                   
-                  <label v-if="statusForgot === null" style="font-size:14px !important">To reset your account password, enter the email address you registered with and we'll send you instruction.</label>
-                  <label v-else-if="statusForgot === 'T'" style="font-size:14px !important">We send verification OTP to your email address to verify your account please input the OTP below</label>
+                  <label v-if="statusForgot === null" style="font-size:14px !important">To reset your account password, enter the email address or phone number you registered with and we'll send you instruction.</label>
+                  <label v-else-if="statusForgot === 'T'" style="font-size:14px !important">We send verification OTP to your email address or phone number to verify your account please input the OTP below</label>
                   <label v-else-if="statusForgot === 'P'" style="font-size:14px !important">Please input new password</label>
                   
                   <div class="form-label-group">
@@ -90,6 +97,7 @@ export default {
       fieldOne: null,
       fieldTwo: null,
       fieldVerifyNewPassword: null,
+      mobile_app_user_id: null,
       
       textRegisteredEmail: 'Registered Email Address',
       textInputToken: 'Input OTP',
@@ -120,31 +128,37 @@ export default {
     },
     forgotPassword() {
       let param = {
-        email: this.fieldOne,
+        handphone: this.fieldTwo,
+        email: this.fieldOne
       };
 
-      this.postJSON(this.getUrlForgotPassword(), param)
+      this.postJSON(this.getUrlHoonianForgotPassword(), param)
       .then((response) => {
 
         if (response == null) return
-        this.alertSuccess('OTP has been successfully sent to email').then(() => {
+        this.alertSuccess('OTP has been successfully sent to email or phone number').then(() => {
+          localStorage.mobile_app_user_id = response.message.mobile_app_user_id;
           localStorage.statusForgot = 'T';
+          this.mobile_app_user_id = response.message.mobile_app_user_id;
           this.statusForgot = 'T';
           this.fieldOne = null;
+          this.fieldTwo = null;
         });
       })
     },
     validateOTP() {
       let param = {
-        OTP: this.fieldOne,
+        otp: this.fieldOne,
+        mobile_app_user_id: this.mobile_app_user_id
       };
 
-      this.getJSON(this.getUrlValidateOTP(), param)
+      this.getJSON(this.getUrlHoonianValidateOTP(), param)
       .then((response) => {
 
         if (response == null) return
         this.alertSuccess('OTP Valid, Next change new password').then(() => {
-          localStorage.userIdForgot = response.Data.user_id
+          localStorage.otp = this.fieldOne;
+          localStorage.userIdForgot = response.Data.user_id;
           localStorage.statusForgot = 'P';
           this.statusForgot = 'P';
           this.fieldOne = null;
@@ -153,12 +167,15 @@ export default {
     },
     changePassword() {
       let param = {
-        user_id: localStorage.getItem('userIdForgot'),
-        new_password: this.fieldOne,
-        confirm_password: this.fieldVerifyNewPassword,
+        // user_id: localStorage.getItem('userIdForgot'),
+        // new_password: this.fieldOne,
+        // confirm_password: this.fieldVerifyNewPassword,
+        new_pass: this.fieldOne,
+        mobile_app_user_id: this.mobile_app_user_id,
+        otp: localStorage.otp
       };
 
-      this.postJSON(this.getUrlAuthChangePassword(), param)
+      this.postJSON(this.getUrlHoonianChangePassword(), param)
       .then((response) => {
 
         if (response == null) return
@@ -171,6 +188,7 @@ export default {
   },
   created() {
     this.statusForgot = localStorage.statusForgot == undefined ? null : localStorage.statusForgot
+    this.mobile_app_user_id = localStorage.mobile_app_user_id == undefined ? null : localStorage.mobile_app_user_id
   }
 };
 </script>
@@ -198,7 +216,8 @@ export default {
   padding: 30px;
   border-radius: 8px;
   width: 384px;
-  margin: unset;
+  /* margin-right: 5% !important;
+  margin-left: 5% !important; */
 }
 
 /* Clear floats after the columns */

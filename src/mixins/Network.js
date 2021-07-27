@@ -67,6 +67,11 @@ export default {
       segmentValidateOTP: 'Auth/Validate',
       segmentLogout: 'Auth/Logout',
 
+      // Auth Hoonian
+      segmentHoonianForgetPassword: 'api/forget_pass',
+      segmentHoonianValidateOTP: 'api/verify_otp',
+      segmentHoonianChangePassword: 'api/forget_change_pass',
+
       segmentChangeSubportfolio: 'Beranda/ChangeSubportfolio',
       segmentGetSubportfolio: 'Beranda/GetSubportfolio',
       segmentInsertSubportfolio: 'FP_SubPortfolio/Insert',
@@ -429,6 +434,16 @@ export default {
 
     getUrlValidateOTP() {
       return this.url + this.segmentValidateOTP
+    },
+
+    getUrlHoonianForgotPassword() {
+      return this.urlHoonian + this.segmentHoonianForgetPassword
+    },
+    getUrlHoonianValidateOTP() {
+      return this.urlHoonian + this.segmentHoonianValidateOTP
+    },
+    getUrlHoonianChangePassword() {
+      return this.urlHoonian + this.segmentHoonianChangePassword
     },
 
     getUrlLogout() {
@@ -835,7 +850,7 @@ export default {
         this.$store.commit('setStatusLoader', true)
       }
       let sessionId = '';
-      if (fullUrl === this.getUrlForgotPassword() || fullUrl === this.getUrlAuthChangePassword()) {
+      if (fullUrl === this.getUrlForgotPassword() || fullUrl === this.getUrlAuthChangePassword() || fullUrl === this.getUrlHoonianForgotPassword()) {
       } else {
         sessionId = isAuth? this.getSession().Session_Id: "";
       }
@@ -1601,7 +1616,7 @@ export default {
       }
 
       let sessionId = '';
-      if (url === this.getUrlValidateOTP()) {
+      if (url === this.getUrlValidateOTP() || url === this.getUrlHoonianValidateOTP()) {
       } else {
         sessionId = this.getSession().Session_Id;
       }
