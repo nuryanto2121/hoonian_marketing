@@ -48,7 +48,7 @@
             <b-row>
               <b-col md="8">
                 <b-row>
-                  <b-col>
+                  <b-col cols="9">
                     <span>
                       <label class="lbl-poppins">{{ $t('handphone_no') }}</label>
                     </span>
@@ -58,8 +58,8 @@
                       ref="ref_handphone_no"
                     />
                   </b-col>
-                  <b-col v-if="isNUP() || isToken() || isTime()" sm="2" md="3">
-                    <span class="display-only-landscape">
+                  <b-col v-if="isNUP() || isToken() || isTime()" cols="3">
+                    <span>
                       <label class="lbl-poppins">&nbsp;</label>
                     </span>
                     <ABSButton
