@@ -100,10 +100,12 @@
           </b-row>
           <b-row>
             <b-col cols="12">
-              <span>
+              <div>
                 <label style="text-shadow: 0.2px 0px;">{{ $t('id_picture') }}</label>
-              </span>
-              <b-img id="name_card_show" :src="urlHoonian + Model.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
+              </div>
+              <div style="text-align: center;">
+                <b-img id="name_card_show" :src="urlHoonian + Model.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
+              </div>
               <HOOImageUpload
                 :prop="PI_id_picture"
                 @change="OnIdPictureChange"
