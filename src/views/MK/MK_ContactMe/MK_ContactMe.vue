@@ -156,7 +156,7 @@ export default {
         cInputStatus: "new"
       },
       PI_remarks: {
-        cValidate: "max:5000",
+        cValidate: "max:60",
         cName: "Remarks",
         cOrder: 3,
         cKey: false,

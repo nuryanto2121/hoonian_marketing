@@ -264,7 +264,7 @@ export default {
       },
       dataBuyerDetail: { info: {}, virtual_accounts: [],},
       PI_description: {
-        cValidate: "required|max:5000",
+        cValidate: "required|max:60",
         cName: "Description",
         cOrder: 1,
         cKey: false,

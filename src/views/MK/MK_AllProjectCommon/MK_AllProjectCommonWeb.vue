@@ -35,7 +35,7 @@
                 <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
                   {{item.project_name}}
                 </b-col>
-                <b-col md="2" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
+                <b-col md="3" style="font-size: 14px; text-align: right; text-shadow: 0.5px 0px;">
                   {{item.project_category_name}}
                 </b-col>
               </b-row>

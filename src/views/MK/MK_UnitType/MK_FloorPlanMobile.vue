@@ -4,7 +4,7 @@
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
           <b-row style="margin-top: 10px;">
-            <b-col sm="2" md="3">
+            <b-col sm="3" md="4">
               <span style="text-shadow: 0.5px 0px;">{{Model.tower_cluster_name}}</span>
               <br />
               <span>

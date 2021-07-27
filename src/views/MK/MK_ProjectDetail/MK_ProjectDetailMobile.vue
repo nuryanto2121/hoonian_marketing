@@ -194,7 +194,7 @@
                     <div style="color: #828282; font-size: 14px;">
                       {{info.header}}
                     </div>
-                    <div class="row-view-black text-single" style="padding-left: 10px !important;">
+                    <div class="row-view-black text-single" style="padding-left: 30px !important;">
                       {{info.body}}
                     </div>
                   </b-col>
@@ -398,7 +398,7 @@
                 <ABSButton
                   :text="$t('buy_nup')"
                   classButton="button button--hoonian"
-                  styleButton="width: 100px;"
+                  styleButton="width: 100px; height: 30px;"
                   @click="buyNUP"
                 />
               </b-col>

@@ -57,7 +57,7 @@
               <b-col>
                 | &nbsp;
                 <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
-                {{data.unit_area_desc}}
+                {{data.unit_area_desc}} m<sup>2</sup>
               </b-col>
             </b-row>
           </div>

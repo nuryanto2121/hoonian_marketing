@@ -350,15 +350,15 @@ export default {
         cInputStatus: "new"
       },
       PI_notes: {
-        cValidate: "max:5000",
+        cValidate: "max:60",
         cName: "Notes",
         cOrder: 5,
         cKey: false,
         cProtect: false,
         cResize: false,
         cReadonly: false,
-        cRows: 6,
-        cMaxRows: 6,
+        cRows: 3,
+        cMaxRows: 3,
         cSize: "md",
         cParentForm: "FormEntry",
         cInputStatus: "new"
