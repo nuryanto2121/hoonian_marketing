@@ -31,7 +31,7 @@
                       style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
                     />
                   </div>
-                  <!-- <div class="form-label-group" v-if="statusForgot !=== null">
+                  <div class="form-label-group" v-if="statusForgot === null">
                     <input
                       v-model="fieldTwo"
                       :type="tel"
@@ -41,7 +41,7 @@
                       autocomplete="off"
                       style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
                     />
-                  </div> -->
+                  </div>
                   <div class="form-label-group" v-if="statusForgot == 'P'">
                     <input
                       v-model="fieldVerifyNewPassword"
@@ -105,12 +105,13 @@ export default {
     },
     onSubmit() {
       if (this.statusForgot == null) {
-        if ((this.fieldOne && this.fieldOne !== '') || (this.fieldTwo && this.fieldTwo !== '')) {
-          this.forgotPassword();
-        }
-        else {
-          this.alertInfo("Please Input Email or Phone Number");
-        }
+        this.forgotPassword();
+        // if ((this.fieldOne && this.fieldOne !== '') || (this.fieldTwo && this.fieldTwo !== '')) {
+        //   this.forgotPassword();
+        // }
+        // else {
+        //   this.alertInfo("Please Input Email or Phone Number");
+        // }
       } else if (this.statusForgot == 'T') {
         this.validateOTP();
       } else if (this.statusForgot == 'P') {
