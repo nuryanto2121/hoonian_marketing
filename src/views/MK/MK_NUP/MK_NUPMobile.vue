@@ -1,23 +1,23 @@
 <template>
   <div>
     <b-row class="dashboardBody">
-      <b-col lg="12" xl="12">
+      <b-col cols="12">
         <b-row>
-            <b-col lg="12" xl="12">
+            <b-col cols="12">
               <b-row style="overflow-x: auto; white-space: nowrap; display: block !important;">
                 <template v-for="(data, index) in ModelProject">
-                  <b-col sm="3" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="selectedProject == index ? 'activate' : ''" @click="onProjectChange(index)">
+                  <b-col cols="8" v-bind:key="index" style="background-color: #FFFF; margin: 5px; cursor: pointer; display: inline-block; float: none;" :class="'nup-card '+ (selectedProject == index ? 'activate' : '')" @click.prevent="onProjectChange(index)">
                     <b-row class="noPadding">
-                      <b-col class="noPadding" sm="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
-                        <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 90px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
+                      <b-col class="noPadding" cols="4" style="padding-top: 5px !important; padding-bottom: 5px !important;">
+                        <b-img :src="urlHoonian + data.icon_project" alt="" style="height: 75px;" fluid-grow rounded @error="onImageLoadFailure($event)" />
                       </b-col>
-                      <b-col class="noPadding" sm="6">
+                      <b-col class="noPadding" cols="6">
                         <div class="center" style="text-align: center; width: 100%;">
                           <span class="title-primary" style="font-weight: bold; font-size: 17px; color: #4f4f4f !important;"> Total NUP </span> <br>
                           <span class="title-primary" style="font-weight: bold; font-size: 17px;">{{data.total_nup}}</span>
                         </div>
                       </b-col>
-                      <b-col class="noPadding" sm="2">
+                      <b-col class="noPadding" cols="2">
                         <font-awesome-icon v-if="data.total_nup" @click.stop="doAdd(data)" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important; position: absolute; bottom: 10px;" />
                       </b-col>
                     </b-row>
@@ -55,7 +55,7 @@
                 </template>
                 <template slot="total_nup" slot-scope="data">
                   <b-row>
-                    <b-col sm="2">
+                    <b-col cols="2">
                       {{data.item.total_nup}}
                     </b-col>
                     <b-col>
