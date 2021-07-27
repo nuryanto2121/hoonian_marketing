@@ -1030,13 +1030,13 @@ ul.box-languages {
   // /* Styles for Portrait screen /
   .project-detail {
     &-info-card {
-      height: 7vh;
+      height: 6.3vh;
     }
     &-info-img {
-      height: 6vh !important;
+      height: 5.5h !important;
     }
     &-info-text {
-      font-size: 3vh;
+      font-size: 2.8vh;
     }
     &-info-sosmed {
       height: 6vh;
@@ -1045,8 +1045,14 @@ ul.box-languages {
   .bgc-login {
     background: rgb(74, 147, 179) !important;
   }
-  .wrapper-login {
-    top: 10%;
+  .wrapper {
+    &-login {
+      top: 20%;
+    }
+
+    &-forgetpass {
+      margin-top: 0;
+    }
   }
   .nearby {
     &-card {
@@ -1071,6 +1077,53 @@ ul.box-languages {
       max-width: 66.666667% !important;
       width: 66.666667% !important;
       margin-bottom: 10px;
+    }
+  }
+  .sales-lead {
+    &-card {
+      max-width: 66.666667% !important;
+    }
+  }
+  .referral {
+    &-card {
+      max-width: 66.666667% !important;
+    }
+
+    &-btnSave {
+      width: 100%;
+    }
+  }
+  .token {
+    &-card {
+      max-width: 66.666667% !important;
+    }
+    &-purchase {
+      &-img-card {
+        max-width: 33.333333% !important;
+        // 25%
+      }
+      &-img {
+        height: 100px;
+        //100%;
+      }
+      &-info-card {
+        max-width: 100% !important;
+      }
+      &-project-text {
+        font-size: 15px;
+        font-weight: bold;
+        // 15
+      }
+      &-info-text {
+        font-size: 13px;
+        // font-weight: bold;
+        // 13
+      }
+    }
+  }
+  .vlaunching {
+    &-card {
+      max-width: 100% !important;
     }
   }
   .promotion_card {
@@ -1152,8 +1205,14 @@ ul.box-languages {
   .bgc-login {
     background: linear-gradient(90deg, #FFFF 50%, #4a93b3 50%) !important;
   }
-  .wrapper-login {
-    top: 20%;
+  .wrapper {
+    &-login {
+      top: 20%;
+    }
+
+    &-forgetpass {
+      margin-top: 20%;
+    }
   }
   .nearby {
     &-card {
@@ -1172,6 +1231,56 @@ ul.box-languages {
       max-width: 25% !important;
       width: 25% !important;
       margin-bottom: 20px;
+    }
+  }
+  .sales-lead {
+    &-card {
+      max-width: 33.333333% !important;
+    }
+  }
+  .referral {
+    &-card {
+      max-width: 33.333333% !important;
+    }
+
+    &-btnSave {
+      width: 50%;
+    }
+  }
+  .token {
+    &-card {
+      max-width: 33.333333% !important;
+    }
+    &-purchase {
+      &-img-card {
+        max-width: 25% !important;
+      }
+      &-img {
+        height: 100%;
+      }
+      &-info-card {
+        max-width: 50% !important;
+      }
+      &-project-text {
+        font-size: 20px;
+        font-weight: bold;
+        // 15
+      }
+      &-info-text {
+        font-size: 15px;
+        font-weight: bold;
+        // 13
+      }
+    }
+  }
+  .vlaunching {
+    &-card {
+      max-width: 50% !important;
+    }
+  }
+  .user {
+    &-card {
+      max-width: 33.333333% !important;
     }
   }
   .promotion_card {
