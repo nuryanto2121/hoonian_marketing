@@ -139,15 +139,15 @@ export default {
       selectedProject: 0,
 
       PI_description: {
-        cValidate: "max:5000",
+        cValidate: "max:60",
         cName: "Description",
         cOrder: 1,
         cKey: false,
         cProtect: false,
         cResize: false,
         cReadonly: false,
-        cRows: 6,
-        cMaxRows: 6,
+        cRows: 3,
+        cMaxRows: 3,
         cSize: "md",
         cParentForm: "FormEntry",
         cInputStatus: this.inputStatus

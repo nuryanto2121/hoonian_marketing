@@ -255,7 +255,7 @@ export default {
         cInputStatus: "new"
       },
       PI_description: {
-        cValidate: "max:5000",
+        cValidate: "max:60",
         cName: "Description",
         cOrder: 4,
         cKey: false,
