@@ -4,30 +4,19 @@
       <b-row class="dashboardBody">
         <b-col lg="12" xl="12" style="background: white;">
          <b-row style="margin-top: 20px;">
-           <b-col>
+           <b-col style="text-shadow: 1.2px 0px;">
              {{paramFromList.projectName}}
            </b-col>
          </b-row>
-         <b-row>
-           <b-col style="color: #828282; font-size: 12px; margin-top: 5px; margin-bottom: 10px;">
-             {{paramFromList.address}}
-           </b-col>
-         </b-row>
-         <b-row>
-           <b-col style="color: #828282; font-size: 14px;">
-             {{Model.data.project_status}}
-             &nbsp;&nbsp; > &nbsp;&nbsp;
-             {{Model.data.location_name}}
-             &nbsp;&nbsp; > &nbsp;&nbsp;
-             {{Model.data.project_name}}
-             &nbsp;&nbsp; > &nbsp;&nbsp;
-             {{Model.data.tower_cluster_name}}
-             &nbsp;&nbsp; > &nbsp;&nbsp;
+         <b-row style="margin-top: 20px;">
+           <b-col style="">
+             <span style="text-shadow: 1.2px 0px;">{{Model.data.tower_cluster_name}}</span>
+             <br />
              {{Model.data.unit_type_name}}
            </b-col>
          </b-row>
          
-         <b-row style="margin-top: 10px;">
+         <b-row style="margin-top: 20px;">
            <b-col style="padding: unset !important;">
              <b-img :src="urlHoonian + Model.data.big_image" alt=""
                 :style="`height: 340px;`"
@@ -58,20 +47,20 @@
               {{ $t('floor_plan') }}
             </b-col>
           </b-row>
-          <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="openLayout">
-            <b-col cols="1" style="padding: 10px !important;">
-              <b-img :src="require('@/assets/icon-svg/layout.svg')" alt="" style=""/>
-            </b-col>
-            <b-col style="padding: 5px !important; text-align: center;">
-              {{ $t('layout') }}
-            </b-col>
-          </b-row>
           <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="open360VR">
             <b-col cols="1" style="padding: 10px !important;">
               <b-img :src="require('@/assets/icon-svg/vr.svg')" alt="" style=""/>
             </b-col>
             <b-col style="padding: 5px !important; text-align: center;">
               360<sup>o</sup> {{ $t('vr') }}
+            </b-col>
+          </b-row>
+          <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="openLayout">
+            <b-col cols="1" style="padding: 10px !important;">
+              <b-img :src="require('@/assets/icon-svg/layout.svg')" alt="" style=""/>
+            </b-col>
+            <b-col style="padding: 5px !important; text-align: center;">
+              {{ $t('layout') }}
             </b-col>
           </b-row>
           <b-row align-v="center" style="height: 45px; cursor: pointer; background: rgba(0, 0, 0, 0.2); color: white; margin-top: 5px;" @click="openBrochure">
@@ -182,7 +171,7 @@
          <b-row style="background: white; padding-top: 20px; margin-top: 10px;">
            <b-col style="padding: unset !important;">
              <b-row style="font-size: 14px; border: 1px solid #4A93B3; box-sizing: border-box; padding: 5px 10px; padding-right: 0px;">
-               <b-col style="text-shadow: 0.9px 0px;">
+               <b-col class="text-shadow-12">
                   Booking Fee
                </b-col>
                <b-col style="color: #2F80ED; text-align: right;">
@@ -730,57 +719,57 @@ export default {
           key: "unit_no",
           label: "UNIT",
           tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center XS poppins",
+          thClass: "HeaderACCList2 th-cus-center XS poppins text-shadow-02",
         },
         {
           key: "block_floor_name",
           label: "FLOOR",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left S poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins text-shadow-02",
         },
         {
           key: "net_area",
           label: "NET AREA",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left S poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins text-shadow-02",
         },
         {
           key: "gross_area",
           label: "SEMI-GROSS",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left S poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins text-shadow-02",
         },
         {
           key: "total_bedroom",
           label: "",
           tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins text-shadow-02",
           isCustom: true,
         },
         {
           key: "total_bathroom",
           label: "",
           tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          thClass: "HeaderACCList2 th-cus-center poppins text-shadow-02",
           isCustom: true,
         },
         {
           key: "direction",
           label: "DIRECTION",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left S poppins",
+          thClass: "HeaderACCList2 th-cus-left S poppins text-shadow-02",
         },
         {
           key: "price",
           label: "PRICE",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins remove-padding",
-          thClass: "HeaderACCList2 th-cus-left L poppins",
+          thClass: "HeaderACCList2 th-cus-left L poppins text-shadow-02",
         },
         {
           key: "status",
           label: "STATUS",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left XL poppins",
+          thClass: "HeaderACCList2 th-cus-left XL poppins text-shadow-02",
         },
       ],
       type: "all",
