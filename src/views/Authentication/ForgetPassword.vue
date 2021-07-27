@@ -4,9 +4,9 @@
       <div class="box-layer-form" style="width:100%;">
         <div class="row">
           <div class="column-left">
-            <img :src="require('@/assets/acce_logo.png')" alt />
-            <br />
-            <span style="font-size:18px;color:hsl(0, 0%, 58%);">Transportation Management System</span>
+            <div style="text-align: center; width: 100%" class="wrapper-forgetpass">
+              <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 90%;" />
+            </div>
           </div>
           <div class="column-right">
             <div class="box-layer-form">
@@ -29,9 +29,19 @@
                       autofocus
                       autocomplete="off"
                       style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
-                      required
                     />
                   </div>
+                  <!-- <div class="form-label-group" v-if="statusForgot !=== null">
+                    <input
+                      v-model="fieldTwo"
+                      :type="tel"
+                      id="inputTwo"
+                      class="form-control input-field"
+                      :placeholder="'Registered Phone Number'"
+                      autocomplete="off"
+                      style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
+                    />
+                  </div> -->
                   <div class="form-label-group" v-if="statusForgot == 'P'">
                     <input
                       v-model="fieldVerifyNewPassword"
@@ -78,6 +88,7 @@ export default {
     return {
       statusForgot: null,
       fieldOne: null,
+      fieldTwo: null,
       fieldVerifyNewPassword: null,
       
       textRegisteredEmail: 'Registered Email Address',
@@ -94,7 +105,12 @@ export default {
     },
     onSubmit() {
       if (this.statusForgot == null) {
+        if ((this.fieldOne && this.fieldOne !== '') || (this.fieldTwo && this.fieldTwo !== '')) {
           this.forgotPassword();
+        }
+        else {
+          this.alertInfo("Please Input Email or Phone Number");
+        }
       } else if (this.statusForgot == 'T') {
         this.validateOTP();
       } else if (this.statusForgot == 'P') {
