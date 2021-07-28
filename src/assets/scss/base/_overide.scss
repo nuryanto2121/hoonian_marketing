@@ -1131,6 +1131,9 @@ ul.box-languages {
     &-card {
       max-width: 100% !important;
     }
+    &-info {
+      max-width: 100% !important;
+    }
   }
   .promotion_card {
     width: 80%;
@@ -1296,6 +1299,9 @@ ul.box-languages {
   .vlaunching {
     &-card {
       max-width: 50% !important;
+    }
+    &-info {
+      max-width: 33.333333% !important;
     }
   }
   .user {
