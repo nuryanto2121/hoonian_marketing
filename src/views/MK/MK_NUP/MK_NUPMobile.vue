@@ -130,7 +130,7 @@ export default {
         {
           key: "no",
           label: "NO",
-          thClass: "HeaderACCList2Poppins th-cus-left S",
+          thClass: "HeaderACCList2Poppins th-cus-left XS",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {

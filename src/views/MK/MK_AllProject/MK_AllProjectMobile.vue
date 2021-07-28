@@ -5,6 +5,14 @@
         <b-col style="text-shadow: 0.5px 0px; font-size: 12px; padding-left: 10px !important;">
           {{ $t('search_project_by_location') }}
         </b-col>
+        <b-col style="text-align: right; text-shadow: 0.5px 0px; font-size: 12px;">
+          <span style="position: absolute; width: 8px; height: 8px; background: #4A93B3; margin-top: 5px;">
+            &nbsp;
+          </span>
+          <span style="text-shadow: 0.5px 0px; padding-right: 5px;">
+            &nbsp;&nbsp;&nbsp;&nbsp; {{Location.length > 0 ? Location[0].company_group_name: ""}}
+          </span>
+        </b-col>
       </b-row>
       <b-row style="margin-top: 10px;">
         <b-col style="overflow-x: auto; white-space: nowrap; display: block !important;">
@@ -45,8 +53,8 @@
                   {{item.project_category_name}}
                 </b-col>
               </b-row>
-              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                <b-col style="">
+              <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px; height: 40px;">
+                <b-col class="text-double">
                   {{ item.remarks }}
                 </b-col>
               </b-row>

@@ -1139,7 +1139,7 @@ ul.box-languages {
     width: 35%;
   }
   .gap-object-pagination-all-project {
-    margin-top: -30px;
+    margin-top: 10px;
   }
   .width-project-location {
     width: 80%;
@@ -1195,6 +1195,9 @@ ul.box-languages {
     &-card {
       max-width: 66.666667% !important;
     }
+  }
+  .nup-form-mobile {
+    padding-left: 10px !important;
   }
 }
 @media all and (orientation:landscape) {
@@ -1360,6 +1363,9 @@ ul.box-languages {
     &-card {
       max-width: 33.333333% !important;
     }
+  }
+  .nup-form-mobile {
+    padding-left: unset !important;
   }
 }
 

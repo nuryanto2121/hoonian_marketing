@@ -4,10 +4,10 @@
       <b-col lg="12" xl="12" style="background: white;">
         <b-form :data-vv-scope="'FormEntry'" :data-vv-value-path="'FormEntry'">
           <b-row style="margin-top: 10px; background: #F8F8F8; padding-top: 10px; padding-bottom: 10px;">
-            <b-col cols="5" sm="2">
+            <b-col cols="4" sm="2">
               <b-img id="name_card_show" :src="urlHoonian + paramFromList.icon_project" alt="" height="115" width="115" @error="onImageLoadFailure($event)" />
             </b-col>
-            <b-col style="padding-left: unset !important;">
+            <b-col class="nup-form-mobile">
               <b-row>
                 <b-col style="padding-left: unset !important; font-size: 13px;">
                   <div style="color: #4A93B3; text-shadow: 1.0px 0px;" class="text-single">
@@ -100,10 +100,12 @@
           </b-row>
           <b-row>
             <b-col cols="12">
-              <span>
+              <div>
                 <label style="text-shadow: 0.2px 0px;">{{ $t('id_picture') }}</label>
-              </span>
-              <b-img id="name_card_show" :src="urlHoonian + Model.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
+              </div>
+              <div style="text-align: center;">
+                <b-img id="name_card_show" :src="urlHoonian + Model.id_picture" alt="" height="150" @error="onImageLoadFailure($event)" />
+              </div>
               <HOOImageUpload
                 :prop="PI_id_picture"
                 @change="OnIdPictureChange"
