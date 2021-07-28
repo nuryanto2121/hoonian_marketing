@@ -24,7 +24,69 @@
             </b-col>
         </b-row>
         <b-row>
-          <b-col cols="12">
+          <b-col cols="12" v-if="isMobile()">
+              <HOOList
+                :prop="propList"
+                :title="'Marketing List'"
+                :ref="'ref_marketing_list'"
+                ButtonBackDisabled
+                SearchDisabled
+                isPoppins
+                isHeaderFixed
+                :cHeader="Headers"
+              >
+                <template slot="TitleTable">
+                  <b-col cols="10" style="padding-left: unset !important;" class="title-list-primary">
+                    {{$t('user_marketing_list')}}
+                  </b-col>
+                </template>
+                <template slot="ToolbarTable">
+                  <b-col cols="2" style="text-align: end !important;">
+                    <font-awesome-icon @click="doAdd" class="icon-style-default title-primary" icon="plus-circle" style="font-size: 2em !important;" />
+                  </b-col>
+                </template>
+                <!-- <template slot="date" slot-scope="data">
+                  {{momentUnix(data.item.date, "DD MMM YYYY")}}
+                </template> -->
+                
+                <template slot="handphone" slot-scope="data">
+                  <b-row>
+                      <b-col cols="6" style="margin-top: 4px;">
+                          <!-- <div class="center"> -->
+                              {{data.item.handphone}}
+                          <!-- </div> -->
+                      </b-col>
+                      <b-col cols="6">
+                          <ABSButton
+                              :text="$t('view')"
+                              classButton="btn btn--default"
+                              classIcon="icon-style-1"
+                              @click="doViewProject(data.item)"
+                              styleButton="width: 100%;"
+                          />
+                      </b-col>
+                  </b-row>
+                </template>
+                <template slot="total_sales_unit" slot-scope="data">
+                  {{isCurrency(data.item.total_sales_unit, decimal)}}
+                </template>
+                <template slot="total_sales_price" slot-scope="data">
+                  {{isCurrency(data.item.total_sales_price, decimal)}}
+                </template>
+                <template slot="name" slot-scope="data">
+                  <button style="background: none !important; border: none; padding: 0!important; color: #069; text-decoration: underline; cursor: pointer;" @click.stop="OnMarketingClick(data.item)">{{data.item.name}}</button>
+                </template>
+                <!-- <template slot="logbook" slot-scope="data">
+                  <ABSButton
+                    text="Logbook"
+                    classButton="button button--hoonian"
+                    icon="wallet"
+                    @click="doLogbook(data.item)"
+                  />
+                </template> -->
+              </HOOList>
+          </b-col>
+          <b-col cols="12" v-else>
               <HOOList
                 :prop="propList"
                 :title="'Marketing List'"
@@ -275,13 +337,13 @@ export default {
         {
           key: "name",
           label: this.$t('marketing_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "handphone",
           label: this.$t('handphone_no').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins XL th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {

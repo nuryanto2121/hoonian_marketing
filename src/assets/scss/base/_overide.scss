@@ -1096,6 +1096,10 @@ ul.box-languages {
     }
 
     &-btnSave {
+      max-width: 100% !important;
+    }
+
+    &-btnSave {
       width: 100%;
     }
   }
@@ -1129,6 +1133,9 @@ ul.box-languages {
   }
   .vlaunching {
     &-card {
+      max-width: 100% !important;
+    }
+    &-info {
       max-width: 100% !important;
     }
   }
@@ -1267,6 +1274,10 @@ ul.box-languages {
     }
 
     &-btnSave {
+      max-width: 16.666667% !important;
+    }
+
+    &-btnSave {
       width: 50%;
     }
   }
@@ -1299,6 +1310,9 @@ ul.box-languages {
   .vlaunching {
     &-card {
       max-width: 50% !important;
+    }
+    &-info {
+      max-width: 33.333333% !important;
     }
   }
   .user {

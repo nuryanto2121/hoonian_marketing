@@ -88,13 +88,13 @@ export default {
         {
           key: "marketing_name",
           label: this.$t('marketing_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "principle_name",
           label: this.$t('principle_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
