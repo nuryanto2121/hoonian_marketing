@@ -24,8 +24,10 @@
                                         </b-col>
                                     </b-row> -->
                                     <b-row>
-                                        <b-col style="font-size: 20px; text-align: center; font-weight: bold;">
-                                            {{ $t('time_to_launching') }}
+                                        <b-col cols="12" style="text-align: center;" class="vlaunching-time-to-launch">
+                                            <span class="vlaunching-time-to-launch-text">
+                                              {{ $t('time_to_launching') }}
+                                            </span>
                                         </b-col>
                                         <b-col style="padding-right: 10px !important; text-align: center; color: rgb(155 81 224); font-weight: bold; margin: 10px; background-color: #f2f2f2;">
                                             <span style="font-size: 40px;"> {{Model.up_h_left}} </span>
@@ -308,31 +310,31 @@ export default {
         {
           key: "tower",
           label: this.$t('tower').toUpperCase(),
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          tdClass: "ContentACCList2 S notranslate th-cus-center poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
         {
           key: "floor",
           label: this.$t('floor').toUpperCase(),
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          tdClass: "ContentACCList2 S notranslate th-cus-center poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
         {
           key: "unit_no",
           label: this.$t('unit_no').toUpperCase(),
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          tdClass: "ContentACCList2 S notranslate th-cus-center poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
         {
           key: "price",
           label: this.$t('price').toUpperCase(),
-          tdClass: "ContentACCList2 notranslate th-cus-right poppins",
+          tdClass: "ContentACCList2 S notranslate th-cus-right poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
         {
           key: "status",
           label: this.$t('select').toUpperCase(),
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
+          tdClass: "ContentACCList2 S notranslate th-cus-center poppins",
           thClass: "HeaderACCList2 th-cus-center poppins",
         },
       ],

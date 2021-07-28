@@ -1138,6 +1138,20 @@ ul.box-languages {
     &-info {
       max-width: 100% !important;
     }
+    &-time-to-launch {
+      &-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 17px;
+        font-weight: normal;
+      }
+      max-width: 100% !important;
+      background-color: #9b51e0;
+      color: #FFFFFF;
+      height: 60px;
+    }
   }
   .promotion_card {
     width: 80%;
@@ -1310,6 +1324,21 @@ ul.box-languages {
     }
     &-info {
       max-width: 33.333333% !important;
+    }
+    &-time-to-launch {
+      &-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      max-width: 33.333333% !important;
+      // padding-top: 23px;
+      // background-color: #9b51e0;
+      // color: #FFFFFF;
     }
   }
   .user {
