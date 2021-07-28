@@ -1199,6 +1199,9 @@ ul.box-languages {
   .nup-form-mobile {
     padding-left: 10px !important;
   }
+  .sales-list-mobile {
+    padding-left: unset !important;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
@@ -1366,6 +1369,9 @@ ul.box-languages {
   }
   .nup-form-mobile {
     padding-left: unset !important;
+  }
+  .sales-list-mobile {
+    padding-left: 15px !important;
   }
 }
 
