@@ -1096,6 +1096,10 @@ ul.box-languages {
     }
 
     &-btnSave {
+      max-width: 100% !important;
+    }
+
+    &-btnSave {
       width: 100%;
     }
   }
@@ -1264,6 +1268,10 @@ ul.box-languages {
   .referral {
     &-card {
       max-width: 33.333333% !important;
+    }
+
+    &-btnSave {
+      max-width: 16.666667% !important;
     }
 
     &-btnSave {
