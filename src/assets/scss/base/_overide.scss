@@ -1196,6 +1196,9 @@ ul.box-languages {
       max-width: 66.666667% !important;
     }
   }
+  .nup-form-mobile {
+    padding-left: 10px !important;
+  }
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
@@ -1360,6 +1363,9 @@ ul.box-languages {
     &-card {
       max-width: 33.333333% !important;
     }
+  }
+  .nup-form-mobile {
+    padding-left: unset !important;
   }
 }
 
