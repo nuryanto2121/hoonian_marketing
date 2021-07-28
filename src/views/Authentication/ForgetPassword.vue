@@ -26,9 +26,11 @@
                   <label v-else-if="statusForgot === 'P'" style="font-size:14px !important">Please input new password</label>
                   
                   <div class="form-label-group">
-                    <input
+                    <b-form-input
+                      v-validate="statusForgot === null ? 'email' : ''"
                       v-model="fieldOne"
-                      :type="statusForgot === 'P' ? 'password': 'text'"
+                      v-bind:data-vv-name="'fieldOne'"
+                      :type="statusForgot === null ? 'email' : (statusForgot === 'P' ? 'password' : 'text')"
                       id="inputOne"
                       class="form-control input-field"
                       :placeholder="statusForgot === null ? textRegisteredEmail :
@@ -37,17 +39,27 @@
                       autocomplete="off"
                       style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
                     />
+                    <span v-show="errors.has('fieldOne')"
+                      class="error-span">{{ errors.first('fieldOne') }}
+                    </span>
                   </div>
                   <div class="form-label-group" v-if="statusForgot === null">
-                    <input
+                    <b-form-input
+                      v-validate="''"
                       v-model="fieldTwo"
-                      :type="tel"
+                      v-bind:data-vv-name="'fieldTwo'"
+                      :type="'tel'"
                       id="inputTwo"
                       class="form-control input-field"
                       :placeholder="'Registered Phone Number'"
                       autocomplete="off"
+                      maxlength="15"
+                      @keypress.native="formatNumber"
                       style="height:50px;border-radius:8px !important;font-size:14px !important;font-weight:400;margin-bottom:12px;"
                     />
+                    <span v-show="errors.has('fieldTwo')"
+                      class="error-span">{{ errors.first('fieldTwo') }}
+                    </span>
                   </div>
                   <div class="form-label-group" v-if="statusForgot == 'P'">
                     <input
@@ -111,19 +123,84 @@ export default {
     doBack() {
       this.$router.go(-1);
     },
+    formatNumber(evt){
+      evt = (evt) ? evt : window.event
+      var charCode = (evt.which) ? evt.which : evt.keyCode
+
+      if ((charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode !== 43)) {
+        evt.preventDefault()
+      }
+      // else if(charCode == 46){
+      //   // if (this.prop.cType == 'numeric' || this.prop.cType == 'tel') {
+      //   if (this.prop.cType == 'tel') {
+      //     evt.preventDefault()
+      //   }
+      //   else {
+      //     var str = this.value
+      //     if(str.indexOf('.') !== -1){
+      //       evt.preventDefault()
+      //     }
+      //     else {
+      //       return true
+      //     }
+      //   }
+      // }
+      else if (charCode == 43) {
+          if (this.prop.cType !== 'tel' && this.prop.cType !== 'text') {
+              evt.preventDefault()
+          }
+          else if(this.prop.cType == 'tel') {
+              var str = this.value
+              if(str.indexOf('+') !== -1){
+                  evt.preventDefault()
+              }
+              else {
+                  return true
+              }
+          }
+      }
+      else if ((charCode > 64 && charCode < 91) || (charCode > 96 && charCode < 123) || charCode == 8 || charCode == 32) {
+        evt.preventDefault()
+      }
+      else if (charCode == 13) {
+        this.$emit('onEnterPress', this.value)
+        evt.preventDefault()
+      }
+      else {
+        return true
+      }
+    },
     onSubmit() {
       if (this.statusForgot == null) {
-        this.forgotPassword();
-        // if ((this.fieldOne && this.fieldOne !== '') || (this.fieldTwo && this.fieldTwo !== '')) {
-        //   this.forgotPassword();
-        // }
-        // else {
-        //   this.alertInfo("Please Input Email or Phone Number");
-        // }
+        // this.forgotPassword();
+        if ((this.fieldOne && this.fieldOne !== '') || (this.fieldTwo && this.fieldTwo !== '')) {
+          this.alertConfirmation("Are You Sure Want To Process This Data ?").then(
+            (ress) => {
+              if (ress.value) {
+                this.forgotPassword();
+              }
+            }
+          );
+        }
+        else {
+          this.alertInfo("Please Input Email or Phone Number");
+        }
       } else if (this.statusForgot == 'T') {
-        this.validateOTP();
+        this.alertConfirmation("Are You Sure Want To Process This Data ?").then(
+          (ress) => {
+            if (ress.value) {
+              this.validateOTP();
+            }
+          }
+        );
       } else if (this.statusForgot == 'P') {
-        this.changePassword();
+        this.alertConfirmation("Are You Sure Want To Process This Data ?").then(
+          (ress) => {
+            if (ress.value) {
+              this.changePassword();
+            }
+          }
+        );
       }
     },
     forgotPassword() {
@@ -189,6 +266,19 @@ export default {
   created() {
     this.statusForgot = localStorage.statusForgot == undefined ? null : localStorage.statusForgot
     this.mobile_app_user_id = localStorage.mobile_app_user_id == undefined ? null : localStorage.mobile_app_user_id
+
+    this.$validator.extend('email', {
+      getMessage (field, val) {
+        // return 'The ' + field + ' field must more than 0.'
+        return "The Email Format is Incorrect."
+      },
+      validate (value, field) {
+        // console.log(value, field)
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        
+        return re.test(value);
+      }
+    })
   }
 };
 </script>
