@@ -70,7 +70,7 @@
 
             <div>
               <b-row>
-                <b-col :cols="isLogin()? 4: 6" :sm="isLogin()? 4: 6" class="dashboard-text">
+                <b-col :cols="isLogin()? 4: 6" :sm="isLogin()? 3: 6" class="dashboard-text">
                   <div
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -96,7 +96,7 @@
                   </div>
                 </b-col>
 
-                <b-col v-if="isLogin()" cols="4" class="dashboard-text">
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -109,7 +109,7 @@
                   </div>
                 </b-col>
 
-                <b-col v-if="isLogin()" cols="4" class="dashboard-text">
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -121,12 +121,8 @@
                     NUP
                   </div>
                 </b-col>
-              </b-row>
-
-              <b-row v-if="isLogin()">
-                <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
-
-                <b-col cols="4" class="dashboard-text">
+                
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -138,7 +134,7 @@
                     Lead
                   </div>
                 </b-col>
-                <b-col cols="4" class="dashboard-text">
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -150,7 +146,7 @@
                     V - Launching
                   </div>
                 </b-col>
-                <b-col cols="4" class="dashboard-text">
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -162,10 +158,7 @@
                     Referral
                   </div>
                 </b-col>
-              </b-row>
-
-              <b-row v-if="isLogin()">
-                <b-col cols="4" class="dashboard-text">
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -178,7 +171,7 @@
                   </div>
                 </b-col>
 
-                <b-col cols="4" class="dashboard-text">
+                <b-col v-if="isLogin()" cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -195,7 +188,7 @@
               <hr />
 
               <b-row v-if="isLogin()">
-                <b-col cols="4" class="dashboard-text">
+                <b-col cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -208,7 +201,7 @@
                   </div>
                 </b-col>
 
-                <b-col cols="4" class="dashboard-text">
+                <b-col cols="4" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
