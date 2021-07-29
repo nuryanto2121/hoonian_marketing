@@ -199,8 +199,8 @@ export default {
         {
           key: "no",
           label: "NO",
-          thClass: "HeaderACCList2Poppins th-cus-left",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
         {
           key: "prospect_name",
@@ -217,25 +217,25 @@ export default {
         {
           key: "project_name",
           label: this.$t('project_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins L th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "marketing_name",
           label: this.$t('marketing_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "date",
           label: this.$t('date').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins S th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "notes",
           label: this.$t('notes').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-left",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         // {

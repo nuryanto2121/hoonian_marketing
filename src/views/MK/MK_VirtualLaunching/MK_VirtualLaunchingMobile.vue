@@ -32,36 +32,61 @@
                                             </b-col> -->
                                         </b-row>
                                         <b-row style="padding: 0px 10px 0px 10px !important;">
-                                            <b-col style="font-size: 14px; text-shadow: 0.5px 0px;">
+                                            <b-col style="text-shadow: 0.5px 0px;" class="vlaunching-font-start-from">
                                                 {{ $t('start_from') }} IDR {{ isCurrency(data.start_from_price, 0) }}
                                             </b-col>
                                         </b-row>
-                                        <b-row style="padding: 0px 10px !important; padding-bottom: 10px;">
-                                            <b-col style="font-size: 12px; color: #828282;">
+                                        <b-row style="padding: 0px 10px !important;" class="vlaunching-info-space">
+                                            <b-col style="color: #828282;" class="vlaunching-font-meter">
                                                 IDR {{ isCurrency(data.price_per_meter_square,0) }} / m<sup>2</sup>
                                             </b-col>
                                         </b-row>
-                                        <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                                            <b-col style="">
+                                        <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 12px;" class="display-only-landscape">
+                                            <b-col cols="6" style="display: inline-block;">
                                                 <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
                                                 {{data.location_name}}
                                             </b-col>
-                                            <b-col style="text-align: right;">
+                                            <b-col cols="6" style="text-align: right; display: inline-block;">
                                                 {{data.project_type == 'H' ? 'High Rise' : 'Landed'}}
                                             </b-col>
                                         </b-row>
-                                        <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                                            <b-col style="padding-right: 0px !important;" cols="3">
+                                        <b-row style="margin-bottom: 20px; font-size: 12px;" class="display-only-landscape">
+                                            <b-col cols="4" style="padding-left: 15px !important; display: inline-block; padding-right: 0px !important;">
                                                 <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
                                                 {{data.total_unit}} {{ $t('units') }}
                                             </b-col>
-                                            <b-col class="col-bd-room" style="padding-right: 0px !important; padding-left: 7px !important; border-left: solid 1px grey;">
+                                            <b-col cols="4" class="col-bd-room" style="padding-left: 15px !important; display: inline-block; border-left: solid 1px grey;">
                                                 <!-- &nbsp; | &nbsp; -->
                                                 <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
                                                 {{data.unit_type_desc}}
                                             </b-col>
-                                            <b-col style="padding-left: 7px !important; border-left: solid 1px grey;">
+                                            <b-col cols="4" style="padding-left: 15px !important; display: inline-block; border-left: solid 1px grey;">
                                                 <!-- &nbsp; | &nbsp; -->
+                                                <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
+                                                {{data.unit_area_desc}}
+                                            </b-col>
+                                        </b-row>
+
+                                        <b-row style="font-size: 15px; margin-bottom: 20px;" class="display-only-potrait">
+                                            <b-col style="padding-left: 15px !important; display: inline-block;" cols="4">
+                                                <b-img :src="require('@/assets/icon-svg/map-pin.svg')" alt="" style="" />
+                                                {{data.location_name}}
+                                            </b-col>
+                                            <b-col style="padding-left: 15px !important; border-left: solid 1px grey; display: inline-block;" cols="4">
+                                                <b-img :src="require('@/assets/icon-svg/building.svg')" alt="" style="" />
+                                                {{data.project_type == 'H' ? 'High Rise' : 'Landed'}}
+                                            </b-col>
+                                            <b-col style="padding-left: 15px !important; border-left: solid 1px grey; display: inline-block;" cols="4">
+                                                <b-img :src="require('@/assets/icon-svg/house.svg')" alt="" style="" />
+                                                {{data.total_unit}} {{ $t('units') }}
+                                            </b-col>
+                                        </b-row>
+                                        <b-row style="font-size: 15px; margin-bottom: 20px" class="display-only-potrait">
+                                            <b-col class="col-bd-room" style="padding-left: 15px !important; display: inline-block;" cols="5">
+                                                <b-img :src="require('@/assets/icon-svg/bed.svg')" alt="" style="" />
+                                                {{data.unit_type_desc}}
+                                            </b-col>
+                                            <b-col style="padding-left: 15px !important; border-left: solid 1px grey; display: inline-block;" cols="5">
                                                 <b-img :src="require('@/assets/icon-svg/resize.svg')" alt="" style="" />
                                                 {{data.unit_area_desc}}
                                             </b-col>
@@ -71,7 +96,7 @@
                                             <template v-if="!data.inDays">
                                                 <!-- kurang sehari -->
                                                 <b-row style="height: 30px;">
-                                                    <b-col style="font-size: 15px; text-align: center; font-weight: bold;">
+                                                    <b-col style="text-align: center; font-weight: bold;" class="vlaunching-info-time-launching">
                                                         {{ $t('time_to_launching') }}
                                                     </b-col>
                                                 </b-row>
@@ -88,7 +113,7 @@
                                             </template>
                                             <template v-else>
                                                 <b-row style="height: 30px;">
-                                                    <b-col style="font-size: 15px; text-align: center; font-weight: bold;">
+                                                    <b-col style="text-align: center; font-weight: bold;" class="vlaunching-info-time-launching">
                                                         {{ $t('day_to_launching') }}
                                                     </b-col>
                                                 </b-row>
@@ -101,9 +126,9 @@
                                             </template>
                                         </template>
                                         <template v-else>
-                                            <b-row style="padding: 0px 10px 10px 10px !important; margin-top: 30px;">
-                                                <b-col style="height: 70px; background-color: red; color: white; font-size: 17px; text-align: center; line-height: 50px;">
-                                                    <div style="width: 100%; line-height: 25px;" class="center">
+                                            <b-row style="padding: 0px 10px 10px 10px !important;">
+                                                <b-col style="height: 70px; background-color: red; color: white; text-align: center; line-height: 50px;">
+                                                    <div style="width: 100%; line-height: 25px;" class="center vlaunching-font-status">
                                                         {{ $t('v_launching') }} {{ $t('in_progress') }}
                                                     </div>
                                                 </b-col>

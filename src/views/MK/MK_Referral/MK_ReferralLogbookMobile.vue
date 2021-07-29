@@ -63,6 +63,7 @@
                                   removeCardTitle
                                   removePaddingTopBody
                                   noPaging
+                                  :cHeader="Headers"
                                   >
                                   <template slot="date" slot-scope="data">
                                       {{momentUnix(data.item.date, "DD MMM YYYY")}}
@@ -111,6 +112,33 @@ export default {
 
       ModelProject: [],
       selectedProject: 0,
+
+      Headers: [
+        {
+          key: "no",
+          label: "NO",
+          thClass: "HeaderACCList2Poppins th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        },
+        {
+          key: "date",
+          label: this.$t('date').toUpperCase(),
+          thClass: "HeaderACCList2Poppins S th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+        {
+          key: "responder",
+          label: this.$t('responder').toUpperCase(),
+          thClass: "HeaderACCList2Poppins M th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+        {
+          key: "notes",
+          label: this.$t('notes').toUpperCase(),
+          thClass: "HeaderACCList2Poppins M th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
+      ],
 
       PI_description: {
         cValidate: "max:60",
