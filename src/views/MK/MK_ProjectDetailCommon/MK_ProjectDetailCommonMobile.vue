@@ -870,22 +870,22 @@ export default {
         {
           key: "total_bedroom",
           label: "",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
           isCustom: true,
         },
         {
           key: "total_bathroom",
           label: "",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
           isCustom: true,
         },
         {
           key: "total",
           label: "TOTAL",
-          tdClass: "ContentACCList2 notranslate th-cus-center poppins",
-          thClass: "HeaderACCList2 th-cus-center poppins",
+          tdClass: "ContentACCList2 notranslate th-cus-left poppins",
+          thClass: "HeaderACCList2 th-cus-left poppins",
         },
         {
           key: "direction",
