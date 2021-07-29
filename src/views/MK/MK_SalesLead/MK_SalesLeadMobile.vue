@@ -199,50 +199,50 @@ export default {
         {
           key: "no",
           label: "NO",
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "prospect_name",
           label: this.$t('prospect_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins M th-cus-center",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "handphone_no",
           label: this.$t('handphone_no').toUpperCase(),
-          thClass: "HeaderACCList2Poppins XL th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins XL th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "project_name",
           label: this.$t('project_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-center",
+          thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "marketing_name",
           label: this.$t('marketing_name').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-center",
+          thClass: "HeaderACCList2Poppins th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "date",
           label: this.$t('date').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
           key: "notes",
           label: this.$t('notes').toUpperCase(),
-          thClass: "HeaderACCList2Poppins th-cus-center",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+          thClass: "HeaderACCList2Poppins th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         // {
         //   key: "logbook",
         //   label: "",
-        //   thClass: "HeaderACCList2Poppins th-cus-center",
-        //   tdClass: "ContentACCList2Poppins notranslate th-cus-center"
+        //   thClass: "HeaderACCList2Poppins th-cus-left",
+        //   tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         // },
       ],
 

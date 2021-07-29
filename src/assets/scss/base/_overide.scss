@@ -1028,6 +1028,38 @@ ul.box-languages {
 
 @media all and (orientation:portrait) {
   // /* Styles for Portrait screen /
+  .profile {
+    &-img-card {
+      max-width: 100% !important;
+      // max-width: 91.666667% !important;
+      // max-width: 16.666667% !important;
+      // margin-right: 20px;
+      text-align: center;
+    }
+
+    &-img-card2 {
+      width: 90%;
+    }
+    
+    &-form-card {
+      max-width: 100% !important;
+    }
+
+    &-img {
+      width: 160px;
+      height: 160px;
+    }
+    &-pp-change {
+      position: absolute;
+      top: 120px;
+      right: 140px;
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+      box-shadow: 0px 3px 3px 0px #ccc;
+      background-color: white;
+    }
+  }
   .project-detail {
     &-info-card {
       height: 6.3vh;
@@ -1226,6 +1258,34 @@ ul.box-languages {
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
+  .profile {
+    &-img-card {
+      // max-width: 91.666667% !important;
+      max-width: 16.666667% !important;
+      margin-right: 20px;
+      text-align: center;
+    }
+
+    &-img {
+      width: 140px;
+      height: 140px;
+    }
+    
+    &-form-card {
+      max-width: 75% !important;
+    }
+
+    &-pp-change {
+      position: absolute;
+      top: 120px;
+      right: 0;
+      border-radius: 50%;
+      height: 35px;
+      width: 35px;
+      box-shadow: 0px 3px 3px 0px #ccc;
+      background-color: white;
+    }
+  }
   .project-detail {
     &-info-card {
       height: 11vh;
