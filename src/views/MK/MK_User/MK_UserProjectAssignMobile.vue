@@ -65,7 +65,7 @@
                                   <b-img id="id_pict_show" :src="urlHoonian + project.icon_project" alt="" class="user-project-img-size" @error="onImageLoadFailure($event)" />
                               </b-col>
                               <b-col>
-                                  <span class="center" style="width: 100%;">
+                                  <span class="center" style="width: 70%; left: unset !important; text-align: start;">
                                       <label class="lbl-poppins"> {{project.project_name}} </label>
                                   </span>
                               </b-col>

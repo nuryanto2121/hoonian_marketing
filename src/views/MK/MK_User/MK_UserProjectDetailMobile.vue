@@ -53,21 +53,21 @@
                 </b-col>
               </b-row>
               <b-row class="display-only-potrait-flex">
-                <b-col cols="3" style="margin-right: 20px; display: inline-block;">
+                <b-col cols="5" style="display: inline-block;">
                   <b-img :src="urlHoonian + ''" alt="" style="height: 100px;" class="center" fluid-grow rounded @error="onImageLoadFailure($event)" />
                 </b-col>
-                <b-col style="display: inline-block;">
+                <b-col style="display: inline-block;" class="noPadding">
                     <b-row>
                         <b-col style="display: inline-block;">
-                              <label style="font-weight: bold; font-size: 17px; letter-spacing: 3px;" class="title-primary">
-                                  {{cutWord(Model.project_name, 30, true)}}
+                              <label style="font-weight: bold; font-size: 17px;" class="title-primary text-single">
+                                  {{Model.project_name}}
                               </label>
                         </b-col>
                     </b-row>
                     <b-row>
                           <b-col style="display: inline-block;">
                               <div>
-                                  <label style="font-weight: normal; font-size: 15px; margin-bottom: 10px;" class="lbl-poppins"> Total Marketing </label> <br>
+                                  <label style="font-weight: normal; font-size: 15px; margin-bottom: unset !important;" class="lbl-poppins"> Total Marketing </label> <br>
                                   <label style="font-weight: bolder; font-size: 15px;" class="title-primary">
                                       {{Model.total_marketing}}
                                   </label>
@@ -77,7 +77,7 @@
                     <b-row>
                           <b-col style="display: inline-block;">
                               <div>
-                                  <label style="font-weight: normal; font-size: 15px; margin-bottom: 10px;" class="lbl-poppins">{{$t('units') + ' ' + $t('sold')}}</label> <br>
+                                  <label style="font-weight: normal; font-size: 15px; margin-bottom: unset !important;" class="lbl-poppins">{{$t('units') + ' ' + $t('sold')}}</label> <br>
                                   <label style="font-weight: bolder; font-size: 15px;" class="title-primary">
                                       {{Model.unit_sold}}
                                   </label>
@@ -88,9 +88,9 @@
               </b-row>
 
               <b-row class="display-only-potrait-flex">
-                <b-col cols="3" style="margin-right: 25px; display: inline-block;">
+                <b-col cols="5" style="display: inline-block;">
                     <div>
-                        <label style="font-weight: normal; font-size: 15px; margin-bottom: 10px;" class="lbl-poppins">{{$t('sales_value')}}</label> <br>
+                        <label style="font-weight: normal; font-size: 15px; margin-bottom: unset !important;" class="lbl-poppins">{{$t('sales_value')}}</label> <br>
                         <label style="font-weight: bolder; font-size: 15px;" class="title-primary">
                             {{Model.sales_value_s}}
                         </label>
@@ -98,7 +98,7 @@
                 </b-col>
                 <b-col style="display: inline-block;">
                     <div>
-                        <label style="font-weight: normal; font-size: 15px; margin-bottom: 10px;" class="lbl-poppins">Total {{$t('commision')}}</label> <br>
+                        <label style="font-weight: normal; font-size: 15px; margin-bottom: unset !important;" class="lbl-poppins">Total {{$t('commision')}}</label> <br>
                         <label style="font-weight: bolder; font-size: 15px;" class="title-primary">
                             {{Model.total_commission_s}}
                         </label>
