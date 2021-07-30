@@ -119,6 +119,11 @@
             >
               <template slot="TitleTable">
               </template>
+              <template slot="buyer_name" slot-scope="data">
+                <span style="color: #4A93B3">
+                  {{data.item.buyer_name}}
+                </span>
+              </template>
               <template slot="date" slot-scope="data">
                 {{momentUnix(data.item.date, "DD MMM YYYY")}}
               </template>
@@ -139,6 +144,8 @@
                 </b-row>
               </template>
             </HOOList>
+            <div style="margin-bottom: 30px;" :key="data.id">
+            </div>
           </template>
         </b-col>
       </b-row>
@@ -205,49 +212,49 @@ export default {
           key: "no",
           label: "NO",
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins XS",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins XS",
         },
         {
           key: "buyer_name",
           label: this.$t('buyer_name').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins M",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins M",
         },
         {
           key: "marketing",
           label: this.$t('marketing').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins M",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins M",
         },
         {
           key: "tower",
           label: this.$t('tower').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins M",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins M",
         },
         {
           key: "unit_no",
           label: this.$t('unit_no').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins S",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins S",
         },
         {
           key: "date",
           label: this.$t('date').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins S",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins S",
         },
         {
           key: "price",
           label: this.$t('price').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins XS",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins XS",
         },
         {
           key: "status",
           label: this.$t('status').toUpperCase(),
           tdClass: "ContentACCList2 notranslate th-cus-left poppins",
-          thClass: "HeaderACCList2 th-cus-left poppins XL",
+          thClass: "HeaderACCList2-h40 th-cus-left poppins XL",
         },
       ],
       PI_marketing: {
