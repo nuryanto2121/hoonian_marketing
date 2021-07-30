@@ -75,7 +75,7 @@
                     <b-row style="margin-top: 20px;">
                         <b-col cols="12" style="text-align: center;" class="vlaunching-info">
                             <span style="font-size: 20px; font-weight: bold;">{{$t('current_nup_no')}}</span> <br>
-                            <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(242 153 74); font-size: 35px; font-weight: bold; line-height: 100px;">
+                            <div style="background-color: rgb(248 248 248); color: rgb(242 153 74); font-size: 35px; font-weight: bold; line-height: 60px;">
                                 <span v-if="paramFromList.status == 'i'">
                                     {{Model.current_nup_no}}
                                 </span>
@@ -84,7 +84,7 @@
                         </b-col>
                         <b-col cols="12" style="text-align: center;" class="vlaunching-info">
                             <span style="font-size: 20px; font-weight: bold;">{{$t('time_remain')}}</span> <br>
-                            <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(235 87 87); font-size: 35px; font-weight: bold; line-height: 100px;">
+                            <div style="background-color: rgb(248 248 248); color: rgb(235 87 87); font-size: 35px; font-weight: bold; line-height: 60px;">
                                 <template v-if="Model.reserve_status">
                                 <template v-if="paramFromList.status == 'i'">
                                     <template v-if="!Model.inDays">
@@ -105,7 +105,7 @@
                         </b-col>
                         <b-col cols="12" style="text-align: center;" class="vlaunching-info">
                             <span style="font-size: 20px; font-weight: bold;">{{$t('next_nup_no')}}</span> <br>
-                            <div style="height: 80px; background-color: rgb(248 248 248); color: rgb(47 128 237); font-size: 35px; font-weight: bold; line-height: 100px;">
+                            <div style="background-color: rgb(248 248 248); color: rgb(47 128 237); font-size: 35px; font-weight: bold; line-height: 60px;">
                                 <span v-if="paramFromList.status == 'i'">
                                     {{Model.next_nup_no}}
                                 </span>
