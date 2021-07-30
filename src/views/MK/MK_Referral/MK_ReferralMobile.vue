@@ -48,11 +48,12 @@
                   {{momentUnix(data.item.date, "DD MMM YYYY")}}
                 </template>
                 <template slot="pick" slot-scope="data">
-                  <div style="margin-left: 20px">
+                  <div>
                       <b-form-checkbox
                           v-model="data.item.pick"
                           :name="'pick_' + data.index"
                           size="md"
+                          style="padding-left: 45% !important;"
                       />
                   </div>
                 </template>
@@ -169,8 +170,8 @@ export default {
         {
           key: "pick",
           label: this.$t('pick').toUpperCase(),
-          thClass: "HeaderACCList2Poppins S th-cus-left",
-          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+          thClass: "HeaderACCList2Poppins S th-cus-center",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-center"
         },
       ],
       ReferralItems: [],
