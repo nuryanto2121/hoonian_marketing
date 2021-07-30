@@ -53,22 +53,13 @@
                     {{ $t('sales_lead_detail') }}
                   </b-col>
                 </template>
-                <template slot="handphone_no" slot-scope="data">
-                  <b-row>
-                      <b-col cols="6" style="margin-top: 4px;">
-                          <!-- <div class="center"> -->
-                              {{data.item.handphone_no}}
-                          <!-- </div> -->
-                      </b-col>
-                      <b-col cols="6">
-                        <ABSButton
-                          text="Logbook"
-                          classButton="button button--hoonian"
-                          icon="wallet"
-                          @click="doLogbook(data.item)"
-                        />
-                      </b-col>
-                  </b-row>
+                <template slot="logbook" slot-scope="data">
+                  <ABSButton
+                    text="Logbook"
+                    classButton="button button--hoonian"
+                    icon="wallet"
+                    @click="doLogbook(data.item)"
+                  />
                 </template>
                 <template slot="date" slot-scope="data">
                   {{momentUnix(data.item.date, "DD MMM YYYY")}}
@@ -211,7 +202,7 @@ export default {
         {
           key: "handphone_no",
           label: this.$t('handphone_no').toUpperCase(),
-          thClass: "HeaderACCList2Poppins XL th-cus-left",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
         {
@@ -238,12 +229,12 @@ export default {
           thClass: "HeaderACCList2Poppins M th-cus-left",
           tdClass: "ContentACCList2Poppins notranslate th-cus-left"
         },
-        // {
-        //   key: "logbook",
-        //   label: "",
-        //   thClass: "HeaderACCList2Poppins th-cus-left",
-        //   tdClass: "ContentACCList2Poppins notranslate th-cus-left"
-        // },
+        {
+          key: "logbook",
+          label: "",
+          thClass: "HeaderACCList2Poppins M th-cus-left",
+          tdClass: "ContentACCList2Poppins notranslate th-cus-left"
+        },
       ],
 
       ModelProject: [],
