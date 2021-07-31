@@ -46,7 +46,7 @@
                 </b-col>
               </b-row>
               <b-row style="padding: 0px 10px !important; padding-bottom: 10px; font-size: 10px;">
-                <b-col style="">
+                <b-col class="text-double">
                   {{ item.remarks }}
                 </b-col>
               </b-row>
