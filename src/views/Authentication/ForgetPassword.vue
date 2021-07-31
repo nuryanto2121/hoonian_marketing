@@ -21,8 +21,8 @@
                 <b-form @submit.prevent="onSubmit">
                   <label style="font-size:14px !important;color:hsl(240, 49%, 41%);"><b>Forget Password ?</b></label><br />
                   
-                  <label v-if="statusForgot === null" style="font-size:14px !important">To reset your account password, enter the email address or phone number you registered with and we'll send you instruction.</label>
-                  <label v-else-if="statusForgot === 'T'" style="font-size:14px !important">We send verification OTP to your email address or phone number to verify your account please input the OTP below</label>
+                  <label v-if="statusForgot === null" style="font-size:14px !important">To reset your account password, enter the email address {{isMobile() ? 'or phone number' : ''}} you registered with and we'll send you instruction.</label>
+                  <label v-else-if="statusForgot === 'T'" style="font-size:14px !important">We send verification OTP to your email address {{isMobile() ? 'or phone number' : ''}} to verify your account please input the OTP below</label>
                   <label v-else-if="statusForgot === 'P'" style="font-size:14px !important">Please input new password</label>
                   
                   <div class="form-label-group">
@@ -43,7 +43,7 @@
                       class="error-span">{{ errors.first('fieldOne') }}
                     </span>
                   </div>
-                  <div class="form-label-group" v-if="statusForgot === null">
+                  <div class="form-label-group" v-if="statusForgot === null && isMobile()">
                     <b-form-input
                       v-validate="''"
                       v-model="fieldTwo"
@@ -205,7 +205,7 @@ export default {
     },
     forgotPassword() {
       let param = {
-        handphone: this.fieldTwo,
+        handphone: this.fieldTwo ? this.fieldTwo : "",
         email: this.fieldOne
       };
 
