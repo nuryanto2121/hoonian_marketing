@@ -366,7 +366,7 @@ export default {
         if (response == null) return;
         // this.showVA(response.data.transaction_id);
         if (response.data) {
-          this.doWA(response.data.template_WA, this.Model.handphone_no);
+          this.doWA(response.data.template_WA, this.BuyerDetails.handphone_no);
           window.open(response.data.payment.redirect_url);
           this.doBack(); 
         }
