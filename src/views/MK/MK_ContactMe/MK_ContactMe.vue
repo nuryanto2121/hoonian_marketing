@@ -179,7 +179,9 @@ export default {
       this.ProjectItems = [];
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/common/project/project-lookup",
-        {},
+        {
+          company_group_id: this.company_group_id,
+        },
         false,
         false
       ).then((response) => {
