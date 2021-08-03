@@ -143,9 +143,51 @@
         </b-row>
     </b-col>
     </b-row>
+    
+    <ABSModal ref="OP_Cancel_Dialog" size="sm">
+      <template slot="headerTitle"><span style="color: black;">Reason</span></template>
+      <template slot="content">
+        <b-form :data-vv-scope="'FormEntrySalesCancel'" :data-vv-value-path="'FormEntrySalesCancel'">
+          <b-row>
+            <b-col>
+              <label class="lbl-bold">{{ $t('reason') }}</label>
+              <HOODropDown
+                @change="OnReasonChange"
+                :prop="PI_reason"
+                v-model="Model.reason_cd"
+                :label="Model.reason_cdLabel"
+                ref="ref_reason"
+              />
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col>
+              <label class="lbl-bold">{{ $t('Description') }}</label>
+              <ACCTextBox
+                :prop="PI_res_description"
+                v-model="Model.reason_description"
+                ref="ref_description"
+              />
+            </b-col>
+          </b-row>
+          <b-row style="margin-top: 10px;">
+            <b-col md="12">
+              <ABSButton
+                :text="$t('save')"
+                classButton="btn btn--default"
+                classIcon="icon-style-default"
+                @click="doSave2"
+                styleButton="height: 40px;width: 100%;"
+              />
+            </b-col>
+          </b-row>
+        </b-form>
+      </template>
+    </ABSModal>
   </div>
 </template>
 <script>
+
 export default {
   props: ['title'],
   computed: {
@@ -174,6 +216,9 @@ export default {
         refer_toLabel: "",
         stop_followup: "N",
         stop_followupLabel: "No",
+        reason_cd: "",
+        reason_cdLabel: "",
+        reason_description: "",
       },
 
       ModelProject: [],
@@ -255,12 +300,53 @@ export default {
         cDisplayColumn: "",
         cInputStatus: this.inputStatus
       },
+      
+      PI_reason: {
+        dataLookUp: {
+          url: "/api/hoonian-website/reason-lookup",
+          param: {
+          }
+        },
+        cValidate: "required",
+        cName: "reason",
+        ckey: false,
+        cOrder: 1,
+        cProtect: false,
+        cParentForm: "FormEntrySalesCancel",
+        cStatic: false,
+        cOption: [],
+        cDisplayColumn: "",
+        cInputStatus: this.inputStatus,
+        cClearable: false,
+        isShow: true,
+      },
+      PI_res_description: {
+        cValidate: "required|max:60",
+        cName: "description",
+        cOrder: 2,
+        cKey: false,
+        cProtect: false,
+        cResize: false,
+        cReadonly: false,
+        cRows: 3,
+        cMaxRows: 3,
+        cSize: "md",
+        cParentForm: "FormEntrySalesCancel",
+        cInputStatus: this.inputStatus
+      },
     };
   },
   methods: {
+    OnReasonChange(data) {
+      this.$nextTick(() => {
+        this.Model.reason_cd = data.id;
+        this.Model.reason_cdLabel = data.label;
+      })
+    },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
+    onCancelSuccess() {},
     rowClicked(ev, id) {
       console.log(ev, id)
     },
@@ -310,19 +396,43 @@ export default {
         refer_toLabel: "",
         stop_followup: "N",
         stop_followupLabel: "No",
+        reason_cd: "",
+        reason_cdLabel: "",
+        reason_description: "",
       };
     },
-    doSave() {
-      this.$validator._base.validateAll("FormEntry").then((result) => {
+    doSave2() {
+      this.$validator._base.validateAll("FormEntrySalesCancel").then((result) => {
         if (!result) return;
         this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
           (ress) => {
             if (ress.value) {
-              this.$validator.errors.clear("FormEntry");
+              this.$validator.errors.clear("FormEntrySalesCancel");
               this.M_Save();
             }
           }
         );
+      });
+    },
+    doSave() {
+      this.$validator._base.validateAll("FormEntry").then((result) => {
+        if (!result) return;
+        if (this.Model.stop_followup == "Y") {
+          this.Model.reason_cd = "";
+          this.Model.reason_cdLabel = "";
+          this.Model.reason_description = "";
+          this.$refs.OP_Cancel_Dialog._show();
+        }
+        else {
+          this.alertConfirmation("Are You Sure Want To Save This Data ?").then(
+            (ress) => {
+              if (ress.value) {
+                this.$validator.errors.clear("FormEntry");
+                this.M_Save();
+              }
+            }
+          );
+        }
       });
     },
     M_Save() {
@@ -333,7 +443,9 @@ export default {
         marketing_agent_name: this.getDataUser().user_name,
         description: this.Model.description,
         refer_to: this.Model.refer_to,
-        stop_followup: this.Model.stop_followup == "Y"
+        stop_followup: this.Model.stop_followup == "Y",
+        reason_id: this.Model.reason_id,
+        reason_description: this.Model.reason_description
       }
       this.postJSON(this.urlHoonian + '/api/marketing-website/lead/logbook/add', param).then((response) => {
         if (response == null) return;
@@ -346,6 +458,8 @@ export default {
           company_group_id: this.company_group_id,
           sales_lead_id: this.paramFromList.sales_lead_id
         };
+
+        this.$refs.OP_Cancel_Dialog._hide();
       });
     },
   },
