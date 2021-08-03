@@ -91,6 +91,9 @@
                     {{$t('selected_referral')}}
                   </b-col>
                 </template>
+                <template slot="prospect_name" slot-scope="data">
+                  <button style="background: none !important; border: none; padding: 0!important; color: #069; text-decoration: underline; cursor: pointer;" @click.stop="OnNameClick(data.item)">{{data.item.prospect_name}}</button>
+                </template>
                 <template slot="logbook" slot-scope="data">
                   <ABSButton
                     text="Logbook"
@@ -281,6 +284,12 @@ export default {
     onProjectChange(index) {
       this.selectedProject = index;
       this.getProject();
+    },
+    OnNameClick(data) {
+      var param = data;
+      param.isEdit = false;
+      this.$store.commit("setParamPage", param);
+      this.$router.push({ name: "MK_UserProjectAssign" });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");
