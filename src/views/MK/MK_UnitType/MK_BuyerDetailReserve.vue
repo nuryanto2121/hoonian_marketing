@@ -365,8 +365,11 @@ export default {
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
         // this.showVA(response.data.transaction_id);
-        window.open(response.data.payment.redirect_url);
-        this.doBack();
+        if (response.data) {
+          this.doWA(response.data.template_WA, this.BuyerDetails.handphone_no);
+          window.open(response.data.payment.redirect_url);
+          this.doBack(); 
+        }
       });
     },
     doReservationOrBooked(data) {

@@ -37,6 +37,7 @@ const state = {
   projectId: null,
   titleMenu: "",
   backButton: false,
+  contactMe: false,
 }
 
 const getters = {
@@ -75,6 +76,7 @@ const getters = {
   getProjectId: state => { return state.projectId },
   getTitleMenu: state => { return state.titleMenu },
   getBackButton: state => { return state.backButton },
+  getContactMe: state => { return state.contactMe },
 }
 
 const mutations = {
@@ -174,6 +176,9 @@ const mutations = {
   },
   setBackButton (state, data){
     state.backButton = data
+  },
+  setContactMe (state, data){
+    state.contactMe = data
   },
 }
 

@@ -79,6 +79,12 @@ export default {
       event.target.src = require("@/assets/logo_hoonian1.svg");
     },
     doViewDetail(data) {
+      if (data.is_force_information_contact) {
+        if (!localStorage.dataContact) {
+          this.$store.commit("setContactMe", true);
+          return;
+        }
+      }
       this.$store.commit("setParamPage", data);
       this.$router.push({ name: "MK_ProjectDetailCommon" });
     },

@@ -108,6 +108,17 @@
 
 <script>
 export default {
+  computed: {
+    contactMe () {
+      return this.$store.getters.getContactMe;
+    },
+  },
+  watch: {
+    contactMe (newValue, oldValue) {
+      if (newValue)
+        this.showContact();
+    }
+  },
   data() {
     return {
       Model: {
@@ -173,13 +184,15 @@ export default {
   },
   methods: {
     onClose() {
-
+      this.$store.commit("setContactMe", false);
     },
     showContact() {
       this.ProjectItems = [];
       this.postJSON(
         this.urlHoonian + "/api/marketing-website/common/project/project-lookup",
-        {},
+        {
+          company_group_id: this.company_group_id,
+        },
         false,
         false
       ).then((response) => {
@@ -197,7 +210,6 @@ export default {
     onChangeSelected(data) {
     },
     onChangeHeaderSelected(data) {
-      console.log(data)
       for (let i = 0; i < this.ProjectItems.length; i++) {
         this.ProjectItems[i].is_checked = data;
       }
@@ -237,6 +249,7 @@ export default {
         false
       ).then((response) => {
         if (response == null) return;
+        localStorage.dataContact = true;
         this.$refs.Modal_Contact._hide();
       });
     },

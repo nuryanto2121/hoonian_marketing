@@ -312,8 +312,11 @@ export default {
       ).then((response) => {
         if (response == null) return;
         // this.showPaymentThroughVA(response.data.nup_purchase_id);
-        window.open(response.data.payment.redirect_url);
-        this.doBack();
+        if (response.data) {
+          this.doWA(response.data.template_WA, this.Model.handphone_no);
+          window.open(response.data.payment.redirect_url);
+          this.doBack(); 
+        }
       });
     },
   },
