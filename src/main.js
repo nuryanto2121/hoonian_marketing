@@ -191,9 +191,11 @@ import FusionCharts from 'fusioncharts';
 import Column2D from 'fusioncharts/fusioncharts.charts';
 import FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 import VueHorizontalList from 'vue-horizontal-list';
-import VueSocialSharing from 'vue-social-sharing'
-import VueSlickCarousel from 'vue-slick-carousel'
-// import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
+import VueSocialSharing from 'vue-social-sharing';
+import VueSlickCarousel from 'vue-slick-carousel';
+import 'vue-slick-carousel/dist/vue-slick-carousel.css';
+// optional style for arrows & dots
+import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css';
 
 // import ECharts from 'vue-echarts' // refers to components/ECharts.vue in webpack
 

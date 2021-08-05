@@ -1,29 +1,21 @@
 <template>
   <div style="height: 95%">
-    <b-row>
+    <b-row style="margin-top: 10px;">
       <b-col v-if="Model.length > 0" style="padding-left: 50px; padding-right: 50px;">
-        <vue-horizontal-list
+        <!-- <vue-horizontal-list
           :items="Model"
           :options="options"
         >
           <template v-slot:nav-prev>
-            <!-- <div>
-              <b-img :src="require('@/assets/icon-svg/chevron_left.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-left: unset !important;" />
-            </div> -->
           </template>
 
           <template v-slot:nav-next>
-            <!-- <div>
-              <b-img :src="require('@/assets/icon-svg/chevron_right.svg')" alt="" style="cursor: pointer; margin-top: 8px; margin-right: unset !important;" />
-            </div> -->
           </template>
 
           <template v-slot:start>
-            <!-- <div>First Item</div> -->
           </template>
 
           <template v-slot:end>
-            <!-- <div>Last Item</div> -->
           </template>
           <template v-slot:default="{item}">
             <b-row>
@@ -49,7 +41,37 @@
               </b-col>
             </b-row>
           </template>
-        </vue-horizontal-list>
+        </vue-horizontal-list> -->
+        <VueSlickCarousel v-bind="settings">
+          <template v-for="(item, index) in Model">
+            <div :key="index">
+              <b-row>
+                <b-col md="8">
+                  <div>
+                    <b-img :src="urlHoonian + item.image" alt="" class="img-announcement-web" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" rounded />
+                  </div>
+                </b-col>
+                <b-col md="4" class="desc-announcement-web">
+                  <b-row>
+                    <b-col style="" class="header-announcement-web">
+                      {{item.header}}
+                    </b-col>
+                  </b-row>
+                  <b-row>
+                    <b-col style="" class="content-announcement-web text-eight">
+                      {{item.content}}
+                    </b-col>
+                  </b-row>
+                  <b-row align-v="end" style="" class="title-row-announcement-web">
+                    <b-col align-self="end" style="" class="title-col-announcement-web">
+                      {{item.title}}
+                    </b-col>
+                  </b-row>
+                </b-col>
+              </b-row>
+            </div>
+          </template>
+        </VueSlickCarousel>
       </b-col>
     </b-row>
   </div>
@@ -84,6 +106,16 @@ export default {
           start: 5000,
         },
         autoplay: { play: true, repeat: true, speed: 4000 },
+      },
+      settings: {
+        // dots: true,
+        infinite: true,
+        autoplay: true,
+        autoplaySpeed: 4000,
+        // slidesToShow: 1,
+        // slidesToScroll: 1,
+        // pauseOnFocus: true,
+        // pauseOnHover: true,
       },
       Model: [],
     };
