@@ -9,6 +9,7 @@ import MK_FloorPlan from '@/views/MK/MK_UnitType/MK_FloorPlan'
 import MK_VirtualLaunching from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunching'
 import MK_VirtualLaunchingDetail from '@/views/MK/MK_VirtualLaunching/MK_VirtualLaunchingDetail'
 import MK_Referral from '@/views/MK/MK_Referral/MK_Referral'
+import MK_ReferralDetail from '@/views/MK/MK_Referral/MK_ReferralDetail'
 import MK_ReferralLogbook from '@/views/MK/MK_Referral/MK_ReferralLogbook'
 import MK_Token from '@/views/MK/MK_Token/MK_Token'
 import MK_TokenPurchase from '@/views/MK/MK_Token/MK_TokenPurchase'
@@ -115,6 +116,14 @@ export const MKRender = {
             path: '/MK/MK_Referral',
             name: 'MK_Referral',
             component: MK_Referral,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/MK/MK_Referral/Detail',
+            name: 'MK_ReferralDetail',
+            component: MK_ReferralDetail,
             meta: {
                 requiresAuth: true
             }

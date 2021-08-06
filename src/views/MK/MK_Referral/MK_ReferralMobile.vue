@@ -289,7 +289,7 @@ export default {
       var param = data;
       param.isEdit = false;
       this.$store.commit("setParamPage", param);
-      this.$router.push({ name: "MK_UserProjectAssign" });
+      this.$router.push({ name: "MK_ReferralDetail" });
     },
     onImageLoadFailure(event) {
       event.target.src = require("@/assets/logo_hoonian1.svg");

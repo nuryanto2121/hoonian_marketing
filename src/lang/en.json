@@ -175,5 +175,13 @@
     "principle_name": "Principle Name",
     "refund": "Refund",
     "floor_plan_label": "Floor Plan",
-    "type": "Type"
+    "type": "Type",
+
+    "purchase_unit": "Purchase Unit",
+    "company_name": "Company Name",
+    "industry": "Industry",
+    "job_title": "Job Title",
+    "date_assign": "Date Assign",
+    "relation": "Relation",
+    "yearly_income": "Yearly Income"
 }

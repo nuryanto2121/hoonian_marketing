@@ -175,5 +175,13 @@
     "principle_name": "Nama Principle",
     "refund": "Pengembalian",
     "floor_plan_label": "Tata Lantai",
-    "type": "Tipe"
+    "type": "Tipe",
+
+    "purchase_unit": "Pembelian Unit",
+    "company_name": "Nama Perusahaan",
+    "industry": "Industri",
+    "job_title": "Jabatan",
+    "date_assign": "Tanggal Diterima",
+    "relation": "Relasi",
+    "yearly_income": "Pendapatan Tahunan"
 }
