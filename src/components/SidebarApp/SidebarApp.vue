@@ -322,7 +322,7 @@ export default {
 
           // push user to sign-in
           this.$router.replace({
-            path: "/sign-in"
+            path: "/"
           });
           // this.dropdownMenuHeaderTop = !this.dropdownMenuHeaderTop
         });

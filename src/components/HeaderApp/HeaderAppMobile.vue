@@ -246,7 +246,10 @@
           </a>
         </div> -->
 
-        <div v-if="!isLogin()" class="container-notif" style="padding-top: 8px !important; padding-right: 0px !important; width: 120px;">
+        <div class="header--top__info-subportfolio notranslate" style="">
+          {{label}}
+        </div>
+        <div v-if="!isLogin()" class="container-notif" style="padding-top: 8px !important; padding-right: 0px !important; width: 120px; margin-right: 5px;">
           <b-row class="noPadding">
             <b-col>
               <!-- <span>
@@ -266,10 +269,7 @@
             </b-col>
           </b-row>
         </div>
-        <div class="header--top__info-subportfolio notranslate" style="margin-right: 5px;">
-          {{label}}
-        </div>
-        <div class="container-notif" style="padding-right: 30px !important;">
+        <div v-if="isLogin()" class="container-notif" style="padding-right: 30px !important;">
           <a
             class="dropdown-toggle count-info"
             data-toggle="dropdown"
