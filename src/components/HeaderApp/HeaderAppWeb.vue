@@ -186,7 +186,8 @@
                     <img :src="require('@/assets/icon-svg/menu/user.svg')" alt style="width: 30px; height: 30px;" />
                   </div>
                   <div>
-                    User
+                    <!-- User -->
+                    Agent
                   </div>
                 </b-col>
               </b-row>
