@@ -440,13 +440,13 @@ const app2 = new Vue({
   store,
   render: h => h(App),
   onIdle () {
-    if (this.$route.path !== '/sign-in') {
-      this.alertInfo('Session has expired please login again')
-      localStorage.clear()
-      router.replace({
-        path: '/sign-in'
-      })
-    }
+    // if (this.$route.path !== '/sign-in') {
+    //   this.alertInfo('Session has expired please login again')
+    //   localStorage.clear()
+    //   router.replace({
+    //     path: '/sign-in'
+    //   })
+    // }
   }
 }).$mount('#app')
 

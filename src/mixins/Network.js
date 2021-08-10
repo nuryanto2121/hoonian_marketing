@@ -769,7 +769,7 @@ export default {
             message.response.data.Message == 'Session Expired') {
           this.doClearLocalStorage()
           this.$router.replace({
-            path: '/sign-in'
+            path: '/'
           })
           return
         }

@@ -1,7 +1,7 @@
 <template>
   <div style="height: 95%">
     <b-row style="margin-top: 10px;">
-      <b-col v-if="Model.length > 0" style="padding-left: 50px; padding-right: 50px;">
+      <b-col v-if="Model.length > 0" style="padding-left: 50px; padding-right: 50px; overflow-x: hidden;">
         <!-- <vue-horizontal-list
           :items="Model"
           :options="options"
