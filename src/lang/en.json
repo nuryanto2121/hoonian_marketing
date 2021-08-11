@@ -183,5 +183,14 @@
     "job_title": "Job Title",
     "date_assign": "Date Assign",
     "relation": "Relation",
-    "yearly_income": "Yearly Income"
+    "yearly_income": "Yearly Income",
+
+    "full_name": "Full Name",
+    "registered_as": "Registered As",
+    "principle": "Principle",
+    "allow_user_common_reg": "Allow User Common Registration",
+    "allow_indv_marketing_reg": "Allow Individual Marketing Registration",
+    "allow_buyer_reg": "Allow Buyer Registration",
+    "approval_indv_marketing_reg": "Approval On Individual Marketing Registration",
+    "allow_choose_principle": "Allow Choose Principle"
 }

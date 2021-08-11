@@ -1028,6 +1028,14 @@ ul.box-languages {
 
 @media all and (orientation:portrait) {
   // /* Styles for Portrait screen /
+  .regist {
+    &-form {
+      max-width: 100% !important;
+    }
+    &-img {
+      height: 100px !important;
+    }
+  }
   .profile {
     &-img-card {
       max-width: 100% !important;
@@ -1306,6 +1314,14 @@ ul.box-languages {
 }
 @media all and (orientation:landscape) {
   // / Styles for Landscape screen */
+  .regist {
+    &-form {
+      max-width: 50% !important;
+    }
+    &-img {
+      height: 57px !important;
+    }
+  }
   .profile {
     &-img-card {
       // max-width: 91.666667% !important;
