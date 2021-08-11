@@ -198,7 +198,7 @@
                 <b-col cols="12" class="dashboard-text">
                   <div 
                     class="border border-gray"
-                    style="margin: unset !important;"
+                    style="cursor: pointer; margin: unset !important;"
                     @click="showRegister"
                   >
                     <img :src="require('@/assets/icon-svg/edit.svg')" alt style="width: 30px; height: 30px;" />
