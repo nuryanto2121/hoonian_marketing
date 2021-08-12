@@ -98,6 +98,8 @@ export default {
       ).then((response) => {
         if (response == null) return;
         this.Model = response.data;
+        const dataRegistrasi = JSON.stringify(response.data[0]);
+        localStorage.dataRegistrasi = dataRegistrasi;
         // this.Model.pop();
       });
     },

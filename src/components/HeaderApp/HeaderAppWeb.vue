@@ -543,7 +543,7 @@
               </b-row>
             </b-col>
           </b-row>
-          <b-row>
+          <!-- <b-row>
             <b-col cols="12">
               <b-form-checkbox
                 v-model="ModelRegist.allow_user_common_reg"
@@ -614,7 +614,7 @@
                 </span>
               </b-form-checkbox>
             </b-col>
-          </b-row>
+          </b-row> -->
           <b-row style="margin-top: 10px;">
             <b-col md="12" style="text-align: center;">
               <ABSButton
@@ -639,6 +639,23 @@ export default {
     const data = this.getLanguageCommon();
     this.Model.lang_id = data.lang_id;
     this.Model.lang_idLabel = data.label;
+    this.dataRegist = this.getDataRegistrasi();
+    let opt = [];
+    if (this.dataRegist.allow_individual_marketing_regis) {
+      opt.push({id: "Buyer", label: "Buyer"});
+    }
+    if (this.dataRegist.allow_individual_marketing_regis) {
+      opt.push({id: "Marketing", label: "Marketing"});
+    }
+
+    this.PI_registered_as.cOption = opt;
+
+    if (this.dataRegist.allow_choose_principle) {
+      this.PI_principle.cProtect = false;
+    }
+    else {
+      this.PI_principle.cProtect = true;
+    }
 
     // comm: disini kamu ubah hideshow menunya, ternyata dikontrol dari menunya
     this.$store.dispatch("handlePaddingHeader", "0px");
@@ -687,6 +704,7 @@ export default {
       favoriteMenus: [],
       language: null,
       classHeader: false,
+      dataRegist: {},
       languages: [
         {
           name: "Indonesia",
@@ -828,8 +846,8 @@ export default {
         cParentForm: "FormEntry_RegistForm",
         cStatic: true,
         cOption: [
-          {id: "Buyer", label: "Buyer"},
-          {id: "Marketing", label: "Marketing"}
+          // {id: "Buyer", label: "Buyer"},
+          // {id: "Marketing", label: "Marketing"}
         ],
         cDisplayColumn: "",
         cInputStatus: this.inputStatus

@@ -61,6 +61,10 @@ export default {
       return localStorage.webMenuACL === undefined ? undefined: JSON.parse(localStorage.webMenuACL);
     },
 
+    getDataRegistrasi() {
+      return localStorage.dataRegistrasi === undefined ? undefined: JSON.parse(localStorage.dataRegistrasi);
+    },
+
     // example use this method get session id
     // this.getSession().Session_Id
   }
