@@ -312,6 +312,7 @@ export default {
         company_group_id: this.company_group_id,
         principle_id: this.getDataUser().principle_id,
         marketing_id: this.marketingId,
+        mobile_app_user_id: this.getDataMarketing().mobile_app_user_id
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/sales/sales-header', param).then((response) => {
@@ -332,6 +333,7 @@ export default {
                 principle_id: this.getDataUser().principle_id,
                 project_id: data[i].id,
                 marketing_id: this.marketingId,
+                mobile_app_user_id: this.getDataMarketing().mobile_app_user_id
               }
             }
           });
@@ -352,7 +354,8 @@ export default {
       let param = {
         company_group_id: this.company_group_id,
         principle_id: this.getDataUser().principle_id,
-        marketing_id: this.marketingId
+        marketing_id: this.marketingId,
+        mobile_app_user_id: this.getDataMarketing().mobile_app_user_id
       };
 
       this.postJSON(this.urlHoonian + '/api/marketing-website/sales/graph', param).then((response) => {
