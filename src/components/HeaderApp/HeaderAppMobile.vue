@@ -188,6 +188,22 @@
 
               <hr />
 
+              <b-row v-if="!isLogin()">
+                <b-col cols="12" class="dashboard-text">
+                  <div 
+                    class="border border-gray"
+                    style="cursor: pointer; margin: unset !important;"
+                    @click="showRegister"
+                  >
+                    <img :src="require('@/assets/icon-svg/edit.svg')" alt style="width: 30px; height: 30px;" />
+                    <span>Registration</span>
+                  </div>
+                  <!-- <div>
+                    Registration
+                  </div> -->
+                </b-col>
+              </b-row>
+
               <b-row v-if="isLogin()">
                 <b-col cols="4" sm="3" class="dashboard-text">
                   <div 
@@ -434,6 +450,180 @@
 
     <simplert :useRadius="true" :useIcon="true" ref="simplert"></simplert>
     <ABSLoader />
+
+    <ABSModal ref="Register_Dialog" size="lg">
+      <template slot="headerTitle"><span style="color: black;">Register</span></template>
+      <template slot="content">
+        <b-form :data-vv-scope="'FormEntry_RegistForm'" :data-vv-value-path="'FormEntry_RegistForm'">
+          <b-row>
+            <b-col cols="12" class="noPadding regist-form">
+              <b-row>
+                <b-col>
+                  <label class="lbl-bold">{{$t('full_name')}}</label>
+                  <ACCTextBox
+                    :prop="PI_full_name"
+                    v-model="ModelRegist.full_name"
+                    ref="ref_full_name"
+                  />
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <label class="lbl-bold">{{$t('handphone_no')}}</label>
+                  <ACCTextBox
+                    :prop="PI_handphone_no"
+                    v-model="ModelRegist.handphone_no"
+                    ref="ref_handphone_no"
+                  />
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <label class="lbl-bold">{{$t('email')}}</label>
+                  <ACCTextBox
+                    :prop="PI_email"
+                    v-model="ModelRegist.email"
+                    ref="ref_email"
+                  />
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <label class="lbl-bold">{{$t('registered_as')}}</label>
+                  <HOODropDown
+                    @change="Onregistered_asChange"
+                    :prop="PI_registered_as"
+                    v-model="ModelRegist.registered_as"
+                    :label="ModelRegist.registered_asLabel"
+                    ref="ref_registered_as"
+                  />
+                </b-col>
+              </b-row>
+            </b-col>
+            <b-col cols="12" class="noPadding regist-form">
+              <b-row>
+                <b-col>
+                  <label class="lbl-bold">{{$t('id_no')}}</label>
+                  <ACCTextBox
+                    :prop="PI_id_no"
+                    v-model="ModelRegist.id_no"
+                    ref="ref_id_no"
+                  />
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <span>
+                    <label class="lbl-poppins">{{ $t('id_picture') }}</label>
+                  </span> <br>
+                  <b-img id="id_pict_show" :src="urlHoonian + ModelRegist.thumbnail_image" alt="" class="regist-img" @error="onImageLoadFailure($event)" />
+                  <HOOImageUpload
+                    :prop="PI_id_pict"
+                    @change="Onid_pictChange"
+                    v-model="ModelRegist.thumbnail_image"
+                  />
+                </b-col>
+              </b-row>
+              <b-row>
+                <b-col>
+                  <label class="lbl-bold">{{$t('principle')}}</label>
+                  <HOODropDown
+                    @change="OnprincipleChange"
+                    :prop="PI_principle"
+                    v-model="ModelRegist.principle"
+                    :label="ModelRegist.principleLabel"
+                    ref="ref_principle"
+                  />
+                </b-col>
+              </b-row>
+            </b-col>
+          </b-row>
+          <b-row>
+            <b-col cols="12">
+              <b-form-checkbox
+                v-model="ModelRegist.allow_user_common_reg"
+                name="check-button"
+                switch
+                size="lg"
+                :value="'Y'"
+                :unchecked-value="'N'"
+              >
+                <span style="font-size: 12px;">
+                  <label>{{$t('allow_user_common_reg')}}</label>
+                </span>
+              </b-form-checkbox>
+            </b-col>
+            <b-col cols="12">
+              <b-form-checkbox
+                v-model="ModelRegist.allow_indv_marketing_reg"
+                name="check-button"
+                switch
+                size="lg"
+                :value="'Y'"
+                :unchecked-value="'N'"
+              >
+                <span style="font-size: 12px;">
+                  <label>{{$t('allow_indv_marketing_reg')}}</label>
+                </span>
+              </b-form-checkbox>
+            </b-col>
+            <b-col cols="12">
+              <b-form-checkbox
+                v-model="ModelRegist.allow_buyer_reg"
+                name="check-button"
+                switch
+                size="lg"
+                :value="'Y'"
+                :unchecked-value="'N'"
+              >
+                <span style="font-size: 12px;">
+                  <label>{{$t('allow_buyer_reg')}}</label>
+                </span>
+              </b-form-checkbox>
+            </b-col>
+            <b-col cols="12">
+              <b-form-checkbox
+                v-model="ModelRegist.approval_indv_marketing_reg"
+                name="check-button"
+                switch
+                size="lg"
+                :value="'Y'"
+                :unchecked-value="'N'"
+              >
+                <span style="font-size: 12px;">
+                  <label>{{$t('approval_indv_marketing_reg')}}</label>
+                </span>
+              </b-form-checkbox>
+            </b-col>
+            <b-col cols="12">
+              <b-form-checkbox
+                v-model="ModelRegist.allow_choose_principle"
+                name="check-button"
+                switch
+                size="lg"
+                :value="'Y'"
+                :unchecked-value="'N'"
+              >
+                <span style="font-size: 12px;">
+                  <label>{{$t('allow_choose_principle')}}</label>
+                </span>
+              </b-form-checkbox>
+            </b-col>
+          </b-row>
+          <b-row style="margin-top: 10px;">
+            <b-col md="12">
+              <ABSButton
+                :text="'Register'"
+                classButton="btn btn--default"
+                classIcon="icon-style-default"
+                @click="doRegister"
+                styleButton="height: 40px;width: 100%;"
+              />
+            </b-col>
+          </b-row>
+        </b-form>
+      </template>
+    </ABSModal>
   </div>
 </template>
 
@@ -520,6 +710,22 @@ export default {
         lang_id: "",
         lang_idLabel: "",
       },
+      ModelRegist: {
+        full_name: "",
+        handphone_no: "",
+        email: "",
+        registered_as: "",
+        registered_asLabel: "",
+        id_no: "",
+        thumbnail_image: "",
+        principle: "",
+        principleLabel: "",
+        allow_user_common_reg: "N",
+        allow_indv_marketing_reg: "N",
+        allow_buyer_reg: "N",
+        approval_indv_marketing_reg: "N",
+        allow_choose_principle: "N",
+      },
       PI_lang_id: {
         dataLookUp: {
           url: "",
@@ -546,6 +752,101 @@ export default {
         cInputStatus: "new",
         cStyle: "",
         cClearable: false,
+      },
+
+      
+      PI_full_name: {
+        cValidate: "required",
+        cName: "Full Name",
+        cOrder: 1,
+        cKey: false,
+        cType: "text",
+        cProtect: false,
+        cParentForm: "FormEntry_RegistForm",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_id_no: {
+        cValidate: "required",
+        cName: "ID No",
+        cOrder: 2,
+        cKey: false,
+        cType: "tel",
+        cProtect: false,
+        cParentForm: "FormEntry_RegistForm",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_handphone_no: {
+        cValidate: "required",
+        cName: "Handphone No",
+        cOrder: 3,
+        cKey: false,
+        cType: "tel",
+        cProtect: false,
+        cParentForm: "FormEntry_RegistForm",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_email: {
+        cValidate: "email|required",
+        cName: "Email",
+        cOrder: 4,
+        cKey: false,
+        cType: "email",
+        cProtect: false,
+        cParentForm: "FormEntry_RegistForm",
+        cDecimal: 2,
+        cInputStatus: "new"
+      },
+      PI_id_pict: {
+        cValidate: "",
+        cName: "id_pict",
+        cOrder: 5,
+        cTitle: this.$t('upload_photo'),
+        cType: "id_pict",
+        cParentForm: "FormEntry_RegistForm"
+      },
+      PI_registered_as: {
+        dataLookUp: {
+          // url: "/api/hoonian-website/marketing-lead-refer-project-lookup",
+          // param: {
+            // company_group_id: '',
+            // sales_lead_id: ''
+          // }
+        },
+        cValidate: "required",
+        cName: "Registered As",
+        ckey: false,
+        cOrder: 6,
+        cProtect: false,
+        cParentForm: "FormEntry_RegistForm",
+        cStatic: true,
+        cOption: [
+          {id: "B", label: "Buyer"},
+          {id: "M", label: "Marketing"}
+        ],
+        cDisplayColumn: "",
+        cInputStatus: this.inputStatus
+      },
+      PI_principle: {
+        dataLookUp: {
+          url: "/api/hoonian-website/principle-lookup",
+          param: {
+            // company_group_id: '',
+            // sales_lead_id: ''
+          }
+        },
+        cValidate: "required",
+        cName: "Principle",
+        ckey: false,
+        cOrder: 7,
+        cProtect: false,
+        cParentForm: "FormEntry_RegistForm",
+        cStatic: false,
+        cOption: [],
+        cDisplayColumn: "",
+        cInputStatus: this.inputStatus
       },
     };
   },
@@ -625,6 +926,20 @@ export default {
       this.setLanguageCommon();
       location.reload();
     },
+    Onregistered_asChange(data) {
+      this.ModelRegist.registered_as = data.id;
+      this.ModelRegist.registered_asLabel = data.label;
+    },
+    Onid_pictChange(data) {
+      this.ModelRegist.thumbnail_image = data.url;
+    },
+    OnprincipleChange(data) {
+      this.ModelRegist.principle = data.id;
+      this.ModelRegist.principleLabel = data.label;
+    },
+    onImageLoadFailure(event) {
+      event.target.src = require("@/assets/logo_hoonian1.svg");
+    },
     isLogin() {
       return this.getDataUser()? true: false;
     },
@@ -665,6 +980,48 @@ export default {
     },
     showProfile() {
       this.$router.push({ name: "MK_Profile" });
+    },
+    showRegister() {
+      this.$validator.errors.clear("FormEntry_RegistForm");
+      this.ModelRegist = {
+        full_name: "",
+        handphone_no: "",
+        email: "",
+        registered_as: "",
+        registered_asLabel: "",
+        id_no: "",
+        thumbnail_image: "",
+        principle: "",
+        principleLabel: "",
+        allow_user_common_reg: "N",
+        allow_indv_marketing_reg: "N",
+        allow_buyer_reg: "N",
+        approval_indv_marketing_reg: "N",
+        allow_choose_principle: "N",
+      }
+      this.$refs.Register_Dialog._show();
+    },
+    doRegister() {
+      this.alertConfirmation("Are You Sure Want To Logout", "Confirm", "Cancel", "Logout")
+      .then(ress => {
+        if (ress.value) {
+          let param = {
+            // company_group_id: this.company_group_id,
+            // principle_id: this.getDataUser().principle_id
+          };
+
+          // this.postJSON(this.urlHoonian + '/api/marketing-website/token/header', param).then((response) => {
+          //   if (response == null) return;
+          //   let data = response.data;
+          //   this.ModelProject = data;
+
+          //   this.$nextTick(() => {
+          //     this.renderList();
+          //   })
+          //   this.$forceUpdate();
+          // });
+        }
+      });
     },
     logout() {
       this.signOut();

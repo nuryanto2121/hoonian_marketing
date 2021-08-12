@@ -150,7 +150,7 @@
                       />
                     </b-col>
                   </b-row>
-                  <b-row>
+                  <!-- <b-row>
                     <b-col md="12">
                       <span>
                         <label class="lbl-poppins">Marketing {{ $t('group') }}</label>
@@ -163,7 +163,7 @@
                         ref="ref_marketing_group_id"
                       />
                     </b-col>
-                  </b-row>
+                  </b-row> -->
                   <b-row>
                     <b-col md="12">
                       <span>
@@ -192,7 +192,7 @@
                     <b-col md="6">
                       <span>
                         <label class="lbl-poppins">{{ $t('id_picture') }}</label>
-                      </span>
+                      </span> <br>
                       <b-img id="id_pict_show" :src="urlHoonian + Model.thumbnail_image" alt="" height="150" @error="onImageLoadFailure($event)" />
                       <HOOImageUpload
                         :prop="PI_id_pict"
