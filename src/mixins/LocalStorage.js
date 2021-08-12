@@ -53,6 +53,14 @@ export default {
       localStorage.lang_common = JSON.stringify({lang_id: this.Model.lang_id, label: this.Model.lang_idLabel});
     },
 
+    getDataMarketing() {
+      return localStorage.dataMarketing === undefined ? undefined: JSON.parse(localStorage.dataMarketing);
+    },
+
+    getWebMenuACL() {
+      return localStorage.webMenuACL === undefined ? undefined: JSON.parse(localStorage.webMenuACL);
+    },
+
     // example use this method get session id
     // this.getSession().Session_Id
   }
