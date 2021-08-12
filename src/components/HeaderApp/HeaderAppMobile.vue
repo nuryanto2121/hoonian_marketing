@@ -823,15 +823,15 @@ export default {
         cParentForm: "FormEntry_RegistForm",
         cStatic: true,
         cOption: [
-          {id: "B", label: "Buyer"},
-          {id: "M", label: "Marketing"}
+          {id: "Buyer", label: "Buyer"},
+          {id: "Marketing", label: "Marketing"}
         ],
         cDisplayColumn: "",
         cInputStatus: this.inputStatus
       },
       PI_principle: {
         dataLookUp: {
-          url: "/api/hoonian-website/principle-lookup",
+          url: "/api/marketing-website/common/dashboard/principle-lookup",
           param: {
             // company_group_id: '',
             // sales_lead_id: ''
@@ -1008,18 +1008,27 @@ export default {
           let param = {
             // company_group_id: this.company_group_id,
             // principle_id: this.getDataUser().principle_id
+            handphone: this.ModelRegist.handphone_no,
+            name: this.ModelRegist.full_name,
+            email: this.ModelRegist.email,
+            id_no: this.ModelRegist.id_no,
+            thumbnail_image: this.ModelRegist.thumbnail_image,
+            mobile_app_user_id: this.ModelRegist.mobile_app_user_id,
+            principle_id: this.ModelRegist.principle,
+            register_as: this.ModelRegist.registered_as,
+            company_group_id: this.company_group_id
           };
 
-          // this.postJSON(this.urlHoonian + '/api/marketing-website/token/header', param).then((response) => {
-          //   if (response == null) return;
-          //   let data = response.data;
-          //   this.ModelProject = data;
+          this.postJSON(this.getUrlRegister(), param).then((response) => {
+            if (response == null) return;
+            // let data = response.data;
+            // this.ModelProject = data;
 
-          //   this.$nextTick(() => {
-          //     this.renderList();
-          //   })
-          //   this.$forceUpdate();
-          // });
+            // this.$nextTick(() => {
+            //   this.renderList();
+            // })
+            // this.$forceUpdate();
+          });
         }
       });
     },

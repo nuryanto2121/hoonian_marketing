@@ -71,6 +71,7 @@ export default {
       segmentHoonianForgetPassword: 'api/forget_pass',
       segmentHoonianValidateOTP: 'api/verify_otp',
       segmentHoonianChangePassword: 'api/forget_change_pass',
+      segmentRegister: '/api/marketing-website/common/dashboard/register',
 
       segmentChangeSubportfolio: 'Beranda/ChangeSubportfolio',
       segmentGetSubportfolio: 'Beranda/GetSubportfolio',
@@ -444,6 +445,12 @@ export default {
     },
     getUrlHoonianChangePassword() {
       return this.urlHoonian + this.segmentHoonianChangePassword
+    },
+    getUrlRegister() {
+      return this.urlHoonian + this.segmentRegister
+    },
+    getUrlLookupPrincipleNonLogin() {
+      return this.urlHoonian + '/api/marketing-website/common/dashboard/principle-lookup'
     },
 
     getUrlLogout() {
@@ -850,7 +857,8 @@ export default {
         this.$store.commit('setStatusLoader', true)
       }
       let sessionId = '';
-      if (fullUrl === this.getUrlForgotPassword() || fullUrl === this.getUrlAuthChangePassword() || fullUrl === this.getUrlHoonianForgotPassword()) {
+      if (fullUrl === this.getUrlForgotPassword() || fullUrl === this.getUrlAuthChangePassword() || fullUrl === this.getUrlHoonianForgotPassword()
+       || fullUrl === this.getUrlRegister() || fullUrl === this.getUrlLookupPrincipleNonLogin()) {
       } else {
         sessionId = isAuth? this.getSession().Session_Id: "";
       }
