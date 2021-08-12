@@ -322,8 +322,26 @@ export default {
 
           localStorage.lsSession = JSON.stringify(session);
 
-          this.$router.push("/MK_Dashboard");
-          location.reload();
+          // get ACL before to dashboard
+          let paramACL = {
+            marketing_id: this.getDataUser().marketing_id,
+            company_group_id: this.company_group_id,
+          };
+          this.postJSON(
+            this.urlHoonian + "/api/marketing-website/dashboard/login-info-acl",
+            paramACL
+          ).then((response) => {
+            if (response == null) return;
+
+            const dataMarketing = JSON.stringify(response.data.data_marketing);
+            const webMenuACL = JSON.stringify(response.data.web_menu_acl);
+
+            localStorage.dataMarketing = dataMarketing;
+            localStorage.webMenuACL = webMenuACL;
+
+            this.$router.push("/MK_Dashboard");
+            location.reload();
+          });
           // }
         })
         .catch(err => {
