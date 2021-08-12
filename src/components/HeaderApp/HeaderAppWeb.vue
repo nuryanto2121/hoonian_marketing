@@ -639,23 +639,6 @@ export default {
     const data = this.getLanguageCommon();
     this.Model.lang_id = data.lang_id;
     this.Model.lang_idLabel = data.label;
-    this.dataRegist = this.getDataRegistrasi();
-    let opt = [];
-    if (this.dataRegist.allow_individual_marketing_regis) {
-      opt.push({id: "Buyer", label: "Buyer"});
-    }
-    if (this.dataRegist.allow_individual_marketing_regis) {
-      opt.push({id: "Marketing", label: "Marketing"});
-    }
-
-    this.PI_registered_as.cOption = opt;
-
-    if (this.dataRegist.allow_choose_principle) {
-      this.PI_principle.cProtect = false;
-    }
-    else {
-      this.PI_principle.cProtect = true;
-    }
 
     // comm: disini kamu ubah hideshow menunya, ternyata dikontrol dari menunya
     this.$store.dispatch("handlePaddingHeader", "0px");
@@ -697,6 +680,24 @@ export default {
     // console.log(this.label);
     this.Username = this.getDataUser()? this.getDataUser().user_name: "";
     // this.$refs.ref_project.getData();
+
+    this.dataRegist = this.getDataRegistrasi();
+    let opt = [];
+    if (this.dataRegist.allow_individual_marketing_regis) {
+      opt.push({id: "Buyer", label: "Buyer"});
+    }
+    if (this.dataRegist.allow_individual_marketing_regis) {
+      opt.push({id: "Marketing", label: "Marketing"});
+    }
+
+    this.PI_registered_as.cOption = opt;
+
+    if (this.dataRegist.allow_choose_principle) {
+      this.PI_principle.cProtect = false;
+    }
+    else {
+      this.PI_principle.cProtect = true;
+    }
   },
   data() {
     return {
