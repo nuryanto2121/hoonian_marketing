@@ -69,8 +69,8 @@
             static no-auto-hide no-close-button no-fade solid append-toast>
 
             <div>
-              <b-row>
-                <b-col :sm="isLogin()? 3: 6" class="dashboard-text">
+              <b-row v-if="!isLogin()">
+                <b-col sm="6" class="dashboard-text">
                   <div
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -83,7 +83,7 @@
                   </div>
                 </b-col>
 
-                <b-col v-if="!isLogin()" sm="6" class="dashboard-text">
+                <b-col sm="6" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -95,8 +95,23 @@
                     Log In
                   </div>
                 </b-col>
+              </b-row>
 
-                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
+              <b-row v-if="isLogin()" style="min-width: 320px;">
+                <b-col v-if="getWebMenuACL().is_open_dashboard" sm="3" class="dashboard-text">
+                  <div
+                    class="border border-gray"
+                    style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
+                    @click="showDashboard"
+                  >
+                    <img :src="require('@/assets/icon-svg/menu/dashboard.svg')" alt style="width: 30px; height: 30px;" />
+                  </div>
+                  <div>
+                    Dashboard
+                  </div>
+                </b-col>
+
+                <b-col v-if="getWebMenuACL().is_open_sales" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -109,7 +124,7 @@
                   </div>
                 </b-col>
 
-                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
+                <b-col v-if="getWebMenuACL().is_open_nup" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -122,7 +137,7 @@
                   </div>
                 </b-col>
 
-                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
+                <b-col v-if="getWebMenuACL().is_open_lead" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -134,11 +149,8 @@
                     Lead
                   </div>
                 </b-col>
-              </b-row>
 
-              <b-row v-if="isLogin()">
-                <!-- FYI, nama file berbeda dari teks yang ada dari prototif , Virtual Mahcine dengan Virtual Learning-->
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="getWebMenuACL().is_open_vlaunching" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -151,7 +163,7 @@
                   </div>
                 </b-col>
                 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="getWebMenuACL().is_open_referral" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -164,7 +176,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="getWebMenuACL().is_open_token" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -177,7 +189,7 @@
                   </div>
                 </b-col>
 
-                <b-col sm="3" class="dashboard-text">
+                <b-col v-if="getWebMenuACL().is_open_agent" sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -210,8 +222,8 @@
                 </b-col>
               </b-row>
 
-              <b-row>
-                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
+              <b-row v-if="isLogin()">
+                <b-col sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
@@ -224,7 +236,7 @@
                   </div>
                 </b-col>
 
-                <b-col v-if="isLogin()" sm="3" class="dashboard-text">
+                <b-col sm="3" class="dashboard-text">
                   <div 
                     class="border border-gray"
                     style="margin: 10px; padding: 10px; cursor: pointer; margin-bottom: 5px !important;"
