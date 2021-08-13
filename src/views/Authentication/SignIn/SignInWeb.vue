@@ -3,10 +3,10 @@
     <div class="abs-login__box-position-left" style="background: linear-gradient(90deg, #FFFF 50%, #4a93b3 50%)">
       <div class="box-layer-form" style="width:60%; height: 60%;">
         <div class="row" style="height: 100%;">
-          <div class="col">
+          <div class="col" style="padding-top: 10%;">
             <img :src="require('@/assets/logo_hoonian2.svg')" alt style="width: 100%;" />
           </div>
-          <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 50%;">
+          <div class="col" style="background-color: #FFFF; border-bottom-right-radius: 50%; padding-top: 10%;">
             <div class="box-layer-form">
               <div class="box-login-form">
                 <b-form @submit.prevent="onSubmit">
