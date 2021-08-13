@@ -178,6 +178,17 @@
                  IDR {{ isCurrency(Model.data.booking_fee, 0) }}
                </b-col>
              </b-row>
+             <b-row style="margin-top: 20px;">
+                <b-col cols="12" class="noPadding">
+                  <HOODropDown
+                    @change="Onpayment_methodChange"
+                    :prop="PI_payment_method"
+                    v-model="payment_method"
+                    :label="payment_methodLabel"
+                    ref="ref_payment_method"
+                  />
+                </b-col>
+             </b-row>
              <b-row style="font-size: 14px; margin-top: 20px;">
                <b-col cols="6">
                  <span style="cursor: pointer; padding-bottom: 5px;" :style="type == 'all' ? 'color: #4A93B3; border-bottom: 2px solid;': 'color: #b5b5b5;'" @click="changeType('all')">
@@ -239,6 +250,16 @@
                     </template>
                     <template slot="head_total_bathroom" slot-scope="data">
                       <b-img :src="require('@/assets/icon-svg/bathroom.svg')" alt="" style=""/>
+                    </template>
+                    <template slot="direction" slot-scope="data">
+                      <b-row>
+                        <b-col>
+                          {{data.item.direction}}
+                        </b-col>
+                        <b-col>
+                          <b-img :src="require('@/assets/icon-svg/description.svg')" alt="" style="" @click.stop="showDescription(data.item)" />
+                        </b-col>
+                      </b-row>
                     </template>
                     <template slot="price" slot-scope="data">
                       <b-row>
@@ -639,13 +660,16 @@
       </b-row>
     </div>
     <MKBuyerDetailReserve ref="Modal_BuyerDetailReserve" />
+    <MKUnitTypeDescription ref="Modal_UnitTypeDescription" />
   </div>
 </template>
 <script>
 import MKBuyerDetailReserve from "./MK_BuyerDetailReserve";
+import MKUnitTypeDescription from "./MK_UnitTypeDescription";
 export default {
   components: {
-    MKBuyerDetailReserve
+    MKBuyerDetailReserve,
+    MKUnitTypeDescription,
   },
   computed: {
     paramFromList() {
@@ -691,13 +715,6 @@ export default {
         loan_amount: 0,
         tenor: 0,
       },
-      BuyerDetails: {
-        handphone_no: '',
-        buyer_name: '',
-        id_no: '',
-        email: '',
-        id_picture: '',
-      },
       virtualAccount: {},
       propList: {
         url: "/api/marketing-website/project/unit-type/unit-list",
@@ -712,6 +729,7 @@ export default {
           type: "",
           lang_id: this.getDataUser().lang_id,
           principle_id: this.getDataUser().principle_id,
+          payment_method_id: ""
         }
       },
       unitListHeader: [
@@ -819,59 +837,7 @@ export default {
         cDecimal: 0,
         cInputStatus: "new"
       },
-      // FormEntryBuyer
-      PI_handphone_no: {
-        cValidate: "required",
-        cName: "Handphone No",
-        cOrder: 1,
-        cKey: false,
-        cType: "tel",
-        cProtect: false,
-        cParentForm: "FormEntryBuyer",
-        cDecimal: 2,
-        cInputStatus: "new"
-      },
-      PI_buyer_name: {
-        cValidate: "required",
-        cName: "Buyer Name",
-        cOrder: 2,
-        cKey: false,
-        cType: "text",
-        cProtect: false,
-        cParentForm: "FormEntryBuyer",
-        cDecimal: 2,
-        cInputStatus: "new"
-      },
-      PI_id_no: {
-        cValidate: "required",
-        cName: "ID No",
-        cOrder: 3,
-        cKey: false,
-        cType: "tel",
-        cProtect: false,
-        cParentForm: "FormEntryBuyer",
-        cDecimal: 2,
-        cInputStatus: "new"
-      },
-      PI_email: {
-        cValidate: "email|required",
-        cName: "Email",
-        cOrder: 4,
-        cKey: false,
-        cType: "email",
-        cProtect: false,
-        cParentForm: "FormEntryBuyer",
-        cDecimal: 2,
-        cInputStatus: "new"
-      },
-      PI_id_picture: {
-        cValidate: "required",
-        cName: "ID Picture",
-        cOrder: 5,
-        cTitle: this.$t('upload_photo'),
-        cType: "unit",
-        cParentForm: "FormEntryBuyer"
-      },
+      
       showMonthlyInstallment: false,
       monthlyInstallment: 0,
       pleasePayIn: "",
@@ -886,10 +852,48 @@ export default {
         total_bathroom: 'info',
         direction: 'info',
         // price: 'info',
-      }
+      },
+      PI_payment_method: {
+        dataLookUp: {
+          url: "/api/hoonian-website/payment-method-lookup",
+          param: {
+            project_id: "",
+          }
+        },
+        cValidate: "",
+        cName: "payment method",
+        ckey: false,
+        cOrder: 1,
+        cProtect: false,
+        cParentForm: "FormEntry",
+        cStatic: false,
+        cOption: [],
+        cDisplayColumn: "",
+        cInputStatus: this.inputStatus,
+        callback: this.callbackDropdown,
+      },
+      payment_method: "",
+      payment_methodLabel: "",
     }
   },
   methods: {
+    showDescription(data) {
+      this.$refs.Modal_UnitTypeDescription.showDescription(data.remarks);
+    },
+    callbackDropdown(data) {
+      if (data.length > 0) {
+        this.payment_method = data[0].id;
+        this.payment_methodLabel = data[0].label;
+        this.getUnitTypeDetail();
+      }
+    },
+    Onpayment_methodChange(data) {
+      this.$nextTick(() => {
+        this.payment_method = data.id;
+        this.payment_methodLabel = data.label;
+        this.getUnitTypeDetail();
+      })
+    },
     disabledButtonStatus(data) {
       let disabled = false;
       if (data.item.booking_type == this.UNRELEASED) {
@@ -966,6 +970,7 @@ export default {
       data.tower_cluster_name = this.Model.data.tower_cluster_name;
       data.unit_type_name = this.Model.data.unit_type_name;
       data.isMobile = true;
+      data.payment_method_id = this.payment_method;
       this.$refs.Modal_BuyerDetailReserve.doReservationOrBooked(data);
     },
     showCalculator(data) {
@@ -993,6 +998,7 @@ export default {
       this.propList.param.tower_cluster_id = this.Model.data.tower_cluster_id;
       this.propList.param.principle_id = this.getDataUser().principle_id;
       this.propList.param.type = this.type;
+      this.propList.param.payment_method_id = this.payment_method;
 
       this.$nextTick(() => {
         this.$refs.ref_list.doGetList("");
@@ -1135,7 +1141,8 @@ export default {
     },
   },
   mounted() {
-    this.getUnitTypeDetail();
+    this.PI_payment_method.dataLookUp.param.project_id = this.paramFromList.id;
+    this.$refs.ref_payment_method.getData();
     this.getOtherSuggestion();
   },
   beforeDestroy: function() {

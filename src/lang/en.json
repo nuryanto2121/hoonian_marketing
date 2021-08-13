@@ -192,5 +192,6 @@
     "allow_indv_marketing_reg": "Allow Individual Marketing Registration",
     "allow_buyer_reg": "Allow Buyer Registration",
     "approval_indv_marketing_reg": "Approval On Individual Marketing Registration",
-    "allow_choose_principle": "Allow Choose Principle"
+    "allow_choose_principle": "Allow Choose Principle",
+    "information": "Information"
 }

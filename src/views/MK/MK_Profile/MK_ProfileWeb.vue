@@ -495,7 +495,16 @@ export default {
       this.Model.marketing_agent_id = this.getDataUser().marketing_id;
       this.postJSON(this.urlHoonian + '/api/marketing-website/profile/edit', this.Model).then((response) => {
           if (response == null) return;
+          let lsDataUser = localStorage.lsDataUser;
+
+          lsDataUser = JSON.parse(lsDataUser);
+          lsDataUser.lang_id = this.Model.lang_id;
+
+          lsDataUser = JSON.stringify(lsDataUser);
+          localStorage.lsDataUser = lsDataUser;
+
           this.doBack();
+          location.reload();
       });
     },
   },

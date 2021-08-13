@@ -361,6 +361,7 @@ export default {
         project_id: this.paramFromList.id,
         type: typeData,
         nup_no: this.nupNo,
+        payment_method_id: dataRowClick.payment_method_id,
       };
       this.postJSON(this.urlHoonian + '/api/marketing-website/project/unit-type/reserve-unit', param).then((response) => {
         if (response == null) return;
