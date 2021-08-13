@@ -253,7 +253,7 @@
                     </template>
                     <template slot="direction" slot-scope="data">
                       <b-row>
-                        <b-col>
+                        <b-col align-self="center">
                           {{data.item.direction}}
                         </b-col>
                         <b-col>
