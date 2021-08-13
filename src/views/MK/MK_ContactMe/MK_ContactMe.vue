@@ -1,8 +1,16 @@
 <template>
   <div>
     <div style="position: fixed; right: 30px; bottom: 50px;">
-      <b-img :src="require('@/assets/icon-svg/contact_me.svg')" width="60" height="60" alt=""
-        style="border-radius: 50%; background: white; cursor: pointer;" @click="showContact" />
+      <!-- <b-img :src="require('@/assets/icon-svg/contact_me.svg')" width="60" height="60" alt=""
+        style="border-radius: 50%; background: white; cursor: pointer;" @click="showContact" /> -->
+      <b-img :src="require('@/assets/icon-svg/whatsapp.svg')" width="60" height="60" alt=""
+        style="margin-top: 8px; cursor: pointer;" @click="doWhatsapp" />
+      <a :href="`tel:${getDataRegistrasi().web_call_phoneno}`">
+        <b-img :src="require('@/assets/icon-svg/phone.svg')" width="60" height="60" alt=""
+          style="margin-top: 8px; cursor: pointer;"/>
+      </a>
+      <b-img :src="require('@/assets/icon-svg/telegram.svg')" width="60" height="60" alt=""
+        style="cursor: pointer;" @click="doTelegram" />
     </div>
 
     <ABSModal id="Modal_Contact" ref="Modal_Contact" size="sm" @modalCancelClicked="onClose">
@@ -183,6 +191,15 @@ export default {
     };
   },
   methods: {
+    doWhatsapp() {
+      // let msg = this.replaceAllString(this.getBodyMessage(), "\n", "%0D%0A", "string");
+      // msg = this.replaceAllString(msg, "&nbsp;", "%20", "string");
+      // let url = "https://api.whatsapp.com/send?text=" + msg;
+      window.open(this.getDataRegistrasi().web_whatsapp_format);
+    },
+    doTelegram() {
+      window.open(this.getDataRegistrasi().web_telegram_format);
+    },
     onClose() {
       this.$store.commit("setContactMe", false);
     },
