@@ -653,6 +653,25 @@ export default {
     // this.$store.dispatch("handleWidthRightbar", "0px");
     // this.$store.dispatch("handleTextMenu", true);
 
+    this.dataRegist = this.getDataRegistrasi();
+    let opt = [];
+    if (this.dataRegist.allow_individual_marketing_regis) {
+      opt.push({id: "Buyer", label: "Buyer"});
+    }
+    if (this.dataRegist.allow_individual_marketing_regis) {
+      opt.push({id: "Marketing", label: "Marketing"});
+    }
+
+    this.PI_registered_as.cOption = opt;
+    this.$refs.ref_registered_as.reRender()
+
+    if (this.dataRegist.allow_choose_principle) {
+      this.PI_principle.cProtect = false;
+    }
+    else {
+      this.PI_principle.cProtect = true;
+    }
+
     // cek if user login or not
     switch(this.$route.path) {
       case "/":
@@ -680,24 +699,6 @@ export default {
     // console.log(this.label);
     this.Username = this.getDataUser()? this.getDataUser().user_name: "";
     // this.$refs.ref_project.getData();
-
-    this.dataRegist = this.getDataRegistrasi();
-    let opt = [];
-    if (this.dataRegist.allow_individual_marketing_regis) {
-      opt.push({id: "Buyer", label: "Buyer"});
-    }
-    if (this.dataRegist.allow_individual_marketing_regis) {
-      opt.push({id: "Marketing", label: "Marketing"});
-    }
-
-    this.PI_registered_as.cOption = opt;
-
-    if (this.dataRegist.allow_choose_principle) {
-      this.PI_principle.cProtect = false;
-    }
-    else {
-      this.PI_principle.cProtect = true;
-    }
   },
   data() {
     return {

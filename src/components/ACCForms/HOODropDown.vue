@@ -256,6 +256,9 @@ export default {
         document.getElementById(this.prop.cName).focus()
       );
     },
+    reRender() {
+      this.$forceUpdate();
+    },
     onClear() {
       this.selected = { id: "", label: "" };
       this.$emit("change", { id: "", label: "" });
