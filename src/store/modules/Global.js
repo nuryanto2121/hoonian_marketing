@@ -2,9 +2,9 @@ import * as mutationTypes from '../mutation-types'
 
 const state = {
   menuBig: false,
-  paddingHeader: '225px',
-  paddingLeftContent: '180px',
-  widthSidebar: '180px',
+  paddingHeader: '0px',
+  paddingLeftContent: '0px',
+  widthSidebar: '0px',
   widthRightbar: '0px',
   textMenu: true,
   languageStatus: false,
