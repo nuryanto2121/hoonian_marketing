@@ -72,6 +72,7 @@ export default {
       segmentHoonianValidateOTP: 'api/verify_otp',
       segmentHoonianChangePassword: 'api/forget_change_pass',
       segmentRegister: '/api/marketing-website/common/dashboard/register',
+      segmentTnC: '/api/marketing-website/common/dashboard/tnc',
 
       segmentChangeSubportfolio: 'Beranda/ChangeSubportfolio',
       segmentGetSubportfolio: 'Beranda/GetSubportfolio',
@@ -448,6 +449,9 @@ export default {
     },
     getUrlRegister() {
       return this.urlHoonian + this.segmentRegister
+    },
+    getUrlTnC() {
+      return this.urlHoonian + this.segmentTnC
     },
     getUrlLookupPrincipleNonLogin() {
       return this.urlHoonian + '/api/marketing-website/common/dashboard/principle-lookup'
@@ -858,7 +862,7 @@ export default {
       }
       let sessionId = '';
       if (fullUrl === this.getUrlForgotPassword() || fullUrl === this.getUrlAuthChangePassword() || fullUrl === this.getUrlHoonianForgotPassword()
-       || fullUrl === this.getUrlRegister() || fullUrl === this.getUrlLookupPrincipleNonLogin()) {
+       || fullUrl === this.getUrlRegister() || fullUrl === this.getUrlLookupPrincipleNonLogin() || fullUrl === this.getUrlTnC()) {
       } else {
         sessionId = isAuth? this.getSession().Session_Id: "";
       }

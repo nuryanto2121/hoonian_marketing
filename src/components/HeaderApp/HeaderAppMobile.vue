@@ -284,7 +284,7 @@
         <div class="header--top__info-subportfolio notranslate" style="">
           {{label}}
         </div>
-        <div v-if="!isLogin()" class="container-notif" style="padding-top: 8px !important; padding-right: 0px !important; width: 120px; margin-right: 5px;">
+        <div v-if="!isLogin()" class="container-notif" style="padding-top: 8px !important; padding-right: 0px !important; width: 240px; margin-right: 5px;">
           <b-row class="noPadding">
             <b-col>
               <!-- <span>
@@ -300,6 +300,15 @@
                 v-model="Model.lang_id"
                 :label="Model.lang_idLabel"
                 ref="ref_lang_id"
+              />
+            </b-col>
+            <b-col>
+              <ABSButton
+                :text="'Register'"
+                classButton="btn btn--default"
+                classIcon="icon-style-default"
+                @click="showRegister"
+                styleButton="height: 40px;width: 100%;"
               />
             </b-col>
           </b-row>
@@ -639,7 +648,29 @@
               />
             </b-col>
           </b-row>
+          <b-row style="margin-top: 5px;">
+            <b-col style="text-align: center">
+              <span @click="onClickTnC">
+                <label class="lbl-poppins" style="font-size: 12px; cursor: pointer;">{{$t('tnc')}}</label>
+              </span>
+            </b-col>
+          </b-row>
         </b-form>
+      </template>
+    </ABSModal>
+    <ABSModal ref="TNC_Dialog" size="md">
+      <template slot="headerTitle"><span style="color: black;">{{$t('tnc')}}</span></template>
+      <template slot="content">
+        <template v-for="(tnc, i) in TNC">
+          <b-row v-bind:key="i">
+            <b-col sm="6" md="4">
+              <label class="lbl-poppins" style="font-size: 14px; color: #4a93b3;">{{tnc.header}}</label>
+            </b-col>
+            <b-col>
+              <label class="lbl-poppins" style="font-size: 14px;">{{tnc.body}}</label>
+            </b-col>
+          </b-row>
+        </template>
       </template>
     </ABSModal>
   </div>
@@ -700,6 +731,7 @@ export default {
       favoriteMenus: [],
       language: null,
       classHeader: false,
+      TNC: [],
       languages: [
         {
           name: "Indonesia",
@@ -944,6 +976,18 @@ export default {
     }
   },
   methods: {
+    onClickTnC() {
+      let param = {
+        company_group_id: this.company_group_id,
+        lang_id: this.Model.lang_id
+      };
+
+      this.postJSON(this.getUrlTnC(), param).then((response) => {
+        if (response == null) return;
+        this.TNC = response.data;
+      });
+      this.$refs.TNC_Dialog._show();
+    },
     renderRegist() {
       // console.log(this.dataRegist)
       let opt = [];
