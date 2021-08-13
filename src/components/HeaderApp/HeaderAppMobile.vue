@@ -666,25 +666,6 @@ export default {
     // this.$store.dispatch("handleWidthRightbar", "0px");
     // this.$store.dispatch("handleTextMenu", true);
 
-    this.dataRegist = this.getDataRegistrasi();
-    let opt = [];
-    if (this.dataRegist.allow_individual_marketing_regis) {
-      opt.push({id: "Buyer", label: "Buyer"});
-    }
-    if (this.dataRegist.allow_individual_marketing_regis) {
-      opt.push({id: "Marketing", label: "Marketing"});
-    }
-
-    this.PI_registered_as.cOption = opt;
-    this.$refs.ref_registered_as.reRender()
-
-    if (this.dataRegist.allow_choose_principle) {
-      this.PI_principle.cProtect = false;
-    }
-    else {
-      this.PI_principle.cProtect = true;
-    }
-
     // cek if user login or not
     switch(this.$route.path) {
       case "/":
@@ -719,7 +700,6 @@ export default {
       favoriteMenus: [],
       language: null,
       classHeader: false,
-      dataRegist: {},
       languages: [
         {
           name: "Indonesia",
@@ -912,6 +892,9 @@ export default {
     titleMenu() {
       return this.$store.getters.getTitleMenu;
     },
+    dataRegist() {
+      return this.$store.getters.getDataRegis;
+    }
   },
   watch: {
     value: function(newData, oldData) {
@@ -930,6 +913,10 @@ export default {
         this.value = oldData;
         this.$forceUpdate();
       }
+    },
+    "$store.getters.getDataRegis"(newData, oldData) {
+      // console.log(newData);
+      this.renderRegist();
     },
     $route: async function(to, from) {
       // if (this.$route.path === "/") {
@@ -957,6 +944,26 @@ export default {
     }
   },
   methods: {
+    renderRegist() {
+      // console.log(this.dataRegist)
+      let opt = [];
+      if (this.dataRegist.allow_buyer_regis) {
+        opt.push({id: "Buyer", label: "Buyer"});
+      }
+      if (this.dataRegist.allow_individual_marketing_regis) {
+        opt.push({id: "Marketing", label: "Marketing"});
+      }
+
+      this.PI_registered_as.cOption = opt;
+      this.$refs.ref_registered_as.reRender()
+
+      if (this.dataRegist.allow_choose_principle) {
+        this.PI_principle.cProtect = false;
+      }
+      else {
+        this.PI_principle.cProtect = true;
+      }
+    },
     Onlang_idChange(data) {
       this.Model.lang_id = data.id;
       this.Model.lang_idLabel = data.label;
