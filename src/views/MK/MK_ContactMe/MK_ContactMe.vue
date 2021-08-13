@@ -5,7 +5,7 @@
         style="border-radius: 50%; background: white; cursor: pointer;" @click="showContact" /> -->
       <b-img :src="require('@/assets/icon-svg/whatsapp.svg')" width="60" height="60" alt=""
         style="margin-top: 8px; cursor: pointer;" @click="doWhatsapp" />
-      <a :href="`tel:${getDataRegistrasi().web_call_phoneno}`">
+      <a :href="`tel:${dataRegist.web_call_phoneno}`">
         <b-img :src="require('@/assets/icon-svg/phone.svg')" width="60" height="60" alt=""
           style="margin-top: 8px; cursor: pointer;"/>
       </a>
@@ -120,6 +120,9 @@ export default {
     contactMe () {
       return this.$store.getters.getContactMe;
     },
+    dataRegist() {
+      return this.$store.getters.getDataRegis;
+    }
   },
   watch: {
     contactMe (newValue, oldValue) {
@@ -195,10 +198,10 @@ export default {
       // let msg = this.replaceAllString(this.getBodyMessage(), "\n", "%0D%0A", "string");
       // msg = this.replaceAllString(msg, "&nbsp;", "%20", "string");
       // let url = "https://api.whatsapp.com/send?text=" + msg;
-      window.open(this.getDataRegistrasi().web_whatsapp_format);
+      window.open(this.dataRegist.web_whatsapp_format);
     },
     doTelegram() {
-      window.open(this.getDataRegistrasi().web_telegram_format);
+      window.open(this.dataRegist.web_telegram_format);
     },
     onClose() {
       this.$store.commit("setContactMe", false);
