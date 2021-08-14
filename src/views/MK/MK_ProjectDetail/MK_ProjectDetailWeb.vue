@@ -614,7 +614,7 @@
               <b-row style="background: #FFFFFF;
                             box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.1);">
                 <b-col sm="6" style="padding: 10px !important;">
-                  <b-img :src="urlHoonian + item.bank_logo" alt="" style="height: 100px; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
+                  <b-img :src="urlHoonian + item.bank_logo" alt="" style="height: 110px; width: 200px !important; max-width: unset !important; cursor: pointer;" fluid-grow @error="onImageLoadFailure($event)" @click="doViewDetail(item)" />
                 </b-col>
                 <b-col sm="6" style="padding: 10px !important; cursor: pointer;">
                   <b-row>
