@@ -494,7 +494,7 @@
             <b-col md="12" style="padding: unset !important;">
               <b-row>
                 <b-col sm="3">
-                  <b-img :src="urlHoonian + FinancialPartnersDetail.bank_logo" alt="" style="height: 10px;" fluid-grow @error="onImageLoadFailure($event)" />
+                  <b-img :src="urlHoonian + FinancialPartnersDetail.bank_logo" alt="" style="height: 110px; width: 200px !important; max-width: unset !important;" fluid-grow @error="onImageLoadFailure($event)" />
                 </b-col>
                 <b-col>
                   <b-row>
