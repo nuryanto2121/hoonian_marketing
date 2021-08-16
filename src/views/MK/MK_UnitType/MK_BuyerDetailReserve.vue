@@ -369,8 +369,8 @@ export default {
         if (response.data) {
           this.doWA(response.data.template_WA, this.BuyerDetails.handphone_no);
           window.open(response.data.payment.redirect_url);
-          this.doBack(); 
         }
+        this.doBack();
       });
     },
     doReservationOrBooked(data) {
